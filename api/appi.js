@@ -9,6 +9,9 @@ var app = express();
 
 
 //cargar Rutas
+var administrador_rutes = require('./routes/administrador');
+var docente_rutes = require('./routes/docente');
+
 /*var user_routes = require('./routes/user');
 var nuevaOferta_routes = require('./routes/nuevaOferta');
 var administrador_rutes = require('./routes/administrador');
@@ -28,6 +31,8 @@ app.use((req, res, next) => {
 });
 
 // rutas base
+app.use('/api', administrador_rutes);
+app.use('/api', docente_rutes);
 /*app.use('/api', user_routes);
 app.use('/api', nuevaOferta_routes);
 app.use('/api', administrador_rutes);
