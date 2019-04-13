@@ -6,6 +6,7 @@ import { LoguinComponent } from './loguin/loguin.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AdministradorService } from "./services/administrador.services";
 import { DocenteService } from "./services/docente.services";
+import { EstudianteService } from "./services/estudiante.services";
 import { FormsModule } from '@angular/forms';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { DocenteComponent } from './docente/docente.component';
@@ -25,7 +26,7 @@ import { EstudianteComponent } from './estudiante/estudiante.component';
     NgxLoadingModule,
     FormsModule
   ],
-  providers: [AdministradorService,DocenteService],
+  providers: [AdministradorService,DocenteService, EstudianteService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

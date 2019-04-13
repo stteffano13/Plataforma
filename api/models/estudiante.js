@@ -8,17 +8,17 @@ var Schema = mongoose.Schema;
 
 // estos esquemas son las clases comunes 
 
-var DocenteSchema = Schema({
+var EstudianteSchema = Schema({
     nombre: String,
     apellido: String,
-    correo: String,
-    contrasena: String,
     cedula:String,
+    contrasena: String,
+    correo:String,
     tel_celular: String,
     estado: String,
    
 });
 
-module.exports = mongoose.model('Docente', DocenteSchema); //de esta forma al exportar se podra utilizar el 
+module.exports = mongoose.model('Estudiante', EstudianteSchema); //de esta forma al exportar se podra utilizar el 
 //objeto donde se lo llame con el use strict cuando se necesite este objeto d=tendremos un objeto de tipo
 //'User' que tendra un UserSchema al cual se le llamara y se le llenara de datos

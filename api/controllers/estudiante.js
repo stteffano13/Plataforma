@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 var moment = require('moment');
 
 
-var Docente = require('../models/docente'); //importar el modelo del usuario  o lo que son las clases comunes
+var Estudiante = require('../models/estudiante'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 
 
@@ -18,12 +18,12 @@ var jwt = require('../services/jwt');
 // Create a new moment using an array
 
 
-function saveDocente(req, res) {
-    var docente = new Docente();
+function saveEstudiante(req, res) {
+    var estudiante = new Estudiante();
     var params = req.body; // cuerpo de la peticion post de la direccion http por post
     // console.log(params);
 
-    Docente.findOne({
+    Estudiante.findOne({
         '$and': [ { correo: params.correo }]
     }, (err, users) => {
         if (err) {
@@ -33,16 +33,16 @@ function saveDocente(req, res) {
         } else {
             if (users) {
                 return res.status(500).send({
-                    message: "El Usuario ya Existe"
+                    message: "El Estudiante ya Existe"
                 });
             } else {
 
-                docente.nombre = params.nombre;
-                docente.apellido = params.apellido;
-                docente.correo = params.correo;
-                docente.contrasena = params.contrasena;
-                docente.tel_celular = params.tel_celular;
-                docente.cedula=params.cedula;
+                estudiante.nombre = params.nombre;
+                estudiante.apellido = params.apellido;
+                estudiante.correo = params.correo;
+                estudiante.contrasena = params.contrasena;
+                estudiante.tel_celular = params.tel_celular;
+                estudiante.cedula=params.cedula;
                
 
                 if (params.contrasena) {
@@ -50,22 +50,22 @@ function saveDocente(req, res) {
                     // encriptar contrasena y guardar datos
                     bcrypt.hash(params.contrasena, null, null, function (err, hash) {
 
-                        docente.contrasena = hash;
-                        if (docente.nombre != null && docente.apellido != null && docente.correo != null) {
+                        estudiante.contrasena = hash;
+                        if (estudiante.nombre != null && estudiante.apellido != null && estudiante.correo != null && estudiante.cedula!= null) {
                             //guardar usuario
-                            docente.save((err, userStored) => {
+                            estudiante.save((err, userStored) => {
                                 if (err) {
                                     res.status(500).send({
-                                        message: 'Errro al guardadr docente'
+                                        message: 'Errro al guardadr estudiante'
                                     });
                                 } else {
                                     if (!userStored) {
                                         res.status(404).send({
-                                            message: 'No se ha registrado el  docente'
+                                            message: 'No se ha registrado el  estudiante'
                                         });
                                     } else {
                                         res.status(200).send({
-                                            message: 'El docente se ha registrado correctamente'
+                                            message: 'El estudiante se ha registrado correctamente'
                                         });
 
                                     }
@@ -89,7 +89,7 @@ function saveDocente(req, res) {
     });
 }
 
-function loginDocente(req, res) {
+function loginEstudiante(req, res) {
     var params = req.body;
 
     var correo = params.email;
@@ -98,7 +98,7 @@ function loginDocente(req, res) {
     //console.log(params.getHash);
 
 
-    Docente.findOne({ correo: correo }, (err, user) => {
+    Estudiante.findOne({ correo: correo }, (err, user) => {
         if (err) {
             //console.log("aqui hay un error en la peticion");
             res.status(500).send({
@@ -108,7 +108,7 @@ function loginDocente(req, res) {
             if (!user) {
                 // console.log("error 404 el usuario no existe");
                 res.status(404).send({
-                    message: 'El Usuario no existe.'
+                    message: 'El estudiante no existe.'
                 });
             } else {
                 //console.log(user);
@@ -133,7 +133,7 @@ function loginDocente(req, res) {
 
                     } else {
                         res.status(404).send({
-                            message: 'El Usuario no ha podido Autenticarse.'
+                            message: 'El estudiante no ha podido Autenticarse.'
                         });
 
                     }
@@ -148,13 +148,13 @@ function loginDocente(req, res) {
 }
 
 
-function updateDocente(req, res) {
+function updateEstudiante(req, res) {
     var userId = req.params.id; // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
     var update = req.body;
 
     if (userId != req.user.sub) {
         return res.status(500).send({
-            message: "No tiene permiso para actualizar este Usuario."
+            message: "No tiene permiso para actualizar este estudiante."
         });
 
     }
@@ -169,17 +169,17 @@ function updateDocente(req, res) {
             //   console.log("contrasena nueva encriptada", update.contrasena);
             update.estadoContrasena == '';
 
-            Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+            Estudiante.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
                 if (err) {
                     res.status(500).send({
-                        message: "Error al actualizar Usuario"
+                        message: "Error al actualizar estudiante"
                     });
 
                 } else {
                     if (!userUpdate) {
                         res.status(404).send({
-                            message: "El usuario no ha podido actualizarse."
+                            message: "El estudiante no ha podido actualizarse."
                         });
                     } else {
                         res.status(200).send({
@@ -195,32 +195,32 @@ function updateDocente(req, res) {
         update.estadoContrasena == '';
 
 
-        Docente.findOne({
+        Estudiante.findOne({
             '$and': [{}, { correo: update.correo }]
         }, (err, users) => {
             if (err) {
                 res.status(500).send({
-                    message: "Error al Actualizar Usuario"
+                    message: "Error al Actualizar estudiante"
                 });
 
             } else {
                 if (users) {
                     if (users._id != update._id) {
                         res.status(500).send({
-                            message: "El correo que desea ingresar pertenece a otro Usuario"
+                            message: "El correo que desea ingresar pertenece a otro estudiante"
                         });
                     } else {
-                        Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+                        Estudiante.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
                             if (err) {
                                 res.status(500).send({
-                                    message: "Error al actualizar Usuario."
+                                    message: "Error al actualizar estudiante."
                                 });
 
                             } else {
                                 if (!userUpdate) {
                                     res.status(404).send({
-                                        message: "El usuario no ha podido actualizarse."
+                                        message: "El estudiante no ha podido actualizarse."
                                     });
                                 } else {
                                     res.status(200).send({
@@ -233,17 +233,17 @@ function updateDocente(req, res) {
                     }
 
                 } else {
-                    Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+                    Estudiante.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
                         if (err) {
                             res.status(500).send({
-                                message: "Error al actualizar Usuario."
+                                message: "Error al actualizar estudiante."
                             });
 
                         } else {
                             if (!userUpdate) {
                                 res.status(404).send({
-                                    message: "El usuario no ha podido actualizarse."
+                                    message: "El estudiante no ha podido actualizarse."
                                 });
                             } else {
                                 res.status(200).send({
@@ -270,36 +270,13 @@ function updateDocente(req, res) {
 }
 
 
-function countUsers(req, res)
-{
-   
-    console.log("entre");
-  
-    var message =User.find((err, messagess) => {
-        if (err) {
-          return res.status(500).send({
-            message: 'No se ha podido obtener las ultimas ofertas'
-          });
-        }
-    
-        if (!messagess) {
-          return res.status(200).send({
-            message: 'No tiene ofertas'
-          });
-        }
-    
-        return res.status(200).send({
-          messagess
-        });
-      });  
-
-}
 
 module.exports = {          // para exportar todas las funciones de este modulo
    
-    saveDocente,
-    loginDocente,
-    updateDocente,
+    saveEstudiante,
+    loginEstudiante,
+    updateEstudiante
+    
   
 
 
