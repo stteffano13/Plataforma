@@ -5,6 +5,7 @@ import { Estudiante } from "../models/estudiante";
 import { Curso } from "../models/curso";
 import { DocenteService } from "../services/docente.services";
 import { CursoService } from '../services/curso.services';
+import { EstudianteService } from '../services/estudiante.services';
 
 @Component({
   selector: 'app-administrador',
@@ -56,7 +57,7 @@ export class AdministradorComponent implements OnInit {
   public IngresarEstudiante = false;
   public IngresarParalelo = false;
 
-  constructor(private _docenteServices: DocenteService, private _documentoServices: CursoService) {
+  constructor(private _docenteServices: DocenteService, private _documentoServices: CursoService, private _estudianteService: EstudianteService) {
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
@@ -142,7 +143,7 @@ export class AdministradorComponent implements OnInit {
     this.IngresarParalelo = true;
     this.IngresarEstudiante = false;
     this.IngresarDocente = false;
-    this.url2 = '../../assets/imgs/IngresarDocente.png';
+   
   }
   ngOnInit() {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
@@ -220,6 +221,35 @@ onRegisterCurso()
     );
   }
 
+  onRegisterEstudiante() {
+    this.loading = true;
+    this.estudiante_register.estado = '0';
+    this._estudianteService.registerEstudiante(this.estudiante_register).subscribe(
+      response => {
+        this.mensajecorrectomodals = "Los datos del Estudiante se han registrado satisfactoriamente.";
+        console.log("satisfactoriamente");
+        this.loading = false;
+        document.getElementById("openModalCorrecto").click();
+        this.limpiar(2);
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+          document.getElementById("openModalError").click();
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          this.loading = false;
+        }
+      }
+    );
+  }
 
   limpiar(valor) {
     if (valor == '1') {
@@ -227,8 +257,8 @@ onRegisterCurso()
       this.docente_register = new Docente("", "", "", "", "", "", "", "");
     }
     if (valor == '2') {
-      /* this.chofer_register = new Chofer("", "", "", "", "", "", "", "", "", "", "");
-       this.url2 = "../assets/img/IngresarChofer.png";*/
+      this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
+      // this.url2 = "'../../assets/imgs/IngresarEstudiante.png'";
     }
 
     if (valor == '3') {
