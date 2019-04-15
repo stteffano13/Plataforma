@@ -33,7 +33,15 @@ public cont =0;
 
 
 
-
+  registerDocente(docente_to_register) {
+    let json = JSON.stringify(docente_to_register);
+    let params = json;
+    console.log(params);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+      .post(this.url + "registerDocente", params, { headers: headers })
+      .map(res => res.json());
+  }
 
 
 

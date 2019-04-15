@@ -12,12 +12,9 @@ var app = express();
 var administrador_rutes = require('./routes/administrador');
 var docente_rutes = require('./routes/docente');
 var estudiante_rutes = require('./routes/estudiante');
+var curso_rutes = require('./routes/curso');
 
-/*var user_routes = require('./routes/user');
-var nuevaOferta_routes = require('./routes/nuevaOferta');
-var administrador_rutes = require('./routes/administrador');
-var email = require('./routes/enviarCorreo');*/
-//var paypal =require('./routes/paypal');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //convertir a json als peticiones
 
@@ -35,6 +32,7 @@ app.use((req, res, next) => {
 app.use('/api', administrador_rutes);
 app.use('/api', docente_rutes);
 app.use('/api', estudiante_rutes);
+app.use('/api', curso_rutes);
 /*app.use('/api', user_routes);
 app.use('/api', nuevaOferta_routes);
 app.use('/api', administrador_rutes);

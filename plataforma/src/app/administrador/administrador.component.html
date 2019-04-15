@@ -28,11 +28,11 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ingreso de nuevos Usuarios">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvusuario" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-user"></i>
-            <span class="nav-link-text">Usuario</span>
+            <span class="nav-link-text">Docente</span>
           </a>
           <ul class="sidenav-second-level collapse" id="nvusuario">
             <li>
-              <a (click)="apareceIngreseUsuario()">Nuevo</a>
+              <a  (click)="apareceIngreseDocente()">Nuevo</a>
             </li>
           </ul>
         </li>
@@ -40,23 +40,23 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ingreso de nuevos Choferes">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvChofer" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-users"></i>
-            <span class="nav-link-text"> Chofer</span>
+            <span class="nav-link-text"> Estudiante</span>
           </a>
           <ul class="sidenav-second-level collapse" id="nvChofer">
             <li>
-              <a (click)="apareceIngresarChofer()">Nuevo</a>
+              <a (click)="apareceIngreseEstudiante()">Nuevo</a>
             </li>
           </ul>
         </li>
 
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ingreso de nuevos Automóviles">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvautomovil" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-car"></i>
-            <span class="nav-link-text"> Automóvil</span>
+            <i class= "fa fa-fw fa-list-alt"></i>
+            <span class="nav-link-text">  Paralelos</span>
           </a>
           <ul class="sidenav-second-level collapse" id="nvautomovil">
             <li>
-              <a href="#" (click)="aparecerIngresarAuto()">Nuevo</a>
+              <a href="#" (click)="aparecerIngresarParalelos()">Nuevo</a>
             </li>
           </ul>
         </li>
@@ -72,23 +72,7 @@
             </li>
           </ul>
         </li>
-        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reporte">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvreporte" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-file-text"></i>
-            <span class="nav-link-text">Reporte</span>
-          </a>
-          <ul class="sidenav-second-level collapse" id="nvreporte">
-            <li>
-              <a href="#" (click)="aparecerReporteUno()">V. Pendientes</a>
-            </li>
-            <li>
-              <a href="#" (click)="aparecerReporteDos()">V. en Curso</a>
-            </li>
-            <li>
-              <a href="#" (click)="aparecerReporteTres()">V. Exitos</a>
-            </li>
-          </ul>
-        </li> -->
+   
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Buscador de viajes y encomiendas en una fecha">
           <a class="nav-link" data-toggle="collapse" data-parent="#exampleAccordion" (click)="aparecerViajesRealizados()">
             <i class="fa fa-fw fa-suitcase"></i>
@@ -110,52 +94,26 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <!-- ====================================================                     Notificaciones  MENSAJES VIAJES LLENOS ============================================-->
-        <!-- ====================================================                     Notificaciones  MENSAJES VIAJES LLENOS ============================================-->
-        <li class="nav-item dropdown">
-          <a title="Visualizar viajes llenos" (click)="viajelleno()" class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-fw fa-envelope"></i>
-            <span class="d-lg-none">Mensajes
-              <span class="badge badge-pill badge-primary">{{smsLlenos}} Nuevos</span>
-            </span>
-            <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle">{{smsLlenos}}</i>
-            </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">Habilitar viajes llenos:</h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" *ngFor=" let listado of  messagesViajeLLeno">
-              <strong>
-                <h5 style="text-align: center">{{listado.ruta}}</h5>
-              </strong>
-              <span class="small float-right text-muted">
-                <h6>{{listado.horario}}</h6>
+
+
+
+        <!-- ====================================================                     Notificaciones  INGRESAR PARALELO ============================================-->
+      
+        <li class="nav-item dropdown" >
+            <a title="Visualizar viajes llenos"  class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" 
+            data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#ModalIngresarParalelo">
+              <i class="fa fa-fw fa-list-alt"></i>
+              <span class="d-lg-none">Mensajes
+                <span class="badge badge-pill badge-primary"> Nuevos</span>
               </span>
-              <div class="dropdown-message small">
-                <h6>{{listado.fech_salida}}</h6>
-              </div>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-6" style=" display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-outline-success" (click)="aceptarBoton(listado)">
-                      <i class="fa fa-check"></i>
-                    </button>
-                  </div>
-                  <div class="col-md-6" style=" display: flex; justify-content: center;">
-                    <button type="button" class="btn btn-outline-danger" (click)="cancelarBoton()">
-                      <i class="fa fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="dropdown-divider"></div>
+              <span class="indicator text-primary d-none d-lg-block">
+                <i class="fa fa-fw fa-circle"></i>
+               
+              </span>
             </a>
-
-          </div>
-        </li>
-
+           
+          </li>
+  
         <!-- ====================================================                     Notificaciones  VIAJES ============================================-->
         <!-- ====================================================                     Notificaciones  VIAJES ============================================-->
         <li class="nav-item dropdown">
@@ -252,20 +210,7 @@
   <!-- scroll de navegacion -->
   <div class="content-wrapper" style="height: 100%; overflow: auto;">
     <div class="container-fluid">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Montecarlo_VIP</a>
-        </li>
-        <li class="breadcrumb-item active" style="width: 5%;   ">
-          <input style="border: none; padding:0%; width: 70%; margin: 0; background-color:transparent" disabled type="text"
-            #primeras="ngModel" name="primeras" [(ngModel)]="primera">
-        </li>
-        <li class="breadcrumb-item active" style="width: 15%;">
-          <input style="border: none; padding:0%; width: 70%; margin: 0; background-color:transparent" disabled type="text"
-            #primeras="ngModel" name="primeras" [(ngModel)]="segunda">
-        </li>
-      </ol>
-
+ 
       <!-- Division Principal-->
       <div class="rows1" style="width: 80%; height: 70vh; margin-left: 5%" *ngIf="imagen"> </div>
 
@@ -390,13 +335,13 @@
         </div>
       </div>
 
-      <!-- ====================================================                     Formulario de INGRESAR usuario ============================================-->
-      <!-- ====================================================                     Formulario de INGRESAR usuario ============================================-->
+      <!-- ====================================================                     Formulario de INGRESAR DOCENTE ============================================-->
+     
       <div class="container">
-        <form #IngreseUsuario="ngForm" (ngSubmit)="onRegisterSecretaria()" *ngIf="IngreseUsuario" novalidate>
+        <form #IngresarDocente="ngForm" (ngSubmit)="onRegisterDocente()" *ngIf="IngresarDocente" novalidate>
           <div class="row">
             <div class="col-lg-12">
-              <img src="../assets/img/IngresarUser.png" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
+              <img src="../../assets/imgs/IngresarDocente.png" style="display: block; margin-left: 40%; width: 18%;  height:25%; border-radius:50%">
             </div>
           </div>
           <br>
@@ -404,20 +349,13 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="nombre"> Ingrese el Nombre</label>
-                <input type="text" required class="form-control" #Nombre="ngModel" [(ngModel)]="secretaria_register.nombre"
+                <input type="text" required class="form-control" #Nombre="ngModel" [(ngModel)]="docente_register.nombre"
                   name="nombre" id="nombre" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="Nombre.valid || Nombre.pristine" class="alert alert-warning" id="ocu">
                   Ingrese solo letras
                 </div>
               </div>
-              <div class="form-group">
-                <label for="cedula">Ingrese la Cédula</label>
-                <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="secretaria_register.cedula"
-                  name="cedula" id="cedula" pattern="[0-9]*">
-                <div [hidden]="Cedula.valid || Cedula.pristine" class="alert alert-warning">
-                  Ingrese solo números
-                </div>
-              </div>
+            
               <div class="form-group">
                 <label for="contrasena">Ingrese la contraseña</label>
                 <div class="input-group mb-3">
@@ -427,7 +365,7 @@
                     </div>
                   </div>
                   <input type="{{tipoUsuario}}" required class="form-control" aria-label="Text input with checkbox"
-                    #Password="ngModel" [(ngModel)]="secretaria_register.contrasena" name="contrasena" id="contrasena"
+                    #Password="ngModel" [(ngModel)]="docente_register.contrasena" name="contrasena" id="contrasena"
                     pattern=".{6,}">
                 </div>
                 <div [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
@@ -436,11 +374,13 @@
               </div>
               <div class="form-group">
                 <label for="celular">Ingrese numero celular</label>
-                <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="secretaria_register.tel_celular"
-                  name="celular" id="celular" pattern="[0-9]*">
+                <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="docente_register.tel_celular"
+                  name="celular" id="celular"  pattern=".{10,10}">
                 <div [hidden]="Celular.valid || Celular.pristine" class="alert alert-warning">
-                  Ingrese solo números
+                  Ingrese solo números y maximo 10 números
                 </div>
+
+                
               </div>
               <div class="card-columns">
               </div>
@@ -448,7 +388,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellido">Ingrese el Apellido</label>
-                <input type="text" required class="form-control" #Apellido="ngModel" [(ngModel)]="secretaria_register.apellido"
+                <input type="text" required class="form-control" #Apellido="ngModel" [(ngModel)]="docente_register.apellido"
                   name="apellido" id="apellido" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="Apellido.valid || Apellido.pristine" class="alert alert-warning">
                   Ingrese solo letras
@@ -456,20 +396,22 @@
               </div>
               <div class="form-group">
                 <label for="correo">Ingrese el Correo</label>
-                <input type="email" required class="form-control" #Correo="ngModel" [(ngModel)]="secretaria_register.correo"
+                <input type="email" required class="form-control" #Correo="ngModel" [(ngModel)]="docente_register.correo"
                   name="correo" id="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                 <div [hidden]="Correo.valid || Correo.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
               </div>
               <div class="form-group">
-                <label for="telefono">Ingrese numero telefono</label>
-                <input type="text" required class="form-control" #Telefono="ngModel" [(ngModel)]="secretaria_register.tel_convencional"
-                  name="telefono" id="telefono" pattern="[0-9]*">
-                <div [hidden]="Telefono.valid || Telefono.pristine" class="alert alert-warning">
-                  Ingrese solo números
+                <label for="cedula">Ingrese la Cédula</label>
+                <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="docente_register.cedula"
+                  name="cedula" id="cedula"  pattern=".{10,10}">
+                <div [hidden]="Cedula.valid || Cedula.pristine" class="alert alert-warning">
+                  Ingrese solo números y maximo 10 números
                 </div>
               </div>
+
+
             </div>
           </div>
           <div class="row">
@@ -479,7 +421,7 @@
           </div>
           <div class="row">
             <div class="col-md-12" style="text-align: center;">
-              <button type="submit" class="btn btn-primary" [disabled]="!IngreseUsuario.form.valid">Guardar Usuario
+              <button type="submit" class="btn btn-primary" [disabled]="!IngresarDocente.form.valid">Guardar Docente
               </button>
             </div>
           </div>
@@ -592,17 +534,14 @@
         </form>
       </div>
 
-      <!-- ====================================================                     Formulario de INGRESAR chofer ============================================-->
-      <!-- ====================================================                     Formulario de INGRESAR chofer ============================================-->
+      <!-- ====================================================                     Formulario de INGRESAR ESTUDIANTE ============================================-->
+    
       <div class="container">
-        <form #IngreseChofer="ngForm" (ngSubmit)="onRegisterChofer()" *ngIf="IngreseChofer">
+        <form #IngresarEstudiante="ngForm" (ngSubmit)="onRegisterEstudiante()" *ngIf="IngresarEstudiante">
           <div class="row">
             <div class="col-lg-12">
-              <img [src]="url2" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
-              <label class=" form-control fileContainer" style="width: 7%; height: 10%; border: none;margin-left: 50%; margin-top: -7%;">
-                <i class="fa fa-camera fa-2x" style="color:white; "></i>
-                <input type='file' id="nuestroinput" class="btn btn-primary" (change)="readUrl($event)" />
-              </label>
+              <img [src]="url2" style="display: block; margin-left: 40%; width: 18%;  height:25%; border-radius:50%">
+              
             </div>
           </div>
           <br>
@@ -610,7 +549,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="nombreChofer"> Ingrese el Nombre</label>
-                <input type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="chofer_register.nombre"
+                <input type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="estudiante_register.nombre"
                   name="nombreChofer" id="nombreChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="NombreChofer1.valid || NombreChofer1.pristine" class="alert alert-warning">
                   Ingrese solo letras
@@ -618,7 +557,7 @@
               </div>
               <div class="form-group">
                 <label for="cedulaChofer">Ingrese la Cédula</label>
-                <input type="text" required class="form-control" #CedulaChofer="ngModel" [(ngModel)]="chofer_register.cedula"
+                <input type="text" required class="form-control" #CedulaChofer="ngModel" [(ngModel)]="estudiante_register.cedula"
                   name="cedulaChofer" id="cedulaChofer" pattern="[0-9]*">
                 <div [hidden]="CedulaChofer.valid || CedulaChofer.pristine" class="alert alert-warning">
                   Ingrese solo números
@@ -633,28 +572,21 @@
                     </div>
                   </div>
                   <input type="{{tipoChofer}}" required class="form-control" aria-label="Text input with checkbox"
-                    #ContrasenaChofer="ngModel" [(ngModel)]="chofer_register.contrasena" name="ContrasenaChofer" id="contrasenaChofer"
+                    #ContrasenaChofer="ngModel" [(ngModel)]="estudiante_register.contrasena" name="ContrasenaChofer" id="contrasenaChofer"
                     pattern=".{6,}">
                 </div>
                 <div [hidden]="ContrasenaChofer.valid || ContrasenaChofer.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
                 </div>
               </div>
-              <div class="form-group">
-                <label for="celularChofer">Ingrese numero celular</label>
-                <input type="text" required class="form-control" #CelularChofer="ngModel" [(ngModel)]="chofer_register.tel_celular"
-                  name="celularChofer" id="celularChofer" pattern="[0-9]*">
-                <div [hidden]="CelularChofer.valid || CelularChofer.pristine" class="alert alert-warning">
-                  Ingrese solo números
-                </div>
-              </div>
+             
               <div class="card-columns">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellidoChofer">Ingrese el Apellido</label>
-                <input type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="chofer_register.apellido"
+                <input type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="estudiante_register.apellido"
                   name="apellidoChofer" id="apellidoChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="ApellidoChofer.valid || ApellidoChofer.pristine" class="alert alert-warning">
                   Ingrese solo letras
@@ -662,7 +594,7 @@
               </div>
               <div class="form-group">
                 <label for="correoChofer">Ingrese el Correo</label>
-                <input type="email" required class="form-control" #CorreoChofer="ngModel" [(ngModel)]="chofer_register.correo"
+                <input type="email" required class="form-control" #CorreoChofer="ngModel" [(ngModel)]="estudiante_register.correo"
                   name="correoChofer" id="correoChofer" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                 <div [hidden]="CorreoChofer.valid || CorreoChofer.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
@@ -677,10 +609,10 @@
                 </div>
               </div>-->
               <div class="form-group">
-                <label for="telefonoChofer">Ingrese numero telefono</label>
-                <input type="text" required class="form-control" #TelefonoChofer="ngModel" [(ngModel)]="chofer_register.tel_convencional"
-                  name="telefonoChofer" id="telefonoChofer" pattern="[0-9]*">
-                <div [hidden]="TelefonoChofer.valid || TelefonoChofer.pristine" class="alert alert-warning">
+                <label for="celularChofer">Ingrese numero celular</label>
+                <input type="text" required class="form-control" #CelularChofer="ngModel" [(ngModel)]="estudiante_register.tel_celular"
+                  name="celularChofer" id="celularChofer" pattern="[0-9]*">
+                <div [hidden]="CelularChofer.valid || CelularChofer.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
@@ -698,7 +630,7 @@
           </div>
           <div class="row">
             <div class="col-md-12" style="text-align: center;">
-              <button type="submit" class="btn btn-primary" [disabled]="!IngreseChofer.form.valid">Guardar Datos</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!IngresarEstudiante.form.valid">Guardar Datos</button>
             </div>
           </div>
         </form>
@@ -3234,15 +3166,6 @@
 
     </div>
 
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper
-    <footer class="sticky-footer">
-      <div class="container">
-        <div class="text-center">
-          <small>Copyright © Bussines Developer 2018</small>
-        </div>
-      </div>
-    </footer>-->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -3270,7 +3193,42 @@
       </div>
     </div>
 
+   <!-- ====================================================                  Modal Ingresar Paralelo =================================-->
 
+ 
+    <div class="modal fade " id="ModalIngresarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 30%">Crear nuevo paralelo</h5>
+            
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            
+          </div>
+          <p class="modal-title" id="exampleModalLabel" style="margin-left: 22%">Seleccione el curso e ingrese el paralelo</p>
+          <div style="width: 80%; border: 0; background-color: white;  margin-left: 10%" disabled class="modal-body  row">
+              <select   (change)="asignarCurso($event.target.value)"    class=" custom-select col-lg-8" required   >
+                  <option disabled selected hidde value=""  selected>Select one category </option>
+                  <option value="8VO DE BÁSICA">8VO DE BÁSICA</option>
+                  <option value="9NO DE BÁSICA">9NO DE BÁSICA</option>
+                  <option value="10MO DE BÁSICA">10MO DE BÁSICA </option>
+                  <option value="1ER AÑO DE BACHILLERATO">1ER AÑO DE BACHILLERATO</option>
+                  <option value="2DO AÑO DE BACHILLERATO">2DO AÑO DE BACHILLERATO</option>
+                  <option value="3ER AÑO DE BACHILLERATO">3ER AÑO DE BACHILLERATO</option>
+                </select>
+
+                <input  class="form-control col-lg-3 "  style="margin-left: 3%" placeholder="Paralelo" type=" text"  #Curso="ngModel" [(ngModel)]="curso_register.paralelo" name="curso">
+          </div>
+          <div class="modal-footer">
+         
+            <button (click)="onRegisterCurso()" class="btn btn-primary" type="button" data-dismiss="modal">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
     <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
     <button id="openModalCorrecto" [hidden]="true" data-toggle="modal" data-target="#ModalCorrecto">Correcto</button>
