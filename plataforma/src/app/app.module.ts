@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { DocenteComponent } from './docente/docente.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
+import { ComboBoxModule } from '@progress/kendo-angular-dropdowns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { EstudianteComponent } from './estudiante/estudiante.component';
     BrowserModule,
     HttpModule,
     NgxLoadingModule,
-    FormsModule
+    FormsModule,
+    ComboBoxModule,
+    BrowserAnimationsModule
   ],
   providers: [AdministradorService,DocenteService, EstudianteService, CursoService],
   bootstrap: [AppComponent],

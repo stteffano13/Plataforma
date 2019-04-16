@@ -1,24 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { DocenteComponent } from '../docente/docente.component';
 import { Docente } from "../models/docente";
 import { Estudiante } from "../models/estudiante";
 import { Curso } from "../models/curso";
 import { DocenteService } from "../services/docente.services";
 import { CursoService } from '../services/curso.services';
 import { EstudianteService } from '../services/estudiante.services';
+import "rxjs/add/operator/map";
+import {Observable} from 'rxjs/Observable';
+
+import { AfterViewInit, ViewChild } from '@angular/core';
+
+
+
+
 
 @Component({
   selector: 'app-administrador',
   templateUrl: './administrador.component.html',
   styleUrls: ['./administrador.component.css']
 })
-export class AdministradorComponent implements OnInit {
+export class AdministradorComponent implements OnInit, AfterViewInit  {
+
+
+
+
+
+
   public url2;
   public hola1 = true;
   public mensajecorrectomodals;
   public mensajeerrormodals;
   public loading = false;
-
+  public opcionPeriodoLectivo;
+  public selectedGuest;
   // objetos
   public docente_register: Docente;
   public estudiante_register: Estudiante;
@@ -56,11 +70,17 @@ export class AdministradorComponent implements OnInit {
   public IngresarDocente = false;
   public IngresarEstudiante = false;
   public IngresarParalelo = false;
+  public IngresarMatricula = false;
 
+  // vectores
+
+  public vectorListadoEstudiantes: any;
+ 
   constructor(private _docenteServices: DocenteService, private _documentoServices: CursoService, private _estudianteService: EstudianteService) {
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
+
 
 
   }
@@ -127,42 +147,60 @@ export class AdministradorComponent implements OnInit {
     this.txtAparece = !this.txtAparece;
   }
 
+  public aparecerNuevaMatricula() {
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarMatricula = true;
+  }
   public apareceIngreseDocente() {
     this.IngresarDocente = true;
     this.IngresarEstudiante = false;
+    this.IngresarMatricula = false;
     this.url2 = '../../assets/imgs/IngresarDocente.png';
   }
 
   public apareceIngreseEstudiante() {
+    this.IngresarMatricula = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = true;
     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
   }
 
-  public apareceIngreseParalelo() {
-    this.IngresarParalelo = true;
-    this.IngresarEstudiante = false;
-    this.IngresarDocente = false;
-   
-  }
+
   ngOnInit() {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
-   
+    this.opcionPeriodoLectivo = "Seleccione Periodo Lectivo, Periodo Actual:" + localStorage.getItem("periodoAnoLectivo");
+    if (this.opcionPeriodoLectivo == null) {
+      this.opcionPeriodoLectivo = "NO Asignado"
+    }
+
+    this.getListadoEstudiantes();
+
   }
 
 
-asignarCurso(curso)
-  {
-    this.curso_register.curso=curso;
+  ngAfterViewInit() {
+  
   }
 
-onRegisterCurso()
-{
-  this.loading = true;
+
+
+  asignarPeriodoLectivo(periodo) {
+
+    localStorage.setItem("periodoAnoLectivo", periodo);
+
+  }
+
+  asignarCurso(curso) {
+    this.curso_register.curso = curso;
+  }
+
+  onRegisterCurso() {
+    this.loading = true;
     this.curso_register.estado = '0';
-   
-  
-  
+
+
+
     console.log("Esta es el el curso que esta cogiendo", this.curso_register.curso);
     this._documentoServices.registerCurso(this.curso_register).subscribe(
       response => {
@@ -170,7 +208,7 @@ onRegisterCurso()
         console.log("satisfactoriamente");
         this.loading = false;
         document.getElementById("openModalCorrecto").click();
-       // this.limpiar(1);
+        // this.limpiar(1);
       },
       error => {
         var errorMessage = <any>error;
@@ -189,7 +227,7 @@ onRegisterCurso()
         }
       }
     );
-}
+  }
 
   onRegisterDocente() {
     this.loading = true;
@@ -251,6 +289,18 @@ onRegisterCurso()
     );
   }
 
+  getListadoEstudiantes() {
+
+    this._estudianteService.getListadoEstudiantes().subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.listadoEstudiantes[0] != undefined) {
+        this.vectorListadoEstudiantes = response.listadoEstudiantes;
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
   limpiar(valor) {
     if (valor == '1') {
       this.hola1 = true;
@@ -266,4 +316,25 @@ onRegisterCurso()
        this.url2 = "../assets/img/IngresarAuto.png";*/
     }
   }
+
+ public  getRecDet(value)
+ {
+
+console.log("Vamos mijin", value);
+ }
+ 
+
+ public saveMatricula()
+ {
+  let parts: boolean[] = new Array();
+  parts =this.selectedGuest.split(" ");
+  console.log("Vamos mijin", parts[0]);
+ }
+ 
+
+
+  
+
+  
+
 }

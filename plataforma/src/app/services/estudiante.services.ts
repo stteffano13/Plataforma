@@ -44,6 +44,15 @@ public cont =0;
   }
 
 
+  getListadoEstudiantes() {
+   
+  
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+      .get(this.url + "getListadoEstudiantes",  { headers: headers })
+      .map(res => res.json());
+  }
+
 
 
 

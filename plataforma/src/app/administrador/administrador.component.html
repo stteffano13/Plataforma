@@ -19,6 +19,7 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" (click)="recargar()">Montecarlo VIP</a>
+
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -32,7 +33,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="nvusuario">
             <li>
-              <a  (click)="apareceIngreseDocente()">Nuevo</a>
+              <a (click)="apareceIngreseDocente()">Nuevo</a>
             </li>
           </ul>
         </li>
@@ -51,12 +52,12 @@
 
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ingreso de nuevos Automóviles">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvautomovil" data-parent="#exampleAccordion">
-            <i class= "fa fa-fw fa-list-alt"></i>
-            <span class="nav-link-text">  Paralelos</span>
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span class="nav-link-text"> Matricula</span>
           </a>
           <ul class="sidenav-second-level collapse" id="nvautomovil">
             <li>
-              <a href="#" (click)="aparecerIngresarParalelos()">Nuevo</a>
+              <a href="#" (click)="aparecerNuevaMatricula()">Nueva</a>
             </li>
           </ul>
         </li>
@@ -64,91 +65,74 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Clientes de MontecarloTransVip">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#listarClientes" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-address-book"></i>
-            <span class="nav-link-text"> Cliente</span>
+            <span class="nav-link-text"> Asignación</span>
           </a>
           <ul class="sidenav-second-level collapse" id="listarClientes">
             <li>
-              <a href="#" (click)="aparecerReporteClientes()">Listar Clientes</a>
+              <a href="#" (click)="aparecerReporteClientes()">Asignar Materias</a>
             </li>
           </ul>
         </li>
-   
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Buscador de viajes y encomiendas en una fecha">
-          <a class="nav-link" data-toggle="collapse" data-parent="#exampleAccordion" (click)="aparecerViajesRealizados()">
-            <i class="fa fa-fw fa-suitcase"></i>
-            <span class="nav-link-text"> Viajes y Encomiendas Realizadas</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pagos totales por día en una fecha específica">
-          <a class="nav-link" data-toggle="collapse" data-parent="#exampleAccordion" (click)="aparecerEncomiendasRealizadas()">
-            <i class="fa fa-fw fa-usd"></i>
-            <span class="nav-link-text"> Pagos Por Día</span>
-          </a>
-        </li>
+
+
       </ul>
 
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
           <a class="nav-link text-center" id="sidenavToggler">
           </a>
+
+
         </li>
+
+
       </ul>
       <ul class="navbar-nav ml-auto">
 
+        <li>
 
+
+          <select (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
+            <option disabled selected hidde [value]="opcionPeriodoLectivo" selected>{{opcionPeriodoLectivo}} </option>
+            <option value="2017-2018">2017-2018</option>
+            <option value="2018-2019">2018-2019</option>
+            <option value="2019-2020">2019-2020 </option>
+            <option value="2020-2021">2020-2021</option>
+            <option value="2021-2022">2021-2022</option>
+            <option value="2022-2021">2022-2021</option>
+            <option value="2021-2022">2021-2022</option>
+            <option value="2022-2023">2022-2023</option>
+            <option value="2023-2024">2023-2024</option>
+            <option value="2024-2025">2024-2025</option>
+            <option value="2025-2026">2025-2026</option>
+            <option value="2026-2027">2026-2027</option>
+            <option value="2028-2029">2028-2029</option>
+            <option value="2029-2030">2029-2030</option>
+          </select>
+
+
+        </li>
 
         <!-- ====================================================                     Notificaciones  INGRESAR PARALELO ============================================-->
-      
-        <li class="nav-item dropdown" >
-            <a title="Visualizar viajes llenos"  class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" 
-            data-toggle="modal" aria-haspopup="true" aria-expanded="false" data-target="#ModalIngresarParalelo">
-              <i class="fa fa-fw fa-list-alt"></i>
-              <span class="d-lg-none">Mensajes
-                <span class="badge badge-pill badge-primary"> Nuevos</span>
-              </span>
-              <span class="indicator text-primary d-none d-lg-block">
-                <i class="fa fa-fw fa-circle"></i>
-               
-              </span>
-            </a>
-           
-          </li>
-  
-        <!-- ====================================================                     Notificaciones  VIAJES ============================================-->
-        <!-- ====================================================                     Notificaciones  VIAJES ============================================-->
+
+
         <li class="nav-item dropdown">
-          <a title="Nuevas Solicitudes de viajes" (click)="obtenerSolicitudesViajes()" class="nav-link dropdown-toggle mr-lg-2"
-            id="alertsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-            <i class="fa fa-fw fa-car"></i>
-
-            <span class="d-lg-none">Notificaciones Viajes
-              <span class="badge badge-pill badge-warning">{{notViaje}} Nuevas</span>
+          <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" data-toggle="modal" aria-haspopup="true"
+            aria-expanded="false" data-target="#ModalIngresarParalelo">
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span class="d-lg-none">Mensajes
+              <span class="badge badge-pill badge-primary"> Nuevos</span>
             </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
 
-            <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle">{{notViaje}}</i>
             </span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">
-              <a (click)="apareceNotificacionViaje()">Ver todas las solicitudes de viajes ...</a>
-            </h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="mostrarNotificacion(listado)" *ngFor=" let listado of  messages">
-              <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>{{listado.tipo}}</strong>
-              </span>
-              <div class="dropdown-message small">{{listado.ruta}}</div>
-              <div class="dropdown-message small">{{listado.horario}}</div>
-              <div class="dropdown-message small">{{listado.fechaSalida}}
-              </div>
-              <div class="dropdown-divider"></div>
-            </a>
-            <a class="dropdown-item small" (click)="apareceNotificacionViaje()">Ver todas las solicitudes de viajes</a>
-          </div>
+
         </li>
+
+
+
         <!-- ====================================================                     Notificaciones  ENCOMIENDAS============================================-->
         <!-- ====================================================                     Notificaciones  ENCOMIENDAS============================================-->
         <li class="nav-item dropdown">
@@ -181,18 +165,22 @@
               </div>
               <div class="dropdown-divider"></div>
             </a>
-            <a class="dropdown-item small" (click)="apareceNotificacionEncomienda()">Ver todas las solicitudes de
-              encomiendas</a>
+            <a class="dropdown-item small" (click)="apareceNotificacionEncomienda()">Ver todas las solicitudes de encomiendas
+            </a>
           </div>
         </li>
+
         <li class="nav-item">
+
+
+
+
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
-              <input title="Buscardor de usuarios, choferes y automóviles" class="form-control" type="text" placeholder="Buscar"
-                #Buscar="ngModel" [(ngModel)]="buscar" name="buscar">
+              <input title="Buscardor de usuarios, choferes y automóviles" class="form-control" type="text" placeholder="Buscar" #Buscar="ngModel"
+                [(ngModel)]="buscar" name="buscar">
               <span class="input-group-append">
-                <button title="Buscardor de usuarios, choferes y automóviles" class="btn btn-primary" (click)="busqueda()"
-                  type="button">
+                <button title="Buscardor de usuarios, choferes y automóviles" class="btn btn-primary" (click)="busqueda()" type="button">
                   <i class="fa fa-search"></i>
                 </button>
               </span>
@@ -210,7 +198,7 @@
   <!-- scroll de navegacion -->
   <div class="content-wrapper" style="height: 100%; overflow: auto;">
     <div class="container-fluid">
- 
+
       <!-- Division Principal-->
       <div class="rows1" style="width: 80%; height: 70vh; margin-left: 5%" *ngIf="imagen"> </div>
 
@@ -334,9 +322,78 @@
           </table>
         </div>
       </div>
+      <!-- ====================================================                     Formulario de Ingresar MATRICULA ============================================-->
+
+      <div class="container">
+        <form #IngresarMatricula="ngForm" *ngIf="IngresarMatricula" novalidate>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="../../assets/imgs/IngresarMatricula.png" style="display: block; margin-left: 40%; width: 18%;  height:25%; border-radius:50%">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+
+
+
+
+                <label for="apellido">Seleccione el estudiante a matricular</label>
+                <input list="listadoEstudiantes" [(ngModel)]="selectedGuest" name="lsitadoEstudiantes" 
+                  required type="text" class="form-control">
+
+
+                <datalist id="listadoEstudiantes">
+                  <option  id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes" >
+                    
+                   {{oneDoor.codigo}} {{oneDoor.nombre}}
+                  </option>
+                 
+
+                </datalist>
+
+              </div>
+
+
+              <div class="card-columns">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="apellido">Seleccione el estudiante a matricular</label>
+                <input list="colores" name="colores" type="text" class="form-control">
+                <datalist id="colores">
+                  <option value="Azul"></option>
+                  <option value="Amarillo"></option>
+                  <option value="Burdeos"></option>
+                  <option value="Caoba"></option>
+                  <option value="Marrón"></option>
+                  <option value="Naranja"></option>
+                  <option value="Verde"></option>
+                </datalist>
+              </div>
+
+
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr style="background-color: #e9ecef; width: 50%;">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+              <button type="submit"  (click)="saveMatricula()" class="btn btn-primary">Generar Matricula
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
 
       <!-- ====================================================                     Formulario de INGRESAR DOCENTE ============================================-->
-     
+
       <div class="container">
         <form #IngresarDocente="ngForm" (ngSubmit)="onRegisterDocente()" *ngIf="IngresarDocente" novalidate>
           <div class="row">
@@ -349,13 +406,13 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="nombre"> Ingrese el Nombre</label>
-                <input type="text" required class="form-control" #Nombre="ngModel" [(ngModel)]="docente_register.nombre"
-                  name="nombre" id="nombre" pattern="[ A-Za-zñÑ]*">
+                <input type="text" required class="form-control" #Nombre="ngModel" [(ngModel)]="docente_register.nombre" name="nombre" id="nombre"
+                  pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="Nombre.valid || Nombre.pristine" class="alert alert-warning" id="ocu">
                   Ingrese solo letras
                 </div>
               </div>
-            
+
               <div class="form-group">
                 <label for="contrasena">Ingrese la contraseña</label>
                 <div class="input-group mb-3">
@@ -364,9 +421,8 @@
                       <i class="{{clase_ojoUsuario}}"></i>
                     </div>
                   </div>
-                  <input type="{{tipoUsuario}}" required class="form-control" aria-label="Text input with checkbox"
-                    #Password="ngModel" [(ngModel)]="docente_register.contrasena" name="contrasena" id="contrasena"
-                    pattern=".{6,}">
+                  <input type="{{tipoUsuario}}" required class="form-control" aria-label="Text input with checkbox" #Password="ngModel" [(ngModel)]="docente_register.contrasena"
+                    name="contrasena" id="contrasena" pattern=".{6,}">
                 </div>
                 <div [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
@@ -374,13 +430,13 @@
               </div>
               <div class="form-group">
                 <label for="celular">Ingrese numero celular</label>
-                <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="docente_register.tel_celular"
-                  name="celular" id="celular"  pattern=".{10,10}">
+                <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="docente_register.tel_celular" name="celular"
+                  id="celular" pattern=".{10,10}">
                 <div [hidden]="Celular.valid || Celular.pristine" class="alert alert-warning">
                   Ingrese solo números y maximo 10 números
                 </div>
 
-                
+
               </div>
               <div class="card-columns">
               </div>
@@ -388,24 +444,24 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellido">Ingrese el Apellido</label>
-                <input type="text" required class="form-control" #Apellido="ngModel" [(ngModel)]="docente_register.apellido"
-                  name="apellido" id="apellido" pattern="[ A-Za-zñÑ]*">
+                <input type="text" required class="form-control" #Apellido="ngModel" [(ngModel)]="docente_register.apellido" name="apellido"
+                  id="apellido" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="Apellido.valid || Apellido.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
                 <label for="correo">Ingrese el Correo</label>
-                <input type="email" required class="form-control" #Correo="ngModel" [(ngModel)]="docente_register.correo"
-                  name="correo" id="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <input type="email" required class="form-control" #Correo="ngModel" [(ngModel)]="docente_register.correo" name="correo" id="correo"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                 <div [hidden]="Correo.valid || Correo.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
               </div>
               <div class="form-group">
                 <label for="cedula">Ingrese la Cédula</label>
-                <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="docente_register.cedula"
-                  name="cedula" id="cedula"  pattern=".{10,10}">
+                <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="docente_register.cedula" name="cedula" id="cedula"
+                  pattern=".{10,10}">
                 <div [hidden]="Cedula.valid || Cedula.pristine" class="alert alert-warning">
                   Ingrese solo números y maximo 10 números
                 </div>
@@ -442,24 +498,24 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label> Nombre del Usuario</label>
-                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosSecretarias.nombre" name="nombreM"
-                  [disabled]='textBox' pattern="[ A-Za-zñÑ]*" required>
+                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosSecretarias.nombre" name="nombreM" [disabled]='textBox'
+                  pattern="[ A-Za-zñÑ]*" required>
                 <div [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
                 <label>Celular del Usuario</label>
-                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosSecretarias.tel_celular"
-                  name="celularM" pattern="[0-9]*" [disabled]='textBox' required>
+                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosSecretarias.tel_celular" name="celularM" pattern="[0-9]*"
+                  [disabled]='textBox' required>
                 <div [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
               <div class="form-group">
                 <label>Numero de Telefono del Usuario</label>
-                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosSecretarias.tel_convencional"
-                  name="telefonoM" [disabled]='textBox' pattern="[0-9]*" required>
+                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosSecretarias.tel_convencional" name="telefonoM"
+                  [disabled]='textBox' pattern="[0-9]*" required>
                 <div [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -470,16 +526,16 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>Apellido del Usuario</label>
-                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosSecretarias.apellido"
-                  name="apellidoM" [disabled]='textBox' pattern="[ A-Za-zñÑ]*" required>
+                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosSecretarias.apellido" name="apellidoM" [disabled]='textBox'
+                  pattern="[ A-Za-zñÑ]*" required>
                 <div [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
                 <label>Correo de Usuario</label>
-                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosSecretarias.correo" name="correorM"
-                  [disabled]='textBox' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosSecretarias.correo" name="correorM" [disabled]='textBox'
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                 <div [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
@@ -489,12 +545,11 @@
                 <div class="input-group mb-3">
                   <div class="input-group-prepend" (click)='habilitarContrasenaU()'>
                     <div class="input-group-text">
-                     
+
                     </div>
                   </div>
-                  <input type="{{tipoUsuarioM}}" disabled required class="form-control" aria-label="Text input with checkbox"
-                    #Password="ngModel" [(ngModel)]="this.contrasenaNewUser" name="contrasena" id="contrasena" pattern=".{6,}"
-                    [disabled]='textBoxContra'>
+                  <input type="{{tipoUsuarioM}}" disabled required class="form-control" aria-label="Text input with checkbox" #Password="ngModel"
+                    [(ngModel)]="this.contrasenaNewUser" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContra'>
                 </div>
                 <div [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
@@ -520,8 +575,7 @@
               </button>
             </div>
             <div class="col-md-6" style="text-align: right;">
-              <button type="submit" class="btn btn-primary" (click)='onUpdateSecretarias(0)' [hidden]='txtAparece'
-                [disabled]="!ModificarUsuario.form.valid">
+              <button type="submit" class="btn btn-primary" (click)='onUpdateSecretarias(0)' [hidden]='txtAparece' [disabled]="!ModificarUsuario.form.valid">
                 <i class="fa fa-save fa-0.5x" style="color: #ffffff"></i>
                 Guardar Cambios</button>
             </div>
@@ -535,13 +589,13 @@
       </div>
 
       <!-- ====================================================                     Formulario de INGRESAR ESTUDIANTE ============================================-->
-    
+
       <div class="container">
         <form #IngresarEstudiante="ngForm" (ngSubmit)="onRegisterEstudiante()" *ngIf="IngresarEstudiante">
           <div class="row">
             <div class="col-lg-12">
               <img [src]="url2" style="display: block; margin-left: 40%; width: 18%;  height:25%; border-radius:50%">
-              
+
             </div>
           </div>
           <br>
@@ -549,16 +603,16 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="nombreChofer"> Ingrese el Nombre</label>
-                <input type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="estudiante_register.nombre"
-                  name="nombreChofer" id="nombreChofer" pattern="[ A-Za-zñÑ]*">
+                <input type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="estudiante_register.nombre" name="nombreChofer"
+                  id="nombreChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="NombreChofer1.valid || NombreChofer1.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
                 <label for="cedulaChofer">Ingrese la Cédula</label>
-                <input type="text" required class="form-control" #CedulaChofer="ngModel" [(ngModel)]="estudiante_register.cedula"
-                  name="cedulaChofer" id="cedulaChofer" pattern="[0-9]*">
+                <input type="text" required class="form-control" #CedulaChofer="ngModel" [(ngModel)]="estudiante_register.cedula" name="cedulaChofer"
+                  id="cedulaChofer" pattern="[0-9]*">
                 <div [hidden]="CedulaChofer.valid || CedulaChofer.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -571,31 +625,30 @@
                       <i class="{{clase_ojoChofer}}"></i>
                     </div>
                   </div>
-                  <input type="{{tipoChofer}}" required class="form-control" aria-label="Text input with checkbox"
-                    #ContrasenaChofer="ngModel" [(ngModel)]="estudiante_register.contrasena" name="ContrasenaChofer" id="contrasenaChofer"
-                    pattern=".{6,}">
+                  <input type="{{tipoChofer}}" required class="form-control" aria-label="Text input with checkbox" #ContrasenaChofer="ngModel"
+                    [(ngModel)]="estudiante_register.contrasena" name="ContrasenaChofer" id="contrasenaChofer" pattern=".{6,}">
                 </div>
                 <div [hidden]="ContrasenaChofer.valid || ContrasenaChofer.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
                 </div>
               </div>
-             
+
               <div class="card-columns">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellidoChofer">Ingrese el Apellido</label>
-                <input type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="estudiante_register.apellido"
-                  name="apellidoChofer" id="apellidoChofer" pattern="[ A-Za-zñÑ]*">
+                <input type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="estudiante_register.apellido" name="apellidoChofer"
+                  id="apellidoChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="ApellidoChofer.valid || ApellidoChofer.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
                 <label for="correoChofer">Ingrese el Correo</label>
-                <input type="email" required class="form-control" #CorreoChofer="ngModel" [(ngModel)]="estudiante_register.correo"
-                  name="correoChofer" id="correoChofer" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <input type="email" required class="form-control" #CorreoChofer="ngModel" [(ngModel)]="estudiante_register.correo" name="correoChofer"
+                  id="correoChofer" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                 <div [hidden]="CorreoChofer.valid || CorreoChofer.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
@@ -610,8 +663,8 @@
               </div>-->
               <div class="form-group">
                 <label for="celularChofer">Ingrese numero celular</label>
-                <input type="text" required class="form-control" #CelularChofer="ngModel" [(ngModel)]="estudiante_register.tel_celular"
-                  name="celularChofer" id="celularChofer" pattern="[0-9]*">
+                <input type="text" required class="form-control" #CelularChofer="ngModel" [(ngModel)]="estudiante_register.tel_celular" name="celularChofer"
+                  id="celularChofer" pattern="[0-9]*">
                 <div [hidden]="CelularChofer.valid || CelularChofer.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -656,24 +709,24 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label> Nombre del Chofer</label>
-                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosChoferes.nombre" name="nombreM"
-                  [disabled]='textBox' pattern="[ A-Za-zñÑ]*" required>
+                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosChoferes.nombre" name="nombreM" [disabled]='textBox'
+                  pattern="[ A-Za-zñÑ]*" required>
                 <div [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
                 <label>Celular del Chofer</label>
-                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosChoferes.tel_celular"
-                  name="celularM" [disabled]='textBox' pattern="[0-9]*" required>
+                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosChoferes.tel_celular" name="celularM" [disabled]='textBox'
+                  pattern="[0-9]*" required>
                 <div [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
               <div class="form-group">
                 <label>Número de Telefono del Chofer</label>
-                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosChoferes.tel_convencional"
-                  name="telefonoM" [disabled]='textBox' pattern="[0-9]*" required>
+                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosChoferes.tel_convencional" name="telefonoM"
+                  [disabled]='textBox' pattern="[0-9]*" required>
                 <div [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -684,16 +737,16 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label>Apellido del Chofer</label>
-                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosChoferes.apellido" name="apellidoM"
-                  [disabled]='textBox' pattern="[ A-Za-zñÑ]*" required>
+                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosChoferes.apellido" name="apellidoM" [disabled]='textBox'
+                  pattern="[ A-Za-zñÑ]*" required>
                 <div [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
                 <label>Correo del Chofer</label>
-                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosChoferes.correo" name="correoM"
-                  [disabled]='textBox' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosChoferes.correo" name="correoM" [disabled]='textBox'
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                 <div [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
@@ -706,9 +759,8 @@
                       <i class="{{clase_ojoUsuarioC}}"></i>
                     </div>
                   </div>
-                  <input type="{{tipoUsuarioC}}" disabled required class="form-control" aria-label="Text input with checkbox"
-                    #Password="ngModel" [(ngModel)]="contrasenaNew" name="contrasena" id="contrasena" pattern=".{6,}"
-                    [disabled]='textBoxContraC'>
+                  <input type="{{tipoUsuarioC}}" disabled required class="form-control" aria-label="Text input with checkbox" #Password="ngModel"
+                    [(ngModel)]="contrasenaNew" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContraC'>
                 </div>
                 <div [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
@@ -742,8 +794,7 @@
               </button>
             </div>
             <div class="col-md-6" style="text-align: right;">
-              <button type="submit" class="btn btn-primary" (click)='onUpdateChoferes(0)' [hidden]='txtAparece'
-                [disabled]="!ModificarChofer.form.valid">
+              <button type="submit" class="btn btn-primary" (click)='onUpdateChoferes(0)' [hidden]='txtAparece' [disabled]="!ModificarChofer.form.valid">
                 <i class="fa fa-save fa-0.5x" style="color: #ffffff"></i> Guardar Cambios
               </button>
             </div>
@@ -774,24 +825,24 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="marcaTaxi"> Ingrese la marca del Automóvil</label>
-                <input type="text" required class="form-control" #MarcaTaxi="ngModel" [(ngModel)]="taxi_register.marca"
-                  name="marcaTaxi" id="marcaTaxi">
+                <input type="text" required class="form-control" #MarcaTaxi="ngModel" [(ngModel)]="taxi_register.marca" name="marcaTaxi"
+                  id="marcaTaxi">
                 <div [hidden]="MarcaTaxi.valid || MarcaTaxi.pristine" class="alert alert-warning">
                   La marca del automóvil es obligatoria
                 </div>
               </div>
               <div class="form-group">
                 <label for="placaTaxi">Ingrese la placa del Automovil</label>
-                <input type="text" required class="form-control" #PlacaTaxi="ngModel" [(ngModel)]="taxi_register.placa"
-                  name="placaTaxi" id="placaTaxi">
+                <input type="text" required class="form-control" #PlacaTaxi="ngModel" [(ngModel)]="taxi_register.placa" name="placaTaxi"
+                  id="placaTaxi">
                 <div [hidden]="PlacaTaxi.valid || PlacaTaxi.pristine" class="alert alert-warning">
                   La placa del automóvil es obligatoria
                 </div>
               </div>
               <div class="form-group">
                 <label for="coopTaxi">Cooperativa a la que pertenece Automovil</label>
-                <input type="text" required class="form-control" #CoopTaxi="ngModel" [(ngModel)]="taxi_register.nombre_coop"
-                  name="coopTaxi" id="coopTaxi">
+                <input type="text" required class="form-control" #CoopTaxi="ngModel" [(ngModel)]="taxi_register.nombre_coop" name="coopTaxi"
+                  id="coopTaxi">
                 <div [hidden]="CoopTaxi.valid || CoopTaxi.pristine" class="alert alert-warning">
                   La cooperativa del automóvil es obligatoria
                 </div>
@@ -801,16 +852,16 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="modeloTaxi"> Ingrese el Modelo del Automovil</label>
-                <input type="text" required class="form-control" #ModeloTaxi="ngModel" [(ngModel)]="taxi_register.modelo"
-                  name="modeloTaxi" id="modeloTaxi">
+                <input type="text" required class="form-control" #ModeloTaxi="ngModel" [(ngModel)]="taxi_register.modelo" name="modeloTaxi"
+                  id="modeloTaxi">
                 <div [hidden]="ModeloTaxi.valid || ModeloTaxi.pristine" class="alert alert-warning">
                   El modelo del automóvil es obligatoria
                 </div>
               </div>
               <div class="form-group">
                 <label for="regimenTaxi">Ingrese el numero de regimen del Automovil</label>
-                <input type="text" required class="form-control" #RegimenTaxi="ngModel" [(ngModel)]="taxi_register.numero_regimen"
-                  name="regimenTaxi" id="regimenTaxi">
+                <input type="text" required class="form-control" #RegimenTaxi="ngModel" [(ngModel)]="taxi_register.numero_regimen" name="regimenTaxi"
+                  id="regimenTaxi">
                 <div [hidden]="RegimenTaxi.valid || RegimenTaxi.pristine" class="alert alert-warning">
                   El régimen del automóvil es obligatoria
                 </div>
@@ -856,16 +907,16 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label> Marca del Automovil</label>
-                <input type="text" class="form-control" #MarcaM="ngModel" [(ngModel)]="datosTaxis.marca" name="marcaM"
-                  [disabled]='textBox' required>
+                <input type="text" class="form-control" #MarcaM="ngModel" [(ngModel)]="datosTaxis.marca" name="marcaM" [disabled]='textBox'
+                  required>
                 <div [hidden]="MarcaM.valid || MarcaM.pristine" class="alert alert-warning">
                   La marca del automóvil es obligatoria
                 </div>
               </div>
               <div class="form-group">
                 <label>Cooperativa a la que pertenece el Automovil</label>
-                <input type="text" class="form-control" #CoperativaM="ngModel" [(ngModel)]="datosTaxis.nombre_coop"
-                  name="coperativaM" [disabled]='textBox' required>
+                <input type="text" class="form-control" #CoperativaM="ngModel" [(ngModel)]="datosTaxis.nombre_coop" name="coperativaM" [disabled]='textBox'
+                  required>
                 <div [hidden]="CoperativaM.valid || CoperativaM.pristine" class="alert alert-warning">
                   La cooperativa del automóvil es obligatoria
                 </div>
@@ -873,8 +924,8 @@
 
               <div class="form-group">
                 <label> Modelo del Automóvil</label>
-                <input type="text" class="form-control" #ModeloM="ngModel" [(ngModel)]="datosTaxis.modelo" name="modeloM"
-                  [disabled]='textBox' required>
+                <input type="text" class="form-control" #ModeloM="ngModel" [(ngModel)]="datosTaxis.modelo" name="modeloM" [disabled]='textBox'
+                  required>
                 <div [hidden]="ModeloM.valid || ModeloM.pristine" class="alert alert-warning">
                   El modelo del automóvil es obligatoria
                 </div>
@@ -894,16 +945,16 @@
 
               <div class="form-group">
                 <label>Numero de regimen del Automovil</label>
-                <input type="text" class="form-control" #RegimenM="ngModel" [(ngModel)]="datosTaxis.numero_regimen"
-                  name="regimenM" [disabled]='textBox' required>
+                <input type="text" class="form-control" #RegimenM="ngModel" [(ngModel)]="datosTaxis.numero_regimen" name="regimenM" [disabled]='textBox'
+                  required>
                 <div [hidden]="RegimenM.valid || RegimenM.pristine" class="alert alert-warning">
                   El régimen del automóvil es obligatoria
                 </div>
               </div>
               <div class="form-group">
                 <label>Placa del Automivil</label>
-                <input type="text" class="form-control" #PlacaM="ngModel" [(ngModel)]="datosTaxis.placa" name="placaM"
-                  [disabled]='textBox' required>
+                <input type="text" class="form-control" #PlacaM="ngModel" [(ngModel)]="datosTaxis.placa" name="placaM" [disabled]='textBox'
+                  required>
                 <div [hidden]="PlacaM.valid || PlacaM.pristine" class="alert alert-warning">
                   La placa del automóvil es obligatoria
                 </div>
@@ -940,9 +991,9 @@
         </form>
       </div>
 
-      
 
-     
+
+
       <!-- ====================================================                     VER VIAJES TOTALES =================================-->
       <!-- ====================================================                     VER VIAJES TOTALES =================================-->
       <div class="container-fluid">
@@ -975,14 +1026,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1007,14 +1058,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1039,14 +1090,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1071,14 +1122,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1103,14 +1154,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1135,14 +1186,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1167,14 +1218,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1199,14 +1250,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1231,14 +1282,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1263,14 +1314,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1295,14 +1346,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1327,14 +1378,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1359,14 +1410,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1391,14 +1442,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1423,14 +1474,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1455,14 +1506,14 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
                 </td>
@@ -1488,10 +1539,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1520,10 +1573,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1552,10 +1607,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1584,10 +1641,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1616,10 +1675,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1648,10 +1709,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1680,10 +1743,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1712,10 +1777,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1744,10 +1811,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1777,10 +1846,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1810,10 +1881,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1842,10 +1915,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1875,10 +1950,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1907,10 +1984,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1940,10 +2019,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -1973,10 +2054,12 @@
             <tbody>
               <tr *ngFor=" let listado of  messages; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2059,15 +2142,15 @@
 
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2094,15 +2177,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2129,15 +2212,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2164,15 +2247,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2199,15 +2282,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2234,15 +2317,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2269,15 +2352,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2304,15 +2387,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2339,15 +2422,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2374,15 +2457,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2409,15 +2492,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2444,15 +2527,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2479,15 +2562,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2514,15 +2597,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2549,15 +2632,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2584,15 +2667,15 @@
             </thead>
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.fechaSalida}}
+                </td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
+                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
+                  {{ listado.user.apellido}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
                 <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'">
                   <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
@@ -2620,11 +2703,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2655,11 +2741,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2690,11 +2779,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2725,11 +2817,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2760,11 +2855,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2795,11 +2893,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2830,11 +2931,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2865,11 +2969,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2900,11 +3007,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2935,11 +3045,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -2970,11 +3083,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -3005,11 +3121,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -3040,11 +3159,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -3075,11 +3197,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -3110,11 +3235,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -3145,11 +3273,14 @@
             <tbody>
               <tr *ngFor=" let listado of  messagesEnco; let i = index">
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}</td>
+                  listado.ruta}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}</td>
+                  listado.fechaSalida}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}</td>
+                  listado.horario}}
+                </td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
                 <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
                   listado.user.nombre}} {{ listado.user.apellido}}</td>
@@ -3172,8 +3303,7 @@
       <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -3193,37 +3323,37 @@
       </div>
     </div>
 
-   <!-- ====================================================                  Modal Ingresar Paralelo =================================-->
+    <!-- ====================================================                  Modal Ingresar Paralelo =================================-->
 
- 
-    <div class="modal fade " id="ModalIngresarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+
+    <div class="modal fade " id="ModalIngresarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 30%">Crear nuevo paralelo</h5>
-            
+
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            
+
           </div>
           <p class="modal-title" id="exampleModalLabel" style="margin-left: 22%">Seleccione el curso e ingrese el paralelo</p>
           <div style="width: 80%; border: 0; background-color: white;  margin-left: 10%" disabled class="modal-body  row">
-              <select   (change)="asignarCurso($event.target.value)"    class=" custom-select col-lg-8" required   >
-                  <option disabled selected hidde value=""  selected>Select one category </option>
-                  <option value="8VO DE BÁSICA">8VO DE BÁSICA</option>
-                  <option value="9NO DE BÁSICA">9NO DE BÁSICA</option>
-                  <option value="10MO DE BÁSICA">10MO DE BÁSICA </option>
-                  <option value="1ER AÑO DE BACHILLERATO">1ER AÑO DE BACHILLERATO</option>
-                  <option value="2DO AÑO DE BACHILLERATO">2DO AÑO DE BACHILLERATO</option>
-                  <option value="3ER AÑO DE BACHILLERATO">3ER AÑO DE BACHILLERATO</option>
-                </select>
+            <select (change)="asignarCurso($event.target.value)" class=" custom-select col-lg-8" required>
+              <option disabled selected hidde value="" selected>Select one category </option>
+              <option value="8VO DE BÁSICA">8VO DE BÁSICA</option>
+              <option value="9NO DE BÁSICA">9NO DE BÁSICA</option>
+              <option value="10MO DE BÁSICA">10MO DE BÁSICA </option>
+              <option value="1ER AÑO DE BACHILLERATO">1ER AÑO DE BACHILLERATO</option>
+              <option value="2DO AÑO DE BACHILLERATO">2DO AÑO DE BACHILLERATO</option>
+              <option value="3ER AÑO DE BACHILLERATO">3ER AÑO DE BACHILLERATO</option>
+            </select>
 
-                <input  class="form-control col-lg-3 "  style="margin-left: 3%" placeholder="Paralelo" type=" text"  #Curso="ngModel" [(ngModel)]="curso_register.paralelo" name="curso">
+            <input class="form-control col-lg-3 " style="margin-left: 3%" placeholder="Paralelo" type=" text" #Curso="ngModel" [(ngModel)]="curso_register.paralelo"
+              name="curso">
           </div>
           <div class="modal-footer">
-         
+
             <button (click)="onRegisterCurso()" class="btn btn-primary" type="button" data-dismiss="modal">Crear</button>
           </div>
         </div>
@@ -3232,8 +3362,7 @@
     <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
     <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
     <button id="openModalCorrecto" [hidden]="true" data-toggle="modal" data-target="#ModalCorrecto">Correcto</button>
-    <div class="modal fade" id="ModalCorrecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal fade" id="ModalCorrecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -3243,8 +3372,8 @@
             </button>
           </div>
           <div style="width: 100%; border: 0; background-color: white;" disabled class="modal-body">
-            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeCorrecto="ngModel"
-              [(ngModel)]="this.mensajecorrectomodals" name="mensajecorrecto">
+            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeCorrecto="ngModel" [(ngModel)]="this.mensajecorrectomodals"
+              name="mensajecorrecto">
           </div>
           <div class="modal-footer">
             <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
@@ -3267,8 +3396,8 @@
             </button>
           </div>
           <div class="modal-body">
-            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeError="ngModel"
-              [(ngModel)]="this.mensajeerrormodals" name="mensajeerror">
+            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeError="ngModel" [(ngModel)]="this.mensajeerrormodals"
+              name="mensajeerror">
           </div>
           <div class="modal-footer">
             <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->

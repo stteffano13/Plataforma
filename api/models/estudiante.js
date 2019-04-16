@@ -9,6 +9,7 @@ var Schema = mongoose.Schema;
 // estos esquemas son las clases comunes 
 
 var EstudianteSchema = Schema({
+    codigo:String,
     nombre: String,
     apellido: String,
     cedula:String,
