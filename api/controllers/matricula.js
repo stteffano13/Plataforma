@@ -22,7 +22,7 @@ function saveMatricula(req, res) {
 
     var params = req.body;
     // buscar codigo estudiante
-    Estudiante.findOne({ codigo: "6" }, (err, users) => {
+    Estudiante.findOne({ codigo: params.codigoE }, (err, users) => {
         if (err) {
             res.status(500).send({
                 message: "Error al guardar Curso"
@@ -30,7 +30,7 @@ function saveMatricula(req, res) {
         } else {
             if (users) {
 
-                guardarPrimero(users, params);
+                guardarPrimero(users, params, res);
 
 
             } else {
@@ -46,8 +46,8 @@ function saveMatricula(req, res) {
 
 }
 
-function guardarPrimero(estudiante, params) {
-    Curso.findOne({ codigo: "3" }, (err, users) => {
+function guardarPrimero(estudiante, params, res) {
+    Curso.findOne({ codigo: params.codigoC }, (err, users) => {
         if (err) {
             res.status(500).send({
                 message: "Error al guardar Curso"
@@ -55,7 +55,7 @@ function guardarPrimero(estudiante, params) {
         } else {
             if (users) {
 
-                guardarSegundo(estudiante, users, params);
+                guardarSegundo(estudiante, users, params, res);
 
 
             } else {
@@ -72,7 +72,7 @@ function guardarPrimero(estudiante, params) {
 }
 
 
-function guardarSegundo(idE, idC, params) {
+function guardarSegundo(idE, idC, params, res) {
 
     var fecha = now.format('MM-DD-YYYY');
     console.log(idE._id, idC._id);
