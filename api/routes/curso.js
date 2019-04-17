@@ -7,5 +7,6 @@ var md_auth = require('../middleware/authenticated');
 
 var api = express.Router(); // esto sirve para crear las rutas 
 api.post('/registerCurso', md_auth.ensureAuth, CursoController.saveCurso);
+api.get('/getListadoCursos',md_auth.ensureAuth, CursoController.getCursos);
 
 module.exports = api;

@@ -336,41 +336,32 @@
             <div class="col-lg-6">
               <div class="form-group">
 
-
-
-
                 <label for="apellido">Seleccione el estudiante a matricular</label>
-                <input list="listadoEstudiantes" [(ngModel)]="selectedGuest" name="lsitadoEstudiantes" 
-                  required type="text" class="form-control">
+                <input list="listadoEstudiantes" [(ngModel)]="selectedEstudiante" name="selectedEstudiante" required type="text" class="form-control">
 
 
                 <datalist id="listadoEstudiantes">
-                  <option  id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes" >
-                    
-                   {{oneDoor.codigo}} {{oneDoor.nombre}}
+                  <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes">
+
+                    {{oneDoor.codigo}} {{oneDoor.nombre}}
                   </option>
-                 
+
 
                 </datalist>
 
               </div>
-
 
               <div class="card-columns">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <label for="apellido">Seleccione el estudiante a matricular</label>
-                <input list="colores" name="colores" type="text" class="form-control">
-                <datalist id="colores">
-                  <option value="Azul"></option>
-                  <option value="Amarillo"></option>
-                  <option value="Burdeos"></option>
-                  <option value="Caoba"></option>
-                  <option value="Marrón"></option>
-                  <option value="Naranja"></option>
-                  <option value="Verde"></option>
+                <label for="apellido">Seleccione el curso a matricular</label>
+                <input list="listadoCursos" [(ngModel)]="selectedCurso" name="selectedCurso" required type="text" class="form-control">
+                <datalist id="listadoCursos">
+                  <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoCursos">
+                    {{oneDoor.curso}},{{oneDoor.paralelo}}
+                  </option>
                 </datalist>
               </div>
 
@@ -385,7 +376,7 @@
           </div>
           <div class="row">
             <div class="col-md-12" style="text-align: center;">
-              <button type="submit"  (click)="saveMatricula()" class="btn btn-primary">Generar Matricula
+              <button type="submit" (click)="saveMatricula()" class="btn btn-primary">Generar Matricula
               </button>
             </div>
           </div>

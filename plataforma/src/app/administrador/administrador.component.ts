@@ -6,7 +6,7 @@ import { DocenteService } from "../services/docente.services";
 import { CursoService } from '../services/curso.services';
 import { EstudianteService } from '../services/estudiante.services';
 import "rxjs/add/operator/map";
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import { AfterViewInit, ViewChild } from '@angular/core';
 
@@ -19,7 +19,7 @@ import { AfterViewInit, ViewChild } from '@angular/core';
   templateUrl: './administrador.component.html',
   styleUrls: ['./administrador.component.css']
 })
-export class AdministradorComponent implements OnInit, AfterViewInit  {
+export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
 
@@ -32,7 +32,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit  {
   public mensajeerrormodals;
   public loading = false;
   public opcionPeriodoLectivo;
-  public selectedGuest;
+   selectedEstudiante;
+   public selectedCurso;
   // objetos
   public docente_register: Docente;
   public estudiante_register: Estudiante;
@@ -75,8 +76,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit  {
   // vectores
 
   public vectorListadoEstudiantes: any;
- 
-  constructor(private _docenteServices: DocenteService, private _documentoServices: CursoService, private _estudianteService: EstudianteService) {
+  public vectorListadoDocentes: any;
+  public vectorListadoCursos: any;
+
+  constructor(private _docenteServices: DocenteService, private _cursoServices: CursoService, private _estudianteService: EstudianteService) {
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
@@ -175,12 +178,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit  {
     }
 
     this.getListadoEstudiantes();
+    this.getListadoCursos();
 
   }
 
 
   ngAfterViewInit() {
-  
+
   }
 
 
@@ -202,7 +206,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit  {
 
 
     console.log("Esta es el el curso que esta cogiendo", this.curso_register.curso);
-    this._documentoServices.registerCurso(this.curso_register).subscribe(
+    this._cursoServices.registerCurso(this.curso_register).subscribe(
       response => {
         this.mensajecorrectomodals = "Los datos del Curso se han registrado satisfactoriamente.";
         console.log("satisfactoriamente");
@@ -301,6 +305,33 @@ export class AdministradorComponent implements OnInit, AfterViewInit  {
     );
 
   }
+
+  getListadoCursos() {
+
+    this._cursoServices.getListadoCursos().subscribe(response => {
+
+      console.log("esto iene de la peticion Cursos" + JSON.stringify(response));
+      if (response.listadoCursos[0] != undefined) {
+        this.vectorListadoCursos = response.listadoCursos;
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
+
+  getListadoDocentes() {
+
+    this._docenteServices.getListadoDocentes().subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.listadoDocentes[0] != undefined) {
+        this.vectorListadoDocentes = response.listadoEDocentes;
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
+
   limpiar(valor) {
     if (valor == '1') {
       this.hola1 = true;
@@ -317,24 +348,22 @@ export class AdministradorComponent implements OnInit, AfterViewInit  {
     }
   }
 
- public  getRecDet(value)
- {
+  public getRecDet(value) {
 
-console.log("Vamos mijin", value);
- }
- 
-
- public saveMatricula()
- {
-  let parts: boolean[] = new Array();
-  parts =this.selectedGuest.split(" ");
-  console.log("Vamos mijin", parts[0]);
- }
- 
+    console.log("Vamos mijin", value);
+  }
 
 
-  
+  public saveMatricula() {
+    let parts: boolean[] = new Array();
+    parts = this.selectedEstudiante.split(" ");
+    console.log("Vamos mijin", parts[0]);
+  }
 
-  
+
+
+
+
+
 
 }

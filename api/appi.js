@@ -13,6 +13,7 @@ var administrador_rutes = require('./routes/administrador');
 var docente_rutes = require('./routes/docente');
 var estudiante_rutes = require('./routes/estudiante');
 var curso_rutes = require('./routes/curso');
+var matricula_rutes = require('./routes/matricula');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,6 +34,7 @@ app.use('/api', administrador_rutes);
 app.use('/api', docente_rutes);
 app.use('/api', estudiante_rutes);
 app.use('/api', curso_rutes);
+app.use('/api', matricula_rutes);
 /*app.use('/api', user_routes);
 app.use('/api', nuevaOferta_routes);
 app.use('/api', administrador_rutes);

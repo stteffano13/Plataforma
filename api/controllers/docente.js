@@ -270,28 +270,28 @@ function updateDocente(req, res) {
 }
 
 
-function countUsers(req, res)
-{
-   
-    console.log("entre");
-  
-    var message =User.find((err, messagess) => {
+function getDocentes(req, res) {
+
+
+
+
+    var message = Docente.find().exec((err, listadoDocentes) => {
         if (err) {
-          return res.status(500).send({
-            message: 'No se ha podido obtener las ultimas ofertas'
-          });
+            return res.status(500).send({
+                message: 'No se ha podido obtener las ultimas ofertas'
+            });
         }
-    
-        if (!messagess) {
-          return res.status(200).send({
-            message: 'No tiene ofertas'
-          });
+
+        if (!listadoDocentes) {
+            return res.status(200).send({
+                message: 'No tiene ofertas'
+            });
         }
-    
+
         return res.status(200).send({
-          messagess
+            listadoDocentes
         });
-      });  
+    });
 
 }
 
@@ -300,6 +300,7 @@ module.exports = {          // para exportar todas las funciones de este modulo
     saveDocente,
     loginDocente,
     updateDocente,
+    getDocentes
   
 
 

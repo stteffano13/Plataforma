@@ -26,6 +26,15 @@ public cont =0;
       .map(res => res.json());
   }
 
+
+  getListadoCursos() {
+   
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+      .get(this.url + "getListadoCursos",  { headers: headers })
+      .map(res => res.json());
+  }
+
  
   getToken() {
     
