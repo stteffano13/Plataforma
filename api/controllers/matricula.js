@@ -21,11 +21,11 @@ var m = moment([2005, 3, 1]);
 function saveMatricula(req, res) {
 
     var params = req.body;
-    // buscar codigo estudiante
+   console.log("esto viene para amtricular", params);
     Estudiante.findOne({ codigo: params.codigoE }, (err, users) => {
         if (err) {
             res.status(500).send({
-                message: "Error al guardar Curso"
+                message: "Error al buscar Curso"
             });
         } else {
             if (users) {
@@ -80,7 +80,7 @@ function guardarSegundo(idE, idC, params, res) {
     matricula = new Matricula();
     //
     Matricula.findOne({
-        '$and': [{ estudiante: idE._id }, { curso: idC._id }]
+        '$or':[ {'$and': [{ estudiante: idE._id }, { curso: idC._id }]}, {'$and': [{ estudiante: idE._id }, { periodo: params.periodo }]}]
     }, (err, users) => {
         if (err) {
             res.status(500).send({
@@ -114,7 +114,7 @@ function guardarSegundo(idE, idC, params, res) {
                             matricula.curso = idC._id;
                             matricula.periodo = params.periodo;
                             matricula.fecha = fecha;
-
+                            matricula.estado=params.estado;
 
 
                             if (idC._id && idE._id) {

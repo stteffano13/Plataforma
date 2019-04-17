@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import "rxjs/add/operator/map";
 import { GLOBAL } from "./global";
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 //import jsPDF from 'jspdf';
 @Injectable()
@@ -10,14 +10,14 @@ export class EstudianteService {
   public url: String;
   public identity;
   public token;
-public cont =0;
-  constructor(private _http: Http ) {
+  public cont = 0;
+  constructor(private _http: Http) {
     this.url = GLOBAL.url;
   }
 
 
   singupEstudiante(docente_to_login, getHash) {
-    if (getHash!=" ") {
+    if (getHash != " ") {
       console.log("aqui va el hash");
       docente_to_login.getHash = getHash;
       console.log(docente_to_login.getHash);
@@ -26,7 +26,7 @@ public cont =0;
     let params = json;
     console.log(params);
     let headers = new Headers({ "Content-type": "application/json" });
-    return this._http 
+    return this._http
       .post(this.url + "loginEstudiante", params, { headers: headers })
       .map(res => res.json());
   }
@@ -45,11 +45,11 @@ public cont =0;
 
 
   getListadoEstudiantes() {
-   
-  
+
+
     let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
     return this._http
-      .get(this.url + "getListadoEstudiantes",  { headers: headers })
+      .get(this.url + "getListadoEstudiantes", { headers: headers })
       .map(res => res.json());
   }
 
@@ -69,9 +69,9 @@ public cont =0;
   }
 
   getToken() {
-    
+
     let token = localStorage.getItem("Token");
-    console.log("este es el falso token"+token);
+    console.log("este es el falso token" + token);
     if (token != "undefined") {
       this.token = token;
     } else {

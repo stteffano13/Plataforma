@@ -56,7 +56,8 @@ function saveEstudiante(req, res) {
                                 console.log("numero de regsitros", count);
                                 count++
                             });
-                            estudiante.codigo = count + 1;
+                             count=count+1;
+                            estudiante.codigo = "CODE"+count;
                             estudiante.nombre = params.nombre;
                             estudiante.apellido = params.apellido;
                             estudiante.correo = params.correo;

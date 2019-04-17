@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Docente } from "../models/docente";
 import { Estudiante } from "../models/estudiante";
 import { Curso } from "../models/curso";
+import { Matricula } from "../models/matricula";
 import { DocenteService } from "../services/docente.services";
 import { CursoService } from '../services/curso.services';
 import { EstudianteService } from '../services/estudiante.services';
+import { MatriculaService } from '../services/matricula.services';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
 
@@ -38,6 +40,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public docente_register: Docente;
   public estudiante_register: Estudiante;
   public curso_register: Curso;
+  public matricula_register: Matricula;
 
   public textBox = true;
   public txtHide = true;
@@ -79,12 +82,15 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public vectorListadoDocentes: any;
   public vectorListadoCursos: any;
 
-  constructor(private _docenteServices: DocenteService, private _cursoServices: CursoService, private _estudianteService: EstudianteService) {
+  constructor(private _docenteServices: DocenteService,
+     private _cursoServices: CursoService,
+      private _estudianteService: EstudianteService,
+       private _matriculaServices:MatriculaService) {
+
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
-
-
+    this.matricula_register = new Matricula("", "", "", "","");
 
   }
 
@@ -137,7 +143,6 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   habilitar() {
     this.textBox = !this.textBox;
     this.txtHide = true;
@@ -176,12 +181,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     if (this.opcionPeriodoLectivo == null) {
       this.opcionPeriodoLectivo = "NO Asignado"
     }
-
     this.getListadoEstudiantes();
     this.getListadoCursos();
-
   }
-
 
   ngAfterViewInit() {
 
@@ -211,6 +213,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.mensajecorrectomodals = "Los datos del Curso se han registrado satisfactoriamente.";
         console.log("satisfactoriamente");
         this.loading = false;
+        this.getListadoCursos();
         document.getElementById("openModalCorrecto").click();
         // this.limpiar(1);
       },
@@ -271,6 +274,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.mensajecorrectomodals = "Los datos del Estudiante se han registrado satisfactoriamente.";
         console.log("satisfactoriamente");
         this.loading = false;
+        this.getListadoEstudiantes();
         document.getElementById("openModalCorrecto").click();
         this.limpiar(2);
       },
@@ -291,6 +295,57 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         }
       }
     );
+  }
+
+
+  public onRegisterMatricula() {
+    let partsE: String[] = new Array();
+    partsE = this.selectedEstudiante.split(".");
+    console.log("Vamos mijin", partsE[0]);
+
+    let partsC: String[] = new Array();
+    partsC = this.selectedCurso.split(".");
+    console.log("Vamos mijin", partsC[0]);
+
+    
+
+    this.loading = true;
+    this.matricula_register.estado = '0';
+    this.matricula_register.codigoE = partsE[0];
+    this.matricula_register.codigoC = partsC[0];
+    this.matricula_register.periodo = localStorage.getItem("periodoAnoLectivo");
+
+
+
+    console.log("Esta es el el curso que esta cogiendo", this.curso_register.curso);
+    this._matriculaServices.registerMatricula(this.matricula_register).subscribe(
+      response => {
+        this.mensajecorrectomodals = "Loa matrícula se ha generado exitosamente.";
+        console.log("satisfactoriamente");
+        this.loading = false;
+        this.getListadoCursos();
+        document.getElementById("openModalCorrecto").click();
+        // this.limpiar(1);
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+          document.getElementById("openModalError").click();
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          this.loading = false;
+        }
+      }
+    );
+
+
   }
 
   getListadoEstudiantes() {
@@ -354,12 +409,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  public saveMatricula() {
-    let parts: boolean[] = new Array();
-    parts = this.selectedEstudiante.split(" ");
-    console.log("Vamos mijin", parts[0]);
-  }
-
+  
 
 
 

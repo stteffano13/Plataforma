@@ -337,13 +337,14 @@
               <div class="form-group">
 
                 <label for="apellido">Seleccione el estudiante a matricular</label>
-                <input list="listadoEstudiantes" [(ngModel)]="selectedEstudiante" name="selectedEstudiante" required type="text" class="form-control">
+                <input list="listadoEstudiantes" style="font-size: 85%" [(ngModel)]="selectedEstudiante" name="selectedEstudiante" required type="text" class="form-control">
 
 
                 <datalist id="listadoEstudiantes">
                   <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes">
 
-                    {{oneDoor.codigo}} {{oneDoor.nombre}}
+                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                     {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
                   </option>
 
 
@@ -357,10 +358,10 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellido">Seleccione el curso a matricular</label>
-                <input list="listadoCursos" [(ngModel)]="selectedCurso" name="selectedCurso" required type="text" class="form-control">
+                <input style="font-size: 85%" list="listadoCursos" [(ngModel)]="selectedCurso" name="selectedCur" required type="text" class="form-control">
                 <datalist id="listadoCursos">
-                  <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoCursos">
-                    {{oneDoor.curso}},{{oneDoor.paralelo}}
+                  <option  *ngFor="let oneDoor of vectorListadoCursos">
+                      {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
                   </option>
                 </datalist>
               </div>
@@ -376,7 +377,7 @@
           </div>
           <div class="row">
             <div class="col-md-12" style="text-align: center;">
-              <button type="submit" (click)="saveMatricula()" class="btn btn-primary">Generar Matricula
+              <button type="submit" (click)="onRegisterMatricula()" class="btn btn-primary">Generar Matricula
               </button>
             </div>
           </div>

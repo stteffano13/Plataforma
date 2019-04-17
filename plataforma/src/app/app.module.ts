@@ -8,6 +8,7 @@ import { AdministradorService } from "./services/administrador.services";
 import { DocenteService } from "./services/docente.services";
 import { EstudianteService } from "./services/estudiante.services";
 import { CursoService } from "./services/curso.services";
+import { MatriculaService } from './services/matricula.services';
 import { FormsModule } from '@angular/forms';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { DocenteComponent } from './docente/docente.component';
@@ -33,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ComboBoxModule,
     BrowserAnimationsModule
   ],
-  providers: [AdministradorService,DocenteService, EstudianteService, CursoService],
+  providers: [AdministradorService,DocenteService, EstudianteService, CursoService, MatriculaService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

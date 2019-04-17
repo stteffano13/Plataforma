@@ -39,9 +39,9 @@ function saveCurso(req, res) {
                                 console.log("numero de regsitros", count);
                                 count++
                             });
-
+                            count=count+1;
                             //
-                            curso.codigo=count+1
+                            curso.codigo="CODC"+count;
                             curso.curso = params.curso;
                             curso.paralelo = params.paralelo;
 
