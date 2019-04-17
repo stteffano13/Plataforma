@@ -7,7 +7,7 @@ var Estudiante = require('../models/estudiante');
 var Curso = require('../models/curso'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 
-var count = 0;
+
 // Create a new moment object
 var now = moment();
 
@@ -19,7 +19,7 @@ var m = moment([2005, 3, 1]);
 
 
 function saveMatricula(req, res) {
-
+    
     var params = req.body;
    console.log("esto viene para amtricular", params);
     Estudiante.findOne({ codigo: params.codigoE }, (err, users) => {
@@ -73,7 +73,7 @@ function guardarPrimero(estudiante, params, res) {
 
 
 function guardarSegundo(idE, idC, params, res) {
-
+    var count = 0;
     var fecha = now.format('MM-DD-YYYY');
     console.log(idE._id, idC._id);
 
