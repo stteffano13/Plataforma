@@ -69,7 +69,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="listarClientes">
             <li>
-              <a href="#" (click)="aparecerReporteClientes()">Asignar Materias</a>
+              <a href="#" (click)="aparecerAsignar()">Asignar Materias</a>
             </li>
           </ul>
         </li>
@@ -322,6 +322,85 @@
           </table>
         </div>
       </div>
+<!-- ====================================================                     Formulario de Ingresar ASIGNACION ============================================-->
+
+<div class="container">
+  <form #IngresarAsignacion="ngForm" *ngIf="IngresarAsignacion" novalidate>
+    <div class="row">
+      <div class="col-lg-12">
+        <img src="../../assets/imgs/IngresarAsignacion.png" style="display: block; margin-left: 40%; width: 18%;  height:25%; border-radius:50%">
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+
+      <label for="apellido">Seleccione el Docente que Impartira la materia</label>
+      <input list="listadoDocentes" style="font-size: 85%" [(ngModel)]="selectedDocente" name="selectedDocente" required type="text" class="form-control">
+
+
+      <datalist id="listadoDocentes">
+        <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoDocentes">
+
+         
+           {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
+        </option>
+
+
+      </datalist>
+
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label for="apellido">Seleccione el curso donde se impartira la materia</label>
+          <input style="font-size: 85%" list="listadoCursos" [(ngModel)]="selectedCurso" name="selectedCur" required type="text" class="form-control">
+          <datalist id="listadoCursos">
+            <option  *ngFor="let oneDoor of vectorListadoCursos">
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+            </option>
+          </datalist>
+        </div>
+
+
+        <div class="card-columns">
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label for="apellido">Seleccione la materia a impartir</label>
+          <input style="font-size: 85%" list="listadoMaterias" [(ngModel)]="selectedCurso" name="selectedCur" required type="text" class="form-control">
+          
+          
+          <datalist id="listadoMaterias">
+            <option >Ciencias Sociales </option>
+            <option >  Ciencias Naturales</option>
+            <option > Informática </option>
+            <option > Matemáticas </option>
+            <option >Lenguaje y Comunicación </option>
+            <option > Educación para la Ciudadanía </option>
+               
+          </datalist>
+        </div>
+
+
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <hr style="background-color: #e9ecef; width: 50%;">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" style="text-align: center;">
+        <button type="submit" (click)="onRegisterMatricula()" class="btn btn-primary">Generar Matricula
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
       <!-- ====================================================                     Formulario de Ingresar MATRICULA ============================================-->
 
       <div class="container">

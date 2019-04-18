@@ -34,8 +34,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public mensajeerrormodals;
   public loading = false;
   public opcionPeriodoLectivo;
-   selectedEstudiante;
-   public selectedCurso;
+  public selectedEstudiante;
+  public selectedCurso;
+  public selectedDocente;
   // objetos
   public docente_register: Docente;
   public estudiante_register: Estudiante;
@@ -75,22 +76,24 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public IngresarEstudiante = false;
   public IngresarParalelo = false;
   public IngresarMatricula = false;
+  public IngresarAsignacion = false;
 
   // vectores
 
   public vectorListadoEstudiantes: any;
   public vectorListadoDocentes: any;
   public vectorListadoCursos: any;
+  
 
   constructor(private _docenteServices: DocenteService,
-     private _cursoServices: CursoService,
-      private _estudianteService: EstudianteService,
-       private _matriculaServices:MatriculaService) {
+    private _cursoServices: CursoService,
+    private _estudianteService: EstudianteService,
+    private _matriculaServices: MatriculaService) {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
-    this.matricula_register = new Matricula("", "", "", "","");
+    this.matricula_register = new Matricula("", "", "", "", "");
 
   }
 
@@ -159,22 +162,31 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = true;
+    //this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
   public apareceIngreseDocente() {
     this.IngresarDocente = true;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = false;
-    this.url2 = '../../assets/imgs/IngresarDocente.png';
+    // this.url2 = '../../assets/imgs/IngresarDocente.png';
   }
 
   public apareceIngreseEstudiante() {
     this.IngresarMatricula = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = true;
-    this.url2 = '../../assets/imgs/IngresarEstudiante.png';
+    // this.url2 = '../../assets/imgs/IngresarEstudiante.png';
   }
 
 
+  public aparecerAsignar() {
+    this.IngresarMatricula = false;
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarAsignacion = true;
+
+
+  }
   ngOnInit() {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
     this.opcionPeriodoLectivo = "Seleccione Periodo Lectivo, Periodo Actual:" + localStorage.getItem("periodoAnoLectivo");
@@ -183,6 +195,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     }
     this.getListadoEstudiantes();
     this.getListadoCursos();
+    this.getListadoDocentes();
   }
 
   ngAfterViewInit() {
@@ -200,6 +213,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   asignarCurso(curso) {
     this.curso_register.curso = curso;
   }
+
+
+
 
   onRegisterCurso() {
     this.loading = true;
@@ -307,7 +323,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     partsC = this.selectedCurso.split(".");
     console.log("Vamos mijin", partsC[0]);
 
-    
+
 
     this.loading = true;
     this.matricula_register.estado = '0';
@@ -380,7 +396,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.listadoDocentes[0] != undefined) {
-        this.vectorListadoDocentes = response.listadoEDocentes;
+        this.vectorListadoDocentes = response.listadoDocentes;
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -409,7 +425,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  
+
 
 
 
