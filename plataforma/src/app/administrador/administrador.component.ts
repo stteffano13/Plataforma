@@ -320,6 +320,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         console.log("satisfactoriamente");
         this.loading = false;
         document.getElementById("openModalCorrecto").click();
+        this.getListadoDocentes();
         this.limpiar(1);
       },
       error => {
@@ -351,6 +352,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.loading = false;
         this.getListadoEstudiantes();
         document.getElementById("openModalCorrecto").click();
+        this.getListadoEstudiantes();
         this.limpiar(2);
       },
       error => {
@@ -423,6 +425,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   }
 
+
+  public onRegisterAsignacion()
+  {
+
+  }
+
+  
   getListadoEstudiantes() {
 
     this._estudianteService.getListadoEstudiantes().subscribe(response => {
@@ -456,6 +465,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.listadoDocentes[0] != undefined) {
         this.vectorListadoDocentes = response.listadoDocentes;
+       
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );

@@ -335,13 +335,13 @@
     <div class="form-group">
 
       <label for="apellido">Seleccione el Docente que Impartira la materia</label>
-      <input list="listadoDocentes" style="font-size: 85%" [(ngModel)]="selectedDocente" name="selectedDocente" required type="text" class="form-control">
+      <input list="listadoDocentesAsignacion" style="font-size: 85%" [(ngModel)]="selectedDocenteAsignacion" name="selectedDocenteAsinacion" required type="text" class="form-control">
 
 
-      <datalist id="listadoDocentes">
+      <datalist id="listadoDocentesAsignacion">
         <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoDocentes">
 
-         
+            {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
            {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
         </option>
 
@@ -390,7 +390,7 @@
     </div>
     <div class="row">
       <div class="col-md-12" style="text-align: center;">
-        <button type="submit" (click)="onRegisterMatricula()" class="btn btn-primary">Generar Matricula
+        <button type="submit" (click)="onRegisterAsignacion()" class="btn btn-primary">Terminar Asignación
         </button>
       </div>
     </div>
@@ -437,6 +437,7 @@
                 <input style="font-size: 85%" list="listadoCursos" [(ngModel)]="selectedCurso" name="selectedCur" required type="text" class="form-control">
                 <datalist id="listadoCursos">
                   <option  *ngFor="let oneDoor of vectorListadoCursos">
+
                       {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
                   </option>
                 </datalist>
