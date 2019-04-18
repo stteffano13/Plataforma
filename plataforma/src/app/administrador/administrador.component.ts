@@ -41,12 +41,60 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     'Lenguaje y Comunicación',
     "Educación para la Ciudadanía"];
 
-    public arrayNoveno = [
-      "Ciencias Sociales",
-      "Informática",
-      'Matemáticas',
-      'Lenguaje y Comunicación',
-      "Educación para la Ciudadanía"];
+  public arrayNoveno = [
+    " Ciencias Sociales",
+    "Ciencias Naturales",
+    "Informática",
+    "Matemáticas",
+    "Lenguaje y Comunicación",
+    "Educación para la Ciudadanía"
+  ];
+
+  public arrayDecimo = [
+    "Ciencias Sociales",
+    "Ciencias Naturales",
+    "Informática",
+    "Matemáticas",
+    "Lenguaje y Comunicación",
+    "Educación para la Ciudadanía",
+
+  ];
+
+  public array1Bach = [
+    "Fisica",
+    "Quimica",
+    "Educacion para la ciudadanía",
+    "Ingles",
+    "Biologia",
+    "Lengua y Literatura",
+    "Historia",
+    "Emprendimiento y Gestion"
+  ];
+
+
+  public array2Bach = [
+    "Fisica",
+    "Quimica",
+    "Educacion para la ciudadanía",
+    "Ingles",
+    "Biologia",
+    "Lengua y Literatura",
+    "Historia",
+    "Emprendimiento y Gestion"
+
+  ];
+
+  public array3Bach = [
+    "Fisica",
+    "Quimica",
+    "Educacion para la ciudadanía",
+    "Ingles",
+    "Biologia",
+    "Lengua y Literatura",
+    "Historia",
+    "Emprendimiento y Gestion"
+
+  ];
 
   // objetos
   public docente_register: Docente;
@@ -440,25 +488,40 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     let curso: String[] = new Array();
     curso = value.split(" ");
     this.disabledMateriaImpartir = false;
-
-    if ( curso[1].indexOf("8VO")) {
+    console.log("value[1]", curso[1]);
+    if (curso[1].indexOf("8VO")!=-1) {
       this.vectorlistadoMaterias = this.arrayOctavo;
-     
-    }else
-    {
-      if(curso[1].indexOf("9NO"))
-      {
+      console.log("entre 8");
+    } else {
+      if (curso[1].indexOf("9NO")!=-1) {
+        this.vectorlistadoMaterias = this.arrayNoveno;
+        console.log("entre 9");
+      } else {
+        if (curso[1].indexOf("10MO")!=-1) {
+          this.vectorlistadoMaterias = this.arrayDecimo;
+          console.log("entre 10");
+        } else {
+          if (curso[1].indexOf("1ER")!=-1) {
+            this.vectorlistadoMaterias = this.array1Bach;
+            console.log("entre 1er");
+          } else {
+            if (curso[1].indexOf("2DO")!=-1) {
+              this.vectorlistadoMaterias = this.array2Bach;
+            } else {
+              if (curso[1].indexOf("3ER")!=-1) {
+                this.vectorlistadoMaterias = this.array3Bach;
+              }
+            }
+          }
+        }
 
       }
+
+
     }
 
+
   }
-
-
-
-
-
-
 
 
 }
