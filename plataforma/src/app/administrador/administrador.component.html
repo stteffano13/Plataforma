@@ -353,8 +353,8 @@
       <div class="col-lg-6">
         <div class="form-group">
           <label for="apellido">Seleccione el curso donde se impartira la materia</label>
-          <input style="font-size: 85%" list="listadoCursos" [(ngModel)]="selectedCurso" name="selectedCur" required type="text" class="form-control">
-          <datalist id="listadoCursos">
+          <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoAsignacion" (change)="selectedMateria($event.target.value)" name="selectedCursoAsignacion" required type="text" class="form-control">
+          <datalist id="listadoCursosAsignacion">
             <option  *ngFor="let oneDoor of vectorListadoCursos">
                 {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
             </option>
@@ -368,16 +368,13 @@
       <div class="col-lg-6">
         <div class="form-group">
           <label for="apellido">Seleccione la materia a impartir</label>
-          <input style="font-size: 85%" list="listadoMaterias" [(ngModel)]="selectedCurso" name="selectedCur" required type="text" class="form-control">
+          <input style="font-size: 85%"  [disabled]="disabledMateriaImpartir" list="listadoMaterias" [(ngModel)]="selectedMateriaAsignacion" name="selectedMateriaAsignacion" required type="text" class="form-control">
           
           
           <datalist id="listadoMaterias">
-            <option >Ciencias Sociales </option>
-            <option >  Ciencias Naturales</option>
-            <option > Informática </option>
-            <option > Matemáticas </option>
-            <option >Lenguaje y Comunicación </option>
-            <option > Educación para la Ciudadanía </option>
+            <option  *ngFor="let oneDoor of vectorlistadoMaterias" > {{oneDoor}}</option>
+         
+         
                
           </datalist>
         </div>
@@ -878,189 +875,8 @@
         </form>
       </div>
 
-      <!-- ====================================================                     Formulario de INGRESAR automovil ============================================-->
-      <!-- ====================================================                     Formulario de INGRESAR automovil ============================================-->
-      <div class="container">
-        <form name="frmAutomovil" #IngreseAutomovil="ngForm" (ngSubmit)="onRegisterTaxi()" *ngIf="IngreseAutomovil">
-          <div class="row">
-            <div class="col-lg-12">
-              <img [src]="url2" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
-              <label class=" form-control fileContainer" style="width: 7%; height: 10%; border: none;margin-left: 50.8%; margin-top: -7.8%;">
-                <i class="fa fa-camera fa-2x" style="color:white; "></i>
-                <input disabled type='file' id="nuestroinput" class="btn btn-primary" (change)="readUrl($event)" />
-              </label>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label for="marcaTaxi"> Ingrese la marca del Automóvil</label>
-                <input type="text" required class="form-control" #MarcaTaxi="ngModel" [(ngModel)]="taxi_register.marca" name="marcaTaxi"
-                  id="marcaTaxi">
-                <div [hidden]="MarcaTaxi.valid || MarcaTaxi.pristine" class="alert alert-warning">
-                  La marca del automóvil es obligatoria
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="placaTaxi">Ingrese la placa del Automovil</label>
-                <input type="text" required class="form-control" #PlacaTaxi="ngModel" [(ngModel)]="taxi_register.placa" name="placaTaxi"
-                  id="placaTaxi">
-                <div [hidden]="PlacaTaxi.valid || PlacaTaxi.pristine" class="alert alert-warning">
-                  La placa del automóvil es obligatoria
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="coopTaxi">Cooperativa a la que pertenece Automovil</label>
-                <input type="text" required class="form-control" #CoopTaxi="ngModel" [(ngModel)]="taxi_register.nombre_coop" name="coopTaxi"
-                  id="coopTaxi">
-                <div [hidden]="CoopTaxi.valid || CoopTaxi.pristine" class="alert alert-warning">
-                  La cooperativa del automóvil es obligatoria
-                </div>
-              </div>
-              <div class="card-columns"></div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label for="modeloTaxi"> Ingrese el Modelo del Automovil</label>
-                <input type="text" required class="form-control" #ModeloTaxi="ngModel" [(ngModel)]="taxi_register.modelo" name="modeloTaxi"
-                  id="modeloTaxi">
-                <div [hidden]="ModeloTaxi.valid || ModeloTaxi.pristine" class="alert alert-warning">
-                  El modelo del automóvil es obligatoria
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="regimenTaxi">Ingrese el numero de regimen del Automovil</label>
-                <input type="text" required class="form-control" #RegimenTaxi="ngModel" [(ngModel)]="taxi_register.numero_regimen" name="regimenTaxi"
-                  id="regimenTaxi">
-                <div [hidden]="RegimenTaxi.valid || RegimenTaxi.pristine" class="alert alert-warning">
-                  El régimen del automóvil es obligatoria
-                </div>
-              </div>
-              <!--<div class="form-group">
-                <label for="capacidadTaxi">capacidad de pasajeros</label>
-                <input type="number" min="1" max="100" required class="form-control" #CapacidadTaxi="ngModel" [(ngModel)]="taxi_register.capacidad_pasajeros"
-                  name="capacidadTaxi" id="capacidadTaxi" value={{taxi_register.capacidad_pasajeros}}>
-                <div [hidden]="CapacidadTaxi.valid || CapacidadTaxi.pristine" class="alert alert-warning">
-                  La capacidad del automóvil es obligatoria
-                </div>
-              </div>-->
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr style="background-color: #e9ecef; width: 50%;">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12" style="text-align: center;">
-              <button type="submit" class="btn btn-primary" [disabled]="!IngreseAutomovil.form.valid">Guardar Datos</button>
-            </div>
-          </div>
-        </form>
-      </div>
+     
 
-      <!-- ====================================================                     Formulario de MODIFICAR automovil ============================================-->
-      <!-- ====================================================                     Formulario de MODIFICAR automovil ============================================-->
-      <div class="container">
-        <form #ModificarAutomovil="ngForm" *ngIf="ModificarAutomovil">
-          <div class="row">
-            <div class="col-lg-12">
-              <img [src]="url2" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
-              <!--<label class=" form-control fileContainer" style="width: 7%; height: 10%; border: none;margin-left: 50.8%; margin-top: -7.8%;">
-                <i class="fa fa-camera fa-2x" style="color:white; "></i>
-                <input  disabled type='file' id="nuestroinput" class="btn btn-primary" (change)="readUrl($event)" />
-              </label>-->
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label> Marca del Automovil</label>
-                <input type="text" class="form-control" #MarcaM="ngModel" [(ngModel)]="datosTaxis.marca" name="marcaM" [disabled]='textBox'
-                  required>
-                <div [hidden]="MarcaM.valid || MarcaM.pristine" class="alert alert-warning">
-                  La marca del automóvil es obligatoria
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Cooperativa a la que pertenece el Automovil</label>
-                <input type="text" class="form-control" #CoperativaM="ngModel" [(ngModel)]="datosTaxis.nombre_coop" name="coperativaM" [disabled]='textBox'
-                  required>
-                <div [hidden]="CoperativaM.valid || CoperativaM.pristine" class="alert alert-warning">
-                  La cooperativa del automóvil es obligatoria
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label> Modelo del Automóvil</label>
-                <input type="text" class="form-control" #ModeloM="ngModel" [(ngModel)]="datosTaxis.modelo" name="modeloM" [disabled]='textBox'
-                  required>
-                <div [hidden]="ModeloM.valid || ModeloM.pristine" class="alert alert-warning">
-                  El modelo del automóvil es obligatoria
-                </div>
-              </div>
-              <!--<div class="form-group">
-                <label>Capacidad de pasajeros</label>
-                <input type="number" min="1" max="100" class="form-control" #CapacidadM="ngModel" [(ngModel)]="datosTaxis.capacidad_pasajeros"
-                  name="cooperativaM" [disabled]='textBox' required>
-                <div [hidden]="CapacidadM.valid || CapacidadM.pristine" class="alert alert-warning">
-                  La capacidad del automóvil es obligatoria
-                </div>
-              </div>-->
-              <div class="card-columns">
-              </div>
-            </div>
-            <div class="col-lg-6">
-
-              <div class="form-group">
-                <label>Numero de regimen del Automovil</label>
-                <input type="text" class="form-control" #RegimenM="ngModel" [(ngModel)]="datosTaxis.numero_regimen" name="regimenM" [disabled]='textBox'
-                  required>
-                <div [hidden]="RegimenM.valid || RegimenM.pristine" class="alert alert-warning">
-                  El régimen del automóvil es obligatoria
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Placa del Automivil</label>
-                <input type="text" class="form-control" #PlacaM="ngModel" [(ngModel)]="datosTaxis.placa" name="placaM" [disabled]='textBox'
-                  required>
-                <div [hidden]="PlacaM.valid || PlacaM.pristine" class="alert alert-warning">
-                  La placa del automóvil es obligatoria
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr style="background-color: #e9ecef; width: 50%;">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6" style="text-align: right;">
-              <button type="submit" class="btn btn-warning" style="color: #ffffff" (click)='habilitar()' [hidden]='txtHide'>
-                <i class="fa fa-edit fa-0.5x" style="color: #ffffff"></i> Modificar
-              </button>
-            </div>
-            <div class="col-md-6" style="text-align: left;">
-              <button (click)='onUpdateTaxis(1)' type="submit" class="btn btn-danger" [hidden]='txtHide'>
-                <i class="fa fa-trash fa-0.5x" style="color: #ffffff"></i>
-                Eliminar
-              </button>
-            </div>
-            <div class="col-md-6" style="text-align: right;">
-              <button type="submit" class="btn btn-primary" (click)='onUpdateTaxis(0)' [hidden]='txtAparece' [disabled]="!ModificarAutomovil.form.valid">
-                <i class="fa fa-save fa-0.5x" style="color: #ffffff"> </i> Guardar Cambios</button>
-            </div>
-            <div class="col-md-6" style="text-align: left;">
-              <button type="submit" class="btn btn-default" (click)="deshabilitar()" [hidden]='txtAparece'>
-                <i class="fa fa-ban fa-0.5x" style="color: #000000"></i>
-                Cancelar</button>
-            </div>
-          </div>
-        </form>
-      </div>
 
 
 

@@ -23,11 +23,6 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 })
 export class AdministradorComponent implements OnInit, AfterViewInit {
 
-
-
-
-
-
   public url2;
   public hola1 = true;
   public mensajecorrectomodals;
@@ -37,6 +32,22 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public selectedEstudiante;
   public selectedCurso;
   public selectedDocente;
+  public disabledMateriaImpartir = true;
+
+  public arrayOctavo = [
+    "Ciencias Sociales",
+    "Informática",
+    'Matemáticas',
+    'Lenguaje y Comunicación',
+    "Educación para la Ciudadanía"];
+
+    public arrayNoveno = [
+      "Ciencias Sociales",
+      "Informática",
+      'Matemáticas',
+      'Lenguaje y Comunicación',
+      "Educación para la Ciudadanía"];
+
   // objetos
   public docente_register: Docente;
   public estudiante_register: Estudiante;
@@ -83,7 +94,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public vectorListadoEstudiantes: any;
   public vectorListadoDocentes: any;
   public vectorListadoCursos: any;
-  
+  public vectorlistadoMaterias: any;
+
 
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
@@ -201,7 +213,6 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
   }
-
 
 
   asignarPeriodoLectivo(periodo) {
@@ -424,6 +435,24 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     console.log("Vamos mijin", value);
   }
 
+  selectedMateria(value) {
+    console.log("value", value);
+    let curso: String[] = new Array();
+    curso = value.split(" ");
+    this.disabledMateriaImpartir = false;
+
+    if ( curso[1].indexOf("8VO")) {
+      this.vectorlistadoMaterias = this.arrayOctavo;
+     
+    }else
+    {
+      if(curso[1].indexOf("9NO"))
+      {
+
+      }
+    }
+
+  }
 
 
 
