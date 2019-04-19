@@ -64,7 +64,7 @@ function saveEstudiante(req, res) {
                             estudiante.contrasena = params.contrasena;
                             estudiante.tel_celular = params.tel_celular;
                             estudiante.cedula = params.cedula;
-
+                            estudiante.estado=params.estado;
 
                             if (params.contrasena) {
 
@@ -170,6 +170,59 @@ function loginEstudiante(req, res) {
 
     }); //como el where en sql
     console.log('no encontro');
+}
+
+
+function busquedaEstudiantes(req, res) {
+    var busqueda = req.params.busqueda;
+    //console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+        var findDocente = Estudiante.find({
+            '$and': [{
+                estado: '0'
+            },
+
+            {
+                '$or': [{
+                    nombre: new RegExp('^' + busqueda, "i")
+                },
+                {
+                    apellido: new RegExp('^' + busqueda, "i")
+                }, {
+                    correo: new RegExp('^' + busqueda, "i")
+                },
+                {
+                    cedula: new RegExp('^' + busqueda, "i")
+                }, {
+                    codigo: new RegExp('^' + busqueda, "i")
+                }
+                ]
+            }
+            ]
+        },
+            (err, estudiantes) => {
+                if (err) {
+                    res.status(500).send({
+                        message: "Error al obtener Docentes"
+                    });
+
+                } else {
+                    if (!estudiantes) {
+                        res.status(404).send({
+                            message: "No se encuentra resultados de la busqueda"
+                        });
+                    } else {
+                        res.status(200).send({
+                            estudiantes
+                        });
+                    }
+                }
+            });
+    }
 }
 
 
@@ -325,6 +378,7 @@ module.exports = {          // para exportar todas las funciones de este modulo
 
     saveEstudiante,
     loginEstudiante,
+    busquedaEstudiantes,
     updateEstudiante,
     getEstudiantes
 

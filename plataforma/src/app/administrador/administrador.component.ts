@@ -40,7 +40,21 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public selectedMateriaAsignacion;
 
   public disabledMateriaImpartir = true;
- public  imagen = true;
+  public imagen = true;
+
+
+
+  public buscar;
+
+  public listadoD = true;
+  public listadoE =true;
+  public listados = false;
+  public listadoM = false;
+  //listados
+  public listadoEstudiantes;
+  public listadoDocentes;
+  // vectores de materias
+
   public arrayOctavo = [
     "Ciencias Sociales",
     "Informática",
@@ -163,10 +177,151 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
     this.matricula_register = new Matricula("", "", "", "", "");
-    this.materia_register = new Materia("", "", "", "", "","");
+    this.materia_register = new Materia("", "", "", "", "", "");
 
   }
 
+
+  ngOnInit() {
+    this.url2 = '../../assets/imgs/IngresarDocente.png';
+    this.opcionPeriodoLectivo = "Seleccione Periodo Lectivo, Periodo Actual:" + localStorage.getItem("periodoAnoLectivo");
+    if (this.opcionPeriodoLectivo == null) {
+      this.opcionPeriodoLectivo = "NO Asignado"
+    }
+    this.getListadoEstudiantes();
+    this.getListadoCursos();
+    this.getListadoDocentes();
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  // busquedas
+  public busqueda() {
+    this.listados = true;
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarMatricula = false;
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.busquedaDocente();
+    this.busquedaEstudiantes();
+
+  }
+
+  busquedaDocente() {
+    this.loading = true;
+    this._docenteServices.buscarDocentes(this.buscar).subscribe(
+      response => {
+        console.log("satisfactoriamente", response.docentes);
+
+        this.listadoDocentes = response.docentes;
+        if (this.listadoDocentes == "") {
+          this.listadoD = true;
+        } else {
+          console.log("entre a loq ue tenia");
+          this.listadoD = true;
+        }
+        // console.log(this.listadoChoferes);
+        this.loading = false;
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          // this.loading =false;
+        }
+        // this.loading =false;
+      }
+
+    );
+  }
+
+
+  busquedaEstudiantes() {
+    this.loading = true;
+    this._estudianteService.buscarEstudiantes(this.buscar).subscribe(
+      response => {
+        console.log("satisfactoriamente estudiantes", response.estudiantes);
+
+        this.listadoEstudiantes = response.estudiantes;
+        if (this.listadoDocentes == "") {
+          this.listadoE = true;
+        } else {
+          console.log("entre a loq ue tenia");
+          this.listadoE = true;
+        }
+        // console.log(this.listadoChoferes);
+        this.loading = false;
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          // this.loading =false;
+        }
+        // this.loading =false;
+      }
+
+    );
+  }
+
+  busquedaMAtriculas() {
+    this.loading = true;
+    this._matriculaServices.buscarMatriculas(this.buscar).subscribe(
+      response => {
+        console.log("satisfactoriamente estudiantes", response.estudiantes);
+
+        this.listadoEstudiantes = response.estudiantes;
+        if (this.listadoDocentes == "") {
+          this.listadoE = true;
+        } else {
+          console.log("entre a loq ue tenia");
+          this.listadoE = true;
+        }
+        // console.log(this.listadoChoferes);
+        this.loading = false;
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          // this.loading =false;
+        }
+        // this.loading =false;
+      }
+
+    );
+  }
+
+
+
+  // extras validacion
   myFunctionUsuario() {
     if (this.tipoUsuario === 'text') {
       this.tipoUsuario = 'password';
@@ -228,7 +383,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.txtAparece = !this.txtAparece;
   }
 
-  public aparecerNuevaMatricula() {
+  // modulos
+  aparecerNuevaMatricula() {
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = true;
@@ -236,7 +392,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
-  public apareceIngreseDocente() {
+  apareceIngreseDocente() {
     this.IngresarDocente = true;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = false;
@@ -245,17 +401,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
   }
 
-  public apareceIngreseEstudiante() {
+  apareceIngreseEstudiante() {
     this.IngresarMatricula = false;
     this.IngresarDocente = false;
     this.IngresarAsignacion = false;
     this.IngresarEstudiante = true;
     this.imagen = false;
-     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
+    this.url2 = '../../assets/imgs/IngresarEstudiante.png';
   }
 
-
-  public aparecerAsignar() {
+  aparecerAsignar() {
     this.IngresarMatricula = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
@@ -264,21 +419,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   }
-  ngOnInit() {
-    this.url2 = '../../assets/imgs/IngresarDocente.png';
-    this.opcionPeriodoLectivo = "Seleccione Periodo Lectivo, Periodo Actual:" + localStorage.getItem("periodoAnoLectivo");
-    if (this.opcionPeriodoLectivo == null) {
-      this.opcionPeriodoLectivo = "NO Asignado"
-    }
-    this.getListadoEstudiantes();
-    this.getListadoCursos();
-    this.getListadoDocentes();
-  }
 
-  ngAfterViewInit() {
 
-  }
-
+  // registros
 
   asignarPeriodoLectivo(periodo) {
 
@@ -289,9 +432,6 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   asignarCurso(curso) {
     this.curso_register.curso = curso;
   }
-
-
-
 
   onRegisterCurso() {
     this.loading = true;
@@ -392,7 +532,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  public onRegisterMatricula() {
+  onRegisterMatricula() {
     let partsE: String[] = new Array();
     partsE = this.selectedEstudiante.split(".");
     console.log("Vamos mijin", partsE[0]);
@@ -442,9 +582,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   }
 
-
-  public onRegisterAsignacion()
-  {
+  onRegisterAsignacion() {
     let partsD: String[] = new Array();
     partsD = this.selectedDocenteAsignacion.split(".");
     console.log("Vamos mijin", partsD[0]);
@@ -493,6 +631,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
+  // obtener lsitados a vectores
   getListadoEstudiantes() {
 
     this._estudianteService.getListadoEstudiantes().subscribe(response => {
@@ -526,12 +665,14 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.listadoDocentes[0] != undefined) {
         this.vectorListadoDocentes = response.listadoDocentes;
-       
+
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
   }
+
+
 
   limpiar(valor) {
     if (valor == '1') {
@@ -549,7 +690,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public getRecDet(value) {
+
+  getRecDet(value) {
 
     console.log("Vamos mijin", value);
   }
@@ -560,26 +702,26 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     curso = value.split(" ");
     this.disabledMateriaImpartir = false;
     console.log("value[1]", curso[1]);
-    if (curso[1].indexOf("8VO")!=-1) {
+    if (curso[1].indexOf("8VO") != -1) {
       this.vectorlistadoMaterias = this.arrayOctavo;
       console.log("entre 8");
     } else {
-      if (curso[1].indexOf("9NO")!=-1) {
+      if (curso[1].indexOf("9NO") != -1) {
         this.vectorlistadoMaterias = this.arrayNoveno;
         console.log("entre 9");
       } else {
-        if (curso[1].indexOf("10MO")!=-1) {
+        if (curso[1].indexOf("10MO") != -1) {
           this.vectorlistadoMaterias = this.arrayDecimo;
           console.log("entre 10");
         } else {
-          if (curso[1].indexOf("1ER")!=-1) {
+          if (curso[1].indexOf("1ER") != -1) {
             this.vectorlistadoMaterias = this.array1Bach;
             console.log("entre 1er");
           } else {
-            if (curso[1].indexOf("2DO")!=-1) {
+            if (curso[1].indexOf("2DO") != -1) {
               this.vectorlistadoMaterias = this.array2Bach;
             } else {
-              if (curso[1].indexOf("3ER")!=-1) {
+              if (curso[1].indexOf("3ER") != -1) {
                 this.vectorlistadoMaterias = this.array3Bach;
               }
             }

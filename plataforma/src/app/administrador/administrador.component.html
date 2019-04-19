@@ -81,17 +81,11 @@
         <li class="nav-item">
           <a class="nav-link text-center" id="sidenavToggler">
           </a>
-
-
         </li>
-
 
       </ul>
       <ul class="navbar-nav ml-auto">
-
         <li>
-
-
           <select (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
             <option disabled selected hidde [value]="opcionPeriodoLectivo" selected>{{opcionPeriodoLectivo}} </option>
             <option value="2017-2018">2017-2018</option>
@@ -113,14 +107,14 @@
 
         </li>
 
-        <!-- ====================================================                     Notificaciones  INGRESAR PARALELO ============================================-->
+        <!-- ====================================================       Notificaciones  INGRESAR PARALELO ============================================-->
 
 
         <li class="nav-item dropdown">
           <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" data-toggle="modal" aria-haspopup="true"
             aria-expanded="false" data-target="#ModalIngresarParalelo">
             <i class="fa fa-fw fa-list-alt"></i>
-            <span class="d-lg-none">Mensajes
+            <span class="d-lg-none">Paralelo
               <span class="badge badge-pill badge-primary"> Nuevos</span>
             </span>
             <span class="indicator text-primary d-none d-lg-block">
@@ -128,52 +122,10 @@
 
             </span>
           </a>
-
         </li>
-
-
-
-        <!-- ====================================================                     Notificaciones  ENCOMIENDAS============================================-->
-        <!-- ====================================================                     Notificaciones  ENCOMIENDAS============================================-->
-        <li class="nav-item dropdown">
-          <a title="Nuevas Solicitudes de encomiendas" (click)=" obtenerSolicitudesEncomiendas()" class="nav-link dropdown-toggle mr-lg-2"
-            id="alertsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-            <i class="fa fa-fw fa-cube"></i>
-
-            <span class="d-lg-none">Notificaciones Encomiendas
-              <span class="badge badge-pill badge-warning">{{notEnc}} Nuevas</span>
-            </span>
-
-            <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle">{{notEnc}}</i>
-            </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">
-              <a (click)="apareceNotificacionEncomienda()">Ver todas las solicitudes de encomiendas ...</a>
-            </h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="mostrarNotificacion(listado)" *ngFor=" let listado of  messagesEnco">
-              <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>{{listado.tipo}}</strong>
-              </span>
-              <div class="dropdown-message small">{{listado.ruta}}</div>
-              <div class="dropdown-message small">{{listado.horario}}</div>
-              <div class="dropdown-message small">{{listado.fechaSalida}}
-              </div>
-              <div class="dropdown-divider"></div>
-            </a>
-            <a class="dropdown-item small" (click)="apareceNotificacionEncomienda()">Ver todas las solicitudes de encomiendas
-            </a>
-          </div>
-        </li>
-
         <li class="nav-item">
 
-
-
+          <!-- ====================================================       BUSCADOR UNIVERSAL  ============================================-->
 
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
@@ -200,60 +152,23 @@
     <div class="container-fluid">
 
       <!-- Division Principal-->
-      <div class="rows1"  style="width: 70%; height: 70vh; margin-left: 12%"  *ngIf="imagen"> </div>
+      <div class="rows1" style="width: 70%; height: 70vh; margin-left: 12%" *ngIf="imagen"> </div>
 
       <!--Listado -->
 
       <div class="pre-scrollable" style="max-height: 100%;" *ngIf="listados">
 
-        <!-- ====================================================                                Listado Secretaria ============================================-->
-        <!-- ====================================================                                Listado Secretaria ============================================-->
-        <div *ngIf="listadoS" class="container">
-          <div class="row">
-            <div class="col-md-12" style="text-align: center; color: #2863a9">
-              <h3>LISTADO SECRETARIAS
-              </h3>
-            </div>
-            <div class="col-md-12">
-              <hr style="background-color: #e9ecef; width: 50%;">
-            </div>
-          </div>
-          <table class="table  text-center">
-            <thead>
-              <tr style="background-color: #343a40; align-content: center">
-                <th style="color: white" scope="col">#</th>
-                <th style="color: white" scope="col">Nombre</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Correo</th>
-                <th style="color: white" scope="col">Celular</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  listadoSecretarias">
-                <th scope="row">1</th>
-                <td style="font-size: 130%">{{ listado.nombre}} {{ listado.apellido}}</td>
-                <td style="font-size: 130%">{{listado.cedula}}</td>
-                <td style="font-size: 130%">{{ listado.correo}}</td>
-                <td style="font-size: 130%">{{listado.tel_celular }}</td>
-                <td>
-                  <input class="btn btn-primary " type="button" value="ver" (click)="mostrarDatosSecretarias(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
-        <!-- ====================================================                                Listado Choferes ============================================-->
-        <!-- ====================================================                                Listado Choferes ============================================-->
-        <div *ngIf="listadoC" class="container">
+
+        <!-- ====================================================         Listado Docentes ============================================-->
+        <div *ngIf="listadoD" class="container">
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
-              <h3>LISTADO CHOFERES
+              <h3>LISTADO DOCENTES
               </h3>
             </div>
             <div class="col-md-12">
-              <hr style="background-color: #e9ecef; width: 50%;">
+              <hr style="background-color: #000000; width: 50%;">
             </div>
           </div>
           <table class="table  text-center">
@@ -268,9 +183,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor=" let listado of  listadoChoferes">
+              <tr *ngFor=" let listado of  listadoDocentes">
                 <th scope="row">1</th>
-                <td style="font-size: 130%">{{ listado.nombre}} {{ listado.apellido}}</td>
+                <td style="font-size: 130%">{{listado.nombre}} {{ listado.apellido}}</td>
                 <td style="font-size: 130%">{{listado.cedula}}</td>
                 <td style="font-size: 130%">{{ listado.correo}}</td>
                 <td style="font-size: 130%">{{listado.tel_celular }}</td>
@@ -282,12 +197,12 @@
           </table>
         </div>
 
-        <!-- ====================================================                                Listado Taxis ============================================-->
-        <!-- ====================================================                                Listado Taxis ============================================-->
-        <div *ngIf="listadoT" class="container">
+        <!-- ====================================================       Listado Estudiantes ============================================-->
+
+        <div *ngIf="listadoE" class="container">
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
-              <h3>LISTADO TAXIS
+              <h3>LISTADO ESTUDIANTES
               </h3>
             </div>
             <div class="col-md-12">
@@ -298,22 +213,21 @@
             <thead>
               <tr style="background-color: #343a40; align-content: center">
                 <th style="color: white" scope="col">#</th>
-                <th style="color: white" scope="col">Placa</th>
-                <th style="color: white" scope="col">Regimen</th>
-                <th style="color: white" scope="col">Cooperativa</th>
-                <th style="color: white" scope="col">Modelo</th>
-                <th style="color: white" scope="col">Marca</th>
-                <th style="color: white" scope="col">Opciones</th>
+                <th style="color: white" scope="col">Nombre</th>
+                <th style="color: white" scope="col">Cédula</th>
+                <th style="color: white" scope="col">Correo</th>
+                <th style="color: white" scope="col">Celular</th>
+                <th style="color: white" scope="col">Opción</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor=" let listado of  listadoTaxis">
+              <tr *ngFor=" let listado of  listadoEstudiantes">
                 <th scope="row">1</th>
-                <td style="font-size: 130%">{{listado.placa}}</td>
-                <td style="font-size: 130%">{{listado.numero_regimen}}</td>
-                <td style="font-size: 130%">{{listado.nombre_coop }}</td>
-                <td style="font-size: 130%">{{listado.modelo }}</td>
-                <td style="font-size: 130%">{{listado.marca }}</td>
+
+                <td style="font-size: 130%">{{listado.nombre}} {{ listado.apellido}}</td>
+                <td style="font-size: 130%">{{listado.cedula}}</td>
+                <td style="font-size: 130%">{{ listado.correo}}</td>
+                <td style="font-size: 130%">{{listado.tel_celular }}</td>
                 <td>
                   <input class="btn btn-primary " type="button" value="ver" (click)="mostarDatosTaxi(listado)">
                 </td>
@@ -322,83 +236,128 @@
           </table>
         </div>
       </div>
-<!-- ====================================================                     Formulario de Ingresar ASIGNACION ============================================-->
-
-<div class="container">
-  <form #IngresarAsignacion="ngForm" *ngIf="IngresarAsignacion" novalidate>
-    <div class="row">
-      <div class="col-lg-12">
-        <img src="../../assets/imgs/IngresarAsignacion.png" style="display: block; margin-left: 40%; width: 18%;  height:25%; border-radius:50%">
-      </div>
-    </div>
-    <br>
-    <div class="form-group">
-
-      <label for="apellido">Seleccione el Docente que Impartira la materia</label>
-      <input list="listadoDocentesAsignacion" style="font-size: 85%" [(ngModel)]="selectedDocenteAsignacion" name="selectedDocenteAsinacion" required type="text" class="form-control">
 
 
-      <datalist id="listadoDocentesAsignacion">
-        <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoDocentes">
+       <!-- ====================================================    Listado Matriculas ============================================-->
 
-            {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-           {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
-        </option>
+       <div *ngIf="listadoM" class="container">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center; color: #2863a9">
+              <h3>LISTADO MATRICULAS
+              </h3>
+            </div>
+            <div class="col-md-12">
+              <hr style="background-color: #e9ecef; width: 50%;">
+            </div>
+          </div>
+          <table class="table  text-center">
+            <thead>
+              <tr style="background-color: #343a40; align-content: center">
+                <th style="color: white" scope="col">#</th>
+                <th style="color: white" scope="col">Nombre</th>
+                <th style="color: white" scope="col">Cédula</th>
+                <th style="color: white" scope="col">Correo</th>
+                <th style="color: white" scope="col">Celular</th>
+                <th style="color: white" scope="col">Opción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor=" let listado of  listadoMatriculas">
+                <th scope="row">1</th>
 
-
-      </datalist>
-
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="form-group">
-          <label for="apellido">Seleccione el curso donde se impartira la materia</label>
-          <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoAsignacion" (change)="selectedMateria($event.target.value)" name="selectedCursoAsignacion" required type="text" class="form-control">
-          <datalist id="listadoCursosAsignacion">
-            <option  *ngFor="let oneDoor of vectorListadoCursos">
-                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
-            </option>
-          </datalist>
+                <td style="font-size: 130%">{{listado.nombre}} {{ listado.apellido}}</td>
+                <td style="font-size: 130%">{{listado.cedula}}</td>
+                <td style="font-size: 130%">{{ listado.correo}}</td>
+                <td style="font-size: 130%">{{listado.tel_celular }}</td>
+                <td>
+                  <input class="btn btn-primary " type="button" value="ver" (click)="mostarDatosTaxi(listado)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      
+
+      <!-- ====================================================            Formulario de Ingresar ASIGNACION ============================================-->
+
+      <div class="container">
+        <form #IngresarAsignacion="ngForm" *ngIf="IngresarAsignacion" novalidate>
+          <div class="row">
+            <div class="col-lg-12">
+              <img src="../../assets/imgs/IngresarAsignacion.png" style="display: block; margin-left: 40%; width: 18%;  height:25%; border-radius:50%">
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+
+            <label for="apellido">Seleccione el Docente que Impartira la materia</label>
+            <input list="listadoDocentesAsignacion" style="font-size: 85%" [(ngModel)]="selectedDocenteAsignacion" name="selectedDocenteAsinacion"
+              required type="text" class="form-control">
 
 
-        <div class="card-columns">
-        </div>
+            <datalist id="listadoDocentesAsignacion">
+              <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoDocentes">
+
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
+              </option>
+
+
+            </datalist>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="apellido">Seleccione el curso donde se impartira la materia</label>
+                <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoAsignacion" (change)="selectedMateria($event.target.value)"
+                  name="selectedCursoAsignacion" required type="text" class="form-control">
+                <datalist id="listadoCursosAsignacion">
+                  <option *ngFor="let oneDoor of vectorListadoCursos">
+                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+                  </option>
+                </datalist>
+              </div>
+
+
+              <div class="card-columns">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="apellido">Seleccione la materia a impartir</label>
+                <input style="font-size: 85%" [disabled]="disabledMateriaImpartir" list="listadoMaterias" [(ngModel)]="selectedMateriaAsignacion"
+                  name="selectedMateriaAsignacion" required type="text" class="form-control">
+
+
+                <datalist id="listadoMaterias">
+                  <option *ngFor="let oneDoor of vectorlistadoMaterias"> {{oneDoor}}</option>
+
+
+
+                </datalist>
+              </div>
+
+
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr style="background-color: #e9ecef; width: 50%;">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+              <button type="submit" (click)="onRegisterAsignacion()" class="btn btn-primary">Terminar Asignación
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="col-lg-6">
-        <div class="form-group">
-          <label for="apellido">Seleccione la materia a impartir</label>
-          <input style="font-size: 85%"  [disabled]="disabledMateriaImpartir" list="listadoMaterias" [(ngModel)]="selectedMateriaAsignacion" name="selectedMateriaAsignacion" required type="text" class="form-control">
-          
-          
-          <datalist id="listadoMaterias">
-            <option  *ngFor="let oneDoor of vectorlistadoMaterias" > {{oneDoor}}</option>
-         
-         
-               
-          </datalist>
-        </div>
 
 
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <hr style="background-color: #e9ecef; width: 50%;">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12" style="text-align: center;">
-        <button type="submit" (click)="onRegisterAsignacion()" class="btn btn-primary">Terminar Asignación
-        </button>
-      </div>
-    </div>
-  </form>
-</div>
-
-
-      <!-- ====================================================                     Formulario de Ingresar MATRICULA ============================================-->
+      <!-- ====================================================       Formulario de Ingresar MATRICULA ============================================-->
 
       <div class="container">
         <form #IngresarMatricula="ngForm" *ngIf="IngresarMatricula" novalidate>
@@ -413,14 +372,15 @@
               <div class="form-group">
 
                 <label for="apellido">Seleccione el estudiante a matricular</label>
-                <input list="listadoEstudiantes" style="font-size: 85%" [(ngModel)]="selectedEstudiante" name="selectedEstudiante" required type="text" class="form-control">
+                <input list="listadoEstudiantes" style="font-size: 85%" [(ngModel)]="selectedEstudiante" name="selectedEstudiante" required
+                  type="text" class="form-control">
 
 
                 <datalist id="listadoEstudiantes">
                   <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes">
 
-                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                     {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
+                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
                   </option>
 
 
@@ -436,9 +396,9 @@
                 <label for="apellido">Seleccione el curso a matricular</label>
                 <input style="font-size: 85%" list="listadoCursos" [(ngModel)]="selectedCurso" name="selectedCur" required type="text" class="form-control">
                 <datalist id="listadoCursos">
-                  <option  *ngFor="let oneDoor of vectorListadoCursos">
+                  <option *ngFor="let oneDoor of vectorListadoCursos">
 
-                      {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
                   </option>
                 </datalist>
               </div>
@@ -461,7 +421,7 @@
         </form>
       </div>
 
-      <!-- ====================================================                     Formulario de INGRESAR DOCENTE ============================================-->
+      <!-- ====================================================     Formulario de INGRESAR DOCENTE ============================================-->
 
       <div class="container">
         <form #IngresarDocente="ngForm" (ngSubmit)="onRegisterDocente()" *ngIf="IngresarDocente" novalidate>
@@ -876,7 +836,7 @@
         </form>
       </div>
 
-     
+
 
 
 

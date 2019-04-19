@@ -54,6 +54,18 @@ public cont =0;
   }
 
 
+  buscarDocentes(buscar) {
+    console.log("dentro de buscar docentes" + buscar);
+    let json = JSON.stringify(buscar);
+    let params = json;
+    //console.log(params);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http.get(this.url + "buscarDocentes/" + buscar, { headers: headers })
+      .map(res => res.json());
+
+  }
+
+
 
   getIdentity() {
     let identity = JSON.parse(localStorage.getItem("identityDocente"));

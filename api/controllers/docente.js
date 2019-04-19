@@ -53,14 +53,14 @@ function saveDocente(req, res) {
                                 count++
                             });
                             count++;
-                            docente.codigo="CODD"+count;
+                            docente.codigo = "CODD" + count;
                             docente.nombre = params.nombre;
                             docente.apellido = params.apellido;
                             docente.correo = params.correo;
                             docente.contrasena = params.contrasena;
                             docente.tel_celular = params.tel_celular;
                             docente.cedula = params.cedula;
-
+                            docente.estado=params.estado;
 
                             if (params.contrasena) {
 
@@ -111,91 +111,155 @@ function saveDocente(req, res) {
 }
 
 
-        function loginDocente(req, res) {
-            var params = req.body;
+function loginDocente(req, res) {
+    var params = req.body;
 
-            var correo = params.email;
-            var password = params.password;
-            console.log("hola tefo este es el servicio provando el hash");
-            //console.log(params.getHash);
+    var correo = params.email;
+    var password = params.password;
+    console.log("hola tefo este es el servicio provando el hash");
+    //console.log(params.getHash);
 
 
-            Docente.findOne({ correo: correo }, (err, user) => {
-                if (err) {
-                    //console.log("aqui hay un error en la peticion");
-                    res.status(500).send({
-                        message: 'Error al Autenticar Usuario.'
-                    });
-                } else {
-                    if (!user) {
-                        // console.log("error 404 el usuario no existe");
+    Docente.findOne({ correo: correo }, (err, user) => {
+        if (err) {
+            //console.log("aqui hay un error en la peticion");
+            res.status(500).send({
+                message: 'Error al Autenticar Usuario.'
+            });
+        } else {
+            if (!user) {
+                // console.log("error 404 el usuario no existe");
+                res.status(404).send({
+                    message: 'El Usuario no existe.'
+                });
+            } else {
+                //console.log(user);
+                bcrypt.compare(password, user.contrasena, function (err, check) {
+
+
+
+                    if (check) {
+                        //console.log("vamos a ver que pasa con el hash");
+                        //console.log(params.getHash);
+                        if (params.getHash) {
+
+
+                            res.status(200).send({
+                                token: jwt.createToken(user)
+                            });
+                        } else {
+                            res.status(200).send({
+                                user
+                            });
+                        }
+
+                    } else {
                         res.status(404).send({
-                            message: 'El Usuario no existe.'
+                            message: 'El Usuario no ha podido Autenticarse.'
+                        });
+
+                    }
+                });
+
+
+            }
+        }
+
+    }); //como el where en sql
+    console.log('no encontro');
+}
+
+
+function updateDocente(req, res) {
+    var userId = req.params.id; // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
+    var update = req.body;
+
+    if (userId != req.user.sub) {
+        return res.status(500).send({
+            message: "No tiene permiso para actualizar este Usuario."
+        });
+
+    }
+
+
+    if (update.estadoContrasena == '1') {
+        //  console.log("entre para encriptar", update.estadoContrasena);
+        // encriptar contrasena y guardar datos
+        hash = true;
+        bcrypt.hash(update.contrasena, null, null, function (err, hash) {
+            update.contrasena = hash;
+            //   console.log("contrasena nueva encriptada", update.contrasena);
+            update.estadoContrasena == '';
+
+            Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+
+                if (err) {
+                    res.status(500).send({
+                        message: "Error al actualizar Usuario"
+                    });
+
+                } else {
+                    if (!userUpdate) {
+                        res.status(404).send({
+                            message: "El usuario no ha podido actualizarse."
                         });
                     } else {
-                        //console.log(user);
-                        bcrypt.compare(password, user.contrasena, function (err, check) {
-
-
-
-                            if (check) {
-                                //console.log("vamos a ver que pasa con el hash");
-                                //console.log(params.getHash);
-                                if (params.getHash) {
-
-
-                                    res.status(200).send({
-                                        token: jwt.createToken(user)
-                                    });
-                                } else {
-                                    res.status(200).send({
-                                        user
-                                    });
-                                }
-
-                            } else {
-                                res.status(404).send({
-                                    message: 'El Usuario no ha podido Autenticarse.'
-                                });
-
-                            }
+                        res.status(200).send({
+                            user: userUpdate
                         });
-
-
                     }
                 }
 
-            }); //como el where en sql
-            console.log('no encontro');
-        }
+            });
+
+        });
+    } else {
+        update.estadoContrasena == '';
 
 
-        function updateDocente(req, res) {
-            var userId = req.params.id; // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
-            var update = req.body;
-
-            if (userId != req.user.sub) {
-                return res.status(500).send({
-                    message: "No tiene permiso para actualizar este Usuario."
+        Docente.findOne({
+            '$and': [{}, { correo: update.correo }]
+        }, (err, users) => {
+            if (err) {
+                res.status(500).send({
+                    message: "Error al Actualizar Usuario"
                 });
 
-            }
+            } else {
+                if (users) {
+                    if (users._id != update._id) {
+                        res.status(500).send({
+                            message: "El correo que desea ingresar pertenece a otro Usuario"
+                        });
+                    } else {
+                        Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
+                            if (err) {
+                                res.status(500).send({
+                                    message: "Error al actualizar Usuario."
+                                });
 
-            if (update.estadoContrasena == '1') {
-                //  console.log("entre para encriptar", update.estadoContrasena);
-                // encriptar contrasena y guardar datos
-                hash = true;
-                bcrypt.hash(update.contrasena, null, null, function (err, hash) {
-                    update.contrasena = hash;
-                    //   console.log("contrasena nueva encriptada", update.contrasena);
-                    update.estadoContrasena == '';
+                            } else {
+                                if (!userUpdate) {
+                                    res.status(404).send({
+                                        message: "El usuario no ha podido actualizarse."
+                                    });
+                                } else {
+                                    res.status(200).send({
+                                        user: userUpdate
+                                    });
+                                }
+                            }
 
+                        });
+                    }
+
+                } else {
                     Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
                         if (err) {
                             res.status(500).send({
-                                message: "Error al actualizar Usuario"
+                                message: "Error al actualizar Usuario."
                             });
 
                         } else {
@@ -211,119 +275,114 @@ function saveDocente(req, res) {
                         }
 
                     });
-
-                });
-            } else {
-                update.estadoContrasena == '';
-
-
-                Docente.findOne({
-                    '$and': [{}, { correo: update.correo }]
-                }, (err, users) => {
-                    if (err) {
-                        res.status(500).send({
-                            message: "Error al Actualizar Usuario"
-                        });
-
-                    } else {
-                        if (users) {
-                            if (users._id != update._id) {
-                                res.status(500).send({
-                                    message: "El correo que desea ingresar pertenece a otro Usuario"
-                                });
-                            } else {
-                                Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
-
-                                    if (err) {
-                                        res.status(500).send({
-                                            message: "Error al actualizar Usuario."
-                                        });
-
-                                    } else {
-                                        if (!userUpdate) {
-                                            res.status(404).send({
-                                                message: "El usuario no ha podido actualizarse."
-                                            });
-                                        } else {
-                                            res.status(200).send({
-                                                user: userUpdate
-                                            });
-                                        }
-                                    }
-
-                                });
-                            }
-
-                        } else {
-                            Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
-
-                                if (err) {
-                                    res.status(500).send({
-                                        message: "Error al actualizar Usuario."
-                                    });
-
-                                } else {
-                                    if (!userUpdate) {
-                                        res.status(404).send({
-                                            message: "El usuario no ha podido actualizarse."
-                                        });
-                                    } else {
-                                        res.status(200).send({
-                                            user: userUpdate
-                                        });
-                                    }
-                                }
-
-                            });
-                        }
-                    }
-
-                });
-
-
-
-
-
-
-
+                }
             }
 
-
-        }
-
-
-        function getDocentes(req, res) {
+        });
 
 
 
 
-            var message = Docente.find().exec((err, listadoDocentes) => {
+
+
+
+    }
+
+
+}
+
+
+
+
+
+function busquedaDocentes(req, res) {
+    var busqueda = req.params.busqueda;
+    //console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+        var findDocente = Docente.find({
+            '$and': [{
+                estado: '0'
+            },
+
+            {
+                '$or': [{
+                    nombre: new RegExp('^' + busqueda, "i")
+                },
+                {
+                    apellido: new RegExp('^' + busqueda, "i")
+                }, {
+                    correo: new RegExp('^' + busqueda, "i")
+                },
+                {
+                    cedula: new RegExp('^' + busqueda, "i")
+                }, {
+                    codigo: new RegExp('^' + busqueda, "i")
+                }
+                ]
+            }
+            ]
+        },
+            (err, docentes) => {
                 if (err) {
-                    return res.status(500).send({
-                        message: 'No se ha podido obtener las ultimas ofertas'
+                    res.status(500).send({
+                        message: "Error al obtener Docentes"
                     });
-                }
 
-                if (!listadoDocentes) {
-                    return res.status(200).send({
-                        message: 'No tiene ofertas'
-                    });
+                } else {
+                    if (!docentes) {
+                        res.status(404).send({
+                            message: "No se encuentra resultados de la busqueda"
+                        });
+                    } else {
+                        res.status(200).send({
+                            docentes
+                        });
+                    }
                 }
-
-                return res.status(200).send({
-                    listadoDocentes
-                });
             });
+    }
+}
 
+
+
+
+function getDocentes(req, res) {
+
+
+
+
+    var message = Docente.find().exec((err, listadoDocentes) => {
+        if (err) {
+            return res.status(500).send({
+                message: 'No se ha podido obtener las ultimas ofertas'
+            });
         }
 
-        module.exports = {          // para exportar todas las funciones de este modulo
+        if (!listadoDocentes) {
+            return res.status(200).send({
+                message: 'No tiene ofertas'
+            });
+        }
 
-            saveDocente,
-            loginDocente,
-            updateDocente,
-            getDocentes
+        return res.status(200).send({
+            listadoDocentes
+        });
+    });
+
+}
+
+module.exports = {          // para exportar todas las funciones de este modulo
+
+    saveDocente,
+    loginDocente,
+    busquedaDocentes,
+    updateDocente,
+    getDocentes
 
 
 
-        };
+};

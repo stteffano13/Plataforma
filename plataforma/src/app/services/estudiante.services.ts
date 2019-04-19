@@ -44,6 +44,20 @@ export class EstudianteService {
   }
 
 
+  buscarEstudiantes(buscar) {
+    console.log("dentro de buscar docentes" + buscar);
+    let json = JSON.stringify(buscar);
+    let params = json;
+    //console.log(params);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http.get(this.url + "buscarEstudiantes/" + buscar, { headers: headers })
+      .map(res => res.json());
+
+  }
+
+
+
+
   getListadoEstudiantes() {
 
 
