@@ -59,6 +59,9 @@
             <li>
               <a href="#" (click)="aparecerNuevaMatricula()">Nueva</a>
             </li>
+            <li>
+              <a href="#" (click)="aparecerEliminarMatricula()">Eliminar</a>
+            </li>
           </ul>
         </li>
 
@@ -235,12 +238,49 @@
             </tbody>
           </table>
         </div>
+
       </div>
 
+      <!-- ====================================================    Listado Matriculas ============================================-->
+      <div class="pre-scrollable" style="max-height: 100%; " *ngIf="listadosMostrarMatriculas">
 
-       <!-- ====================================================    Listado Matriculas ============================================-->
+        <div class="row container" style="text-align: center; margin-left: 2%">
+          <div class="col-md-4 ">
+            <label>Seleccione el periodo académico </label>
+            <select (change)="buscarMatriculas($event.target.value)" class=" custom-select " required>
+              <option value="2017-2018">2017-2018</option>
+              <option value="2018-2019">2018-2019</option>
+              <option value="2019-2020">2019-2020 </option>
+              <option value="2020-2021">2020-2021</option>
+              <option value="2021-2022">2021-2022</option>
+              <option value="2022-2021">2022-2021</option>
+              <option value="2021-2022">2021-2022</option>
+              <option value="2022-2023">2022-2023</option>
+              <option value="2023-2024">2023-2024</option>
+              <option value="2024-2025">2024-2025</option>
+              <option value="2025-2026">2025-2026</option>
+              <option value="2026-2027">2026-2027</option>
+              <option value="2028-2029">2028-2029</option>
+              <option value="2029-2030">2029-2030</option>
+            </select>
+          </div>
+          <div class=" col-md-6">
+            <label>Ingrese Cedula, Nombre o Apellido del estudiante</label>
+            <input type="text" class="form-control" #BusuqedaMatricula="ngModel" [(ngModel)]="busquedaMatricula" name="busquedaMatricula"
+              required>
 
-       <div *ngIf="listadoM" class="container">
+          </div>
+
+          <div class="col-lg-2">
+            <label style="color: white"> hola</label>
+           
+            <input type="text" class=" btn  btn-primary form-control" value="Buscar"  (click)="busquedaMatricuaFiltrado()">
+          </div>
+
+
+        </div>
+        <br><br><br>
+        <div *ngIf="listadoM" class="container">
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
               <h3>LISTADO MATRICULAS
@@ -255,20 +295,21 @@
               <tr style="background-color: #343a40; align-content: center">
                 <th style="color: white" scope="col">#</th>
                 <th style="color: white" scope="col">Nombre</th>
+                <th style="color: white" scope="col">Apellido</th>
                 <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Correo</th>
-                <th style="color: white" scope="col">Celular</th>
+                <th style="color: white" scope="col">Curso</th>
                 <th style="color: white" scope="col">Opción</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor=" let listado of  listadoMatriculas">
-                <th scope="row">1</th>
+              <tr *ngFor=" let listado of  listadoMatriculasNueva;let i = index">
+                <th scope="row">{{i+1}}</th>
 
-                <td style="font-size: 130%">{{listado.nombre}} {{ listado.apellido}}</td>
-                <td style="font-size: 130%">{{listado.cedula}}</td>
-                <td style="font-size: 130%">{{ listado.correo}}</td>
-                <td style="font-size: 130%">{{listado.tel_celular }}</td>
+                <td style="font-size: 130%">{{listado.estudiante.nombre}} {{ listado.apellido}}</td>
+                <td style="font-size: 130%"> {{ listado.estudiante.apellido}}</td>
+                <td style="font-size: 130%">{{listado.estudiante.cedula}}</td>
+                
+                <td style="font-size: 130%">{{listado.curso.curso }} "{{listado.curso.paralelo }}"</td>
                 <td>
                   <input class="btn btn-primary " type="button" value="ver" (click)="mostarDatosTaxi(listado)">
                 </td>
@@ -276,8 +317,8 @@
             </tbody>
           </table>
         </div>
-      
 
+      </div>
       <!-- ====================================================            Formulario de Ingresar ASIGNACION ============================================-->
 
       <div class="container">

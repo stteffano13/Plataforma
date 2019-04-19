@@ -43,16 +43,20 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public imagen = true;
 
 
-
+  public buscarMatriculaPeriodo;
+  public busquedaMatricula;
   public buscar;
 
   public listadoD = true;
-  public listadoE =true;
+  public listadoE = true;
   public listados = false;
-  public listadoM = false;
+  public listadosMostrarMatriculas = false;
+  public listadoM = true;
   //listados
   public listadoEstudiantes;
   public listadoDocentes;
+  public listadoMatriculas;
+  public listadoMatriculasNueva = [];
   // vectores de materias
 
   public arrayOctavo = [
@@ -208,6 +212,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.busquedaDocente();
     this.busquedaEstudiantes();
 
+
   }
 
   busquedaDocente() {
@@ -283,18 +288,18 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     );
   }
 
-  busquedaMAtriculas() {
+  busquedaMatriculas() {
     this.loading = true;
     this._matriculaServices.buscarMatriculas(this.buscar).subscribe(
       response => {
-        console.log("satisfactoriamente estudiantes", response.estudiantes);
+        console.log("satisfactoriamente matriculas", response.matriculas);
 
-        this.listadoEstudiantes = response.estudiantes;
-        if (this.listadoDocentes == "") {
-          this.listadoE = true;
+        this.listadoMatriculas = response.matriculas;
+        if (this.listadoMatriculas == "") {
+          this.listadoM = true;
         } else {
           console.log("entre a loq ue tenia");
-          this.listadoE = true;
+          this.listadoM = true;
         }
         // console.log(this.listadoChoferes);
         this.loading = false;
@@ -319,6 +324,22 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     );
   }
 
+
+  busquedaMatricuaFiltrado() {
+    this.busquedaMatricula;
+    console.log("aqui eta lo que mande a buscar" ,this.busquedaMatricula) ;
+    this.listadoMatriculasNueva = [];
+    this.listadoMatriculas.forEach(element => {
+      if (element.estudiante.nombre.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1 ||
+      element.estudiante.apellido.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1 ||
+      element.estudiante.cedula.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1) {
+        this.listadoMatriculasNueva.push(element);
+        console.log("entraste a la busqueda",element.estudiante.nombre);
+      } else {
+        this.listadoMatriculasNueva = [];
+      }
+    });
+  }
 
 
   // extras validacion
@@ -384,12 +405,28 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   // modulos
+
+  aparecerEliminarMatricula() {
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarMatricula = false;
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.listadosMostrarMatriculas = true;
+
+    this.busquedaMatriculas();
+
+    // this.url2 = '../../assets/imgs/IngresarMatricula.png';
+  }
+
+
   aparecerNuevaMatricula() {
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = true;
     this.IngresarAsignacion = false;
     this.imagen = false;
+    this.listadosMostrarMatriculas = false;
     this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
   apareceIngreseDocente() {
@@ -398,6 +435,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarMatricula = false;
     this.IngresarAsignacion = false;
     this.imagen = false;
+    this.listadosMostrarMatriculas = false;
     this.url2 = '../../assets/imgs/IngresarDocente.png';
   }
 
@@ -407,6 +445,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarAsignacion = false;
     this.IngresarEstudiante = true;
     this.imagen = false;
+    this.listadosMostrarMatriculas = false;
     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
   }
 
@@ -416,10 +455,17 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarEstudiante = false;
     this.IngresarAsignacion = true;
     this.imagen = false;
-
+    this.listadosMostrarMatriculas = false;
 
   }
 
+  buscarMatriculas(value) {
+    this.buscarMatriculaPeriodo = value;
+
+
+    // aqui busqueda
+
+  }
 
   // registros
 

@@ -6,7 +6,8 @@ var Matricula = require('../models/matricula');
 var Estudiante = require('../models/estudiante');
 var Curso = require('../models/curso'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
-
+var path = require('path');
+var fs = require('fs');
 
 // Create a new moment object
 var now = moment();
@@ -19,9 +20,9 @@ var m = moment([2005, 3, 1]);
 
 
 function saveMatricula(req, res) {
-    
+
     var params = req.body;
-   console.log("esto viene para amtricular", params);
+    console.log("esto viene para amtricular", params);
     Estudiante.findOne({ codigo: params.codigoE }, (err, users) => {
         if (err) {
             res.status(500).send({
@@ -80,7 +81,7 @@ function guardarSegundo(idE, idC, params, res) {
     matricula = new Matricula();
     //
     Matricula.findOne({
-        '$or':[ {'$and': [{ estudiante: idE._id }, { curso: idC._id }]}, {'$and': [{ estudiante: idE._id }, { periodo: params.periodo }]}]
+        '$or': [{ '$and': [{ estudiante: idE._id }, { curso: idC._id }] }, { '$and': [{ estudiante: idE._id }, { periodo: params.periodo }] }]
     }, (err, users) => {
         if (err) {
             res.status(500).send({
@@ -107,14 +108,14 @@ function guardarSegundo(idE, idC, params, res) {
                                 console.log("numero de regsitros", count);
                                 count++
                             });
-
+                            count++;
                             //
-                            matricula.codigo=count+1;
+                            matricula.codigo = "CODMT" + count;
                             matricula.estudiante = idE._id;
                             matricula.curso = idC._id;
                             matricula.periodo = params.periodo;
                             matricula.fecha = fecha;
-                            matricula.estado=params.estado;
+                            matricula.estado = params.estado;
 
 
                             if (idC._id && idE._id) {
@@ -177,56 +178,39 @@ function guardarSegundo(idE, idC, params, res) {
 
 function busquedaMatriculas(req, res) {
     var busqueda = req.params.busqueda;
-    //console.log(busqueda);
+    console.log(busqueda);
     if (!busqueda) {
         res.status(404).send({
             message: 'Ingrese un parametro de busqueda'
         });
     } else {
-        var findMatricula = Matricula.find({
-            '$and': [{
-                estado: '0'
-            },
 
-            {
-                '$or': [{
-                    nombre: new RegExp('^' + busqueda, "i")
-                },
-                {
-                    apellido: new RegExp('^' + busqueda, "i")
-                }, {
-                    correo: new RegExp('^' + busqueda, "i")
-                },
-                {
-                    cedula: new RegExp('^' + busqueda, "i")
-                }, {
-                    codigo: new RegExp('^' + busqueda, "i")
-                }
-                ]
+
+        var matriculas = Matricula.find({
+            estado: '0'
+          }).populate({
+            path: 'estudiante'
+          }).populate({
+            path: 'curso'
+          }).exec((err, matriculas) => {
+            if (err) {
+              return res.status(500).send({
+                message: 'No se han podido obtener sus Viajes'
+              });
             }
-            ]
-        },
-            (err, estudiantes) => {
-                if (err) {
-                    res.status(500).send({
-                        message: "Error al obtener Docentes"
-                    });
-
-                } else {
-                    if (!estudiantes) {
-                        res.status(404).send({
-                            message: "No se encuentra resultados de la busqueda"
-                        });
-                    } else {
-                        res.status(200).send({
-                            estudiantes
-                        });
-                    }
-                }
+        
+            if (!matriculas) {
+              return res.status(200).send({
+                message: 'No tiene viajes'
+              });
+            }
+        
+            return res.status(200).send({
+                matriculas
             });
+          });
+        }
     }
-}
-
 
 module.exports = {          // para exportar todas las funciones de este modulo
 
