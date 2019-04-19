@@ -6,7 +6,7 @@ var MatriculaController = require('../controllers/matricula');
 var md_auth = require('../middleware/authenticated');
 
 var api = express.Router(); // esto sirve para crear las rutas 
-api.post('/registerMatricula', MatriculaController.saveMatricula);
+api.post('/registerMatricula',md_auth.ensureAuth, MatriculaController.saveMatricula);
 //api.get('/getListadoCursos',md_auth.ensureAuth, CursoController.getCursos);
 
 module.exports = api;

@@ -3,10 +3,12 @@ import { Docente } from "../models/docente";
 import { Estudiante } from "../models/estudiante";
 import { Curso } from "../models/curso";
 import { Matricula } from "../models/matricula";
+import { Materia } from "../models/materia";
 import { DocenteService } from "../services/docente.services";
 import { CursoService } from '../services/curso.services';
 import { EstudianteService } from '../services/estudiante.services';
 import { MatriculaService } from '../services/matricula.services';
+import { MateriaService } from '../services/materia.services';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
 
@@ -32,8 +34,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public selectedEstudiante;
   public selectedCurso;
   public selectedDocente;
-  public disabledMateriaImpartir = true;
 
+  public selectedDocenteAsignacion;
+  public selectedCursoAsignacion;
+  public selectedMateriaAsignacion;
+
+  public disabledMateriaImpartir = true;
+ public  imagen = true;
   public arrayOctavo = [
     "Ciencias Sociales",
     "Informática",
@@ -101,6 +108,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public estudiante_register: Estudiante;
   public curso_register: Curso;
   public matricula_register: Matricula;
+  public materia_register: Materia;
 
   public textBox = true;
   public txtHide = true;
@@ -148,12 +156,14 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
-    private _matriculaServices: MatriculaService) {
+    private _matriculaServices: MatriculaService,
+    private _materiaServices: MateriaService) {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
     this.matricula_register = new Matricula("", "", "", "", "");
+    this.materia_register = new Materia("", "", "", "", "","");
 
   }
 
@@ -222,20 +232,26 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = true;
-    //this.url2 = '../../assets/imgs/IngresarMatricula.png';
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
   public apareceIngreseDocente() {
     this.IngresarDocente = true;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = false;
-    // this.url2 = '../../assets/imgs/IngresarDocente.png';
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.url2 = '../../assets/imgs/IngresarDocente.png';
   }
 
   public apareceIngreseEstudiante() {
     this.IngresarMatricula = false;
     this.IngresarDocente = false;
+    this.IngresarAsignacion = false;
     this.IngresarEstudiante = true;
-    // this.url2 = '../../assets/imgs/IngresarEstudiante.png';
+    this.imagen = false;
+     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
   }
 
 
@@ -244,6 +260,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarAsignacion = true;
+    this.imagen = false;
 
 
   }
@@ -428,10 +445,54 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   public onRegisterAsignacion()
   {
+    let partsD: String[] = new Array();
+    partsD = this.selectedDocenteAsignacion.split(".");
+    console.log("Vamos mijin", partsD[0]);
+
+    let partsC: String[] = new Array();
+    partsC = this.selectedCursoAsignacion.split(".");
+    console.log("Vamos mijin", partsC[0]);
+
+    this.loading = true;
+    this.materia_register.estado = '0';
+    this.materia_register.codigoD = partsD[0];
+    this.materia_register.codigoC = partsC[0];
+    this.materia_register.periodo = localStorage.getItem("periodoAnoLectivo");
+
+    this._materiaServices.registerMateria(this.materia_register).subscribe(
+      response => {
+        this.mensajecorrectomodals = "Loa materia se ha generado exitosamente.";
+        console.log("satisfactoriamente");
+        this.loading = false;
+        this.getListadoCursos();
+        document.getElementById("openModalCorrecto").click();
+        // this.limpiar(1);
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+          this.loading = false;
+          document.getElementById("openModalError").click();
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+            this.loading = false;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          this.loading = false;
+        }
+      }
+    );
+
+
 
   }
 
-  
+
   getListadoEstudiantes() {
 
     this._estudianteService.getListadoEstudiantes().subscribe(response => {

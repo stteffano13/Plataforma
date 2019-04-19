@@ -55,7 +55,7 @@ function guardarPrimero(docente, params, res) {
         } else {
             if (users) {
 
-                guardarSegundo(estudiante, users, params, res);
+                guardarSegundo(docente, users, params, res);
 
 
             } else {
@@ -111,11 +111,12 @@ function guardarSegundo(idD, idC, params, res) {
                             });
 
                             //
-                            materia.codigo = count + 1;
+                            count++;
+                            materia.codigo = "CODM"+count;
                             materia.docente = idD._id;
                             materia.curso = idC._id;
                             materia.periodo = params.periodo;
-                            matricula.estado = params.estado;
+                            materia.estado = params.estado;
 
 
                             if (idD._id && idC._id) {
@@ -161,6 +162,6 @@ function guardarSegundo(idD, idC, params, res) {
 
 module.exports = {          // para exportar todas las funciones de este modulo
 
-    saveAsignacion,
+    saveAsignacion
 
 };
