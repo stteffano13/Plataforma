@@ -326,19 +326,32 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   busquedaMatricuaFiltrado() {
-    this.busquedaMatricula;
-    console.log("aqui eta lo que mande a buscar" ,this.busquedaMatricula) ;
+    
+
     this.listadoMatriculasNueva = [];
     this.listadoMatriculas.forEach(element => {
-      if (element.estudiante.nombre.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1 ||
+      if(this.busquedaMatricula!=null){
+      if ( element.periodo.indexOf(this.buscarMatriculaPeriodo)!=-1 && (element.estudiante.nombre.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1 ||
       element.estudiante.apellido.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1 ||
-      element.estudiante.cedula.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1) {
+      element.estudiante.cedula.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1)) {
         this.listadoMatriculasNueva.push(element);
         console.log("entraste a la busqueda",element.estudiante.nombre);
       } else {
         this.listadoMatriculasNueva = [];
       }
+    }else
+    {
+      if( element.periodo.indexOf(this.buscarMatriculaPeriodo)!=-1)
+      {
+        console.log("entre al periodo");
+        this.listadoMatriculasNueva.push(element);
+      }else
+      {
+        this.listadoMatriculasNueva = [];
+      }
+    }
     });
+
   }
 
 

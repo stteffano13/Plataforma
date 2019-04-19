@@ -298,6 +298,7 @@
                 <th style="color: white" scope="col">Apellido</th>
                 <th style="color: white" scope="col">Cédula</th>
                 <th style="color: white" scope="col">Curso</th>
+                <th style="color: white" scope="col">Periodo</th>
                 <th style="color: white" scope="col">Opción</th>
               </tr>
             </thead>
@@ -305,11 +306,11 @@
               <tr *ngFor=" let listado of  listadoMatriculasNueva;let i = index">
                 <th scope="row">{{i+1}}</th>
 
-                <td style="font-size: 130%">{{listado.estudiante.nombre}} {{ listado.apellido}}</td>
+                <td style="font-size: 130%">{{listado.estudiante.nombre}}</td>
                 <td style="font-size: 130%"> {{ listado.estudiante.apellido}}</td>
                 <td style="font-size: 130%">{{listado.estudiante.cedula}}</td>
-                
                 <td style="font-size: 130%">{{listado.curso.curso }} "{{listado.curso.paralelo }}"</td>
+                <td style="font-size: 130%">{{listado.periodo }}</td>
                 <td>
                   <input class="btn btn-primary " type="button" value="ver" (click)="mostarDatosTaxi(listado)">
                 </td>
