@@ -74,6 +74,9 @@
             <li>
               <a href="#" (click)="aparecerAsignar()">Asignar Materias</a>
             </li>
+            <li>
+              <a href="#" (click)="aparecerEliminarAsignar()">Eliminar </a>
+            </li>
           </ul>
         </li>
 
@@ -238,9 +241,7 @@
             </tbody>
           </table>
         </div>
-
       </div>
-
       <!-- ====================================================    Listado Matriculas ============================================-->
       <div class="pre-scrollable" style="max-height: 100%; " *ngIf="listadosMostrarMatriculas">
 
@@ -273,8 +274,8 @@
 
           <div class="col-lg-2">
             <label style="color: white"> hola</label>
-           
-            <input type="text" class=" btn  btn-primary form-control" value="Buscar"  (click)="busquedaMatricuaFiltrado()">
+
+            <input type="text" class=" btn  btn-primary form-control" value="Buscar" (click)="busquedaMatricuaFiltrado()">
           </div>
 
 
@@ -320,7 +321,113 @@
         </div>
 
       </div>
-      <!-- ====================================================            Formulario de Ingresar ASIGNACION ============================================-->
+
+      <!-- ====================================================  Listado Asignacion ============================================-->
+      <div class="pre-scrollable" style="max-height: 100%; " *ngIf="listadosMostrarAsignacion">
+
+        <div class="row container" style="text-align: center; margin-left: 2%">
+
+          <div class="col-md-5 ">
+            <label for="apellido">Seleccione el Docente</label>
+            <input list="busquedaDocentesAsignacion" style="font-size: 85%" [(ngModel)]="busquedaDocenteAsignacion" name="busquedaDocenteAsignacion"
+              required type="text" class="form-control">
+
+
+            <datalist id="busquedaDocentesAsignacion">
+              <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoDocentes">
+
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
+              </option>
+
+
+            </datalist>
+
+          </div>
+
+          <div class="col-md-2 ">
+            <label>Periodo académico </label>
+            <select (change)="buscarAsignacionPeriodo($event.target.value)" class=" custom-select " required>
+              
+              <option value="no asignar" selected>no asignar</option>
+              <option value="2017-2018">2017-2018</option>
+              <option value="2018-2019">2018-2019</option>
+              <option value="2019-2020">2019-2020 </option>
+              <option value="2020-2021">2020-2021</option>
+              <option value="2021-2022">2021-2022</option>
+              <option value="2022-2021">2022-2021</option>
+              <option value="2021-2022">2021-2022</option>
+              <option value="2022-2023">2022-2023</option>
+              <option value="2023-2024">2023-2024</option>
+              <option value="2024-2025">2024-2025</option>
+              <option value="2025-2026">2025-2026</option>
+              <option value="2026-2027">2026-2027</option>
+              <option value="2028-2029">2028-2029</option>
+              <option value="2029-2030">2029-2030</option>
+            </select>
+          </div>
+          <div class=" col-md-3">
+            <label for="apellido">Seleccione el curso </label>
+                <input style="font-size: 85%" list="buscarCursoAsignacion" [(ngModel)]="buscarCursoAsignacion"
+                  name="buscarCursoAsignacion" required type="text" class="form-control">
+                <datalist id="buscarCursoAsignacion">
+                  <option *ngFor="let oneDoor of vectorListadoCursos">
+                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+                  </option>
+                </datalist>
+
+          </div>
+
+          <div class="col-lg-2">
+            <label style="color: white"> hola</label>
+
+            <input  class=" btn btn-primary form-control" value="Buscar" type="button" (click)="busquedaAsignacionFiltrado()">
+          </div>
+
+
+        </div>
+        <br><br><br>
+        <div *ngIf="listadoA" class="container">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center; color: #2863a9">
+              <h3>LISTADO ASIGNACIONES
+              </h3>
+            </div>
+            <div class="col-md-12">
+              <hr style="background-color: #e9ecef; width: 50%;">
+            </div>
+          </div>
+          <table class="table  text-center">
+            <thead>
+              <tr style="background-color: #343a40; align-content: center">
+                <th style="color: white" scope="col">#</th>
+                <th style="color: white" scope="col">Curso</th>
+                <th style="color: white" scope="col">Docente</th>
+                <th style="color: white" scope="col">Periodo</th>
+                <th style="color: white" scope="col">Materia</th>
+                
+                <th style="color: white" scope="col">Opción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor=" let listado of  listadoAsignacionNueva; let i = index">
+                <th scope="row">{{i+1}}</th>
+
+                <td style="font-size: 130%">{{listado.curso.curso}} "{{listado.curso.paralelo}}"</td>
+                <td style="font-size: 130%"> {{ listado.docente.nombre}} {{ listado.docente.apellido}}</td>
+                <td style="font-size: 130%">{{listado.periodo}}</td>
+                <td style="font-size: 130%">{{listado.nombre}}</td>
+                
+                <td>
+                  <input class="btn btn-primary " type="button" value="ver" (click)="mostarDatosTaxi(listado)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- ====================================================      Formulario de Ingresar ASIGNACION ============================================-->
 
       <div class="container">
         <form #IngresarAsignacion="ngForm" *ngIf="IngresarAsignacion" novalidate>

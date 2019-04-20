@@ -42,21 +42,34 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public disabledMateriaImpartir = true;
   public imagen = true;
 
-
+  // busqueda matricula
   public buscarMatriculaPeriodo;
   public busquedaMatricula;
-  public buscar;
 
+
+  // busqueda asignacion
+  public buscarCursoAsignacion;
+  public busquedaDocenteAsignacion;
+  public busquedaAsignacionPeriodo;
+
+
+
+  public buscar;
   public listadoD = true;
   public listadoE = true;
+  public listadoA = true;
   public listados = false;
+
   public listadosMostrarMatriculas = false;
+  public listadosMostrarAsignacion = false;
   public listadoM = true;
   //listados
   public listadoEstudiantes;
   public listadoDocentes;
   public listadoMatriculas;
+  public listadoMaterias;
   public listadoMatriculasNueva = [];
+  public listadoAsignacionNueva = [];
   // vectores de materias
 
   public arrayOctavo = [
@@ -195,6 +208,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.getListadoEstudiantes();
     this.getListadoCursos();
     this.getListadoDocentes();
+
+
   }
 
   ngAfterViewInit() {
@@ -325,35 +340,130 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
+  busquedaAsignacion() {
+    this.loading = true;
+    this._materiaServices.buscarMaterias(this.buscar).subscribe(
+      response => {
+        console.log("satisfactoriamente materias", response.materias);
+
+        this.listadoMaterias = response.materias;
+        if (this.listadoMaterias == "") {
+          this.listadoA = true;
+        } else {
+          console.log("entre a loq ue tenia");
+          this.listadoA = true;
+        }
+        // console.log(this.listadoChoferes);
+        this.loading = false;
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          // this.loading =false;
+        }
+        // this.loading =false;
+      }
+
+    );
+  }
+
+
   busquedaMatricuaFiltrado() {
-    
+
 
     this.listadoMatriculasNueva = [];
     this.listadoMatriculas.forEach(element => {
-      if(this.busquedaMatricula!=null){
-      if ( element.periodo.indexOf(this.buscarMatriculaPeriodo)!=-1 && (element.estudiante.nombre.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1 ||
-      element.estudiante.apellido.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1 ||
-      element.estudiante.cedula.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase())!=-1)) {
-        this.listadoMatriculasNueva.push(element);
-        console.log("entraste a la busqueda",element.estudiante.nombre);
+      if (this.busquedaMatricula != null) {
+        if (element.periodo.indexOf(this.buscarMatriculaPeriodo) != -1 && (element.estudiante.nombre.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase()) != -1 ||
+          element.estudiante.apellido.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase()) != -1 ||
+          element.estudiante.cedula.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase()) != -1)) {
+          this.listadoMatriculasNueva.push(element);
+          console.log("entraste a la busqueda", element.estudiante.nombre);
+        } else {
+          this.listadoMatriculasNueva = [];
+        }
       } else {
-        this.listadoMatriculasNueva = [];
+        if (element.periodo.indexOf(this.buscarMatriculaPeriodo) != -1) {
+          console.log("entre al periodo");
+          this.listadoMatriculasNueva.push(element);
+        } else {
+          this.listadoMatriculasNueva = [];
+        }
       }
-    }else
-    {
-      if( element.periodo.indexOf(this.buscarMatriculaPeriodo)!=-1)
-      {
-        console.log("entre al periodo");
-        this.listadoMatriculasNueva.push(element);
-      }else
-      {
-        this.listadoMatriculasNueva = [];
-      }
-    }
     });
 
   }
 
+  buscarAsignacionPeriodo(value) {
+    this.busquedaAsignacionPeriodo = value;
+  }
+
+
+  busquedaAsignacionFiltrado() {
+
+
+
+
+    this.listadoAsignacionNueva = [];
+
+
+    this.listadoMaterias.forEach(element => {
+      console.log("mat");
+      if (this.busquedaAsignacionPeriodo != "no asignar" && this.busquedaDocenteAsignacion != null) {
+
+        let codigoD: String[] = new Array();
+        codigoD = this.busquedaDocenteAsignacion.split(".");
+
+        if ((element.periodo.indexOf(this.busquedaAsignacionPeriodo) != -1 && element.docente.codigo.indexOf(codigoD[0]) != -1)) {
+          this.listadoAsignacionNueva.push(element);
+          console.log("entraste a la busqueda de materias");
+        } else {
+          this.listadoAsignacionNueva = [];
+        }
+      } else {
+        if (this.busquedaAsignacionPeriodo != "no asignar" && this.buscarCursoAsignacion != null) {
+
+          let codigoC: String[] = new Array();
+          codigoC = this.buscarCursoAsignacion.split(".");
+
+          if ((element.periodo.indexOf(this.busquedaAsignacionPeriodo) != -1 && element.curso.codigo.indexOf(codigoC[0]) != -1)) {
+            this.listadoAsignacionNueva.push(element);
+            console.log("entraste a la busqueda de materias");
+          } else {
+            this.listadoAsignacionNueva = [];
+          }
+
+          this.listadoMatriculasNueva.push(element);
+        } else {
+          if (this.busquedaDocenteAsignacion != null && this.buscarCursoAsignacion != null) {
+            console.log("entraste a la ultima  busqueda de materias");
+            let codigoD: String[] = new Array();
+            codigoD = this.busquedaDocenteAsignacion.split(".");
+            let codigoC: String[] = new Array();
+            codigoC = this.buscarCursoAsignacion.split(".");
+
+            if (element.curso.codigo.indexOf(codigoC[0]) != -1 && element.docente.codigo.indexOf(codigoD[0]) != -1) {
+              this.listadoAsignacionNueva.push(element);
+          
+            } else {
+              this.listadoAsignacionNueva = [];
+            }
+
+            this.listadoMatriculasNueva.push(element);
+          }
+        }
+      }
+    });
+  }
 
   // extras validacion
   myFunctionUsuario() {
@@ -418,6 +528,17 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   // modulos
+  aparecerEliminarAsignar() {
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarMatricula = false;
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = true;
+    this.busquedaAsignacionPeriodo = "no asignar"
+    this.busquedaAsignacion();
+  }
 
   aparecerEliminarMatricula() {
     this.IngresarDocente = false;
@@ -426,7 +547,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarAsignacion = false;
     this.imagen = false;
     this.listadosMostrarMatriculas = true;
-
+    this.listadosMostrarAsignacion = false;
+   
     this.busquedaMatriculas();
 
     // this.url2 = '../../assets/imgs/IngresarMatricula.png';
@@ -440,6 +562,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarAsignacion = false;
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = false;
+
     this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
   apareceIngreseDocente() {
@@ -449,6 +573,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarAsignacion = false;
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = false;
+
     this.url2 = '../../assets/imgs/IngresarDocente.png';
   }
 
@@ -459,6 +585,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarEstudiante = true;
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = false;
+
     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
   }
 
@@ -469,6 +597,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.IngresarAsignacion = true;
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = false;
+
 
   }
 
@@ -661,7 +791,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.mensajecorrectomodals = "Loa materia se ha generado exitosamente.";
         console.log("satisfactoriamente");
         this.loading = false;
-        this.getListadoCursos();
+        this.busquedaAsignacion();
         document.getElementById("openModalCorrecto").click();
         // this.limpiar(1);
       },

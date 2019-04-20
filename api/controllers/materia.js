@@ -112,6 +112,7 @@ function guardarSegundo(idD, idC, params, res) {
 
                             //
                             count++;
+                            materia.nombre=params.nombre;
                             materia.codigo = "CODM"+count;
                             materia.docente = idD._id;
                             materia.curso = idC._id;
@@ -160,8 +161,46 @@ function guardarSegundo(idD, idC, params, res) {
 
 }
 
+
+
+function busquedaMateria(req, res) {
+    var busqueda = req.params.busqueda;
+    console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+
+
+        var matriculas = Materia.find({
+            estado: '0'
+          }).populate({
+            path: 'docente'
+          }).populate({
+            path: 'curso'
+          }).exec((err, materias) => {
+            if (err) {
+              return res.status(500).send({
+                message: 'No se han podido obtener sus Viajes'
+              });
+            }
+        
+            if (!materias) {
+              return res.status(200).send({
+                message: 'No tiene viajes'
+              });
+            }
+        
+            return res.status(200).send({
+                materias
+            });
+          });
+        }
+    }
 module.exports = {          // para exportar todas las funciones de este modulo
 
-    saveAsignacion
+    saveAsignacion,
+    busquedaMateria
 
 };
