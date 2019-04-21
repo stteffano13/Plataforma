@@ -44,7 +44,20 @@ public cont =0;
   }
 
 
-  
+  update_docente(docente_to_update, estadoContrasena) {
+    docente_to_update.estadoContrasena = estadoContrasena;
+    console.log("clave docente antes de mndar",docente_to_update.estadoContrasena);
+    let json = JSON.stringify(docente_to_update);
+    let params = json;
+    console.log(params);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+      .put(this.url + "update-docente/" + docente_to_update._id, params, { headers: headers })
+      .map(res => res.json());
+  }
+
+
+
   getListadoDocentes() {
    
     let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });

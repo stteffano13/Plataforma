@@ -196,7 +196,7 @@
                 <td style="font-size: 130%">{{ listado.correo}}</td>
                 <td style="font-size: 130%">{{listado.tel_celular }}</td>
                 <td>
-                  <input class="btn btn-primary " type="button" value="ver" (click)="mostrarDatosChofer(listado)">
+                  <input class="btn btn-primary " type="button" value="ver" (click)="aparecerUpdateDatosDocentes(listado)">
                 </td>
               </tr>
             </tbody>
@@ -249,6 +249,7 @@
           <div class="col-md-4 ">
             <label>Seleccione el periodo académico </label>
             <select (change)="buscarMatriculas($event.target.value)" class=" custom-select " required>
+                <option value="no asignado" selected>no asignado</option>
               <option value="2017-2018">2017-2018</option>
               <option value="2018-2019">2018-2019</option>
               <option value="2019-2020">2019-2020 </option>
@@ -267,8 +268,21 @@
           </div>
           <div class=" col-md-6">
             <label>Ingrese Cedula, Nombre o Apellido del estudiante</label>
-            <input type="text" class="form-control" #BusuqedaMatricula="ngModel" [(ngModel)]="busquedaMatricula" name="busquedaMatricula"
+            <input list="listadoEstudianteMatricula" type="text" class="form-control" #BusuqedaMatricula="ngModel" [(ngModel)]="busquedaMatricula" name="busquedaMatricula"
               required>
+
+            
+
+
+                <datalist id="listadoEstudianteMatricula">
+                  <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes">
+
+                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
+                  </option>
+
+
+                </datalist>
 
           </div>
 
@@ -349,7 +363,7 @@
             <label>Periodo académico </label>
             <select (change)="buscarAsignacionPeriodo($event.target.value)" class=" custom-select " required>
               
-              <option value="no asignar" selected>no asignar</option>
+              <option value="no asignado" selected>no asignado</option>
               <option value="2017-2018">2017-2018</option>
               <option value="2018-2019">2018-2019</option>
               <option value="2019-2020">2019-2020 </option>
@@ -662,38 +676,39 @@
         </form>
       </div>
 
-      <!-- ====================================================                     Formulario de MODIFICAR usuario ============================================-->
-      <!-- ====================================================                     Formulario de MODIFICAR usuario ============================================-->
+      <!-- ====================================================      Formulario de MODIFICAR DOCENTE ============================================-->
+  
       <div class="container">
-        <form #ModificarUsuario="ngForm" *ngIf="ModificarUsuario">
+        <form #ModificarUsuario="ngForm" *ngIf="ModificarDocente">
           <div class="row">
             <div class="col-lg-12">
-              <img src="../assets/img/ModificaruSer.png" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
+              <img src="../../assets/imgs/IngresarDocente.png" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
               <br>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group">
-                <label> Nombre del Usuario</label>
-                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosSecretarias.nombre" name="nombreM" [disabled]='textBox'
+                <label> Nombre del Docente</label>
+                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosDocentes.nombre" name="nombreM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente"  [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
-                <label>Celular del Usuario</label>
-                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosSecretarias.tel_celular" name="celularM" pattern="[0-9]*"
+                <label>Celular del Docente</label>
+                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosDocentes.tel_celular" name="celularM" pattern="[0-9]*"
                   [disabled]='textBox' required>
                 <div [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
               <div class="form-group">
-                <label>Numero de Telefono del Usuario</label>
-                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosSecretarias.tel_convencional" name="telefonoM"
-                  [disabled]='textBox' pattern="[0-9]*" required>
+                <label>Cédula del docente</label> 
+                <label style="font-size: 80%">&nbsp;&nbsp;La cédula no se puede modificar, tiene que eliminar el usuario</label>
+                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosDocentes.cedula" name="telefonoM"
+                  disabled pattern="[0-9]*" required>
                 <div [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -703,16 +718,16 @@
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <label>Apellido del Usuario</label>
-                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosSecretarias.apellido" name="apellidoM" [disabled]='textBox'
+                <label>Apellido del Docente</label>
+                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosDocentes.apellido" name="apellidoM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
                 <div [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
-                <label>Correo de Usuario</label>
-                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosSecretarias.correo" name="correorM" [disabled]='textBox'
+                <label>Correo del Docente</label>
+                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosDocentes.correo" name="correorM" [disabled]='textBox'
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                 <div [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
@@ -722,14 +737,15 @@
                 <label for="contrasena">Modificar la contraseña</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend" (click)='habilitarContrasenaU()'>
+                     
                     <div class="input-group-text">
-
+                        <i class="{{clase_ojoUsuarioM}}"></i>
                     </div>
                   </div>
                   <input type="{{tipoUsuarioM}}" disabled required class="form-control" aria-label="Text input with checkbox" #Password="ngModel"
-                    [(ngModel)]="this.contrasenaNewUser" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContra'>
+                    [(ngModel)]="this.contrasenaUpdateDocente" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContra'>
                 </div>
-                <div [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionOjoModificarDocente" [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
                 </div>
               </div>
@@ -753,12 +769,12 @@
               </button>
             </div>
             <div class="col-md-6" style="text-align: right;">
-              <button type="submit" class="btn btn-primary" (click)='onUpdateSecretarias(0)' [hidden]='txtAparece' [disabled]="!ModificarUsuario.form.valid">
+              <button type="submit" class="btn btn-primary" (click)='onUpdateDocentes(0)' [hidden]='txtAparece' [disabled]="!ModificarUsuario.form.valid">
                 <i class="fa fa-save fa-0.5x" style="color: #ffffff"></i>
                 Guardar Cambios</button>
             </div>
             <div class="col-md-6" style="text-align: left;">
-              <button type="submit" class="btn btn-default" (click)="deshabilitar()" [hidden]='txtAparece'>
+              <button  class="btn btn-default" (click)="deshabilitar()" [hidden]='txtAparece'>
                 <i class="fa fa-ban fa-0.5x" style="color: #000000"></i>
                 Cancelar</button>
             </div>

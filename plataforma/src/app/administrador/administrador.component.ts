@@ -24,6 +24,9 @@ import { AfterViewInit, ViewChild } from '@angular/core';
   styleUrls: ['./administrador.component.css']
 })
 export class AdministradorComponent implements OnInit, AfterViewInit {
+ public  txtvalidacionModificarDocente = true;
+ public  txtvalidacionOjoModificarDocente = true;
+
 
   public url2;
   public hola1 = true;
@@ -53,7 +56,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public busquedaAsignacionPeriodo;
 
 
-
+// banderas para busquedas individuales eliminar matricula y asignacion
   public buscar;
   public listadoD = true;
   public listadoE = true;
@@ -63,6 +66,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public listadosMostrarMatriculas = false;
   public listadosMostrarAsignacion = false;
   public listadoM = true;
+
+
   //listados
   public listadoEstudiantes;
   public listadoDocentes;
@@ -70,6 +75,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public listadoMaterias;
   public listadoMatriculasNueva = [];
   public listadoAsignacionNueva = [];
+
+  // objetos de carga
+  public datosDocentes;
+
   // vectores de materias
 
   public arrayOctavo = [
@@ -165,9 +174,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public clase_ojoChofer = 'fa fa-eye fa-lg';
 
   public estadoClaveChofer;
-  public estadoClaveUsuario;
+  public estadoClaveDocente;
+
   public contrasenaNew;
-  public contrasenaNewUser;
+  public contrasenaUpdateDocente;
+
+
+
 
   // banderas para aparecer los ingresos
   public IngresarDocente = false;
@@ -175,6 +188,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public IngresarParalelo = false;
   public IngresarMatricula = false;
   public IngresarAsignacion = false;
+
+  // banderas para aparecer los modificar
+
+  public ModificarDocente = false;
 
   // vectores
 
@@ -202,12 +219,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
     this.opcionPeriodoLectivo = "Seleccione Periodo Lectivo, Periodo Actual:" + localStorage.getItem("periodoAnoLectivo");
-    if (this.opcionPeriodoLectivo == null) {
-      this.opcionPeriodoLectivo = "NO Asignado"
-    }
+    this.opcionPeriodoLectivo = "no asignado"
+    this.buscarMatriculaPeriodo = "no asignado";
     this.getListadoEstudiantes();
     this.getListadoCursos();
     this.getListadoDocentes();
+    this.txtHide = false;
+  
 
 
   }
@@ -382,21 +400,29 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     this.listadoMatriculasNueva = [];
     this.listadoMatriculas.forEach(element => {
-      if (this.busquedaMatricula != null) {
-        if (element.periodo.indexOf(this.buscarMatriculaPeriodo) != -1 && (element.estudiante.nombre.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase()) != -1 ||
-          element.estudiante.apellido.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase()) != -1 ||
-          element.estudiante.cedula.toLowerCase().indexOf(this.busquedaMatricula.toLowerCase()) != -1)) {
-          this.listadoMatriculasNueva.push(element);
-          console.log("entraste a la busqueda", element.estudiante.nombre);
-        } else {
-          this.listadoMatriculasNueva = [];
-        }
+      let codigoE: String[] = new Array();
+      codigoE = this.busquedaMatricula.split(".");
+      console.log(element.estudiante.codigo);
+      if (this.busquedaMatricula != null && this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
+        console.log("entraste a la busqueda MF1");
+        this.listadoMatriculasNueva.push(element);
+
       } else {
-        if (element.periodo.indexOf(this.buscarMatriculaPeriodo) != -1) {
-          console.log("entre al periodo");
+        if (this.buscarMatriculaPeriodo != "no asignado" && this.busquedaMatricula == null && element.periodo == this.buscarMatriculaPeriodo) {
+          console.log("entraste a la busqueda MF2");
           this.listadoMatriculasNueva.push(element);
         } else {
-          this.listadoMatriculasNueva = [];
+          if (this.buscarMatriculaPeriodo != "no asignado" &&
+            this.busquedaMatricula != null &&
+            element.periodo == this.buscarMatriculaPeriodo &&
+            element.estudiante.codigo == codigoE[0]) {
+            console.log("entraste a la busqueda MF3");
+            this.listadoMatriculasNueva.push(element);
+            console.log("entraste a la busqueda MF3 result", this.listadoMatriculasNueva);
+          } else {
+
+            console.log("no entre a nada");
+          }
         }
       }
     });
@@ -418,7 +444,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     this.listadoMaterias.forEach(element => {
       console.log("mat");
-      if (this.busquedaAsignacionPeriodo != "no asignar" && this.busquedaDocenteAsignacion != null) {
+      if (this.busquedaAsignacionPeriodo != "no asignado" && this.busquedaDocenteAsignacion != null) {
 
         let codigoD: String[] = new Array();
         codigoD = this.busquedaDocenteAsignacion.split(".");
@@ -430,7 +456,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
           this.listadoAsignacionNueva = [];
         }
       } else {
-        if (this.busquedaAsignacionPeriodo != "no asignar" && this.buscarCursoAsignacion != null) {
+        if (this.busquedaAsignacionPeriodo != "no asignado" && this.buscarCursoAsignacion != null) {
 
           let codigoC: String[] = new Array();
           codigoC = this.buscarCursoAsignacion.split(".");
@@ -453,7 +479,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
             if (element.curso.codigo.indexOf(codigoC[0]) != -1 && element.docente.codigo.indexOf(codigoD[0]) != -1) {
               this.listadoAsignacionNueva.push(element);
-          
+
             } else {
               this.listadoAsignacionNueva = [];
             }
@@ -476,19 +502,22 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     }
   }
   habilitarContrasenaU() {
+    
 
     if (this.tipoUsuarioM === 'text') {
       this.tipoUsuarioM = 'password';
       this.clase_ojoUsuarioM = 'fa fa-eye fa-lg';
       this.textBoxContra = true;
-      this.estadoClaveUsuario = '0';
+      this.estadoClaveDocente = '0';
+      this.txtvalidacionOjoModificarDocente = false;
     } else {
       this.tipoUsuarioM = 'text';
       this.clase_ojoUsuarioM = 'fa fa-eye-slash fa-lg';
       this.textBoxContra = false;
-      this.estadoClaveUsuario = '1';
+      this.estadoClaveDocente = '1';
+      this.txtvalidacionOjoModificarDocente = true;
     }
-    console.log('estadoClaveContrasenaUsuario......', this.estadoClaveUsuario);
+    console.log('estadoClaveContrasenaUsuario......', this.estadoClaveDocente);
   }
   habilitarContrasenaC() {
 
@@ -519,12 +548,14 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.textBox = !this.textBox;
     this.txtHide = true;
     this.txtAparece = false;
+    this.txtvalidacionModificarDocente = true;
   }
 
   deshabilitar() {
     this.textBox = !this.textBox;
     this.txtHide = !this.txtHide;
     this.txtAparece = !this.txtAparece;
+    this.txtvalidacionModificarDocente = false;
   }
 
   // modulos
@@ -538,6 +569,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = true;
     this.busquedaAsignacionPeriodo = "no asignar"
     this.busquedaAsignacion();
+    this.ModificarDocente=false;
   }
 
   aparecerEliminarMatricula() {
@@ -548,8 +580,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = true;
     this.listadosMostrarAsignacion = false;
-   
+    this.getListadoEstudiantes();
     this.busquedaMatriculas();
+    this.ModificarDocente=false;
 
     // this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
@@ -563,8 +596,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-
+    this.ModificarDocente=true;
     this.url2 = '../../assets/imgs/IngresarMatricula.png';
+    this.ModificarDocente=false;
   }
   apareceIngreseDocente() {
     this.IngresarDocente = true;
@@ -574,8 +608,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-
+    this.ModificarDocente=true;
     this.url2 = '../../assets/imgs/IngresarDocente.png';
+    this.ModificarDocente=false;
   }
 
   apareceIngreseEstudiante() {
@@ -588,7 +623,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = false;
 
     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
+    this.ModificarDocente=false;
   }
+  
 
   aparecerAsignar() {
     this.IngresarMatricula = false;
@@ -598,16 +635,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
+    this.ModificarDocente=false;
 
 
   }
 
   buscarMatriculas(value) {
     this.buscarMatriculaPeriodo = value;
-
-
-    // aqui busqueda
-
   }
 
   // registros
@@ -817,6 +851,79 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
 
+  }
+
+
+  // modificars
+
+  aparecerUpdateDatosDocentes(datosDocente) {
+    this.contrasenaUpdateDocente = "";
+    this.IngresarMatricula = false;
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = false;
+    this.ModificarDocente=true;
+    this.datosDocentes = datosDocente;
+    this.listados=false;
+
+  }
+
+  onUpdateDocentes(estado)
+  {
+
+    console.log('mi contra con ******>>>>', this.contrasenaUpdateDocente);
+    this.datosDocentes.estado = estado;
+    this.loading = true;
+
+    if (this.contrasenaUpdateDocente != null || this.contrasenaUpdateDocente != '') {
+      this.estadoClaveDocente = '1';
+      console.log('estadoclaveusuario si es diferente null ""', this.estadoClaveDocente);
+    }
+
+    if (this.contrasenaUpdateDocente == null || this.contrasenaUpdateDocente == '') {
+      this.estadoClaveDocente = '0';
+      console.log('estadoclaveusuario 0000000 ""', this.estadoClaveDocente);
+    }
+
+    if (this.estadoClaveDocente == '1') {
+      console.log('Estado clave usuario vane', this.contrasenaUpdateDocente);
+      this.datosDocentes.contrasena = this.contrasenaUpdateDocente;
+    }
+
+    this._docenteServices.update_docente(this.datosDocentes, this.estadoClaveDocente).subscribe(
+      response => {
+        this.mensajecorrectomodals = "El Docente se ha eliminado correctamente"; // esto puso el tefo chumadod
+        console.log("satisfactoriamenteUpdate");
+        this.loading = false;
+
+        if (estado == '0') {
+          this.mensajecorrectomodals = "Los datos del Docente se han modificado satisfactoriamente.";
+          document.getElementById("openModalCorrecto").click();
+        } else {
+          this.mensajecorrectomodals = "La cuenta del Docente  ha sido eliminada.";
+          document.getElementById("openModalCorrecto").click();
+        }
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+
+          // this.loading =false;
+        }
+      }
+    );
   }
 
 
