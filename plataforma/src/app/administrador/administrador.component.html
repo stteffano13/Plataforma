@@ -289,7 +289,7 @@
           <div class="col-lg-2">
             <label style="color: white"> hola</label>
 
-            <input type="text" class=" btn  btn-primary form-control" value="Buscar" (click)="busquedaMatricuaFiltrado()">
+            <button class=" btn  btn-primary form-control"  (click)="busquedaMatriculaFiltrado()">Buscar </button>
           </div>
 
 
@@ -327,7 +327,7 @@
                 <td style="font-size: 130%">{{listado.curso.curso }} "{{listado.curso.paralelo }}"</td>
                 <td style="font-size: 130%">{{listado.periodo }}</td>
                 <td>
-                  <input class="btn btn-primary " type="button" value="ver" (click)="mostarDatosTaxi(listado)">
+                  <input class="btn btn-primary " type="button" value="Eliminar" (click)="updateDatosMatricula(listado)">
                 </td>
               </tr>
             </tbody>

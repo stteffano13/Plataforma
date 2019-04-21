@@ -34,19 +34,22 @@ export class MatriculaService {
         //console.log(params);
         let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
         return this._http.get(this.url + "buscarMatriculas/" + buscar, { headers: headers })
-          .map(res => res.json());
-    
-      }
-    
+            .map(res => res.json());
 
-    /* getListadoCursos() {
-      
-       let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
-       return this._http
-         .get(this.url + "getListadoCursos",  { headers: headers })
-         .map(res => res.json());
-     }
-   */
+    }
+
+
+    update_matricula(matricula_to_update) {
+
+
+        let json = JSON.stringify(matricula_to_update);
+        let params = json;
+        console.log(params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .put(this.url + "update-matricula/" + matricula_to_update._id, params, { headers: headers })
+            .map(res => res.json());
+    }
 
     getToken() {
 

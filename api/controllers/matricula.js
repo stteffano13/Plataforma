@@ -188,33 +188,64 @@ function busquedaMatriculas(req, res) {
 
         var matriculas = Matricula.find({
             estado: '0'
-          }).populate({
+        }).populate({
             path: 'estudiante'
-          }).populate({
+        }).populate({
             path: 'curso'
-          }).exec((err, matriculas) => {
+        }).exec((err, matriculas) => {
             if (err) {
-              return res.status(500).send({
-                message: 'No se han podido obtener sus Viajes'
-              });
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
             }
-        
+
             if (!matriculas) {
-              return res.status(200).send({
-                message: 'No tiene viajes'
-              });
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
             }
-        
+
             return res.status(200).send({
                 matriculas
             });
-          });
-        }
+        });
     }
+}
+
+
+
+
+function updateMatricula(req, res) {
+    var update = req.body;
+    var messageId = req.params.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
+  
+  console.log("antes de eliminar matricula", messageId);
+  
+    var update = req.body;
+  
+  
+    Matricula.findByIdAndUpdate(messageId, update, (err, matriculaUpdate) => {
+  
+      if (err) {
+        res.status(500).send({ message: "Error al eliminar la matricula", err });
+  
+      } else {
+        if (!matriculaUpdate) {
+          res.status(404).send({ message: "La matricula no se ha actualizado" });
+        } else {
+          res.status(200).send({  message: "La matricula se ha actualizado correctamente"  });
+        }
+      }
+  
+    });
+  }
+  
+  
 
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveMatricula,
-    busquedaMatriculas
+    busquedaMatriculas,
+    updateMatricula
 
 };

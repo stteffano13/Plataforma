@@ -230,12 +230,7 @@ function updateEstudiante(req, res) {
     var userId = req.params.id; // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
     var update = req.body;
 
-    if (userId != req.user.sub) {
-        return res.status(500).send({
-            message: "No tiene permiso para actualizar este estudiante."
-        });
 
-    }
 
 
     if (update.estadoContrasena == '1') {

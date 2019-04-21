@@ -24,11 +24,11 @@ import { AfterViewInit, ViewChild } from '@angular/core';
   styleUrls: ['./administrador.component.css']
 })
 export class AdministradorComponent implements OnInit, AfterViewInit {
- public  txtvalidacionModificarDocente = true;
- public  txtvalidacionOjoModificarDocente = true;
+  public txtvalidacionModificarDocente = true;
+  public txtvalidacionOjoModificarDocente = true;
 
- public  txtvalidacionModificarEstudiante = true;
- public  txtvalidacionOjoModificarEstudiante = true;
+  public txtvalidacionModificarEstudiante = true;
+  public txtvalidacionOjoModificarEstudiante = true;
 
 
   public url2;
@@ -59,7 +59,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public busquedaAsignacionPeriodo;
 
 
-// banderas para busquedas individuales eliminar matricula y asignacion
+  // banderas para busquedas individuales eliminar matricula y asignacion
   public buscar;
   public listadoD = true;
   public listadoE = true;
@@ -230,7 +230,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.getListadoCursos();
     this.getListadoDocentes();
     this.txtHide = false;
-  
+
 
 
   }
@@ -326,18 +326,22 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     );
   }
 
-  busquedaMatriculas() {
+  busquedaMatriculaFiltrado() {
+    this.listadoMatriculasNueva=[];
+    this.listadoMatriculas = "";
     this.loading = true;
     this._matriculaServices.buscarMatriculas(this.buscar).subscribe(
       response => {
         console.log("satisfactoriamente matriculas", response.matriculas);
 
         this.listadoMatriculas = response.matriculas;
+
         if (this.listadoMatriculas == "") {
           this.listadoM = true;
         } else {
           console.log("entre a loq ue tenia");
           this.listadoM = true;
+          this.busquedaMatricula2();
         }
         // console.log(this.listadoChoferes);
         this.loading = false;
@@ -400,10 +404,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  busquedaMatricuaFiltrado() {
-
-
-    this.listadoMatriculasNueva = [];
+  busquedaMatricula2() {
+    
+    console.log("matriculas mijin para eliminar" +"listado matriculas original", this.listadoMatriculas,"vector a mostrar", this.listadoMatriculasNueva);
+  
     this.listadoMatriculas.forEach(element => {
       let codigoE: String[] = new Array();
       codigoE = this.busquedaMatricula.split(".");
@@ -507,7 +511,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     }
   }
   habilitarContrasenaU() {
-    
+
 
     if (this.tipoUsuarioM === 'text') {
       this.tipoUsuarioM = 'password';
@@ -578,7 +582,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = true;
     this.busquedaAsignacionPeriodo = "no asignar"
     this.busquedaAsignacion();
-    this.ModificarDocente=false;
+    this.ModificarDocente = false;
   }
 
   aparecerEliminarMatricula() {
@@ -590,8 +594,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = true;
     this.listadosMostrarAsignacion = false;
     this.getListadoEstudiantes();
-    this.busquedaMatriculas();
-    this.ModificarDocente=false;
+    this.ModificarDocente = false;
 
     // this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
@@ -605,9 +608,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-    this.ModificarDocente=true;
+    this.ModificarDocente = true;
     this.url2 = '../../assets/imgs/IngresarMatricula.png';
-    this.ModificarDocente=false;
+    this.ModificarDocente = false;
   }
   apareceIngreseDocente() {
     this.IngresarDocente = true;
@@ -617,9 +620,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-    this.ModificarDocente=true;
+    this.ModificarDocente = true;
     this.url2 = '../../assets/imgs/IngresarDocente.png';
-    this.ModificarDocente=false;
+    this.ModificarDocente = false;
   }
 
   apareceIngreseEstudiante() {
@@ -632,9 +635,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = false;
 
     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
-    this.ModificarDocente=false;
+    this.ModificarDocente = false;
   }
-  
+
 
   aparecerAsignar() {
     this.IngresarMatricula = false;
@@ -644,7 +647,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-    this.ModificarDocente=false;
+    this.ModificarDocente = false;
 
 
   }
@@ -866,6 +869,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // modificars
 
   aparecerUpdateDatosDocentes(datosDocente) {
+    this.txtHide = false;
     this.contrasenaUpdateDocente = "";
     this.IngresarMatricula = false;
     this.IngresarDocente = false;
@@ -874,15 +878,15 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-    this.ModificarDocente=true;
+    this.ModificarDocente = true;
     this.datosDocentes = datosDocente;
-    this.listados=false;
+    this.listados = false;
 
   }
 
-  aparecerUpdateDatosEstudiante(datosEstudiante)
-  {
+  aparecerUpdateDatosEstudiante(datosEstudiante) {
 
+    this.txtHide = false;
     this.contrasenaUpdateDocente = "";
     this.IngresarMatricula = false;
     this.IngresarDocente = false;
@@ -891,14 +895,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-    this.ModificarDocente=false;
-    this.ModificarEstudiante=true;
+    this.ModificarDocente = false;
+    this.ModificarEstudiante = true;
     this.datosEstudiantes = datosEstudiante;
-    this.listados=false;
+    this.listados = false;
   }
 
-  onUpdateDocentes(estado)
-  {
+  onUpdateDocentes(estado) {
 
     console.log('mi contra con ******>>>>', this.contrasenaUpdateDocente);
     this.datosDocentes.estado = estado;
@@ -954,8 +957,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
 
-  onUpdateEstudiante(estado)
-  {
+  onUpdateEstudiante(estado) {
 
     console.log('mi contra con ******>>>>', this.contrasenaUpdateEstudiante);
     this.datosEstudiantes.estado = estado;
@@ -976,7 +978,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.datosDocentes.contrasena = this.contrasenaUpdateEstudiante;
     }
 
-    this._docenteServices.update_docente(this.datosEstudiantes, this.estadoClaveEstudiante).subscribe(
+    this._estudianteService.update_estudiante(this.datosEstudiantes, this.estadoClaveEstudiante).subscribe(
       response => {
         this.mensajecorrectomodals = "El Docente se ha eliminado correctamente"; // esto puso el tefo chumadod
         console.log("satisfactoriamenteUpdate");
@@ -1009,6 +1011,43 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     );
   }
 
+
+
+  updateDatosMatricula(matricula) {
+    this.listadoMatriculasNueva=[];
+    this.listadoMatriculas = "";
+
+    matricula.estado = "1";
+    this._matriculaServices.update_matricula(matricula).subscribe(
+      response => {
+        this.mensajecorrectomodals = "La matricula se ha eliminado correctamente"; // esto puso el tefo chumadod
+        console.log("satisfactoriamenteUpdate");
+        this.loading = false;
+
+        this.mensajecorrectomodals = "La matricula  ha sido eliminado.";
+        this.busquedaMatriculaFiltrado();
+        document.getElementById("openModalCorrecto").click();
+
+
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+
+          // this.loading =false;
+        }
+      }
+    );
+  }
   // obtener lsitados a vectores
   getListadoEstudiantes() {
 
