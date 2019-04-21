@@ -27,6 +27,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
  public  txtvalidacionModificarDocente = true;
  public  txtvalidacionOjoModificarDocente = true;
 
+ public  txtvalidacionModificarEstudiante = true;
+ public  txtvalidacionOjoModificarEstudiante = true;
+
 
   public url2;
   public hola1 = true;
@@ -78,6 +81,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   // objetos de carga
   public datosDocentes;
+  public datosEstudiantes;
 
   // vectores de materias
 
@@ -173,10 +177,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public clase_ojoUsuarioC = 'fa fa-eye fa-lg';
   public clase_ojoChofer = 'fa fa-eye fa-lg';
 
-  public estadoClaveChofer;
+  public estadoClaveEstudiante;
   public estadoClaveDocente;
 
-  public contrasenaNew;
+  public contrasenaUpdateEstudiante;
   public contrasenaUpdateDocente;
 
 
@@ -192,6 +196,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // banderas para aparecer los modificar
 
   public ModificarDocente = false;
+  public ModificarEstudiante = false;
 
   // vectores
 
@@ -525,14 +530,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.tipoUsuarioC = 'password';
       this.clase_ojoUsuarioC = 'fa fa-eye fa-lg';
       this.textBoxContraC = true;
-      this.estadoClaveChofer = '0';
+      this.estadoClaveEstudiante = '0';
+      this.txtvalidacionOjoModificarEstudiante = false;
     } else {
       this.tipoUsuarioC = 'text';
       this.clase_ojoUsuarioC = 'fa fa-eye-slash fa-lg';
       this.textBoxContraC = false;
-      this.estadoClaveChofer = '1';
+      this.estadoClaveEstudiante = '1';
+      this.txtvalidacionOjoModificarEstudiante = true;
     }
-    console.log('estadoClaveContrasenaChofer......', this.estadoClaveChofer);
+    console.log('estadoClaveContrasenaChofer......', this.estadoClaveEstudiante);
   }
   myFunctionChofer() {
     if (this.tipoChofer === 'text') {
@@ -549,6 +556,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.txtHide = true;
     this.txtAparece = false;
     this.txtvalidacionModificarDocente = true;
+    this.txtvalidacionModificarEstudiante = true;
   }
 
   deshabilitar() {
@@ -556,6 +564,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.txtHide = !this.txtHide;
     this.txtAparece = !this.txtAparece;
     this.txtvalidacionModificarDocente = false;
+    this.txtvalidacionModificarEstudiante = false;
   }
 
   // modulos
@@ -871,6 +880,23 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   }
 
+  aparecerUpdateDatosEstudiante(datosEstudiante)
+  {
+
+    this.contrasenaUpdateDocente = "";
+    this.IngresarMatricula = false;
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = false;
+    this.ModificarDocente=false;
+    this.ModificarEstudiante=true;
+    this.datosEstudiantes = datosEstudiante;
+    this.listados=false;
+  }
+
   onUpdateDocentes(estado)
   {
 
@@ -926,6 +952,62 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     );
   }
 
+
+
+  onUpdateEstudiante(estado)
+  {
+
+    console.log('mi contra con ******>>>>', this.contrasenaUpdateEstudiante);
+    this.datosEstudiantes.estado = estado;
+    this.loading = true;
+
+    if (this.contrasenaUpdateEstudiante != null || this.contrasenaUpdateEstudiante != '') {
+      this.estadoClaveEstudiante = '1';
+      console.log('estadoclaveusuario si es diferente null ""', this.estadoClaveEstudiante);
+    }
+
+    if (this.contrasenaUpdateEstudiante == null || this.contrasenaUpdateEstudiante == '') {
+      this.estadoClaveEstudiante = '0';
+      console.log('estadoclaveusuario 0000000 ""', this.estadoClaveEstudiante);
+    }
+
+    if (this.estadoClaveEstudiante == '1') {
+      console.log('Estado clave usuario vane', this.contrasenaUpdateEstudiante);
+      this.datosDocentes.contrasena = this.contrasenaUpdateEstudiante;
+    }
+
+    this._docenteServices.update_docente(this.datosEstudiantes, this.estadoClaveEstudiante).subscribe(
+      response => {
+        this.mensajecorrectomodals = "El Docente se ha eliminado correctamente"; // esto puso el tefo chumadod
+        console.log("satisfactoriamenteUpdate");
+        this.loading = false;
+
+        if (estado == '0') {
+          this.mensajecorrectomodals = "Los datos del Docente se han modificado satisfactoriamente.";
+          document.getElementById("openModalCorrecto").click();
+        } else {
+          this.mensajecorrectomodals = "La cuenta del Docente  ha sido eliminada.";
+          document.getElementById("openModalCorrecto").click();
+        }
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+
+          // this.loading =false;
+        }
+      }
+    );
+  }
 
   // obtener lsitados a vectores
   getListadoEstudiantes() {

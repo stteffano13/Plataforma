@@ -235,7 +235,7 @@
                 <td style="font-size: 130%">{{ listado.correo}}</td>
                 <td style="font-size: 130%">{{listado.tel_celular }}</td>
                 <td>
-                  <input class="btn btn-primary " type="button" value="ver" (click)="mostarDatosTaxi(listado)">
+                  <input class="btn btn-primary " type="button" value="ver" (click)="aparecerUpdateDatosEstudiante(listado)">
                 </td>
               </tr>
             </tbody>
@@ -700,7 +700,7 @@
                 <label>Celular del Docente</label>
                 <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosDocentes.tel_celular" name="celularM" pattern="[0-9]*"
                   [disabled]='textBox' required>
-                <div [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente"  [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
@@ -709,7 +709,7 @@
                 <label style="font-size: 80%">&nbsp;&nbsp;La cédula no se puede modificar, tiene que eliminar el usuario</label>
                 <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosDocentes.cedula" name="telefonoM"
                   disabled pattern="[0-9]*" required>
-                <div [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente" [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
@@ -721,7 +721,7 @@
                 <label>Apellido del Docente</label>
                 <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosDocentes.apellido" name="apellidoM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
+                <div  *ngIf="txtvalidacionModificarDocente" [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
@@ -729,7 +729,7 @@
                 <label>Correo del Docente</label>
                 <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosDocentes.correo" name="correorM" [disabled]='textBox'
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
-                <div [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente"  [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
               </div>
@@ -763,7 +763,7 @@
               </button>
             </div>
             <div class="col-md-6" style="text-align: left;">
-              <button (click)='onUpdateSecretarias(1)' type="submit" class="btn btn-danger" [hidden]='txtHide'>
+              <button (click)='onUpdateDocentes(1)' type="submit" class="btn btn-danger" [hidden]='txtHide'>
                 <i class="fa fa-trash fa-0.5x" style="color: #ffffff"></i>
                 Eliminar
               </button>
@@ -782,7 +782,7 @@
         </form>
       </div>
 
-      <!-- ====================================================                     Formulario de INGRESAR ESTUDIANTE ============================================-->
+      <!-- ====================================================      Formulario de INGRESAR ESTUDIANTE ============================================-->
 
       <div class="container">
         <form #IngresarEstudiante="ngForm" (ngSubmit)="onRegisterEstudiante()" *ngIf="IngresarEstudiante">
@@ -884,43 +884,40 @@
       </div>
 
 
-      <!-- ====================================================                     Formulario de MODIFICAR chofer ============================================-->
-      <!-- ====================================================                     Formulario de MODIFICAR chofer ============================================-->
+     
+      <!-- ====================================================      Formulario de MODIFICAR ESTUDIANTE ============================================-->
       <div class="container">
-        <form #ModificarChofer="ngForm" *ngIf="ModificarChofer">
+        <form #ModificarEstudiante="ngForm" *ngIf="ModificarEstudiante">
           <div class="row">
             <div class="col-lg-12">
-              <img [src]="url2" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
+              <img src="../../assets/imgs/IngresarEstudiante.png" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
 
-              <label class=" form-control fileContainer" style="width: 7%; height: 10%; border: none;margin-left: 50%; margin-top: -7%;">
-                <i class="fa fa-camera fa-2x" style="color:white; "></i>
-                <input type='file' id="nuestroinput" class="btn btn-primary" (change)="readUrl($event)" />
-              </label>
-            </div>
+                        </div>
           </div>
           <br>
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group">
-                <label> Nombre del Chofer</label>
-                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosChoferes.nombre" name="nombreM" [disabled]='textBox'
+                <label> Nombre del Estudiante</label>
+                <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosEstudiantes.nombre" name="nombreM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
+                <div   *ngIf="txtvalidacionModificarEstudiante"  [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
-                <label>Celular del Chofer</label>
-                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosChoferes.tel_celular" name="celularM" [disabled]='textBox'
+                <label>Celular del Estudiante</label>
+                <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosEstudiantes.tel_celular" name="celularM" [disabled]='textBox'
                   pattern="[0-9]*" required>
-                <div [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarEstudiante" [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
               <div class="form-group">
-                <label>Número de Telefono del Chofer</label>
-                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosChoferes.tel_convencional" name="telefonoM"
-                  [disabled]='textBox' pattern="[0-9]*" required>
+                <label>Cédula del Estudiante</label>
+                <label style="font-size: 80%">&nbsp;&nbsp;La cédula no se puede modificar, tiene que eliminar el usuario</label>
+                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosEstudiantes.cedula" name="telefonoM"
+                  disabled pattern="[0-9]*" required>
                 <div [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -930,18 +927,18 @@
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <label>Apellido del Chofer</label>
-                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosChoferes.apellido" name="apellidoM" [disabled]='textBox'
+                <label>Apellido del Estudiante</label>
+                <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosEstudiantes.apellido" name="apellidoM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
+                <div  *ngIf="txtvalidacionModificarEstudiante"   [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
               <div class="form-group">
-                <label>Correo del Chofer</label>
-                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosChoferes.correo" name="correoM" [disabled]='textBox'
+                <label>Correo del Estudiante</label>
+                <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosEstudiantes.correo" name="correoM" [disabled]='textBox'
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
-                <div [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
+                <div   *ngIf="txtvalidacionModificarEstudiante"  [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
               </div>
@@ -954,20 +951,13 @@
                     </div>
                   </div>
                   <input type="{{tipoUsuarioC}}" disabled required class="form-control" aria-label="Text input with checkbox" #Password="ngModel"
-                    [(ngModel)]="contrasenaNew" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContraC'>
+                    [(ngModel)]="contrasenaUpdateEstudiante" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContraC'>
                 </div>
-                <div [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
+                <div   *ngIf="txtvalidacionOjoModificarEstudiante"  [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
                 </div>
               </div>
-              <!-- <div class="form-group">
-                <label>Licencia</label>
-                <input type="email" class="form-control" #LicenciaM="ngModel" [(ngModel)]="datosChoferes.num_licencia" name="licenciaM" [disabled]='textBox'
-                  pattern="[0-9]*" required>
-                <div [hidden]="LicenciaM.valid || LicenciaM.pristine" class="alert alert-warning">
-                  Ingrese solo números
-                </div>
-              </div>-->
+             
             </div>
           </div>
           <div class="row">
@@ -982,13 +972,13 @@
               </button>
             </div>
             <div class="col-md-6" style="text-align: left;">
-              <button (click)='onUpdateChoferes(1)' type="submit" class="btn btn-danger" [hidden]='txtHide'>
+              <button (click)='onUpdateEstudiante(1)' type="submit" class="btn btn-danger" [hidden]='txtHide'>
                 <i class="fa fa-trash fa-0.5x" style="color: #ffffff"></i>
                 Eliminar
               </button>
             </div>
             <div class="col-md-6" style="text-align: right;">
-              <button type="submit" class="btn btn-primary" (click)='onUpdateChoferes(0)' [hidden]='txtAparece' [disabled]="!ModificarChofer.form.valid">
+              <button type="submit" class="btn btn-primary" (click)='onUpdateEstudiante(0)' [hidden]='txtAparece' [disabled]="!ModificarEstudiante.form.valid">
                 <i class="fa fa-save fa-0.5x" style="color: #ffffff"></i> Guardar Cambios
               </button>
             </div>
