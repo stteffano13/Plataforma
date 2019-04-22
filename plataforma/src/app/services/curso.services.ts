@@ -35,7 +35,21 @@ public cont =0;
       .map(res => res.json());
   }
 
- 
+  update_curso(curso_to_update) {
+
+   
+    console.log(" este es el ultimo objeto antesd e envies", curso_to_update);
+
+    let json = JSON.stringify(curso_to_update);
+    let params = json;
+    console.log(params);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+        .post(this.url + "update-curso", params, { headers: headers })
+        .map(res => res.json());
+}
+
+
   getToken() {
     
     let token = localStorage.getItem("Token");

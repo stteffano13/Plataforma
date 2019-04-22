@@ -129,6 +129,25 @@
             </span>
           </a>
         </li>
+
+            <!-- ====================================================       Notificaciones  ELIMINAR  PARALELO ============================================-->
+
+        
+        <li class="nav-item dropdown">
+          <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalEliminarParalelo" data-toggle="modal" aria-haspopup="true"
+            aria-expanded="false" data-target="#ModalEliminarParalelo">
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span class="d-lg-none">Paralelo
+              <span class="badge badge-pill badge-primary"> Nuevos</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+
+            </span>
+          </a>
+        </li>
+
+
         <li class="nav-item">
 
           <!-- ====================================================       BUSCADOR UNIVERSAL  ============================================-->
@@ -473,7 +492,8 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellido">Seleccione el curso donde se impartira la materia</label>
-                <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoAsignacion" (change)="selectedMateria($event.target.value)"
+              
+                <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoAsignacion" (change)="selectedCursoA($event.target.value)"
                   name="selectedCursoAsignacion" required type="text" class="form-control">
                 <datalist id="listadoCursosAsignacion">
                   <option *ngFor="let oneDoor of vectorListadoCursos">
@@ -3358,6 +3378,43 @@
           <div class="modal-footer">
 
             <button (click)="onRegisterCurso()" class="btn btn-primary" type="button" data-dismiss="modal">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     <!-- ====================================================     Modal Eliminar Paralelo =================================-->
+
+
+     <div class="modal fade " id="ModalEliminarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 30%">Eliminar paralelo</h5>
+
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+
+          </div>
+          <p class="modal-title" id="exampleModalLabel" style="margin-left: 22%">Seleccione el curso que desea eliminar</p>
+          <div style="width: 80%; border: 0; background-color: white;  margin-left: 10%" disabled class="modal-body  row">
+            
+             
+            <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoEliminar" 
+            name="selectedCursoEliminar" required type="text" class="form-control">
+          <datalist id="listadoCursosAsignacion">
+            <option *ngFor="let oneDoor of vectorListadoCursos">
+              {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+            </option>
+          </datalist>
+
+        
+          </div>
+          <div class="modal-footer">
+
+            <button (click)="updateDatosCurso()" class="btn btn-primary" type="button" data-dismiss="modal">Eliminar</button>
           </div>
         </div>
       </div>

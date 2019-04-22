@@ -44,6 +44,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public selectedDocenteAsignacion;
   public selectedCursoAsignacion;
   public selectedMateriaAsignacion;
+  public selectedCursoEliminar;
+  
 
   public disabledMateriaImpartir = true;
   public imagen = true;
@@ -206,6 +208,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public vectorlistadoMaterias: any;
 
 
+  // objeto curso
+
+  public objCurso = {
+    id: null,
+    otro: null
+  };
+
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
@@ -224,7 +233,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
     this.opcionPeriodoLectivo = "Seleccione Periodo Lectivo, Periodo Actual:" + localStorage.getItem("periodoAnoLectivo");
-    this.opcionPeriodoLectivo = "no asignado"
+
     this.buscarMatriculaPeriodo = "no asignado";
     this.getListadoEstudiantes();
     this.getListadoCursos();
@@ -1050,6 +1059,51 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
+  updateDatosCurso() {
+
+    console.log
+
+   
+      let codigoC: String[] = new Array();
+      codigoC = this.selectedCursoEliminar.split(".");
+
+    //// aqui
+
+    this.objCurso.id=codigoC[0];
+  
+   
+    this._cursoServices.update_curso(this.objCurso).subscribe(
+      response => {
+        this.mensajecorrectomodals = "La matricula se ha eliminado correctamente"; // esto puso el tefo chumadod
+        console.log("satisfactoriamenteUpdate");
+        this.loading = false;
+
+        this.mensajecorrectomodals = "La matricula  ha sido eliminado.";
+        this.getListadoCursos();
+        document.getElementById("openModalCorrecto").click();
+
+
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+
+          // this.loading =false;
+        }
+      }
+    );
+  
+}
+  
   
   updateDatosAsignacion(materia) {
     this.listadoAsignacionNueva=[];
@@ -1151,7 +1205,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     console.log("Vamos mijin", value);
   }
 
-  selectedMateria(value) {
+  selectedCursoA(value) {
     console.log("value", value);
     let curso: String[] = new Array();
     curso = value.split(" ");

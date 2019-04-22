@@ -44,7 +44,7 @@ function saveCurso(req, res) {
                             curso.codigo="CODC"+count;
                             curso.curso = params.curso;
                             curso.paralelo = params.paralelo;
-
+                            curso.estado="0";
 
                             if (params.curso && params.paralelo) {
 
@@ -112,10 +112,38 @@ function getCursos(req, res) {
 
 }
 
+
+
+function updateCurso(req, res) {
+  
+    var messageId = req.params.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
+  
+  console.log("antes de eliminar matricula", req.params);
+  
+   /* var update = req.body;
+  
+  
+    Matricula.findByIdAndUpdate(messageId, update, (err, matriculaUpdate) => {
+  
+      if (err) {
+        res.status(500).send({ message: "Error al eliminar la matricula", err });
+  
+      } else {
+        if (!matriculaUpdate) {
+          res.status(404).send({ message: "La matricula no se ha actualizado" });
+        } else {
+          res.status(200).send({  message: "La matricula se ha actualizado correctamente"  });
+        }
+      }
+  
+    });*/
+  }
+  
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveCurso,
-    getCursos
+    getCursos,
+    updateCurso
 
 
 
