@@ -1,0 +1,25 @@
+.verticalText {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    width: 3%;
+    text-align: center;
+    padding: 0;
+    padding-bottom: 1.5%;
+    align-content: center;
+    font-size: 98%;
+    }
+
+#tdfila
+{
+    padding-right: 0%; 
+    padding-left: 0%;
+     text-align: center
+
+}
+
+#tdboton
+{
+    width: 100%; 
+    text-align: center;
+    border: none;
+}

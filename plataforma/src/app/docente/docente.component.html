@@ -1,3 +1,352 @@
-<p>
-  docente works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Montecarlo VIP</title>
+</head>
+
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<body >
+
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" (click)="recargar()" style="color: #ffffff">EBENEZER</a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+     
+    
+      <ul class="navbar-nav ml-auto">
+        <li>
+          <select (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
+            <option disabled selected hidde [value]="opcionPeriodoLectivo" selected>{{opcionPeriodoLectivo}} </option>
+            <option value="2017-2018">2017-2018</option>
+            <option value="2018-2019">2018-2019</option>
+            <option value="2019-2020">2019-2020 </option>
+            <option value="2020-2021">2020-2021</option>
+            <option value="2021-2022">2021-2022</option>
+            <option value="2022-2021">2022-2021</option>
+            <option value="2021-2022">2021-2022</option>
+            <option value="2022-2023">2022-2023</option>
+            <option value="2023-2024">2023-2024</option>
+            <option value="2024-2025">2024-2025</option>
+            <option value="2025-2026">2025-2026</option>
+            <option value="2026-2027">2026-2027</option>
+            <option value="2028-2029">2028-2029</option>
+            <option value="2029-2030">2029-2030</option>
+          </select>
+
+
+        </li>
+
+        <!-- ====================================================       Notificaciones  INGRESAR PARALELO ============================================-->
+
+
+        <li class="nav-item dropdown">
+          <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" data-toggle="modal" aria-haspopup="true"
+            aria-expanded="false" data-target="#ModalIngresarParalelo">
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span class="d-lg-none">Paralelo
+              <span class="badge badge-pill badge-primary"> Nuevos</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+
+            </span>
+          </a>
+        </li>
+
+        <!-- ====================================================       Notificaciones  ELIMINAR  PARALELO ============================================-->
+
+
+        <li class="nav-item dropdown">
+          <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalEliminarParalelo" data-toggle="modal" aria-haspopup="true"
+            aria-expanded="false" data-target="#ModalEliminarParalelo">
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span class="d-lg-none">Paralelo
+              <span class="badge badge-pill badge-primary"> Nuevos</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+
+            </span>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+
+          <!-- ====================================================       BUSCADOR UNIVERSAL  ============================================-->
+
+          <form class="form-inline my-2 my-lg-0 mr-lg-2">
+            <div class="input-group">
+              <input title="Buscardor de usuarios, choferes y automóviles" class="form-control" type="text" placeholder="Buscar" #Buscar="ngModel"
+                [(ngModel)]="buscar" name="buscar">
+              <span class="input-group-append">
+                <button title="Buscardor de usuarios, choferes y automóviles" class="btn btn-primary" (click)="busqueda()" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </li>
+        <li class="nav-item" title="Salir del Sistema Montecarlo VIP">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Salir</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- scroll de navegacion -->
+  <div style="height: 100%; overflow: auto;">
+    <div class="container-fluid">
+
+      <!-- Division Principal-->
+      <div class="rows1" style="width: 70%; height: 70vh; margin-left: 12%" *ngIf="imagen"> </div>
+
+      <!--Listado -->
+
+  
+      <!-- ====================================================    Tabla para Notas ============================================-->
+      
+
+
+      <table class="table table-hover table-bordered table-responsive"  style="margin-top: 10%; font-size: 80% ">
+        <thead>
+          <tr style="background-color: #343a40; align-content: center;">
+            <th style="color: white; padding-top: 3%" scope="col">#</th>
+            
+            <th style="color: white; " scope="col">Apellidos y Nombres</th>
+            <th style="color: white" scope="col"  class="verticalText" >Insumo 1 </th>
+            <th style="color: white" scope="col"class="verticalText" >Insumo 2 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 3 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 4 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 5 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 6 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 7 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 8 </th>
+            <th style="color: white" scope="col" class="verticalText" >80% </th>
+            <th style="color: white" scope="col" class="verticalText" >Examen</th>
+            <th style="color: white" scope="col" class="verticalText" >20%</th>
+            <th style="color: white" scope="col" class="verticalText" >Promedio</th>
+  
+            <th style="color: white" scope="col"  class="verticalText" >Insumo 1 </th>
+            <th style="color: white" scope="col"class="verticalText" >Insumo 2 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 3 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 4 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 5 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 6 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 7 </th>
+            <th style="color: white" scope="col" class="verticalText" >Insumo 8 </th>
+            <th style="color: white" scope="col" class="verticalText" >80% </th>
+            <th style="color: white" scope="col" class="verticalText" >Examen</th>
+            <th style="color: white" scope="col" class="verticalText" >20%</th>
+            <th style="color: white" scope="col" class="verticalText" >Promedio</th>
+            <th style="color: white" scope="col" class="verticalText" >Promedio periodo</th>
+            <th style="color: white" scope="col" class="verticalText" >Examen Supletorio</th>
+            <th style="color: white" scope="col" class="verticalText" >Examen Remedial</th>
+            <th style="color: white" scope="col" class="verticalText" >Examen Gracia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+            <td id="tdfila" ><input id="tdboton" type="text"></td>
+          
+            
+            
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Salir</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">¿Desea cerrar sessión?
+          </div>
+          <div class="modal-footer">
+            <!-- <button (click)='hola()'>hola</button> -->
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" (click)="logout()">Salir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================              Modal Ingresar Paralelo =================================-->
+
+
+    <div class="modal fade " id="ModalIngresarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 30%">Crear nuevo paralelo</h5>
+
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+
+          </div>
+          <p class="modal-title" id="exampleModalLabel" style="margin-left: 22%">Seleccione el curso e ingrese el paralelo</p>
+          <div style="width: 80%; border: 0; background-color: white;  margin-left: 10%" disabled class="modal-body  row">
+            <select (change)="asignarCurso($event.target.value)" class=" custom-select col-lg-8" required>
+              <option disabled selected hidde value="" selected>Select one category </option>
+              <option value="8VO DE BÁSICA">8VO DE BÁSICA</option>
+              <option value="9NO DE BÁSICA">9NO DE BÁSICA</option>
+              <option value="10MO DE BÁSICA">10MO DE BÁSICA </option>
+              <option value="1ER AÑO DE BACHILLERATO">1ER AÑO DE BACHILLERATO</option>
+              <option value="2DO AÑO DE BACHILLERATO">2DO AÑO DE BACHILLERATO</option>
+              <option value="3ER AÑO DE BACHILLERATO">3ER AÑO DE BACHILLERATO</option>
+            </select>
+
+           
+          </div>
+          <div class="modal-footer">
+
+            <button (click)="onRegisterCurso()" class="btn btn-primary" type="button" data-dismiss="modal">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ====================================================     Modal Eliminar Paralelo =================================-->
+
+
+    <div class="modal fade " id="ModalEliminarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 30%">Eliminar paralelo</h5>
+
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+
+          </div>
+          <p class="modal-title" id="exampleModalLabel" style="margin-left: 22%">Seleccione el curso que desea eliminar</p>
+          <div style="width: 80%; border: 0; background-color: white;  margin-left: 10%" disabled class="modal-body  row">
+
+
+            <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoEliminar" name="selectedCursoEliminar"
+              required type="text" class="form-control">
+            <datalist id="listadoCursosAsignacion">
+              <option *ngFor="let oneDoor of vectorListadoCursos">
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+              </option>
+            </datalist>
+
+
+          </div>
+          <div class="modal-footer">
+
+            <button (click)="updateDatosCurso()" class="btn btn-primary" type="button" data-dismiss="modal">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
+    <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
+    <button id="openModalCorrecto" [hidden]="true" data-toggle="modal" data-target="#ModalCorrecto">Correcto</button>
+    <div class="modal fade" id="ModalCorrecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Correcto</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div style="width: 100%; border: 0; background-color: white;" disabled class="modal-body">
+            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeCorrecto="ngModel" [(ngModel)]="this.mensajecorrectomodals"
+              name="mensajecorrecto">
+          </div>
+          <div class="modal-footer">
+            <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
+            <button class="btn btn-primary" type="button" data-dismiss="modal">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================                     ERROR =================================-->
+    <!-- ====================================================                     ERROR =================================-->
+    <button id="openModalError" [hidden]="true" data-toggle="modal" data-target="#ModalError">Error</button>
+    <div class="modal fade" id="ModalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeError="ngModel" [(ngModel)]="this.mensajeerrormodals"
+              name="mensajeerror">
+          </div>
+          <div class="modal-footer">
+            <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
+            <button class="btn btn-primary" type="button" data-dismiss="modal">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
