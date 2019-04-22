@@ -130,9 +130,9 @@
           </a>
         </li>
 
-            <!-- ====================================================       Notificaciones  ELIMINAR  PARALELO ============================================-->
+        <!-- ====================================================       Notificaciones  ELIMINAR  PARALELO ============================================-->
 
-        
+
         <li class="nav-item dropdown">
           <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalEliminarParalelo" data-toggle="modal" aria-haspopup="true"
             aria-expanded="false" data-target="#ModalEliminarParalelo">
@@ -268,7 +268,7 @@
           <div class="col-md-4 ">
             <label>Seleccione el periodo académico </label>
             <select (change)="buscarMatriculas($event.target.value)" class=" custom-select " required>
-                <option value="no asignado" selected>no asignado</option>
+              <option value="no asignado" selected>no asignado</option>
               <option value="2017-2018">2017-2018</option>
               <option value="2018-2019">2018-2019</option>
               <option value="2019-2020">2019-2020 </option>
@@ -287,28 +287,28 @@
           </div>
           <div class=" col-md-6">
             <label>Ingrese Cedula, Nombre o Apellido del estudiante</label>
-            <input list="listadoEstudianteMatricula" type="text" class="form-control" #BusuqedaMatricula="ngModel" [(ngModel)]="busquedaMatricula" name="busquedaMatricula"
-              required>
-
-            
+            <input list="listadoEstudianteMatricula" type="text" class="form-control" #BusuqedaMatricula="ngModel" [(ngModel)]="busquedaMatricula"
+              name="busquedaMatricula" required>
 
 
-                <datalist id="listadoEstudianteMatricula">
-                  <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes">
-
-                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
-                  </option>
 
 
-                </datalist>
+            <datalist id="listadoEstudianteMatricula">
+              <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoEstudiantes">
+
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;{{oneDoor.cedula}}
+              </option>
+
+
+            </datalist>
 
           </div>
 
           <div class="col-lg-2">
             <label style="color: white"> hola</label>
 
-            <button class=" btn  btn-primary form-control"  (click)="busquedaMatriculaFiltrado()">Buscar </button>
+            <button class=" btn  btn-primary form-control" (click)="busquedaMatriculaFiltrado()">Buscar </button>
           </div>
 
 
@@ -381,7 +381,7 @@
           <div class="col-md-2 ">
             <label>Periodo académico </label>
             <select (change)="buscarAsignacionPeriodo($event.target.value)" class=" custom-select " required>
-              
+
               <option value="no asignado" selected>no asignado</option>
               <option value="2017-2018">2017-2018</option>
               <option value="2018-2019">2018-2019</option>
@@ -401,20 +401,20 @@
           </div>
           <div class=" col-md-3">
             <label for="apellido">Seleccione el curso </label>
-                <input style="font-size: 85%" list="buscarCursoAsignacion" [(ngModel)]="buscarCursoAsignacion"
-                  name="buscarCursoAsignacion" required type="text" class="form-control">
-                <datalist id="buscarCursoAsignacion">
-                  <option *ngFor="let oneDoor of vectorListadoCursos">
-                    {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
-                  </option>
-                </datalist>
+            <input style="font-size: 85%" list="buscarCursoAsignacion" [(ngModel)]="buscarCursoAsignacion" name="buscarCursoAsignacion"
+              required type="text" class="form-control">
+            <datalist id="buscarCursoAsignacion">
+              <option *ngFor="let oneDoor of vectorListadoCursos">
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+              </option>
+            </datalist>
 
           </div>
 
           <div class="col-lg-2">
             <label style="color: white"> hola</label>
 
-            <input  class=" btn btn-primary form-control" value="Buscar" type="button" (click)="busquedaAsignacionFiltrado()">
+            <input class=" btn btn-primary form-control" value="Buscar" type="button" (click)="busquedaAsignacionFiltrado()">
           </div>
 
 
@@ -438,7 +438,7 @@
                 <th style="color: white" scope="col">Docente</th>
                 <th style="color: white" scope="col">Periodo</th>
                 <th style="color: white" scope="col">Materia</th>
-                
+
                 <th style="color: white" scope="col">Opción</th>
               </tr>
             </thead>
@@ -450,7 +450,7 @@
                 <td style="font-size: 130%"> {{ listado.docente.nombre}} {{ listado.docente.apellido}}</td>
                 <td style="font-size: 130%">{{listado.periodo}}</td>
                 <td style="font-size: 130%">{{listado.nombre}}</td>
-                
+
                 <td>
                   <input class="btn btn-primary " type="button" value="Eliminar" (click)="updateDatosAsignacion(listado)">
                 </td>
@@ -492,7 +492,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellido">Seleccione el curso donde se impartira la materia</label>
-              
+
                 <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoAsignacion" (change)="selectedCursoA($event.target.value)"
                   name="selectedCursoAsignacion" required type="text" class="form-control">
                 <datalist id="listadoCursosAsignacion">
@@ -697,7 +697,7 @@
       </div>
 
       <!-- ====================================================      Formulario de MODIFICAR DOCENTE ============================================-->
-  
+
       <div class="container">
         <form #ModificarUsuario="ngForm" *ngIf="ModificarDocente">
           <div class="row">
@@ -712,7 +712,7 @@
                 <label> Nombre del Docente</label>
                 <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosDocentes.nombre" name="nombreM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div *ngIf="txtvalidacionModificarDocente"  [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente" [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
@@ -720,15 +720,15 @@
                 <label>Celular del Docente</label>
                 <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosDocentes.tel_celular" name="celularM" pattern="[0-9]*"
                   [disabled]='textBox' required>
-                <div *ngIf="txtvalidacionModificarDocente"  [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente" [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
               </div>
               <div class="form-group">
-                <label>Cédula del docente</label> 
+                <label>Cédula del docente</label>
                 <label style="font-size: 80%">&nbsp;&nbsp;La cédula no se puede modificar, tiene que eliminar el usuario</label>
-                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosDocentes.cedula" name="telefonoM"
-                  disabled pattern="[0-9]*" required>
+                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosDocentes.cedula" name="telefonoM" disabled
+                  pattern="[0-9]*" required>
                 <div *ngIf="txtvalidacionModificarDocente" [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -741,7 +741,7 @@
                 <label>Apellido del Docente</label>
                 <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosDocentes.apellido" name="apellidoM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div  *ngIf="txtvalidacionModificarDocente" [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente" [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
@@ -749,7 +749,7 @@
                 <label>Correo del Docente</label>
                 <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosDocentes.correo" name="correorM" [disabled]='textBox'
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
-                <div *ngIf="txtvalidacionModificarDocente"  [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarDocente" [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
               </div>
@@ -757,9 +757,9 @@
                 <label for="contrasena">Modificar la contraseña</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend" (click)='habilitarContrasenaU()'>
-                     
+
                     <div class="input-group-text">
-                        <i class="{{clase_ojoUsuarioM}}"></i>
+                      <i class="{{clase_ojoUsuarioM}}"></i>
                     </div>
                   </div>
                   <input type="{{tipoUsuarioM}}" disabled required class="form-control" aria-label="Text input with checkbox" #Password="ngModel"
@@ -794,7 +794,7 @@
                 Guardar Cambios</button>
             </div>
             <div class="col-md-6" style="text-align: left;">
-              <button  class="btn btn-default" (click)="deshabilitar()" [hidden]='txtAparece'>
+              <button class="btn btn-default" (click)="deshabilitar()" [hidden]='txtAparece'>
                 <i class="fa fa-ban fa-0.5x" style="color: #000000"></i>
                 Cancelar</button>
             </div>
@@ -904,7 +904,7 @@
       </div>
 
 
-     
+
       <!-- ====================================================      Formulario de MODIFICAR ESTUDIANTE ============================================-->
       <div class="container">
         <form #ModificarEstudiante="ngForm" *ngIf="ModificarEstudiante">
@@ -912,7 +912,7 @@
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarEstudiante.png" style="display: block; margin-left: 40%; width: 18%;  height:22%; border-radius:50%">
 
-                        </div>
+            </div>
           </div>
           <br>
           <div class="row">
@@ -921,7 +921,7 @@
                 <label> Nombre del Estudiante</label>
                 <input type="text" class="form-control" #NombreM="ngModel" [(ngModel)]="datosEstudiantes.nombre" name="nombreM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div   *ngIf="txtvalidacionModificarEstudiante"  [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarEstudiante" [hidden]="NombreM.valid || NombreM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
@@ -936,8 +936,8 @@
               <div class="form-group">
                 <label>Cédula del Estudiante</label>
                 <label style="font-size: 80%">&nbsp;&nbsp;La cédula no se puede modificar, tiene que eliminar el usuario</label>
-                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosEstudiantes.cedula" name="telefonoM"
-                  disabled pattern="[0-9]*" required>
+                <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosEstudiantes.cedula" name="telefonoM" disabled
+                  pattern="[0-9]*" required>
                 <div [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
                   Ingrese solo números
                 </div>
@@ -950,7 +950,7 @@
                 <label>Apellido del Estudiante</label>
                 <input type="text" class="form-control" #ApellidoM="ngModel" [(ngModel)]="datosEstudiantes.apellido" name="apellidoM" [disabled]='textBox'
                   pattern="[ A-Za-zñÑ]*" required>
-                <div  *ngIf="txtvalidacionModificarEstudiante"   [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarEstudiante" [hidden]="ApellidoM.valid || ApellidoM.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
               </div>
@@ -958,7 +958,7 @@
                 <label>Correo del Estudiante</label>
                 <input type="email" class="form-control" #CorreoM="ngModel" [(ngModel)]="datosEstudiantes.correo" name="correoM" [disabled]='textBox'
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
-                <div   *ngIf="txtvalidacionModificarEstudiante"  [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionModificarEstudiante" [hidden]="CorreoM.valid || CorreoM.pristine" class="alert alert-warning">
                   Ingrese un correo electrónico válido
                 </div>
               </div>
@@ -973,11 +973,11 @@
                   <input type="{{tipoUsuarioC}}" disabled required class="form-control" aria-label="Text input with checkbox" #Password="ngModel"
                     [(ngModel)]="contrasenaUpdateEstudiante" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContraC'>
                 </div>
-                <div   *ngIf="txtvalidacionOjoModificarEstudiante"  [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
+                <div *ngIf="txtvalidacionOjoModificarEstudiante" [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
                 </div>
               </div>
-             
+
             </div>
           </div>
           <div class="row">
@@ -1010,2314 +1010,6 @@
           </div>
         </form>
       </div>
-
-
-
-
-
-
-
-      <!-- ====================================================                     VER VIAJES TOTALES =================================-->
-      <!-- ====================================================                     VER VIAJES TOTALES =================================-->
-      <div class="container-fluid">
-        <div *ngIf="verViajesTotales">
-          <div class="row">
-            <div class="col-md-12" style="text-align: center; color: #2863a9">
-              <h2>LISTADO DE VIAJES TOTALES
-              </h2>
-            </div>
-            <div class="col-md-12">
-              <hr style="background-color: #e9ecef; width: 50%;">
-            </div>
-          </div>
-
-          <!-- AQUI VA EL CODIGO DE LOS VIAJES -->
-          <!-- Riobamba - Quito - 4 AM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito4">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 5 AM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito5">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 6 AM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito6">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cedula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 9 AM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito9">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 12 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito12">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 3 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito15">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 6 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito18">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 8 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuito20">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 4 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba4">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 5 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba5">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 6 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba6">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 9 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba9">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 12 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba12">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 3 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba15">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 6 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba18">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 8 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobamba20">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 4 AM -->
-          <table class="table  text-center" *ngIf="rqa4">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 5 AM -->
-          <table class="table  text-center" *ngIf="rqa5">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 6 AM -->
-          <table class="table  text-center" *ngIf="rqa6">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 9 AM -->
-          <table class="table  text-center" *ngIf="rqa9">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 12 PM -->
-          <table class="table  text-center" *ngIf="rqa12">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 3 PM -->
-          <table class="table  text-center" *ngIf="rqa15">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 6 PM -->
-          <table class="table  text-center" *ngIf="rqa18">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 8 PM -->
-          <table class="table  text-center" *ngIf="rqa20">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 4 AM -->
-          <table class="table  text-center" *ngIf="aqr4">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 5 AM -->
-          <table class="table  text-center" *ngIf="aqr5">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 6 AM -->
-          <table class="table  text-center" *ngIf="aqr6">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 9 AM -->
-          <table class="table  text-center" *ngIf="aqr9">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 12 PM -->
-          <table class="table  text-center" *ngIf="aqr12">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 3 PM -->
-          <table class="table  text-center" *ngIf="aqr15">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 6 PM -->
-          <table class="table  text-center" *ngIf="aqr18">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 8 PM -->
-          <table class="table  text-center" *ngIf="aqr20">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- RUTA EXPRESS -->
-          <table class="table  text-center" *ngIf="express">
-            <thead>
-              <div>
-                <h4>Rutas Express</h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messages; let i = index">
-                <td *ngIf=" (listado.ruta != 'Riobamba - Quito' && listado.ruta != 'Quito - Riobamba' && listado.ruta != 'Riobamba-Quito-Aeropuerto UIO'&& listado.ruta != 'Aeropuerto UIO-Quito-Riobamba') || (  listado.horario != '04:00' && listado.horario != '05:00' && listado.horario != '06:00' && listado.horario != '09:00' && listado.horario != '12:00' && listado.horario != '15:00' && listado.horario != '18:00' && listado.horario != '20:00')"
-                  style="font-size: 130%">{{ listado.ruta}}</td>
-                <td *ngIf=" (listado.ruta != 'Riobamba - Quito' && listado.ruta != 'Quito - Riobamba' && listado.ruta != 'Riobamba-Quito-Aeropuerto UIO'&& listado.ruta != 'Aeropuerto UIO-Quito-Riobamba') || (  listado.horario != '04:00' && listado.horario != '05:00' && listado.horario != '06:00' && listado.horario != '09:00' && listado.horario != '12:00' && listado.horario != '15:00' && listado.horario != '18:00' && listado.horario != '20:00')"
-                  style="font-size: 130%">{{listado.fechaSalida}}</td>
-                <td *ngIf=" (listado.ruta != 'Riobamba - Quito' && listado.ruta != 'Quito - Riobamba' && listado.ruta != 'Riobamba-Quito-Aeropuerto UIO'&& listado.ruta != 'Aeropuerto UIO-Quito-Riobamba') || (  listado.horario != '04:00' && listado.horario != '05:00' && listado.horario != '06:00' && listado.horario != '09:00' && listado.horario != '12:00' && listado.horario != '15:00' && listado.horario != '18:00' && listado.horario != '20:00')"
-                  style="font-size: 130%">{{ listado.horario}}</td>
-                <td *ngIf=" (listado.ruta != 'Riobamba - Quito' && listado.ruta != 'Quito - Riobamba' && listado.ruta != 'Riobamba-Quito-Aeropuerto UIO'&& listado.ruta != 'Aeropuerto UIO-Quito-Riobamba') || (  listado.horario != '04:00' && listado.horario != '05:00' && listado.horario != '06:00' && listado.horario != '09:00' && listado.horario != '12:00' && listado.horario != '15:00' && listado.horario != '18:00' && listado.horario != '20:00')"
-                  style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf=" (listado.ruta != 'Riobamba - Quito' && listado.ruta != 'Quito - Riobamba' && listado.ruta != 'Riobamba-Quito-Aeropuerto UIO'&& listado.ruta != 'Aeropuerto UIO-Quito-Riobamba') || (  listado.horario != '04:00' && listado.horario != '05:00' && listado.horario != '06:00' && listado.horario != '09:00' && listado.horario != '12:00' && listado.horario != '15:00' && listado.horario != '18:00' && listado.horario != '20:00')"
-                  style="font-size: 130%">{{ listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf=" (listado.ruta != 'Riobamba - Quito' && listado.ruta != 'Quito - Riobamba' && listado.ruta != 'Riobamba-Quito-Aeropuerto UIO'&& listado.ruta != 'Aeropuerto UIO-Quito-Riobamba') || (  listado.horario != '04:00' && listado.horario != '05:00' && listado.horario != '06:00' && listado.horario != '09:00' && listado.horario != '12:00' && listado.horario != '15:00' && listado.horario != '18:00' && listado.horario != '20:00')">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- AQUI VA EL CODIGO DE LOS VIAJES -->
-
-        </div>
-      </div>
-
-      <!-- ====================================================                     VER ENCOMIENDAS TOTALES =================================-->
-      <!-- ====================================================                     VER ENCOMIENDAS TOTALES =================================-->
-      <div class="container-fluid">
-        <div *ngIf="verEncomiendasTotales">
-          <div class="row">
-            <div class="col-md-12" style="text-align: center; color: #2863a9">
-              <h2>LISTADO DE ENCOMIENDAS TOTALES</h2>
-            </div>
-            <div class="col-md-12">
-              <hr style="background-color: #e9ecef; width: 50%;">
-            </div>
-          </div>
-
-          <!-- AQUI VA EL CODIGO DE LAS ENCOMIENDAS -->
-          <!-- Riobamba - Quito - 4 AM -->
-
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc4">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 5 AM -->
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc5">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 6 AM -->
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc6">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 9 AM -->
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc9">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 12 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc12">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 3 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc15">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 6 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc18">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba - Quito - 8 PM -->
-          <table class="table  text-center" *ngIf="RiobambaQuitoEnc20">
-            <thead>
-              <div>
-                <h4>Riobamba - Quito - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba - Quito' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 4 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc4">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 5 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc5">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 6 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc6">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 9 AM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc9">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 12 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc12">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 3 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc15">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 6 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc18">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Quito - Riobamba - 8 PM -->
-          <table class="table  text-center" *ngIf="QuitoRiobambaEnc20">
-            <thead>
-              <div>
-                <h4>Quito - Riobamba - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{ listado.user.nombre}}
-                  {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Quito - Riobamba' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 4 AM -->
-          <table class="table  text-center" *ngIf="rqaEnc4">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 5 AM -->
-          <table class="table  text-center" *ngIf="rqaEnc5">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 6 AM -->
-          <table class="table  text-center" *ngIf="rqaEnc6">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 9 AM -->
-          <table class="table  text-center" *ngIf="rqaEnc9">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 12 PM -->
-          <table class="table  text-center" *ngIf="rqaEnc12">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 3 PM -->
-          <table class="table  text-center" *ngIf="rqaEnc15">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 6 PM -->
-          <table class="table  text-center" *ngIf="rqaEnc18">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Riobamba-Quito-Aeropuerto UIO - 8 PM -->
-          <table class="table  text-center" *ngIf="rqaEnc20">
-            <thead>
-              <div>
-                <h4>Riobamba-Quito-Aeropuerto UIO - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Riobamba-Quito-Aeropuerto UIO' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 4 AM -->
-          <table class="table  text-center" *ngIf="aqrEnc4">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 4 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '04:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 5 AM -->
-          <table class="table  text-center" *ngIf="aqrEnc5">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 5 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '05:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 6 AM -->
-          <table class="table  text-center" *ngIf="aqrEnc6">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 6 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '06:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 9 AM -->
-          <table class="table  text-center" *ngIf="aqrEnc9">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 9 AM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '09:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 12 PM -->
-          <table class="table  text-center" *ngIf="aqrEnc12">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 12 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '12:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 3 PM -->
-          <table class="table  text-center" *ngIf="aqrEnc15">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 3 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '15:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 6 PM -->
-          <table class="table  text-center" *ngIf="aqrEnc18">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 6 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '18:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- Aeropuerto UIO-Quito-Riobamba - 8 PM -->
-          <table class="table  text-center" *ngIf="aqrEnc20">
-            <thead>
-              <div>
-                <h4>Aeropuerto UIO-Quito-Riobamba - 8 PM </h4>
-              </div>
-              <tr style="background-color: #2863a9; align-content: center">
-                <th style="color: white" scope="col">Ruta</th>
-                <th style="color: white" scope="col">Fecha</th>
-                <th style="color: white" scope="col">Horario</th>
-                <th style="color: white" scope="col">Cédula</th>
-                <th style="color: white" scope="col">Nombres</th>
-                <th style="color: white" scope="col">Detalle del Paquete</th>
-                <th style="color: white" scope="col">Opción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let listado of  messagesEnco; let i = index">
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.ruta}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.fechaSalida}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.horario}}
-                </td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.user.cedula}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{
-                  listado.user.nombre}} {{ listado.user.apellido}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'" style="font-size: 130%">{{listado.detalle_paquete}}</td>
-                <td *ngIf="listado.ruta == 'Aeropuerto UIO-Quito-Riobamba' && listado.horario == '20:00'">
-                  <input class="btn btn-success" type="button" value="Ver Más..." (click)="mostrarNotificacion(listado)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- AQUI VA EL CODIGO DE LAS ENCOMIENDAS -->
-        </div>
-      </div>
-
     </div>
 
 
@@ -3384,10 +1076,10 @@
     </div>
 
 
-     <!-- ====================================================     Modal Eliminar Paralelo =================================-->
+    <!-- ====================================================     Modal Eliminar Paralelo =================================-->
 
 
-     <div class="modal fade " id="ModalEliminarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade " id="ModalEliminarParalelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -3400,17 +1092,17 @@
           </div>
           <p class="modal-title" id="exampleModalLabel" style="margin-left: 22%">Seleccione el curso que desea eliminar</p>
           <div style="width: 80%; border: 0; background-color: white;  margin-left: 10%" disabled class="modal-body  row">
-            
-             
-            <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoEliminar" 
-            name="selectedCursoEliminar" required type="text" class="form-control">
-          <datalist id="listadoCursosAsignacion">
-            <option *ngFor="let oneDoor of vectorListadoCursos">
-              {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
-            </option>
-          </datalist>
 
-        
+
+            <input style="font-size: 85%" list="listadoCursosAsignacion" [(ngModel)]="selectedCursoEliminar" name="selectedCursoEliminar"
+              required type="text" class="form-control">
+            <datalist id="listadoCursosAsignacion">
+              <option *ngFor="let oneDoor of vectorListadoCursos">
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oneDoor.curso}},{{oneDoor.paralelo}}
+              </option>
+            </datalist>
+
+
           </div>
           <div class="modal-footer">
 
