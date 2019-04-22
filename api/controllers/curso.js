@@ -92,7 +92,7 @@ function getCursos(req, res) {
 
 
 
-    var message = Curso.find().exec((err, listadoCursos) => {
+    var message = Curso.find({estado:"0"}).exec((err, listadoCursos) => {
         if (err) {
             return res.status(500).send({
                 message: 'No se ha podido obtener las ultimas ofertas'
@@ -116,27 +116,48 @@ function getCursos(req, res) {
 
 function updateCurso(req, res) {
   
-    var messageId = req.params.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
+    var messageId = req.body.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
   
-  console.log("antes de eliminar matricula", req.params);
+  console.log("antes de eliminar matricula", req.body.id);
+
+  var message = Curso.find({codigo: messageId}).exec((err, curso) => {
+    if (err) {
+        return res.status(500).send({
+            message: 'No se ha podido obtener las ultimas ofertas'
+        });
+    }
+
+    if (!curso) {
+        return res.status(200).send({
+            message: 'No tiene ofertas'
+        });
+    }else{
+
+
+        curso[0].estado="1";
+
+        console.log(curso[0]._id);
+
+        Curso.findByIdAndUpdate(curso[0]._id, curso[0], (err, cursoUpdate) => {
   
-   /* var update = req.body;
-  
-  
-    Matricula.findByIdAndUpdate(messageId, update, (err, matriculaUpdate) => {
-  
-      if (err) {
-        res.status(500).send({ message: "Error al eliminar la matricula", err });
-  
-      } else {
-        if (!matriculaUpdate) {
-          res.status(404).send({ message: "La matricula no se ha actualizado" });
-        } else {
-          res.status(200).send({  message: "La matricula se ha actualizado correctamente"  });
+            if (err) {
+              res.status(500).send({ message: "Error al eliminar el curso", err });
+        
+            } else {
+              if (!cursoUpdate) {
+                res.status(404).send({ message: "El  curso no  se ha actualizado" });
+              } else {
+                res.status(200).send({  message: "El curso se ha actualizado correctamente"  });
+              }
+            }
+        
+          });
+
         }
-      }
+});
+
   
-    });*/
+   
   }
   
 module.exports = {          // para exportar todas las funciones de este modulo

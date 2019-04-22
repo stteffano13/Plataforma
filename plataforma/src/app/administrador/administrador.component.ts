@@ -45,7 +45,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public selectedCursoAsignacion;
   public selectedMateriaAsignacion;
   public selectedCursoEliminar;
-  
+
 
   public disabledMateriaImpartir = true;
   public imagen = true;
@@ -336,7 +336,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   busquedaMatriculaFiltrado() {
-    this.listadoMatriculasNueva=[];
+    this.listadoMatriculasNueva = [];
     this.listadoMatriculas = "";
     this.loading = true;
     this._matriculaServices.buscarMatriculas(this.buscar).subscribe(
@@ -378,7 +378,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   busquedaAsignacionFiltrado() {
     this.listadoAsignacionNueva = [];
-    this.listadoMaterias="";
+    this.listadoMaterias = "";
     this.loading = true;
     this._materiaServices.buscarMaterias(this.buscar).subscribe(
       response => {
@@ -417,9 +417,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   busquedaMatricula2() {
-    
-    console.log("matriculas mijin para eliminar" +"listado matriculas original", this.listadoMatriculas,"vector a mostrar", this.listadoMatriculasNueva);
-  
+
+    console.log("matriculas mijin para eliminar" + "listado matriculas original", this.listadoMatriculas, "vector a mostrar", this.listadoMatriculasNueva);
+
     this.listadoMatriculas.forEach(element => {
       let codigoE: String[] = new Array();
       codigoE = this.busquedaMatricula.split(".");
@@ -1023,7 +1023,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   updateDatosMatricula(matricula) {
-    this.listadoMatriculasNueva=[];
+    this.listadoMatriculasNueva = [];
     this.listadoMatriculas = "";
 
     matricula.estado = "1";
@@ -1061,24 +1061,24 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   updateDatosCurso() {
 
-    console.log
+    //this.selectedCursoEliminar = "";
 
-   
-      let codigoC: String[] = new Array();
-      codigoC = this.selectedCursoEliminar.split(".");
+    let codigoC: String[] = new Array();
+    codigoC = this.selectedCursoEliminar.split(".");
 
     //// aqui
 
-    this.objCurso.id=codigoC[0];
-  
-   
+    this.objCurso.id = codigoC[0];
+
+
     this._cursoServices.update_curso(this.objCurso).subscribe(
       response => {
-        this.mensajecorrectomodals = "La matricula se ha eliminado correctamente"; // esto puso el tefo chumadod
+        this.mensajecorrectomodals = "El curso se ha eliminado correctamente"; // esto puso el tefo chumadod
         console.log("satisfactoriamenteUpdate");
         this.loading = false;
 
-        this.mensajecorrectomodals = "La matricula  ha sido eliminado.";
+        this.mensajecorrectomodals = "El curso  ha sido eliminado.";
+        this.selectedCursoEliminar="";
         this.getListadoCursos();
         document.getElementById("openModalCorrecto").click();
 
@@ -1101,12 +1101,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         }
       }
     );
-  
-}
-  
-  
+
+  }
+
+
   updateDatosAsignacion(materia) {
-    this.listadoAsignacionNueva=[];
+    this.listadoAsignacionNueva = [];
     this.listadoMaterias = "";
 
     materia.estado = "1";
@@ -1155,7 +1155,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   getListadoCursos() {
-
+    
+    this.vectorListadoCursos = [];
     this._cursoServices.getListadoCursos().subscribe(response => {
 
       console.log("esto iene de la peticion Cursos" + JSON.stringify(response));
