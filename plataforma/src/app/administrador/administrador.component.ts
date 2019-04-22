@@ -367,7 +367,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  busquedaAsignacion() {
+  busquedaAsignacionFiltrado() {
+    this.listadoAsignacionNueva = [];
+    this.listadoMaterias="";
     this.loading = true;
     this._materiaServices.buscarMaterias(this.buscar).subscribe(
       response => {
@@ -379,6 +381,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         } else {
           console.log("entre a loq ue tenia");
           this.listadoA = true;
+          this.busquedaAsignacion();
         }
         // console.log(this.listadoChoferes);
         this.loading = false;
@@ -443,12 +446,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  busquedaAsignacionFiltrado() {
+  busquedaAsignacion() {
 
 
-
-
-    this.listadoAsignacionNueva = [];
 
 
     this.listadoMaterias.forEach(element => {
@@ -1026,6 +1026,44 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
         this.mensajecorrectomodals = "La matricula  ha sido eliminado.";
         this.busquedaMatriculaFiltrado();
+        document.getElementById("openModalCorrecto").click();
+
+
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+
+          // this.loading =false;
+        }
+      }
+    );
+  }
+
+
+  
+  updateDatosAsignacion(materia) {
+    this.listadoAsignacionNueva=[];
+    this.listadoMaterias = "";
+
+    materia.estado = "1";
+    this._materiaServices.update_materia(materia).subscribe(
+      response => {
+        this.mensajecorrectomodals = "La matricula se ha eliminado correctamente"; // esto puso el tefo chumadod
+        console.log("satisfactoriamenteUpdate");
+        this.loading = false;
+
+        this.mensajecorrectomodals = "La matricula  ha sido eliminado.";
+        this.busquedaAsignacionFiltrado();
         document.getElementById("openModalCorrecto").click();
 
 

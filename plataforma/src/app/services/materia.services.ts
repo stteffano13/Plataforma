@@ -37,6 +37,18 @@ export class MateriaService {
     
       }
 
+      update_materia(materia_to_update) {
+
+
+        let json = JSON.stringify(materia_to_update);
+        let params = json;
+        console.log(params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .put(this.url + "update-materia/" + materia_to_update._id, params, { headers: headers })
+            .map(res => res.json());
+    }
+
     getToken() {
 
         let token = localStorage.getItem("Token");

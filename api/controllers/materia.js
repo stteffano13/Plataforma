@@ -112,8 +112,8 @@ function guardarSegundo(idD, idC, params, res) {
 
                             //
                             count++;
-                            materia.nombre=params.nombre;
-                            materia.codigo = "CODM"+count;
+                            materia.nombre = params.nombre;
+                            materia.codigo = "CODM" + count;
                             materia.docente = idD._id;
                             materia.curso = idC._id;
                             materia.periodo = params.periodo;
@@ -175,32 +175,60 @@ function busquedaMateria(req, res) {
 
         var matriculas = Materia.find({
             estado: '0'
-          }).populate({
+        }).populate({
             path: 'docente'
-          }).populate({
+        }).populate({
             path: 'curso'
-          }).exec((err, materias) => {
+        }).exec((err, materias) => {
             if (err) {
-              return res.status(500).send({
-                message: 'No se han podido obtener sus Viajes'
-              });
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
             }
-        
+
             if (!materias) {
-              return res.status(200).send({
-                message: 'No tiene viajes'
-              });
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
             }
-        
+
             return res.status(200).send({
                 materias
             });
-          });
-        }
+        });
     }
+}
+
+
+
+function updateMateria(req, res) {
+    var update = req.body;
+    var messageId = req.params.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
+
+    console.log("antes de eliminar matricula", messageId);
+
+    var update = req.body;
+
+
+    Materia.findByIdAndUpdate(messageId, update, (err, materiaUpdate) => {
+
+        if (err) {
+            res.status(500).send({ message: "Error al eliminar la materia", err });
+
+        } else {
+            if (!materiaUpdate) {
+                res.status(404).send({ message: "La materia no se ha actualizado" });
+            } else {
+                res.status(200).send({ message: "La materia se ha actualizado correctamente" });
+            }
+        }
+
+    });
+}
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveAsignacion,
-    busquedaMateria
+    busquedaMateria,
+    updateMateria
 
 };
