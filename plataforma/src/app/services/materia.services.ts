@@ -37,6 +37,16 @@ export class MateriaService {
     
       }
 
+
+      
+  getListadoMioMateria() {
+   
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+      .get(this.url + "getListadoMioMaterias",  { headers: headers })
+      .map(res => res.json());
+  }
+
       update_materia(materia_to_update) {
 
 

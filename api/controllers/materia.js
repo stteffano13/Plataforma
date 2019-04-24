@@ -200,6 +200,71 @@ function busquedaMateria(req, res) {
 }
 
 
+function getListadoMioMaterias(req, res) {
+    var busqueda = req.user.sub;
+
+    console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+
+
+        var materia = Materia.find({
+            '$and': [{ docente: busqueda }, { estado: '0' }]
+        }).populate({
+            path: 'curso'
+        }).exec((err, materias) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
+            }
+
+            if (!materias) {
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
+            } else {
+                let vector = materias;
+
+                console.log('<<<<<< MI VECTOR ANTES DE LA ORDENADA >>>>>>', vector);
+                this.cont = 0;
+                vector.forEach(() => {
+                    this.cont += 1;
+                });
+                console.log(this.cont);
+                for (let k = 0; k < this.cont - 1; k++) {
+                    //console.log('mi FOR', vector[k]);
+                    for (let f = 0; f < (this.cont - 1) - k; f++) {
+                        // console.log('mi FOR', vector[f]);
+                        if (vector[f].periodo.localeCompare(vector[f + 1].periodo) > 0) {
+                            let aux;
+                            aux = vector[f];
+                            vector[f] = vector[f + 1];
+                            vector[f + 1] = aux;
+                        }
+                    }
+                }
+                console.log("<<<<<< MI VECTOR DESPUES DE LA ORDENADA >>>>>>", vector);
+                materias = vector;
+                console.log("periodos mayores", materias);
+
+                return res.status(200).send({
+            
+                    materias
+                    
+        
+                });
+            }
+        });
+    }
+       
+    }
+
+
+
 
 function updateMateria(req, res) {
     var update = req.body;
@@ -229,6 +294,7 @@ module.exports = {          // para exportar todas las funciones de este modulo
 
     saveAsignacion,
     busquedaMateria,
-    updateMateria
+    updateMateria,
+    getListadoMioMaterias
 
 };
