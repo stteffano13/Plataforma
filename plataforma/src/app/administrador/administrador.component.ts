@@ -10,7 +10,7 @@ import { EstudianteService } from '../services/estudiante.services';
 import { MatriculaService } from '../services/matricula.services';
 import { MateriaService } from '../services/materia.services';
 
-import {AdministradorService } from '../services/administrador.services';
+import { AdministradorService } from '../services/administrador.services';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
 
@@ -223,13 +223,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     private _estudianteService: EstudianteService,
     private _matriculaServices: MatriculaService,
     private _materiaServices: MateriaService,
-    private _administradorService:AdministradorService) {
+    private _administradorService: AdministradorService) {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
     this.curso_register = new Curso("", "", "", "");
     this.matricula_register = new Matricula("", "", "", "", "");
-    this.materia_register = new Materia("", "", "", "", "", "");
+    this.materia_register = new Materia("", "", "", "", "", "", "");
 
   }
 
@@ -349,9 +349,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
         this.listadoMatriculas = response.matriculas;
 
-        if (this.listadoMatriculas ==null) {
+        if (this.listadoMatriculas == null) {
           this.listadoM = true;
-         
+
         } else {
           console.log("entre a loq ue tenia");
           this.listadoM = true;
@@ -424,43 +424,41 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   busquedaMatricula2() {
 
-    
+
     this.listadoMatriculas.forEach(element => {
       let codigoE: String[] = new Array();
-      if(this.busquedaMatricula!=null)
-      {
+      if (this.busquedaMatricula != null) {
 
-      codigoE = this.busquedaMatricula.split(".");
+        codigoE = this.busquedaMatricula.split(".");
 
-      if (this.busquedaMatricula != null && this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
-        console.log("entraste a la busqueda MF1");
-        this.listadoMatriculasNueva.push(element);
-
-      } else {
-        if (this.buscarMatriculaPeriodo != "no asignado" && this.busquedaMatricula == null && element.periodo == this.buscarMatriculaPeriodo) {
-          console.log("entraste a la busqueda MF2");
+        if (this.busquedaMatricula != null && this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
+          console.log("entraste a la busqueda MF1");
           this.listadoMatriculasNueva.push(element);
-        } else {
-          if (this.buscarMatriculaPeriodo != "no asignado" &&
-            this.busquedaMatricula != null &&
-            element.periodo == this.buscarMatriculaPeriodo &&
-            element.estudiante.codigo == codigoE[0]) {
-            console.log("entraste a la busqueda MF3");
-            this.listadoMatriculasNueva.push(element);
-            console.log("entraste a la busqueda MF3 result", this.listadoMatriculasNueva);
-          } else {
 
-            console.log("no entre a nada");
+        } else {
+          if (this.buscarMatriculaPeriodo != "no asignado" && this.busquedaMatricula == null && element.periodo == this.buscarMatriculaPeriodo) {
+            console.log("entraste a la busqueda MF2");
+            this.listadoMatriculasNueva.push(element);
+          } else {
+            if (this.buscarMatriculaPeriodo != "no asignado" &&
+              this.busquedaMatricula != null &&
+              element.periodo == this.buscarMatriculaPeriodo &&
+              element.estudiante.codigo == codigoE[0]) {
+              console.log("entraste a la busqueda MF3");
+              this.listadoMatriculasNueva.push(element);
+              console.log("entraste a la busqueda MF3 result", this.listadoMatriculasNueva);
+            } else {
+
+              console.log("no entre a nada");
+            }
           }
         }
+      } else {
+        this.mensajeerrormodals = "Ingresar al menos un parametro de busqueda ";
+        document.getElementById("openModalError").click();
       }
-    }else
-    {
-      this.mensajeerrormodals = "Ingresar al menos un parametro de busqueda ";
-      document.getElementById("openModalError").click();
-    }
     });
-  
+
 
   }
 
@@ -470,58 +468,77 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   busquedaAsignacion() {
+    this.listadoAsignacionNueva=[];
+    var cont = 0;
 
+    if (this.listadoMaterias != "") {
+   
 
-
-    this.listadoMaterias.forEach(element => {
-      if (this.busquedaAsignacionPeriodo != "no asignado" && this.busquedaDocenteAsignacion != null) {
-
-        let codigoD: String[] = new Array();
-        codigoD = this.busquedaDocenteAsignacion.split(".");
-
-        if ((element.periodo.indexOf(this.busquedaAsignacionPeriodo) != -1 && element.docente.codigo.indexOf(codigoD[0]) != -1)) {
-          this.listadoAsignacionNueva.push(element);
-          console.log("entraste a la busqueda de materias");
-        } else {
-          this.listadoAsignacionNueva = [];
-        }
-      } else {
-        if (this.busquedaAsignacionPeriodo != "no asignado" && this.buscarCursoAsignacion != null) {
+        if ((this.busquedaDocenteAsignacion != "" || this.busquedaDocenteAsignacion != null) && (this.buscarCursoAsignacion != "" || this.buscarCursoAsignacion != null) && this.busquedaAsignacionPeriodo != "no asignado") {
+          console.log("entraste a la ultima  busqueda de materias");
+          let codigoD: String[] = new Array();
+          if (this.busquedaDocenteAsignacion) {
+            codigoD = this.busquedaDocenteAsignacion.split(".");
+          }
 
           let codigoC: String[] = new Array();
-          codigoC = this.buscarCursoAsignacion.split(".");
 
-          if ((element.periodo.indexOf(this.busquedaAsignacionPeriodo) != -1 && element.curso.codigo.indexOf(codigoC[0]) != -1)) {
-            this.listadoAsignacionNueva.push(element);
-            console.log("entraste a la busqueda de materias");
-          } else {
-            this.listadoAsignacionNueva = [];
-          }
-
-          this.listadoMatriculasNueva.push(element);
-        } else {
-          if (this.busquedaDocenteAsignacion != null && this.buscarCursoAsignacion != null) {
-            console.log("entraste a la ultima  busqueda de materias");
-            let codigoD: String[] = new Array();
-            codigoD = this.busquedaDocenteAsignacion.split(".");
-            let codigoC: String[] = new Array();
+          if (this.buscarCursoAsignacion) {
             codigoC = this.buscarCursoAsignacion.split(".");
-
-            if (element.curso.codigo.indexOf(codigoC[0]) != -1 && element.docente.codigo.indexOf(codigoD[0]) != -1) {
-              this.listadoAsignacionNueva.push(element);
-
-            } else {
-              this.listadoAsignacionNueva = [];
-
-              this.mensajeerrormodals = "Ingresa al menos un parametro de busqueda";
-              document.getElementById("openModalError").click();
-            }
-
-            this.listadoMatriculasNueva.push(element);
           }
+
+        this.listadoMaterias.forEach(element => {
+
+          if (element.curso.codigo == codigoC[0] && element.docente.codigo == codigoD[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0) {
+            this.listadoAsignacionNueva.push(element);
+            console.log("entre 3 asignados", cont);
+          }
+          
+          });
+
+         
+          if( this.listadoAsignacionNueva.length>0){ cont=1;}
+
+          this.listadoMaterias.forEach(element => {
+
+            if (element.curso.codigo == codigoC[0] && element.periodo ==this.busquedaAsignacionPeriodo  && cont == 0)  {
+           
+              this.listadoAsignacionNueva.push(element);
+              console.log("entre 2 asignados", cont);
+            }
+            
+            });
+            if( this.listadoAsignacionNueva.length>0){ cont=1;}
+
+            this.listadoMaterias.forEach(element => {
+
+              if (element.docente.codigo == codigoD[0] && element.curso.codigo == codigoC[0]  && cont == 0)  {
+            
+                this.listadoAsignacionNueva.push(element);
+                console.log("entre 2.2 asignados", cont);
+              }
+              
+              });
+              if( this.listadoAsignacionNueva.length>0){ cont=1;}
+              this.listadoMaterias.forEach(element => {
+
+                if (element.docente.codigo == codigoD[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0)  {
+              
+                  this.listadoAsignacionNueva.push(element);
+                  console.log("entre 2.2 asignados", cont);
+                }
+                
+                });
+                if( this.listadoAsignacionNueva.length>0){ cont=1;}
+                if( this.listadoAsignacionNueva.length<=0){ this.listadoAsignacionNueva=[];}
+
+                
+
         }
-      }
-    });
+
+      
+
+    }
   }
 
   // extras validacion
@@ -605,7 +622,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = true;
     this.busquedaAsignacionPeriodo = "no asignar"
-    this.busquedaAsignacion();
+    // this.busquedaAsignacion();
     this.ModificarDocente = false;
   }
 
@@ -854,6 +871,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.materia_register.estado = '0';
     this.materia_register.codigoD = partsD[0];
     this.materia_register.codigoC = partsC[0];
+    this.materia_register.nombre = this.selectedMateriaAsignacion;
     this.materia_register.periodo = localStorage.getItem("periodoAnoLectivo");
 
     this._materiaServices.registerMateria(this.materia_register).subscribe(
@@ -1093,7 +1111,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.loading = false;
 
         this.mensajecorrectomodals = "El curso  ha sido eliminado.";
-        this.selectedCursoEliminar="";
+        this.selectedCursoEliminar = "";
         this.getListadoCursos();
         document.getElementById("openModalCorrecto").click();
 
@@ -1170,7 +1188,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   getListadoCursos() {
-    
+
     this.vectorListadoCursos = [];
     this._cursoServices.getListadoCursos().subscribe(response => {
 
@@ -1262,7 +1280,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  
+
   logout() {
     this._administradorService.logout();
     location.reload(true);
