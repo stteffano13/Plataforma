@@ -9,10 +9,13 @@ import { CursoService } from '../services/curso.services';
 import { EstudianteService } from '../services/estudiante.services';
 import { MatriculaService } from '../services/matricula.services';
 import { MateriaService } from '../services/materia.services';
+
+import {AdministradorService } from '../services/administrador.services';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
 
 import { AfterViewInit, ViewChild } from '@angular/core';
+import { Local } from 'protractor/built/driverProviders';
 
 
 
@@ -219,7 +222,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
     private _matriculaServices: MatriculaService,
-    private _materiaServices: MateriaService) {
+    private _materiaServices: MateriaService,
+    private _administradorService:AdministradorService) {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
@@ -1244,6 +1248,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     }
 
 
+  }
+
+
+  
+  logout() {
+    this._administradorService.logout();
+    location.reload(true);
   }
 
 

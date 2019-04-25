@@ -665,7 +665,7 @@
                 <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="docente_register.tel_celular" name="celular"
                   id="celular" pattern=".{10,10}">
                 <div [hidden]="Celular.valid || Celular.pristine" class="alert alert-warning">
-                  Ingrese solo números y maximo 10 números
+                  Ingrese 10 digitos solo numericos
                 </div>
 
 
@@ -1157,24 +1157,26 @@
 
     <!-- ====================================================                     ERROR =================================-->
     <!-- ====================================================                     ERROR =================================-->
-    <button id="openModalError" [hidden]="true" data-toggle="modal" data-target="#ModalError">Error</button>
-    <div class="modal fade" id="ModalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeError="ngModel" [(ngModel)]="this.mensajeerrormodals"
-              name="mensajeerror">
-          </div>
-          <div class="modal-footer">
-            <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
-            <button class="btn btn-primary" type="button" data-dismiss="modal">Ok</button>
-          </div>
+  
+  </div>
+
+  <button id="openModalError" [hidden]="true" data-toggle="modal" data-target="#ModalError">Error</button>
+  <div class="modal fade" id="ModalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeError="ngModel" [(ngModel)]="this.mensajeerrormodals"
+            name="mensajeerror">
+        </div>
+        <div class="modal-footer">
+          <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
+          <button class="btn btn-primary" type="button" data-dismiss="modal">Ok</button>
         </div>
       </div>
     </div>

@@ -87,7 +87,7 @@ function loginAdministrador(req, res) {
         if (err) {
             //console.log("aqui hay un error en la peticion");
             res.status(500).send({
-                message: 'Error al Autenticar Usuario.'
+                message: 'Error al Autenticar Usuario revisa la conexion.'
             });
         } else {
             if (!user) {
@@ -118,7 +118,7 @@ function loginAdministrador(req, res) {
 
                     } else {
                         res.status(404).send({
-                            message: 'El Usuario no ha podido Autenticarse.'
+                            message: 'Autencicación fallida usuario o contraseña incorrectos.'
                         });
 
                     }

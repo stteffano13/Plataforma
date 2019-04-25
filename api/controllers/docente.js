@@ -25,23 +25,23 @@ function saveDocente(req, res) {
     // console.log(params);
 
     Docente.findOne({
-        '$and': [{ correo: params.correo }]
+        '$and': [{estado:"0"},{'$or': [{ correo: params.correo },{cedula: params.cedula}]}]
     }, (err, users) => {
         if (err) {
             res.status(500).send({
-                message: "Error al guardar Usuario"
+                message: "Error al verificar datos"
             });
         } else {
             if (users) {
                 return res.status(500).send({
-                    message: "El Usuario ya Existe"
+                    message: "El Docente ya Existe, revise  cédula y correo electronico"
                 });
             } else {
 
                 var array = Docente.find((err, users) => {
                     if (err) {
                         res.status(500).send({
-                            message: "Error al guardar Usuario"
+                            message: "Error al guardar Docente"
                         });
                     } else {
                         if (users) {
