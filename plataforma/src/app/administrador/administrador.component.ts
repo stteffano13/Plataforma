@@ -254,15 +254,32 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   // busquedas
   public busqueda() {
-    this.listados = true;
-    this.IngresarDocente = false;
-    this.IngresarEstudiante = false;
-    this.IngresarMatricula = false;
-    this.IngresarAsignacion = false;
-    this.imagen = false;
-    this.busquedaDocente();
-    this.busquedaEstudiantes();
 
+
+    if (this.buscar != undefined) {
+
+
+      this.IngresarDocente = false;
+      this.IngresarEstudiante = false;
+      this.IngresarMatricula = false;
+      this.IngresarAsignacion = false;
+      this.imagen = false;
+      this.listadosMostrarMatriculas = false;
+      this.listadosMostrarAsignacion = false;
+      this.ModificarDocente = false;
+      this.listados = true;
+
+      this.IngresarDocente = false;
+      this.IngresarEstudiante = false;
+      this.IngresarMatricula = false;
+      this.IngresarAsignacion = false;
+      this.imagen = false;
+      this.busquedaDocente();
+      this.busquedaEstudiantes();
+    } else {
+      this.mensajeerrormodals = "Ingresar parametros en la busqueda ";
+      document.getElementById("openModalError").click();
+    }
 
   }
 
@@ -468,24 +485,24 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   busquedaAsignacion() {
-    this.listadoAsignacionNueva=[];
+    this.listadoAsignacionNueva = [];
     var cont = 0;
 
     if (this.listadoMaterias != "") {
-   
 
-        if ((this.busquedaDocenteAsignacion != "" || this.busquedaDocenteAsignacion != null) && (this.buscarCursoAsignacion != "" || this.buscarCursoAsignacion != null) && this.busquedaAsignacionPeriodo != "no asignado") {
-          console.log("entraste a la ultima  busqueda de materias");
-          let codigoD: String[] = new Array();
-          if (this.busquedaDocenteAsignacion) {
-            codigoD = this.busquedaDocenteAsignacion.split(".");
-          }
 
-          let codigoC: String[] = new Array();
+      if ((this.busquedaDocenteAsignacion != "" || this.busquedaDocenteAsignacion != null) && (this.buscarCursoAsignacion != "" || this.buscarCursoAsignacion != null) && this.busquedaAsignacionPeriodo != "no asignado") {
+        console.log("entraste a la ultima  busqueda de materias");
+        let codigoD: String[] = new Array();
+        if (this.busquedaDocenteAsignacion) {
+          codigoD = this.busquedaDocenteAsignacion.split(".");
+        }
 
-          if (this.buscarCursoAsignacion) {
-            codigoC = this.buscarCursoAsignacion.split(".");
-          }
+        let codigoC: String[] = new Array();
+
+        if (this.buscarCursoAsignacion) {
+          codigoC = this.buscarCursoAsignacion.split(".");
+        }
 
         this.listadoMaterias.forEach(element => {
 
@@ -493,50 +510,50 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             this.listadoAsignacionNueva.push(element);
             console.log("entre 3 asignados", cont);
           }
-          
-          });
 
-         
-          if( this.listadoAsignacionNueva.length>0){ cont=1;}
+        });
 
-          this.listadoMaterias.forEach(element => {
 
-            if (element.curso.codigo == codigoC[0] && element.periodo ==this.busquedaAsignacionPeriodo  && cont == 0)  {
-           
-              this.listadoAsignacionNueva.push(element);
-              console.log("entre 2 asignados", cont);
-            }
-            
-            });
-            if( this.listadoAsignacionNueva.length>0){ cont=1;}
+        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
 
-            this.listadoMaterias.forEach(element => {
+        this.listadoMaterias.forEach(element => {
 
-              if (element.docente.codigo == codigoD[0] && element.curso.codigo == codigoC[0]  && cont == 0)  {
-            
-                this.listadoAsignacionNueva.push(element);
-                console.log("entre 2.2 asignados", cont);
-              }
-              
-              });
-              if( this.listadoAsignacionNueva.length>0){ cont=1;}
-              this.listadoMaterias.forEach(element => {
+          if (element.curso.codigo == codigoC[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0) {
 
-                if (element.docente.codigo == codigoD[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0)  {
-              
-                  this.listadoAsignacionNueva.push(element);
-                  console.log("entre 2.2 asignados", cont);
-                }
-                
-                });
-                if( this.listadoAsignacionNueva.length>0){ cont=1;}
-                if( this.listadoAsignacionNueva.length<=0){ this.listadoAsignacionNueva=[];}
+            this.listadoAsignacionNueva.push(element);
+            console.log("entre 2 asignados", cont);
+          }
 
-                
+        });
+        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
 
-        }
+        this.listadoMaterias.forEach(element => {
 
-      
+          if (element.docente.codigo == codigoD[0] && element.curso.codigo == codigoC[0] && cont == 0) {
+
+            this.listadoAsignacionNueva.push(element);
+            console.log("entre 2.2 asignados", cont);
+          }
+
+        });
+        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
+        this.listadoMaterias.forEach(element => {
+
+          if (element.docente.codigo == codigoD[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0) {
+
+            this.listadoAsignacionNueva.push(element);
+            console.log("entre 2.2 asignados", cont);
+          }
+
+        });
+        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
+        if (this.listadoAsignacionNueva.length <= 0) { this.listadoAsignacionNueva = []; }
+
+
+
+      }
+
+
 
     }
   }
@@ -614,6 +631,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   // modulos
   aparecerEliminarAsignar() {
+    this.listados = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = false;
@@ -627,6 +645,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   aparecerEliminarMatricula() {
+    this.listados = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = false;
@@ -642,6 +661,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   aparecerNuevaMatricula() {
+    this.listados = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
     this.IngresarMatricula = true;
@@ -681,6 +701,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   aparecerAsignar() {
+    this.listados = false;
     this.IngresarMatricula = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
@@ -911,6 +932,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // modificars
 
   aparecerUpdateDatosDocentes(datosDocente) {
+    this.listados = false;
     this.txtHide = false;
     this.contrasenaUpdateDocente = "";
     this.IngresarMatricula = false;
@@ -927,7 +949,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   aparecerUpdateDatosEstudiante(datosEstudiante) {
-
+    this.listados = false;
     this.txtHide = false;
     this.contrasenaUpdateDocente = "";
     this.IngresarMatricula = false;
@@ -1096,45 +1118,53 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     //this.selectedCursoEliminar = "";
 
-    let codigoC: String[] = new Array();
-    codigoC = this.selectedCursoEliminar.split(".");
 
-    //// aqui
+    if (this.selectedCursoEliminar != undefined) {
+      let codigoC: String[] = new Array();
+      codigoC = this.selectedCursoEliminar.split(".");
 
-    this.objCurso.id = codigoC[0];
+      //// aqui
 
-
-    this._cursoServices.update_curso(this.objCurso).subscribe(
-      response => {
-        this.mensajecorrectomodals = "El curso se ha eliminado correctamente"; // esto puso el tefo chumadod
-        console.log("satisfactoriamenteUpdate");
-        this.loading = false;
-
-        this.mensajecorrectomodals = "El curso  ha sido eliminado.";
-        this.selectedCursoEliminar = "";
-        this.getListadoCursos();
-        document.getElementById("openModalCorrecto").click();
+      this.objCurso.id = codigoC[0];
 
 
-      },
-      error => {
-        var errorMessage = <any>error;
-        if (errorMessage) {
-          console.log(errorMessage);
-          try {
-            var body = JSON.parse(error._body);
-            errorMessage = body.message;
-          } catch {
-            errorMessage = "No hay conexión intentelo más tarde";
-            this.loading = false;
-            document.getElementById("openModalError").click();
+      this._cursoServices.update_curso(this.objCurso).subscribe(
+        response => {
+          this.mensajecorrectomodals = "El curso se ha eliminado correctamente"; // esto puso el tefo chumadod
+          console.log("satisfactoriamenteUpdate");
+          this.loading = false;
+
+          this.mensajecorrectomodals = "El curso  ha sido eliminado.";
+          this.selectedCursoEliminar = "";
+          this.getListadoCursos();
+          document.getElementById("openModalCorrecto").click();
+
+
+        },
+        error => {
+          var errorMessage = <any>error;
+          if (errorMessage) {
+            console.log(errorMessage);
+            try {
+              var body = JSON.parse(error._body);
+              errorMessage = body.message;
+            } catch {
+              errorMessage = "No hay conexión intentelo más tarde";
+              this.mensajecorrectomodals = errorMessage;
+
+              this.loading = false;
+              document.getElementById("openModalError").click();
+            }
+
+            // this.loading =false;
           }
-
-          // this.loading =false;
         }
-      }
-    );
-
+      );
+    } else {
+      this.mensajeerrormodals = "No se ha eliminado ningún curso";
+      this.loading = false;
+      document.getElementById("openModalError").click();
+    }
   }
 
 

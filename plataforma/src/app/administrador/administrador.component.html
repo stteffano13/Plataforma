@@ -79,27 +79,7 @@
             </li>
           </ul>
         </li>
-        <li>
-          <select (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
-            <option disabled selected hidde [value]="periodoActual" selected></option>
-            <option value="2017-2018">2017-2018</option>
-            <option value="2018-2019">2018-2019</option>
-            <option value="2019-2020">2019-2020 </option>
-            <option value="2020-2021">2020-2021</option>
-            <option value="2021-2022">2021-2022</option>
-            <option value="2022-2021">2022-2021</option>
-            <option value="2021-2022">2021-2022</option>
-            <option value="2022-2023">2022-2023</option>
-            <option value="2023-2024">2023-2024</option>
-            <option value="2024-2025">2024-2025</option>
-            <option value="2025-2026">2025-2026</option>
-            <option value="2026-2027">2026-2027</option>
-            <option value="2028-2029">2028-2029</option>
-            <option value="2029-2030">2029-2030</option>
-          </select>
-
-
-        </li>
+      
 
       </ul>
 
@@ -144,7 +124,7 @@
               <span class="badge badge-pill badge-primary"> Nuevos</span>
             </span>
             <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
+              <i class="fa fa-arrows"></i>
 
             </span>
           </a>
@@ -154,14 +134,14 @@
 
 
         <li class="nav-item dropdown">
-          <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalEliminarParalelo" data-toggle="modal" aria-haspopup="true"
+          <a title="Eliminar  Paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalEliminarParalelo" data-toggle="modal" aria-haspopup="true"
             aria-expanded="false" data-target="#ModalEliminarParalelo">
             <i class="fa fa-fw fa-list-alt"></i>
             <span class="d-lg-none">Paralelo
               <span class="badge badge-pill badge-primary"> Nuevos</span>
             </span>
             <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
+              <i class=" fa fa-minus"  style="width: 80%"></i>
 
             </span>
           </a>
@@ -739,18 +719,19 @@
               <div class="form-group">
                 <label>Celular del Docente</label>
                 <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosDocentes.tel_celular" name="celularM" pattern="[0-9]*"
-                  [disabled]='textBox' required>
+                  id="celular" pattern=".{10,10}"  [disabled]='textBox'   required> 
                 <div *ngIf="txtvalidacionModificarDocente" [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
-                  Ingrese solo números
+                  Ingrese solo  10 digitos numéricos
                 </div>
               </div>
               <div class="form-group">
                 <label>Cédula del docente</label>
                 <label style="font-size: 80%">&nbsp;&nbsp;La cédula no se puede modificar, tiene que eliminar el usuario</label>
                 <input type="text" class="form-control" #TelefonoM="ngModel" [(ngModel)]="datosDocentes.cedula" name="telefonoM" disabled
-                  pattern="[0-9]*" required>
+                  id="celular" pattern=".{10,10}"  [disabled]='textBox'   required> 
+                   
                 <div *ngIf="txtvalidacionModificarDocente" [hidden]="TelefonoM.valid || TelefonoM.pristine" class="alert alert-warning">
-                  Ingrese solo números
+                  Ingrese solo 10 digitos numéricos
                 </div>
               </div>
               <div class="card-columns">
