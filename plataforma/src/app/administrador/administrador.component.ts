@@ -349,11 +349,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
         this.listadoMatriculas = response.matriculas;
 
-        if (this.listadoMatriculas == "") {
+        if (this.listadoMatriculas ==null) {
           this.listadoM = true;
+         
         } else {
           console.log("entre a loq ue tenia");
           this.listadoM = true;
+          this.loading = false;
           this.busquedaMatricula2();
         }
         // console.log(this.listadoChoferes);
@@ -422,12 +424,14 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   busquedaMatricula2() {
 
-    console.log("matriculas mijin para eliminar" + "listado matriculas original", this.listadoMatriculas, "vector a mostrar", this.listadoMatriculasNueva);
-
+    
     this.listadoMatriculas.forEach(element => {
       let codigoE: String[] = new Array();
+      if(this.busquedaMatricula!=null)
+      {
+
       codigoE = this.busquedaMatricula.split(".");
-      console.log(element.estudiante.codigo);
+
       if (this.busquedaMatricula != null && this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
         console.log("entraste a la busqueda MF1");
         this.listadoMatriculasNueva.push(element);
@@ -450,7 +454,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
           }
         }
       }
+    }else
+    {
+      this.mensajeerrormodals = "Ingresar al menos un parametro de busqueda ";
+      document.getElementById("openModalError").click();
+    }
     });
+  
 
   }
 
@@ -502,6 +512,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
             } else {
               this.listadoAsignacionNueva = [];
+
+              this.mensajeerrormodals = "Ingresa al menos un parametro de busqueda";
+              document.getElementById("openModalError").click();
             }
 
             this.listadoMatriculasNueva.push(element);
