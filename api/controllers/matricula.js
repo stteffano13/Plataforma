@@ -26,7 +26,7 @@ function saveMatricula(req, res) {
     Estudiante.findOne({ codigo: params.codigoE }, (err, users) => {
         if (err) {
             res.status(500).send({
-                message: "Error al buscar Curso"
+                message: "Error al buscar Estudiante"
             });
         } else {
             if (users) {
@@ -37,7 +37,7 @@ function saveMatricula(req, res) {
             } else {
 
                 return res.status(500).send({
-                    message: "El Curso no Existe"
+                    message: "El estudiante no Existe"
                 });
 
             }
@@ -51,7 +51,7 @@ function guardarPrimero(estudiante, params, res) {
     Curso.findOne({ codigo: params.codigoC }, (err, users) => {
         if (err) {
             res.status(500).send({
-                message: "Error al guardar Curso"
+                message: "Error al encontrar Curso"
             });
         } else {
             if (users) {
@@ -81,7 +81,7 @@ function guardarSegundo(idE, idC, params, res) {
     matricula = new Matricula();
     //
     Matricula.findOne({
-        '$or': [{ '$and': [{ estudiante: idE._id }, { curso: idC._id }] }, { '$and': [{ estudiante: idE._id }, { periodo: params.periodo }] }]
+     '$and': [{estado:"0"},{ estudiante: idE._id }, { periodo: params.periodo  }]
     }, (err, users) => {
         if (err) {
             res.status(500).send({

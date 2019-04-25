@@ -29,23 +29,23 @@ function saveEstudiante(req, res) {
 
 
     Estudiante.findOne({
-        '$and': [{ correo: params.correo }]
+        '$and': [{estado:"0"},{'$or': [{ correo: params.correo },{cedula: params.cedula}]}]
     }, (err, users) => {
         if (err) {
             res.status(500).send({
-                message: "Error al guardar Usuario"
+                message: "Error al guardar estudiante"
             });
         } else {
             if (users) {
                 return res.status(500).send({
-                    message: "El Estudiante ya Existe"
+                    message: "El estudiante ya existe, revise  cédula y correo electronico"
                 });
             } else {
 
                 var array = Estudiante.find((err, users) => {
                     if (err) {
                         res.status(500).send({
-                            message: "Error al guardar Usuario"
+                            message: "Error al guardar estudiante"
                         });
                     } else {
                         if (users) {

@@ -21,7 +21,7 @@ var m = moment([2005, 3, 1]);
 function saveAsignacion(req, res) {
 
     var params = req.body;
-    console.log("esto viene para amtricular", params);
+
     Docente.findOne({ codigo: params.codigoD }, (err, users) => {
         if (err) {
             res.status(500).send({

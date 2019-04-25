@@ -463,9 +463,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
 
-
     this.listadoMaterias.forEach(element => {
-      console.log("mat");
       if (this.busquedaAsignacionPeriodo != "no asignado" && this.busquedaDocenteAsignacion != null) {
 
         let codigoD: String[] = new Array();
@@ -847,10 +845,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     this._materiaServices.registerMateria(this.materia_register).subscribe(
       response => {
-        this.mensajecorrectomodals = "Loa materia se ha generado exitosamente.";
+        this.mensajecorrectomodals = "La materia se ha asignado exitosamente.";
         console.log("satisfactoriamente");
         this.loading = false;
-        this.busquedaAsignacion();
+        //this.busquedaAsignacion();
         document.getElementById("openModalCorrecto").click();
         // this.limpiar(1);
       },
