@@ -720,10 +720,42 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   // registros
 
-  asignarPeriodoLectivo(periodo) {
+  asignarPeriodoLectivo(periodoA) {
 
-    localStorage.setItem("periodoAnoLectivo", periodo);
+    localStorage.setItem("periodoAnoLectivo", periodoA);
 
+    var objPeriodoLectivo=
+    {
+        periodo : periodoA
+    }
+
+    this._administradorService.registerPeriodoLectivoActual(objPeriodoLectivo).subscribe(
+      response => {
+        this.mensajecorrectomodals = "El periodo lectivo se asignado correctamente";
+        console.log("satisfactoriamente");
+        this.loading = false;
+        document.getElementById("openModalCorrecto").click();
+        // this.limpiar(1);
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+          document.getElementById("openModalError").click();
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          this.loading = false;
+        }
+      }
+    );
+
+    
   }
 
   asignarCurso(curso) {

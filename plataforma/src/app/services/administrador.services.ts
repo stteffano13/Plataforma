@@ -31,7 +31,15 @@ public cont =0;
       .map(res => res.json());
   }
 
-
+  registerPeriodoLectivoActual(periodo_to_register) {
+    let json = JSON.stringify(periodo_to_register);
+    let params = json;
+    console.log("periodo",params);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+        .post(this.url + "registerPeriodoActual", params, { headers: headers })
+        .map(res => res.json());
+}
 
 
 

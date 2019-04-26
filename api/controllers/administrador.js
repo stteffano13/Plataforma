@@ -2,7 +2,8 @@
 
 var bcrypt = require('bcrypt-nodejs');
 
-var Administrador = require('../models/administrador'); //importar el modelo del usuario  o lo que son las clases comunes
+var Administrador = require('../models/administrador');
+var Periodo = require('../models/periodo');//importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 
 
@@ -28,7 +29,7 @@ function saveAdministrador(req, res) {
 
                 administrador.correo = params.correo;
                 administrador.contrasena = params.contrasena;
-                
+
 
                 if (params.contrasena) {
 
@@ -132,11 +133,74 @@ function loginAdministrador(req, res) {
     console.log('no encontro');
 }
 
+
+
+function savePeriodoLectivoActual(req, res) {
+
+    var params = req.body;
+    var periodo = new Periodo();
+
+    Periodo.findOne({
+        '$and': [{ periodo: params.periodo }]
+    }, (err, users) => {
+        if (err) {
+            res.status(500).send({
+                message: "Error al guardar Periodo"
+            });
+        } else {
+            if (users) {
+               
+ 
+                Periodo.findByIdAndUpdate(users._id, params.periodo, (err, periodoUpdate) => {
+  
+                    if (err) {
+                      res.status(500).send({ message: "Error al guardar nuevo periodo", err });
+                
+                    } else {
+                      if (!periodoUpdate) {
+                        res.status(404).send({ message: "El periodo no se ha actualizado" });
+                      } else {
+                        res.status(200).send({  message: "El periodo se ha actualizado correctamente"  });
+                      }
+                    }
+                
+                  });
+
+            } else {
+
+                periodo.periodo = params.periodo;
+
+
+                periodo.save((err, periodosave) => {
+                    if (err) {
+                        return res.status(500).send({
+                            message: 'Error al asignar viaje'
+                        });
+
+                    }
+
+                    if (!periodosave) {
+                        return res.status(400).send({
+                            message: 'No se asignado correctamente el viaje'
+                        });
+                    }
+                    //console.log("message guardado" + messageStored);
+                    return res.status(200).send({
+                        periodo: periodosave
+                    });
+                });
+            }
+        }
+    });
+}
+
 module.exports = {          // para exportar todas las funciones de este modulo
-   
+
     saveAdministrador,
     loginAdministrador,
-   
+    savePeriodoLectivoActual
+
+
 
 
 };
