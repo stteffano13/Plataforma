@@ -149,7 +149,7 @@ function savePeriodoLectivoActual(req, res) {
             });
         } else {
             if (users) {
-               
+               console.log(" esto es lo que voy a buscar de periodo");
  
                 Periodo.findByIdAndUpdate(users._id, params.periodo, (err, periodoUpdate) => {
   
