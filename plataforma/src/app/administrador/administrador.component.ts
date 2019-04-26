@@ -236,7 +236,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
-    this.opcionPeriodoLectivo = "Seleccione Periodo Lectivo, Periodo Actual:" + localStorage.getItem("periodoAnoLectivo");
+   this.getPeriodoActual();
 
     this.buscarMatriculaPeriodo = "no asignado";
     this.getListadoEstudiantes();
@@ -1235,6 +1235,21 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       }
     );
   }
+// obtener el periodo
+getPeriodoActual() {
+
+  this.vectorListadoCursos = [];
+  this._administradorService.getPeriodoActual().subscribe(response => {
+    console.log("este es el periodo que vino", response.periodo)
+    if (response.periodo != undefined) {
+      this.opcionPeriodoLectivo = response.periodo[0].periodo;
+    
+    }
+  }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+  );
+
+}
+
   // obtener lsitados a vectores
   getListadoEstudiantes() {
 

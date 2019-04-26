@@ -194,11 +194,36 @@ function savePeriodoLectivoActual(req, res) {
     });
 }
 
+
+function getPeridoLectivoActual(req, res)
+{
+
+        var periodo = Periodo.find().sort({periodo:-1}).limit(1).exec((err, periodo) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
+            }
+
+            if (!periodo) {
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
+            }
+
+            return res.status(200).send({
+                periodo:periodo
+            });
+        });
+    }
+
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveAdministrador,
     loginAdministrador,
-    savePeriodoLectivoActual
+    savePeriodoLectivoActual,
+    getPeridoLectivoActual
 
 
 

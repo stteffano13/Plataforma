@@ -44,6 +44,17 @@ public cont =0;
 
 
 
+getPeriodoActual() {
+
+  let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+  return this._http
+      .get(this.url + "getPeriodoActual", { headers: headers })
+      .map(res => res.json());
+}
+
+
+
+
 
 
   getIdentity() {
