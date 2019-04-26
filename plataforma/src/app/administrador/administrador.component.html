@@ -934,9 +934,9 @@
               <div class="form-group">
                 <label>Celular del Estudiante</label>
                 <input type="text" class="form-control" #CelularM="ngModel" [(ngModel)]="datosEstudiantes.tel_celular" name="celularM" [disabled]='textBox'
-                  pattern="[0-9]*" required>
+                pattern=".{10,10}" required>
                 <div *ngIf="txtvalidacionModificarEstudiante" [hidden]="CelularM.valid || CelularM.pristine" class="alert alert-warning">
-                  Ingrese solo números
+                  Ingrese solo 10 dígitos numericos
                 </div>
               </div>
               <div class="form-group">
