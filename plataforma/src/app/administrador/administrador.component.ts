@@ -1238,7 +1238,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 // obtener el periodo
 getPeriodoActual() {
 
-  this.vectorListadoCursos = [];
+  
   this._administradorService.getPeriodoActual().subscribe(response => {
     console.log("este es el periodo que vino", response.periodo)
     if (response.periodo != undefined) {

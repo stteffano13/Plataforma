@@ -28,6 +28,8 @@
      
     
       <ul class="navbar-nav ml-auto">
+        <li><p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
         <li>
           <select (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
             <option disabled selected hidde [value]="opcionPeriodoLectivo" selected>{{opcionPeriodoLectivo}} </option>

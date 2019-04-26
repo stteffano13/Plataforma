@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MateriaService } from '../services/materia.services';
+import { AdministradorService } from '../services/administrador.services';
 
 @Component({
   selector: 'app-docente',
@@ -9,10 +10,13 @@ import { MateriaService } from '../services/materia.services';
 export class DocenteComponent implements OnInit {
 
   public  vectorListadoMisMaterias;
-  constructor(private _materiaService:MateriaService) { }
+  constructor(private _materiaService:MateriaService, private _administradorService: AdministradorService) { }
+
+public periodoLectivoActual;
 
   ngOnInit() {
     this.getListadoMisMaterias();
+    this. getPeriodoActual();
   }
 
 
@@ -28,5 +32,19 @@ export class DocenteComponent implements OnInit {
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
+  }
+
+  getPeriodoActual() {
+
+ 
+    this._administradorService.getPeriodoActual().subscribe(response => {
+      console.log("este es el periodo que vino", response.periodo)
+      if (response.periodo != undefined) {
+        this.periodoLectivoActual = response.periodo[0].periodo;
+      
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+  
   }
 }
