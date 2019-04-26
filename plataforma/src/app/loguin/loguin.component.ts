@@ -124,63 +124,82 @@ export class LoguinComponent {
 
         case "docente":
           this.loading = true;
-          this._docenteServices.singupDocente(this.obj, "").subscribe(
-            response => {
-              this.loading = false;
-              console.log(response + "esto viene en la respuesta");
-              let identity = response.user;
-              this.identity = identity;
-              console.log(identity);
-              if (!this.identity._id) {
-                console.log("el usuario no se ha logueado correctamente");
+          if (this.obj.email != null && this.obj.password != null) {
+            this._docenteServices.singupDocente(this.obj, "").subscribe(
+              response => {
+                this.loading = false;
+                let identity = response.user;
+                this.identity = identity;
+                console.log(identity);
+                if (!this.identity._id) {
+                  this.mensajeerrormodals = "Clave incorrecta el usuario no se pudo autenticar";
+                  document.getElementById("openModalError").click();
+                } else {
+                  // crear local storage
+                  localStorage.setItem("identityDocente", JSON.stringify(identity));
 
-                // aqui la alerta
-              } else {
-                // crear local storage
-                localStorage.setItem("identityDocente", JSON.stringify(identity));
-
-                this._docenteServices.singupDocente(this.obj, "true").subscribe(
-                  response => {
-                    let token = response.token;
-                    this.token = token;
-                    console.log(token)
-                    if (this.token.length <= 0) {
-                      // aqui mensaje
-                      console.log("el token nose ha generado");
-                    } else {
-                      localStorage.setItem("Token", token);
-                      location.reload(true);
-                      //location.href = "www.appmontecarlotransvip.com:4200";
+                  this._docenteServices.singupDocente(this.obj, "true").subscribe(
+                    response => {
+                      let token = response.token;
+                      this.token = token;
+                      console.log(token)
+                      if (this.token.length <= 0) {
+                        this.mensajeerrormodals = "El token no se ha generado";
+                        document.getElementById("openModalError").click();
+                      } else {
+                        localStorage.setItem("Token", token);
+                        location.reload(true);
+                        //location.href = "www.appmontecarlotransvip.com:4200";
+                      }
+                    },
+                    error => {
+                      this.loading = false;
+                      var errorMessage = <any>error;
+                      if (errorMessage) {
+                        try {
+                          var body = JSON.parse(error._body);
+                          errorMessage = body.message;
+                        } catch{
+                          errorMessage = "No hay conexión intentelo más tarde";
+                          this.loading = false;
+                          this.mensajeerrormodals = errorMessage;
+                          document.getElementById("openModalError").click();
+                        }
+                        this.loading = false;
+                        this.error = errorMessage;
+                        this.mensajeerrormodals = this.error;
+                        document.getElementById("openModalError").click();
+                      }
                     }
-                  },
-                  error => {
+                  );
+                  //fin
+                }
+              },
+              error => {
+                this.loading = false;
+                var errorMessage = <any>error;
+                if (errorMessage) {
+                  try {
+                    var body = JSON.parse(error._body);
+                    errorMessage = body.message;
+                  } catch{
+                    errorMessage = "No hay conexión intentelo más tarde";
                     this.loading = false;
-                    var errorMessage = <any>error;
-                    if (errorMessage) {
-                      try {
-                        var body = JSON.parse(error._body);
-                        errorMessage = body.message;
-                      } catch{ errorMessage = "NO hay conexion intentelo Ms Tarde"; }
-                      this.error = errorMessage;
-                      console.log(this.error);
-                    }
+                    this.mensajeerrormodals = errorMessage;
+                    document.getElementById("openModalError").click();
                   }
-                );
-                //fin
-              }
-            },
-            error => {
-              this.loading = false;
-              var errorMessage = <any>error;
-              if (errorMessage) {
-                try {
-                  var body = JSON.parse(error._body);
-                  errorMessage = body.message;
-                } catch{ errorMessage = "No hay conexión intentelo más tarde"; }
-                this.error = errorMessage;
-                console.log(this.error);
-              }
-            });
+                  this.loading = false;
+                  this.error = errorMessage;
+                  this.mensajeerrormodals = this.error;
+                  document.getElementById("openModalError").click();
+                }
+              });
+          } else {
+            this.loading = false;
+            this.mensajeerrormodals = "Existen campos en vacios introduce Usuario y Contraseña";
+            document.getElementById("openModalError").click();
+
+          }
           break;
         case "estudiante":
           this.loading = true;

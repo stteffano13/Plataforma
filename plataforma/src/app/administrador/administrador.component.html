@@ -92,7 +92,11 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li>
-          <select (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
+          <h5 style="color: #e9ecef; "  >Periodo lectivo Actual &nbsp;&nbsp;&nbsp;</h5>
+
+        </li>
+        <li>
+          <select  style="" (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
             <option disabled selected hidde [value]="opcionPeriodoLectivo" selected>{{opcionPeriodoLectivo}} </option>
             <option value="2017-2018">2017-2018</option>
             <option value="2018-2019">2018-2019</option>
@@ -112,6 +116,7 @@
 
 
         </li>
+       <li> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;</li>
 
         <!-- ====================================================       Notificaciones  INGRESAR PARALELO ============================================-->
 

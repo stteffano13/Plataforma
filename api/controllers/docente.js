@@ -155,7 +155,7 @@ function loginDocente(req, res) {
 
                     } else {
                         res.status(404).send({
-                            message: 'El Usuario no ha podido Autenticarse.'
+                            message: 'Autencicación fallida usuario o contraseña incorrectos.'
                         });
 
                     }
