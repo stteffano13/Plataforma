@@ -899,6 +899,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   onRegisterMatricula() {
+
+    try{
     let partsE: String[] = new Array();
     partsE = this.selectedEstudiante.split(".");
     console.log("Vamos mijin", partsE[0]);
@@ -944,7 +946,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         }
       }
     );
-
+  } catch(err)
+  {
+    this.mensajeerrormodals = "Llene todos los campos";
+    this.loading = false;
+    document.getElementById("openModalError").click();
+  }
 
   }
 
