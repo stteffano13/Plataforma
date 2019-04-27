@@ -5,6 +5,7 @@ var moment = require('moment');
 
 
 var Estudiante = require('../models/estudiante'); //importar el modelo del usuario  o lo que son las clases comunes
+var Matricula = require('../models/matricula'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 
 
@@ -256,7 +257,7 @@ function updateEstudiante(req, res) {
                         });
                     } else {
                         res.status(200).send({
-                            user: userUpdate
+                            message: "El estudiante se actualizado."
                         });
                     }
                 }
@@ -267,9 +268,51 @@ function updateEstudiante(req, res) {
     } else {
         update.estadoContrasena == '';
 
+        if(update.estado==1)
+        {
+            Matricula.findOne({
+                '$and': [{estado: 0}, { estudiante:update._id }]
+            }, (err, users) => {
+                if (err) {
+                    res.status(500).send({
+                        message: "Error al buscar concidencias"
+                    });
+        
+                } else {
+                    if (users) {
+                        res.status(400).send({
+                            message: "No eliminar, hay matriculas asignadas al estudiante"
+                        });
+        
+                    } else {
+                        Estudiante.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+        
+                            if (err) {
+                                res.status(500).send({
+                                    message: "Error al actualizar estudiante."
+                                });
+        
+                            } else {
+                                if (!userUpdate) {
+                                    res.status(404).send({
+                                        message: "El estudiante no ha podido actualizarse."
+                                    });
+                                } else {
+                                    res.status(200).send({
+                                        message: "El estudiante se ha actualizado correctamente."
+                                    });
+                                }
+                            }
+        
+                        });
+                    }
+                }
+        
+            });
 
+        }else{
         Estudiante.findOne({
-            '$and': [{}, { correo: update.correo }]
+            '$and': [{estado:0}, { correo: update.correo }]
         }, (err, users) => {
             if (err) {
                 res.status(500).send({
@@ -297,7 +340,7 @@ function updateEstudiante(req, res) {
                                     });
                                 } else {
                                     res.status(200).send({
-                                        user: userUpdate
+                                        message:"El estudiante se actualizado correctamente."
                                     });
                                 }
                             }
@@ -320,7 +363,7 @@ function updateEstudiante(req, res) {
                                 });
                             } else {
                                 res.status(200).send({
-                                    user: userUpdate
+                                    message: "El estudiante se actualizado correctamente."
                                 });
                             }
                         }
@@ -332,7 +375,7 @@ function updateEstudiante(req, res) {
         });
 
 
-
+    }
 
 
 

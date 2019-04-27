@@ -1044,7 +1044,7 @@
                     </div>
                   </div>
                   <input type="{{tipoUsuarioC}}" disabled required class="form-control" aria-label="Text input with checkbox" #Password="ngModel"
-                    [(ngModel)]="contrasenaUpdateEstudiante" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContraC'>
+                    [(ngModel)]=" this.contrasenaUpdateEstudiante" name="contrasena" id="contrasena" pattern=".{6,}" [disabled]='textBoxContraC'>
                 </div>
                 <div *ngIf="txtvalidacionOjoModificarEstudiante" [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
                   Contraseña mínima de 6 caracteres
