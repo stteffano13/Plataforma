@@ -53,6 +53,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public disabledMateriaImpartir = true;
   public imagen = true;
 
+  // contruccion del periodo
+  public opcionMesInicio;
+  public opcionAnoInicio;
+  public opcionMesFinal;
+  public opcionAnoFinal;
+
   // busqueda matricula
   public buscarMatriculaPeriodo;
   public busquedaMatricula;
@@ -236,7 +242,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
-   this.getPeriodoActual();
+    this.getPeriodoActual();
 
     this.buscarMatriculaPeriodo = "no asignado";
     this.getListadoEstudiantes();
@@ -250,6 +256,27 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+  }
+
+  // construccion de periodo
+ 
+  asignarMesInicio(mesInicio) {
+    this.opcionMesInicio = mesInicio;
+  }
+
+  asignarAnoInicio(anoInicio) {
+    this.opcionAnoInicio = anoInicio;
+
+  }
+
+  asignarMesFinal(mesFinal)
+  {
+    this.opcionMesFinal=mesFinal;
+  }
+  asignarAnoFinal(anoFinal)
+  {
+    this.opcionAnoFinal=anoFinal;
+    
   }
 
   // busquedas
@@ -720,13 +747,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   // registros
 
-  asignarPeriodoLectivo(periodoA) {
+  asignarPeriodoLectivo() {
 
-    localStorage.setItem("periodoAnoLectivo", periodoA);
+    
 
-    var objPeriodoLectivo=
+    var objPeriodoLectivo =
     {
-        periodo : periodoA
+      periodo: this.opcionMesInicio+"/"+this.opcionAnoInicio+"-"+this.opcionMesFinal+"/"+this.opcionAnoFinal
     }
 
     this._administradorService.registerPeriodoLectivoActual(objPeriodoLectivo).subscribe(
@@ -755,7 +782,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       }
     );
 
-    
+
   }
 
   asignarCurso(curso) {
@@ -1235,20 +1262,20 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       }
     );
   }
-// obtener el periodo
-getPeriodoActual() {
+  // obtener el periodo
+  getPeriodoActual() {
 
-  
-  this._administradorService.getPeriodoActual().subscribe(response => {
-    console.log("este es el periodo que vino", response.periodo)
-    if (response.periodo != undefined) {
-      this.opcionPeriodoLectivo = response.periodo[0].periodo;
-    
-    }
-  }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
-  );
 
-}
+    this._administradorService.getPeriodoActual().subscribe(response => {
+      console.log("este es el periodo que vino", response.periodo)
+      if (response.periodo != undefined) {
+        this.opcionPeriodoLectivo = response.periodo[0].periodo;
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
 
   // obtener lsitados a vectores
   getListadoEstudiantes() {
