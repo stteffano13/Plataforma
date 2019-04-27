@@ -82,7 +82,7 @@ function guardarSegundo(idD, idC, params, res) {
 
     //
     Materia.findOne({
-        '$and': [{ docente: idD._id }, { curso: idC._id }, { nombre: params.materia }, { periodo: params.periodo }]
+        '$and': [{estado: 0},{ docente: idD._id }, { curso: idC._id }, { nombre: params.nombre }, { periodo: params.periodo }]
     }, (err, users) => {
         if (err) {
             res.status(500).send({
@@ -91,7 +91,7 @@ function guardarSegundo(idD, idC, params, res) {
         } else {
             if (users) {
                 return res.status(500).send({
-                    message: "El docente ya fue asignado esta amteria"
+                    message: "El docente ya fue asignado esta materia"
                 });
             } else {
 
