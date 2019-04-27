@@ -669,6 +669,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.busquedaAsignacionPeriodo = "no asignar"
     // this.busquedaAsignacion();
     this.ModificarDocente = false;
+    this.ModificarEstudiante=false;
+  
   }
 
   aparecerEliminarMatricula() {
@@ -682,6 +684,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = false;
     this.getListadoEstudiantes();
     this.ModificarDocente = false;
+    this.ModificarEstudiante=false;
 
     // this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
@@ -696,9 +699,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-    this.ModificarDocente = true;
+   
     this.url2 = '../../assets/imgs/IngresarMatricula.png';
     this.ModificarDocente = false;
+   
+    this.ModificarEstudiante=false;
+
   }
   apareceIngreseDocente() {
     this.IngresarDocente = true;
@@ -708,9 +714,11 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-    this.ModificarDocente = true;
+  
     this.url2 = '../../assets/imgs/IngresarDocente.png';
     this.ModificarDocente = false;
+    this.ModificarEstudiante=false;
+
   }
 
   apareceIngreseEstudiante() {
@@ -723,7 +731,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = false;
 
     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
+ 
     this.ModificarDocente = false;
+    this.ModificarEstudiante=false;
   }
 
 
@@ -737,7 +747,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
     this.ModificarDocente = false;
-
+   
+    this.ModificarEstudiante=false;
+   
 
   }
 
@@ -1004,6 +1016,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.ModificarDocente = true;
     this.datosDocentes = datosDocente;
     this.listados = false;
+    this.ModificarEstudiante=false;
 
   }
 
