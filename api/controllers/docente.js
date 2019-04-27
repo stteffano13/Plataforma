@@ -5,6 +5,7 @@ var moment = require('moment');
 
 
 var Docente = require('../models/docente'); //importar el modelo del usuario  o lo que son las clases comunes
+var Materia = require('../models/materia'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 
 
@@ -211,13 +212,59 @@ function updateDocente(req, res) {
     } else {
         update.estadoContrasena == '';
 
+if(update.estado==1)
+{
+
+    Materia.findOne({
+        '$and': [{estado: 0}, { docente:update._id }]
+    }, (err, users) => {
+        if (err) {
+            res.status(500).send({
+                message: "Error al buscar concidencias"
+            });
+
+        } else {
+            if (users) {
+                res.status(400).send({
+                    message: "No eliminar, hay materias asignadas al docente"
+                });
+
+            } else {
+                Docente.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+
+                    if (err) {
+                        res.status(500).send({
+                            message: "Error al actualizar Docente."
+                        });
+
+                    } else {
+                        if (!userUpdate) {
+                            res.status(404).send({
+                                message: "El docente no ha podido actualizarse."
+                            });
+                        } else {
+                            res.status(200).send({
+                                user: userUpdate
+                            });
+                        }
+                    }
+
+                });
+            }
+        }
+
+    });
+
+}else{
+
+
 
         Docente.findOne({
-            '$and': [{}, { correo: update.correo }]
+            '$and': [{estado: 0}, { correo: update.correo }]
         }, (err, users) => {
             if (err) {
                 res.status(500).send({
-                    message: "Error al Actualizar Usuario"
+                    message: "Error al Actualizar Docente"
                 });
 
             } else {
@@ -231,13 +278,13 @@ function updateDocente(req, res) {
 
                             if (err) {
                                 res.status(500).send({
-                                    message: "Error al actualizar Usuario."
+                                    message: "Error al actualizar docente."
                                 });
 
                             } else {
                                 if (!userUpdate) {
                                     res.status(404).send({
-                                        message: "El usuario no ha podido actualizarse."
+                                        message: "El docente no ha podido actualizarse."
                                     });
                                 } else {
                                     res.status(200).send({
@@ -260,7 +307,7 @@ function updateDocente(req, res) {
                         } else {
                             if (!userUpdate) {
                                 res.status(404).send({
-                                    message: "El usuario no ha podido actualizarse."
+                                    message: "El docente no ha podido actualizarse."
                                 });
                             } else {
                                 res.status(200).send({
@@ -282,7 +329,7 @@ function updateDocente(req, res) {
 
 
     }
-
+}
 
 }
 

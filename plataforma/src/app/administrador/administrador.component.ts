@@ -1076,32 +1076,31 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     this._docenteServices.update_docente(this.datosDocentes, this.estadoClaveDocente).subscribe(
       response => {
-        this.mensajecorrectomodals = "El Docente se ha eliminado correctamente"; // esto puso el tefo chumadod
+        this.contrasenaUpdateDocente='';
+        this.mensajecorrectomodals = response.message; // esto puso el tefo chumadod
         console.log("satisfactoriamenteUpdate");
         this.loading = false;
-
-        if (estado == '0') {
-          this.mensajecorrectomodals = "Los datos del Docente se han modificado satisfactoriamente.";
+         this.mensajecorrectomodals = "Los datos del Docente se han modificado satisfactoriamente.";
           document.getElementById("openModalCorrecto").click();
-        } else {
-          this.mensajecorrectomodals = "La cuenta del Docente  ha sido eliminada.";
-          document.getElementById("openModalCorrecto").click();
-        }
+        
+        
       },
       error => {
+        this.loading =false;
         var errorMessage = <any>error;
         if (errorMessage) {
           console.log(errorMessage);
           try {
             var body = JSON.parse(error._body);
             errorMessage = body.message;
+            this.mensajeerrormodals=errorMessage;
+            document.getElementById("openModalError").click();
           } catch {
-            errorMessage = "No hay conexión intentelo más tarde";
-            this.loading = false;
+            this.mensajeerrormodals="No eliminar, existen materias asignadas al docente";
             document.getElementById("openModalError").click();
           }
-
-          // this.loading =false;
+        
+         
         }
       }
     );
