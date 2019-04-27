@@ -762,7 +762,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         console.log("satisfactoriamente");
         this.loading = false;
         document.getElementById("openModalCorrecto").click();
-        // this.limpiar(1);
+        this.getPeriodoActual();
       },
       error => {
         var errorMessage = <any>error;
@@ -903,7 +903,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.matricula_register.estado = '0';
     this.matricula_register.codigoE = partsE[0];
     this.matricula_register.codigoC = partsC[0];
-    this.matricula_register.periodo = localStorage.getItem("periodoAnoLectivo");
+    this.matricula_register.periodo = this.opcionPeriodoLectivo;
 
 
 
@@ -952,7 +952,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.materia_register.codigoD = partsD[0];
     this.materia_register.codigoC = partsC[0];
     this.materia_register.nombre = this.selectedMateriaAsignacion;
-    this.materia_register.periodo = localStorage.getItem("periodoAnoLectivo");
+    this.materia_register.periodo = this.opcionPeriodoLectivo;
 
     this._materiaServices.registerMateria(this.materia_register).subscribe(
       response => {
@@ -1270,6 +1270,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       console.log("este es el periodo que vino", response.periodo)
       if (response.periodo != undefined) {
         this.opcionPeriodoLectivo = response.periodo[0].periodo;
+        var opcionPeriodoLectivoPartido=this.opcionPeriodoLectivo.split("/");
+        var opcionPeriodoLectivoPartido2=opcionPeriodoLectivoPartido[1].split("-");
+        this.opcionMesInicio=opcionPeriodoLectivoPartido[0];
+        this.opcionAnoFinal=opcionPeriodoLectivoPartido[2];
+        this.opcionMesFinal=opcionPeriodoLectivoPartido2[1];
+        this.opcionAnoInicio=opcionPeriodoLectivoPartido2[0];
+        
+
+        console.log("periodo lectivo construido al cargar",opcionPeriodoLectivoPartido2);
+
 
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
