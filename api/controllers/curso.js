@@ -43,7 +43,7 @@ function saveCurso(req, res) {
                             //
                             curso.codigo="CODC"+count;
                             curso.curso = params.curso;
-                            curso.paralelo = params.paralelo;
+                            curso.paralelo = '"'+params.paralelo+'"';
                             curso.estado="0";
 
                             if (params.curso && params.paralelo) {

@@ -46,7 +46,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   public selectedDocenteAsignacion;
   public selectedCursoAsignacion;
-  public selectedMateriaAsignacion;
+  public selectedMateriaAsignacion="";
   public selectedCursoEliminar;
 
 
@@ -215,7 +215,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public vectorListadoDocentes: any;
   public vectorListadoCursos: any;
   public vectorlistadoMaterias: any;
-
+  public vectorListadoPeriodos: any;
 
   // objeto curso
 
@@ -259,7 +259,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   // construccion de periodo
- 
+
   asignarMesInicio(mesInicio) {
     this.opcionMesInicio = mesInicio;
   }
@@ -269,14 +269,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   }
 
-  asignarMesFinal(mesFinal)
-  {
-    this.opcionMesFinal=mesFinal;
+  asignarMesFinal(mesFinal) {
+    this.opcionMesFinal = mesFinal;
   }
-  asignarAnoFinal(anoFinal)
-  {
-    this.opcionAnoFinal=anoFinal;
-    
+  asignarAnoFinal(anoFinal) {
+    this.opcionAnoFinal = anoFinal;
+
   }
 
   // busquedas
@@ -669,8 +667,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.busquedaAsignacionPeriodo = "no asignar"
     // this.busquedaAsignacion();
     this.ModificarDocente = false;
-    this.ModificarEstudiante=false;
-  
+    this.ModificarEstudiante = false;
+
   }
 
   aparecerEliminarMatricula() {
@@ -684,7 +682,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = false;
     this.getListadoEstudiantes();
     this.ModificarDocente = false;
-    this.ModificarEstudiante=false;
+    this.ModificarEstudiante = false;
 
     // this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
@@ -699,11 +697,11 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-   
+
     this.url2 = '../../assets/imgs/IngresarMatricula.png';
     this.ModificarDocente = false;
-   
-    this.ModificarEstudiante=false;
+
+    this.ModificarEstudiante = false;
 
   }
   apareceIngreseDocente() {
@@ -714,10 +712,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.imagen = false;
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
-  
+
     this.url2 = '../../assets/imgs/IngresarDocente.png';
     this.ModificarDocente = false;
-    this.ModificarEstudiante=false;
+    this.ModificarEstudiante = false;
 
   }
 
@@ -731,9 +729,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarAsignacion = false;
 
     this.url2 = '../../assets/imgs/IngresarEstudiante.png';
- 
+
     this.ModificarDocente = false;
-    this.ModificarEstudiante=false;
+    this.ModificarEstudiante = false;
   }
 
 
@@ -747,9 +745,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
     this.ModificarDocente = false;
-   
-    this.ModificarEstudiante=false;
-   
+
+    this.ModificarEstudiante = false;
+
 
   }
 
@@ -761,11 +759,11 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   asignarPeriodoLectivo() {
 
-    
+
 
     var objPeriodoLectivo =
     {
-      periodo: this.opcionMesInicio+"/"+this.opcionAnoInicio+"-"+this.opcionMesFinal+"/"+this.opcionAnoFinal
+      periodo: this.opcionMesInicio + "/" + this.opcionAnoInicio + "-" + this.opcionMesFinal + "/" + this.opcionAnoFinal
     }
 
     this._administradorService.registerPeriodoLectivoActual(objPeriodoLectivo).subscribe(
@@ -951,51 +949,62 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   onRegisterAsignacion() {
-    let partsD: String[] = new Array();
-    partsD = this.selectedDocenteAsignacion.split(".");
-    console.log("Vamos mijin", partsD[0]);
 
-    let partsC: String[] = new Array();
-    partsC = this.selectedCursoAsignacion.split(".");
-    console.log("Vamos mijin", partsC[0]);
+    try {
+      if(this.selectedMateriaAsignacion!=""){
+      let partsD: String[] = new Array();
+      partsD = this.selectedDocenteAsignacion.split(".");
+      console.log("Vamos mijin", partsD[0]);
 
-    this.loading = true;
-    this.materia_register.estado = '0';
-    this.materia_register.codigoD = partsD[0];
-    this.materia_register.codigoC = partsC[0];
-    this.materia_register.nombre = this.selectedMateriaAsignacion;
-    this.materia_register.periodo = this.opcionPeriodoLectivo;
+      let partsC: String[] = new Array();
+      partsC = this.selectedCursoAsignacion.split(".");
+      console.log("Vamos mijin", partsC[0]);
 
-    this._materiaServices.registerMateria(this.materia_register).subscribe(
-      response => {
-        this.mensajecorrectomodals = "La materia se ha asignado exitosamente.";
-        console.log("satisfactoriamente");
-        this.loading = false;
-        //this.busquedaAsignacion();
-        document.getElementById("openModalCorrecto").click();
-        // this.limpiar(1);
-      },
-      error => {
-        var errorMessage = <any>error;
-        if (errorMessage) {
-          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+      this.loading = true;
+      this.materia_register.estado = '0';
+      this.materia_register.codigoD = partsD[0];
+      this.materia_register.codigoC = partsC[0];
+      this.materia_register.nombre = this.selectedMateriaAsignacion;
+      this.materia_register.periodo = this.opcionPeriodoLectivo;
+
+      this._materiaServices.registerMateria(this.materia_register).subscribe(
+        response => {
+          this.mensajecorrectomodals = "La materia se ha asignado exitosamente.";
+          console.log("satisfactoriamente");
           this.loading = false;
-          document.getElementById("openModalError").click();
-          try {
-            var body = JSON.parse(error._body);
-            errorMessage = body.message;
-            this.loading = false;
-          } catch {
-            errorMessage = "No hay conexión intentelo más tarde";
+          //this.busquedaAsignacion();
+          document.getElementById("openModalCorrecto").click();
+          // this.limpiar(1);
+        },
+        error => {
+          var errorMessage = <any>error;
+          if (errorMessage) {
+            this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
             this.loading = false;
             document.getElementById("openModalError").click();
+            try {
+              var body = JSON.parse(error._body);
+              errorMessage = body.message;
+              this.loading = false;
+            } catch {
+              this.mensajecorrectomodals= "LLena todos los campos";
+              this.loading = false;
+              document.getElementById("openModalError").click();
+            }
+            this.loading = false;
           }
-          this.loading = false;
         }
-      }
-    );
-
-
+      );
+    }else
+    {
+      this.mensajeerrormodals= "No asignado ninguna materia";
+      document.getElementById("openModalError").click();
+    }
+    } catch (err) {
+      console.log("se entro al catch");
+      this.mensajeerrormodals= "Llena todos los campos";
+      document.getElementById("openModalError").click();
+    }
 
   }
 
@@ -1016,7 +1025,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.ModificarDocente = true;
     this.datosDocentes = datosDocente;
     this.listados = false;
-    this.ModificarEstudiante=false;
+    this.ModificarEstudiante = false;
 
   }
 
@@ -1283,15 +1292,15 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       console.log("este es el periodo que vino", response.periodo)
       if (response.periodo != undefined) {
         this.opcionPeriodoLectivo = response.periodo[0].periodo;
-        var opcionPeriodoLectivoPartido=this.opcionPeriodoLectivo.split("/");
-        var opcionPeriodoLectivoPartido2=opcionPeriodoLectivoPartido[1].split("-");
-        this.opcionMesInicio=opcionPeriodoLectivoPartido[0];
-        this.opcionAnoFinal=opcionPeriodoLectivoPartido[2];
-        this.opcionMesFinal=opcionPeriodoLectivoPartido2[1];
-        this.opcionAnoInicio=opcionPeriodoLectivoPartido2[0];
-        
+        var opcionPeriodoLectivoPartido = this.opcionPeriodoLectivo.split("/");
+        var opcionPeriodoLectivoPartido2 = opcionPeriodoLectivoPartido[1].split("-");
+        this.opcionMesInicio = opcionPeriodoLectivoPartido[0];
+        this.opcionAnoFinal = opcionPeriodoLectivoPartido[2];
+        this.opcionMesFinal = opcionPeriodoLectivoPartido2[1];
+        this.opcionAnoInicio = opcionPeriodoLectivoPartido2[0];
 
-        console.log("periodo lectivo construido al cargar",opcionPeriodoLectivoPartido2);
+
+        console.log("periodo lectivo construido al cargar", opcionPeriodoLectivoPartido2);
 
 
       }
@@ -1372,39 +1381,31 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     curso = value.split(" ");
     this.disabledMateriaImpartir = false;
     console.log("value[1]", curso[1]);
-    if (curso[1].indexOf("8VO") != -1) {
+    if (curso[2].indexOf("SUPERIOR") != -1) {
       this.vectorlistadoMaterias = this.arrayOctavo;
-      console.log("entre 8");
+      console.log("entre basico");
     } else {
-      if (curso[1].indexOf("9NO") != -1) {
-        this.vectorlistadoMaterias = this.arrayNoveno;
-        console.log("entre 9");
+      if (curso[1].indexOf("1ER") != -1) {
+        this.vectorlistadoMaterias = this.array1Bach;
+        console.log("entre 1er");
       } else {
-        if (curso[1].indexOf("10MO") != -1) {
-          this.vectorlistadoMaterias = this.arrayDecimo;
-          console.log("entre 10");
+        if (curso[1].indexOf("2DO") != -1) {
+          this.vectorlistadoMaterias = this.array2Bach;
         } else {
-          if (curso[1].indexOf("1ER") != -1) {
-            this.vectorlistadoMaterias = this.array1Bach;
-            console.log("entre 1er");
-          } else {
-            if (curso[1].indexOf("2DO") != -1) {
-              this.vectorlistadoMaterias = this.array2Bach;
-            } else {
-              if (curso[1].indexOf("3ER") != -1) {
-                this.vectorlistadoMaterias = this.array3Bach;
-              }
-            }
+          if (curso[1].indexOf("3ER") != -1) {
+            this.vectorlistadoMaterias = this.array3Bach;
           }
         }
-
       }
-
-
     }
 
-
   }
+
+
+
+
+
+
 
 
 
