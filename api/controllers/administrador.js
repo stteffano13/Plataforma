@@ -149,22 +149,22 @@ function savePeriodoLectivoActual(req, res) {
             });
         } else {
             if (users) {
-               console.log(" esto es lo que voy a buscar de periodo");
- 
+                console.log(" esto es lo que voy a buscar de periodo");
+
                 Periodo.findByIdAndUpdate(users._id, params.periodo, (err, periodoUpdate) => {
-  
+
                     if (err) {
-                      res.status(500).send({ message: "Error al guardar nuevo periodo", err });
-                
+                        res.status(500).send({ message: "Error al guardar nuevo periodo", err });
+
                     } else {
-                      if (!periodoUpdate) {
-                        res.status(404).send({ message: "El periodo no se ha actualizado" });
-                      } else {
-                        res.status(200).send({  message: "El periodo se ha actualizado correctamente"  });
-                      }
+                        if (!periodoUpdate) {
+                            res.status(404).send({ message: "El periodo no se ha actualizado" });
+                        } else {
+                            res.status(200).send({ message: "El periodo se ha actualizado correctamente" });
+                        }
                     }
-                
-                  });
+
+                });
 
             } else {
 
@@ -195,35 +195,57 @@ function savePeriodoLectivoActual(req, res) {
 }
 
 
-function getPeridoLectivoActual(req, res)
-{
+function getPeridoLectivoActual(req, res) {
 
-        var periodo = Periodo.find().sort({$natural:-1}).limit(1).exec((err, periodo) => {
-            if (err) {
-                return res.status(500).send({
-                    message: 'No se han podido obtener sus Viajes'
-                });
-            }
-
-            if (!periodo) {
-                return res.status(200).send({
-                    message: 'No tiene viajes'
-                });
-            }
-
-            return res.status(200).send({
-                periodo:periodo
+    var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
+        if (err) {
+            return res.status(500).send({
+                message: 'No se han podido obtener sus Viajes'
             });
-        });
-    }
+        }
 
+        if (!periodo) {
+            return res.status(200).send({
+                message: 'No tiene viajes'
+            });
+        }
+
+        return res.status(200).send({
+            periodo: periodo
+        });
+    });
+}
+
+
+function getPeridos(req, res) {
+
+    var periodo = Periodo.find().sort({ $natural: -1 }).exec((err, periodo) => {
+        if (err) {
+            return res.status(500).send({
+                message: 'No se han podido obtener sus periodos'
+            });
+        }
+
+        if (!periodo) {
+            return res.status(200).send({
+                message: 'No tiene periodos'
+            });
+        } else {
+       
+            return res.status(200).send({
+                periodo
+            });
+        }
+    });
+}
 
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveAdministrador,
     loginAdministrador,
     savePeriodoLectivoActual,
-    getPeridoLectivoActual
+    getPeridoLectivoActual,
+    getPeridos
 
 
 

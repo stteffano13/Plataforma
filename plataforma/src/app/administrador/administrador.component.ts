@@ -46,7 +46,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   public selectedDocenteAsignacion;
   public selectedCursoAsignacion;
-  public selectedMateriaAsignacion="";
+  public selectedMateriaAsignacion = "";
   public selectedCursoEliminar;
 
 
@@ -103,24 +103,6 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     'Lenguaje y Comunicación',
     "Educación para la Ciudadanía"];
 
-  public arrayNoveno = [
-    " Ciencias Sociales",
-    "Ciencias Naturales",
-    "Informática",
-    "Matemáticas",
-    "Lenguaje y Comunicación",
-    "Educación para la Ciudadanía"
-  ];
-
-  public arrayDecimo = [
-    "Ciencias Sociales",
-    "Ciencias Naturales",
-    "Informática",
-    "Matemáticas",
-    "Lenguaje y Comunicación",
-    "Educación para la Ciudadanía",
-
-  ];
 
   public array1Bach = [
     "Fisica",
@@ -248,6 +230,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.getListadoEstudiantes();
     this.getListadoCursos();
     this.getListadoDocentes();
+    this.getPeriodos();
     this.txtHide = false;
 
 
@@ -292,6 +275,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.listadosMostrarMatriculas = false;
       this.listadosMostrarAsignacion = false;
       this.ModificarDocente = false;
+      this.ModificarEstudiante= false;
       this.listados = true;
 
       this.IngresarDocente = false;
@@ -473,19 +457,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
         codigoE = this.busquedaMatricula.split(".");
 
-        if (this.busquedaMatricula != null && this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
+        if (this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
           console.log("entraste a la busqueda MF1");
           this.listadoMatriculasNueva.push(element);
 
         } else {
-          if (this.buscarMatriculaPeriodo != "no asignado" && this.busquedaMatricula == null && element.periodo == this.buscarMatriculaPeriodo) {
+          if (this.buscarMatriculaPeriodo != "no asignado" && element.periodo == this.buscarMatriculaPeriodo) {
             console.log("entraste a la busqueda MF2");
             this.listadoMatriculasNueva.push(element);
           } else {
-            if (this.buscarMatriculaPeriodo != "no asignado" &&
-              this.busquedaMatricula != null &&
-              element.periodo == this.buscarMatriculaPeriodo &&
-              element.estudiante.codigo == codigoE[0]) {
+            if (element.periodo == this.buscarMatriculaPeriodo && element.estudiante.codigo == codigoE[0]) {
               console.log("entraste a la busqueda MF3");
               this.listadoMatriculasNueva.push(element);
               console.log("entraste a la busqueda MF3 result", this.listadoMatriculasNueva);
@@ -496,7 +477,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
           }
         }
       } else {
-        this.mensajeerrormodals = "Ingresar al menos un parametro de busqueda ";
+        this.mensajeerrormodals = "Ingresar el estudiante a buscar matricula ";
         document.getElementById("openModalError").click();
       }
     });
@@ -513,74 +494,38 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadoAsignacionNueva = [];
     var cont = 0;
 
-    if (this.listadoMaterias != "") {
+    try {
+
+      console.log("entraste a la ultima  busqueda de materias");
+      let codigoD: String[] = new Array();
+
+      codigoD = this.busquedaDocenteAsignacion.split(".");
 
 
-      if ((this.busquedaDocenteAsignacion != "" || this.busquedaDocenteAsignacion != null) && (this.buscarCursoAsignacion != "" || this.buscarCursoAsignacion != null) && this.busquedaAsignacionPeriodo != "no asignado") {
-        console.log("entraste a la ultima  busqueda de materias");
-        let codigoD: String[] = new Array();
-        if (this.busquedaDocenteAsignacion) {
-          codigoD = this.busquedaDocenteAsignacion.split(".");
+      let codigoC: String[] = new Array();
+
+
+      codigoC = this.buscarCursoAsignacion.split(".");
+
+
+      this.listadoMaterias.forEach(element => {
+
+        if (element.curso.codigo == codigoC[0] && element.docente.codigo == codigoD[0] && element.periodo == this.busquedaAsignacionPeriodo) {
+          this.listadoAsignacionNueva.push(element);
+          console.log("entre 3 asignados", cont);
         }
 
-        let codigoC: String[] = new Array();
-
-        if (this.buscarCursoAsignacion) {
-          codigoC = this.buscarCursoAsignacion.split(".");
-        }
-
-        this.listadoMaterias.forEach(element => {
-
-          if (element.curso.codigo == codigoC[0] && element.docente.codigo == codigoD[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0) {
-            this.listadoAsignacionNueva.push(element);
-            console.log("entre 3 asignados", cont);
-          }
-
-        });
-
-
-        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
-
-        this.listadoMaterias.forEach(element => {
-
-          if (element.curso.codigo == codigoC[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0) {
-
-            this.listadoAsignacionNueva.push(element);
-            console.log("entre 2 asignados", cont);
-          }
-
-        });
-        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
-
-        this.listadoMaterias.forEach(element => {
-
-          if (element.docente.codigo == codigoD[0] && element.curso.codigo == codigoC[0] && cont == 0) {
-
-            this.listadoAsignacionNueva.push(element);
-            console.log("entre 2.2 asignados", cont);
-          }
-
-        });
-        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
-        this.listadoMaterias.forEach(element => {
-
-          if (element.docente.codigo == codigoD[0] && element.periodo == this.busquedaAsignacionPeriodo && cont == 0) {
-
-            this.listadoAsignacionNueva.push(element);
-            console.log("entre 2.2 asignados", cont);
-          }
-
-        });
-        if (this.listadoAsignacionNueva.length > 0) { cont = 1; }
-        if (this.listadoAsignacionNueva.length <= 0) { this.listadoAsignacionNueva = []; }
+      });
 
 
 
-      }
-
-
-
+    } catch (err) {
+      this.mensajecorrectomodals = "Es necesario ingresar los 3 parametros de busqueda";
+      this.loading = false;
+      document.getElementById("openModalCorrecto").click();
     }
+
+
   }
 
   // extras validacion
@@ -665,7 +610,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = true;
     this.busquedaAsignacionPeriodo = "no asignar"
-    // this.busquedaAsignacion();
+    this.getPeriodos();
+    this.getListadoDocentes();
+    this.getListadoCursos();
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
 
@@ -681,6 +628,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = true;
     this.listadosMostrarAsignacion = false;
     this.getListadoEstudiantes();
+    this.getPeriodos();
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
 
@@ -900,86 +848,32 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   onRegisterMatricula() {
 
-    try{
-    let partsE: String[] = new Array();
-    partsE = this.selectedEstudiante.split(".");
-    console.log("Vamos mijin", partsE[0]);
-
-    let partsC: String[] = new Array();
-    partsC = this.selectedCurso.split(".");
-    console.log("Vamos mijin", partsC[0]);
-
-
-
-    this.loading = true;
-    this.matricula_register.estado = '0';
-    this.matricula_register.codigoE = partsE[0];
-    this.matricula_register.codigoC = partsC[0];
-    this.matricula_register.periodo = this.opcionPeriodoLectivo;
-
-
-
-    console.log("Esta es el el curso que esta cogiendo", this.curso_register.curso);
-    this._matriculaServices.registerMatricula(this.matricula_register).subscribe(
-      response => {
-        this.mensajecorrectomodals = "Loa matrícula se ha generado exitosamente.";
-        console.log("satisfactoriamente");
-        this.loading = false;
-        this.getListadoCursos();
-        document.getElementById("openModalCorrecto").click();
-        // this.limpiar(1);
-      },
-      error => {
-        var errorMessage = <any>error;
-        if (errorMessage) {
-          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
-          document.getElementById("openModalError").click();
-          try {
-            var body = JSON.parse(error._body);
-            errorMessage = body.message;
-          } catch {
-            errorMessage = "No hay conexión intentelo más tarde";
-            this.loading = false;
-            document.getElementById("openModalError").click();
-          }
-          this.loading = false;
-        }
-      }
-    );
-  } catch(err)
-  {
-    this.mensajeerrormodals = "Llene todos los campos";
-    this.loading = false;
-    document.getElementById("openModalError").click();
-  }
-
-  }
-
-  onRegisterAsignacion() {
-
     try {
-      if(this.selectedMateriaAsignacion!=""){
-      let partsD: String[] = new Array();
-      partsD = this.selectedDocenteAsignacion.split(".");
-      console.log("Vamos mijin", partsD[0]);
+      let partsE: String[] = new Array();
+      partsE = this.selectedEstudiante.split(".");
+      console.log("Vamos mijin", partsE[0]);
 
       let partsC: String[] = new Array();
-      partsC = this.selectedCursoAsignacion.split(".");
+      partsC = this.selectedCurso.split(".");
       console.log("Vamos mijin", partsC[0]);
 
-      this.loading = true;
-      this.materia_register.estado = '0';
-      this.materia_register.codigoD = partsD[0];
-      this.materia_register.codigoC = partsC[0];
-      this.materia_register.nombre = this.selectedMateriaAsignacion;
-      this.materia_register.periodo = this.opcionPeriodoLectivo;
 
-      this._materiaServices.registerMateria(this.materia_register).subscribe(
+
+      this.loading = true;
+      this.matricula_register.estado = '0';
+      this.matricula_register.codigoE = partsE[0];
+      this.matricula_register.codigoC = partsC[0];
+      this.matricula_register.periodo = this.opcionPeriodoLectivo;
+
+
+
+      console.log("Esta es el el curso que esta cogiendo", this.curso_register.curso);
+      this._matriculaServices.registerMatricula(this.matricula_register).subscribe(
         response => {
-          this.mensajecorrectomodals = "La materia se ha asignado exitosamente.";
+          this.mensajecorrectomodals = "Loa matrícula se ha generado exitosamente.";
           console.log("satisfactoriamente");
           this.loading = false;
-          //this.busquedaAsignacion();
+          this.getListadoCursos();
           document.getElementById("openModalCorrecto").click();
           // this.limpiar(1);
         },
@@ -987,14 +881,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
           var errorMessage = <any>error;
           if (errorMessage) {
             this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
-            this.loading = false;
             document.getElementById("openModalError").click();
             try {
               var body = JSON.parse(error._body);
               errorMessage = body.message;
-              this.loading = false;
             } catch {
-              this.mensajecorrectomodals= "LLena todos los campos";
+              errorMessage = "No hay conexión intentelo más tarde";
               this.loading = false;
               document.getElementById("openModalError").click();
             }
@@ -1002,14 +894,68 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
           }
         }
       );
-    }else
-    {
-      this.mensajeerrormodals= "No asignado ninguna materia";
+    } catch (err) {
+      this.mensajeerrormodals = "Llene todos los campos";
+      this.loading = false;
       document.getElementById("openModalError").click();
     }
+
+  }
+
+  onRegisterAsignacion() {
+
+    try {
+      if (this.selectedMateriaAsignacion != "") {
+        let partsD: String[] = new Array();
+        partsD = this.selectedDocenteAsignacion.split(".");
+        console.log("Vamos mijin", partsD[0]);
+
+        let partsC: String[] = new Array();
+        partsC = this.selectedCursoAsignacion.split(".");
+        console.log("Vamos mijin", partsC[0]);
+
+        this.loading = true;
+        this.materia_register.estado = '0';
+        this.materia_register.codigoD = partsD[0];
+        this.materia_register.codigoC = partsC[0];
+        this.materia_register.nombre = this.selectedMateriaAsignacion;
+        this.materia_register.periodo = this.opcionPeriodoLectivo;
+
+        this._materiaServices.registerMateria(this.materia_register).subscribe(
+          response => {
+            this.mensajecorrectomodals = "La materia se ha asignado exitosamente.";
+            console.log("satisfactoriamente");
+            this.loading = false;
+            //this.busquedaAsignacion();
+            document.getElementById("openModalCorrecto").click();
+            // this.limpiar(1);
+          },
+          error => {
+            var errorMessage = <any>error;
+            if (errorMessage) {
+              this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+              this.loading = false;
+              document.getElementById("openModalError").click();
+              try {
+                var body = JSON.parse(error._body);
+                errorMessage = body.message;
+                this.loading = false;
+              } catch {
+                this.mensajecorrectomodals = "LLena todos los campos";
+                this.loading = false;
+                document.getElementById("openModalError").click();
+              }
+              this.loading = false;
+            }
+          }
+        );
+      } else {
+        this.mensajeerrormodals = "No asignado ninguna materia";
+        document.getElementById("openModalError").click();
+      }
     } catch (err) {
       console.log("se entro al catch");
-      this.mensajeerrormodals= "Llena todos los campos";
+      this.mensajeerrormodals = "Llena todos los campos";
       document.getElementById("openModalError").click();
     }
 
@@ -1076,31 +1022,31 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     this._docenteServices.update_docente(this.datosDocentes, this.estadoClaveDocente).subscribe(
       response => {
-        this.contrasenaUpdateDocente='';
+        this.contrasenaUpdateDocente = '';
         this.mensajecorrectomodals = response.message; // esto puso el tefo chumadod
         console.log("satisfactoriamenteUpdate");
         this.loading = false;
-         this.mensajecorrectomodals = "Los datos del Docente se han modificado satisfactoriamente.";
-          document.getElementById("openModalCorrecto").click();
-        
-        
+        this.mensajecorrectomodals = "Los datos del Docente se han modificado satisfactoriamente.";
+        document.getElementById("openModalCorrecto").click();
+
+
       },
       error => {
-        this.loading =false;
+        this.loading = false;
         var errorMessage = <any>error;
         if (errorMessage) {
           console.log(errorMessage);
           try {
             var body = JSON.parse(error._body);
             errorMessage = body.message;
-            this.mensajeerrormodals=errorMessage;
+            this.mensajeerrormodals = errorMessage;
             document.getElementById("openModalError").click();
           } catch {
-            this.mensajeerrormodals="No eliminar, existen materias asignadas al docente";
+            this.mensajeerrormodals = "No eliminar, existen materias asignadas al docente";
             document.getElementById("openModalError").click();
           }
-        
-         
+
+
         }
       }
     );
@@ -1132,12 +1078,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this._estudianteService.update_estudiante(this.datosEstudiantes, this.estadoClaveEstudiante).subscribe(
       response => {
         this.loading = false;
-      this.contrasenaUpdateEstudiante='';
+        this.contrasenaUpdateEstudiante = '';
         this.mensajecorrectomodals = response.message; // esto puso el tefo chumadod
         console.log("satisfactoriamenteUpdate");
         this.loading = false;
         document.getElementById("openModalCorrecto").click();
-        
+
       },
       error => {
         this.loading = false;
@@ -1147,10 +1093,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
           try {
             var body = JSON.parse(error._body);
             errorMessage = body.message;
-            this.mensajeerrormodals=errorMessage;
+            this.mensajeerrormodals = errorMessage;
             document.getElementById("openModalError").click();
           } catch {
-            this.mensajeerrormodals="No eliminar, existen matriculas asignadas al estudiante";
+            this.mensajeerrormodals = "No eliminar, existen matriculas asignadas al estudiante";
             document.getElementById("openModalError").click();
           }
 
@@ -1309,6 +1255,23 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   }
 
+
+
+
+  getPeriodos() {
+
+
+    this._administradorService.getPeriodos().subscribe(response => {
+      console.log("este es el periodo que vino para llenar vector", response.periodo)
+      if (response.periodo != undefined) {
+        this.vectorListadoPeriodos = response.periodo;
+
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
   // obtener lsitados a vectores
   getListadoEstudiantes() {
 

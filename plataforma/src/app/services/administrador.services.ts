@@ -53,6 +53,13 @@ getPeriodoActual() {
 }
 
 
+getPeriodos() {
+
+  let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+  return this._http
+      .get(this.url + "getPeriodos", { headers: headers })
+      .map(res => res.json());
+}
 
 
 

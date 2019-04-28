@@ -10,6 +10,7 @@ api.post('/registerAdministrador', AdministradorController.saveAdministrador);
 api.post('/loginAdministrador', AdministradorController.loginAdministrador);
 api.post('/registerPeriodoActual', AdministradorController.savePeriodoLectivoActual);
 api.get('/getPeriodoActual', AdministradorController.getPeridoLectivoActual);
+api.get('/getPeriodos', AdministradorController.getPeridos);
 //api.put('/update-user/:id', md_auth.ensureAuth, UserController.updateUser);
 //pruebas
 
