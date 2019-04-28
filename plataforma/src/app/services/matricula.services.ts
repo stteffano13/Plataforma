@@ -38,6 +38,18 @@ export class MatriculaService {
 
     }
 
+    buscarEstudianteMatricula(buscar) {
+        console.log("dentro de buscar docentes" + buscar);
+        let json = JSON.stringify(buscar);
+        let params = json;
+        //console.log(params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http.get(this.url + "buscarEstudianteMatricula/" + buscar, { headers: headers })
+            .map(res => res.json());
+
+    }
+
+    
 
     update_matricula(matricula_to_update) {
 

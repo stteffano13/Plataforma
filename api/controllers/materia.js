@@ -5,6 +5,7 @@ var moment = require('moment');
 var Materia = require('../models/materia');
 var Docente = require('../models/docente');
 var Curso = require('../models/curso'); //importar el modelo del usuario  o lo que son las clases comunes
+var Periodo = require('../models/periodo'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 
 
@@ -210,55 +211,50 @@ function getListadoMioMaterias(req, res) {
         });
     } else {
 
-
-        var materia = Materia.find({
-            '$and': [{ docente: busqueda }, { estado: '0' }]
-        }).populate({
-            path: 'curso'
-        }).exec((err, materias) => {
+        var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
             if (err) {
                 return res.status(500).send({
                     message: 'No se han podido obtener sus Viajes'
                 });
             }
-
-            if (!materias) {
+    
+            if (!periodo) {
                 return res.status(200).send({
                     message: 'No tiene viajes'
                 });
-            } else {
-                let vector = materias;
+            }else{
 
-                console.log('<<<<<< MI VECTOR ANTES DE LA ORDENADA >>>>>>', vector);
-                this.cont = 0;
-                vector.forEach(() => {
-                    this.cont += 1;
-                });
-                console.log(this.cont);
-                for (let k = 0; k < this.cont - 1; k++) {
-                    //console.log('mi FOR', vector[k]);
-                    for (let f = 0; f < (this.cont - 1) - k; f++) {
-                        // console.log('mi FOR', vector[f]);
-                        if (vector[f].periodo.localeCompare(vector[f + 1].periodo) > 0) {
-                            let aux;
-                            aux = vector[f];
-                            vector[f] = vector[f + 1];
-                            vector[f + 1] = aux;
-                        }
+                console.log("todo ready entre a buscar",periodo[0].periodo);
+                var materia = Materia.find({
+                    '$and': [{ docente: busqueda }, { estado: '0' },{periodo: periodo[0].periodo}]
+                }).populate({
+                    path: 'curso'
+                }).exec((err, materias) => {
+                    if (err) {
+                        return res.status(500).send({
+                            message: 'No se han podido obtener sus Viajes'
+                        });
                     }
-                }
-                console.log("<<<<<< MI VECTOR DESPUES DE LA ORDENADA >>>>>>", vector);
-                materias = vector;
-                console.log("periodos mayores", materias);
-
-                return res.status(200).send({
-            
-                    materias
-                    
         
+                    if (!materias) {
+                        return res.status(200).send({
+                            message: 'No tiene viajes'
+                        });
+                    } else {
+                        
+                        return res.status(200).send({
+                    
+                            materias
+                            
+                
+                        });
+                    }
                 });
             }
         });
+
+
+    
     }
        
     }

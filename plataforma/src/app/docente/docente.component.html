@@ -14,7 +14,7 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
-<body >
+<body>
 
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -25,28 +25,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-     
-    
+
+
       <ul class="navbar-nav ml-auto">
-        <li><p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
         <li>
-          <select (change)="asignarPeriodoLectivo($event.target.value)" class=" custom-select " required>
-            <option disabled selected hidde [value]="opcionPeriodoLectivo" selected>{{opcionPeriodoLectivo}} </option>
-            <option value="2017-2018">2017-2018</option>
-            <option value="2018-2019">2018-2019</option>
-            <option value="2019-2020">2019-2020 </option>
-            <option value="2020-2021">2020-2021</option>
-            <option value="2021-2022">2021-2022</option>
-            <option value="2022-2021">2022-2021</option>
-            <option value="2021-2022">2021-2022</option>
-            <option value="2022-2023">2022-2023</option>
-            <option value="2023-2024">2023-2024</option>
-            <option value="2024-2025">2024-2025</option>
-            <option value="2025-2026">2025-2026</option>
-            <option value="2026-2027">2026-2027</option>
-            <option value="2028-2029">2028-2029</option>
-            <option value="2029-2030">2029-2030</option>
+          <p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </p>
+        </li>
+        <li>
+          <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
+              <option [value]="" selected></option>
+            <option *ngFor="let oneDoor of vectorListadoMisMaterias" value="{{oneDoor.curso._id}}">{{oneDoor.nombre}} {{oneDoor.curso.curso}}</option>
           </select>
 
 
@@ -55,7 +44,7 @@
         <!-- ====================================================       Notificaciones  INGRESAR PARALELO ============================================-->
 
 
-        <li class="nav-item dropdown">
+        <!--  <li class="nav-item dropdown">
           <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" data-toggle="modal" aria-haspopup="true"
             aria-expanded="false" data-target="#ModalIngresarParalelo">
             <i class="fa fa-fw fa-list-alt"></i>
@@ -67,12 +56,12 @@
 
             </span>
           </a>
-        </li>
+        </li>-->
 
         <!-- ====================================================       Notificaciones  ELIMINAR  PARALELO ============================================-->
 
 
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalEliminarParalelo" data-toggle="modal" aria-haspopup="true"
             aria-expanded="false" data-target="#ModalEliminarParalelo">
             <i class="fa fa-fw fa-list-alt"></i>
@@ -84,14 +73,14 @@
 
             </span>
           </a>
-        </li>
+        </li>-->
 
 
         <li class="nav-item">
 
           <!-- ====================================================       BUSCADOR UNIVERSAL  ============================================-->
 
-          <form class="form-inline my-2 my-lg-0 mr-lg-2">
+          <!-- <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
               <input title="Buscardor de usuarios, choferes y automóviles" class="form-control" type="text" placeholder="Buscar" #Buscar="ngModel"
                 [(ngModel)]="buscar" name="buscar">
@@ -101,7 +90,7 @@
                 </button>
               </span>
             </div>
-          </form>
+          </form>-->
         </li>
         <li class="nav-item" title="Salir del Sistema Montecarlo VIP">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
@@ -120,83 +109,83 @@
 
       <!--Listado -->
 
-  
+
       <!-- ====================================================    Tabla para Notas ============================================-->
-      
 
 
-      <table class="table table-hover table-bordered table-responsive"  style="margin-top: 10%; font-size: 80% ">
+
+      <table class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ">
         <thead>
           <tr style="background-color: #343a40; align-content: center;">
             <th style="color: white; padding-top: 3%" scope="col">#</th>
-            
+
             <th style="color: white; " scope="col">Apellidos y Nombres</th>
-            <th style="color: white" scope="col"  class="verticalText" >Insumo 1 </th>
-            <th style="color: white" scope="col"class="verticalText" >Insumo 2 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 3 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 4 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 5 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 6 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 7 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 8 </th>
-            <th style="color: white" scope="col" class="verticalText" >80% </th>
-            <th style="color: white" scope="col" class="verticalText" >Examen</th>
-            <th style="color: white" scope="col" class="verticalText" >20%</th>
-            <th style="color: white" scope="col" class="verticalText" >Promedio</th>
-  
-            <th style="color: white" scope="col"  class="verticalText" >Insumo 1 </th>
-            <th style="color: white" scope="col"class="verticalText" >Insumo 2 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 3 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 4 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 5 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 6 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 7 </th>
-            <th style="color: white" scope="col" class="verticalText" >Insumo 8 </th>
-            <th style="color: white" scope="col" class="verticalText" >80% </th>
-            <th style="color: white" scope="col" class="verticalText" >Examen</th>
-            <th style="color: white" scope="col" class="verticalText" >20%</th>
-            <th style="color: white" scope="col" class="verticalText" >Promedio</th>
-            <th style="color: white" scope="col" class="verticalText" >Promedio periodo</th>
-            <th style="color: white" scope="col" class="verticalText" >Examen Supletorio</th>
-            <th style="color: white" scope="col" class="verticalText" >Examen Remedial</th>
-            <th style="color: white" scope="col" class="verticalText" >Examen Gracia</th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 7 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 8 </th>
+            <th style="color: white" scope="col" class="verticalText">80% </th>
+            <th style="color: white" scope="col" class="verticalText">Examen</th>
+            <th style="color: white" scope="col" class="verticalText">20%</th>
+            <th style="color: white" scope="col" class="verticalText">Promedio</th>
+
+            <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 7 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 8 </th>
+            <th style="color: white" scope="col" class="verticalText">80% </th>
+            <th style="color: white" scope="col" class="verticalText">Examen</th>
+            <th style="color: white" scope="col" class="verticalText">20%</th>
+            <th style="color: white" scope="col" class="verticalText">Promedio</th>
+            <th style="color: white" scope="col" class="verticalText">Promedio periodo</th>
+            <th style="color: white" scope="col" class="verticalText">Examen Supletorio</th>
+            <th style="color: white" scope="col" class="verticalText">Examen Remedial</th>
+            <th style="color: white" scope="col" class="verticalText">Examen Gracia</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+            <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index">
             <th scope="row">1</th>
-            <td></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-            <td id="tdfila" ><input id="tdboton" type="text"></td>
-          
-            
-            
+            <td>{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><input id="tdboton" type="text"></td>
+
+
+
           </tr>
         </tbody>
       </table>
@@ -255,7 +244,7 @@
               <option value="3ER AÑO DE BACHILLERATO">3ER AÑO DE BACHILLERATO</option>
             </select>
 
-           
+
           </div>
           <div class="modal-footer">
 

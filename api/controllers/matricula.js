@@ -5,6 +5,7 @@ var moment = require('moment');
 var Matricula = require('../models/matricula');
 var Estudiante = require('../models/estudiante');
 var Curso = require('../models/curso'); //importar el modelo del usuario  o lo que son las clases comunes
+var Periodo = require('../models/periodo'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 var path = require('path');
 var fs = require('fs');
@@ -81,7 +82,7 @@ function guardarSegundo(idE, idC, params, res) {
     matricula = new Matricula();
     //
     Matricula.findOne({
-     '$and': [{estado:"0"},{ estudiante: idE._id }, { periodo: params.periodo  }]
+        '$and': [{ estado: "0" }, { estudiante: idE._id }, { periodo: params.periodo }]
     }, (err, users) => {
         if (err) {
             res.status(500).send({
@@ -218,34 +219,95 @@ function busquedaMatriculas(req, res) {
 function updateMatricula(req, res) {
     var update = req.body;
     var messageId = req.params.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
-  
-  console.log("antes de eliminar matricula", messageId);
-  
+
+    console.log("antes de eliminar matricula", messageId);
+
     var update = req.body;
-  
-  
+
+
     Matricula.findByIdAndUpdate(messageId, update, (err, matriculaUpdate) => {
-  
-      if (err) {
-        res.status(500).send({ message: "Error al eliminar la matricula", err });
-  
-      } else {
-        if (!matriculaUpdate) {
-          res.status(404).send({ message: "La matricula no se ha actualizado" });
+
+        if (err) {
+            res.status(500).send({ message: "Error al eliminar la matricula", err });
+
         } else {
-          res.status(200).send({  message: "La matricula se ha actualizado correctamente"  });
+            if (!matriculaUpdate) {
+                res.status(404).send({ message: "La matricula no se ha actualizado" });
+            } else {
+                res.status(200).send({ message: "La matricula se ha actualizado correctamente" });
+            }
         }
-      }
-  
+
     });
-  }
-  
-  
+}
+
+
+
+
+function getEstudiantesMatriculas(req, res) {
+    var busqueda = req.params.busqueda;
+    console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+
+
+        var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
+            }
+
+            if (!periodo) {
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
+            } else {
+           console.log(periodo);
+                var matriculas = Matricula.find({
+                    '$and': [{
+                        estado: '0'
+                    }, { curso: busqueda },{periodo:periodo[0].periodo}]
+                }).populate({
+                    path: 'estudiante'
+                }).populate({
+                    path: 'curso'
+                }).exec((err, matriculas) => {
+                    if (err) {
+                        return res.status(500).send({
+                            message: 'No se han podido obtener sus Viajes'
+                        });
+                    }
+
+                    if (!matriculas) {
+                        return res.status(200).send({
+                            message: 'No tiene viajes'
+                        });
+                    }
+
+                    return res.status(200).send({
+                        matriculas
+                    });
+                });
+
+            }
+
+
+
+        });
+
+    }
+}
+
 
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveMatricula,
     busquedaMatriculas,
-    updateMatricula
+    updateMatricula,
+    getEstudiantesMatriculas
 
 };
