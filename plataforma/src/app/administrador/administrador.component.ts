@@ -1215,11 +1215,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
       this._cursoServices.update_curso(this.objCurso).subscribe(
         response => {
-          this.mensajecorrectomodals = "El curso se ha eliminado correctamente"; // esto puso el tefo chumadod
-          console.log("satisfactoriamenteUpdate");
-          this.loading = false;
-
-          this.mensajecorrectomodals = "El curso  ha sido eliminado.";
+          this.mensajecorrectomodals = response.message; // esto puso el tefo chumadod
           this.selectedCursoEliminar = "";
           this.getListadoCursos();
           document.getElementById("openModalCorrecto").click();

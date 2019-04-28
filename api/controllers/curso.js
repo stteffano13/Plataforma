@@ -3,6 +3,8 @@
 var bcrypt = require('bcrypt-nodejs');
 
 var Curso = require('../models/curso'); //importar el modelo del usuario  o lo que son las clases comunes
+var Materia = require('../models/materia'); //importar el modelo del usuario  o lo que son las clases comunes
+var Matricula = require('../models/matricula'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
 
 
@@ -118,18 +120,18 @@ function updateCurso(req, res) {
   
     var messageId = req.body.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
   
-  console.log("antes de eliminar matricula", req.body.id);
+  console.log("antes de eliminar el curso", req.body.id);
 
-  var message = Curso.find({codigo: messageId}).exec((err, curso) => {
+  var message = Curso.find({'$and':[{codigo: messageId},{estado: 0}]}).exec((err, curso) => {
     if (err) {
         return res.status(500).send({
-            message: 'No se ha podido obtener las ultimas ofertas'
+            message: 'No se ha podido obtener el curso'
         });
     }
 
     if (!curso) {
         return res.status(200).send({
-            message: 'No tiene ofertas'
+            message: 'No tiene registrado este curso'
         });
     }else{
 
@@ -138,20 +140,53 @@ function updateCurso(req, res) {
 
         console.log(curso[0]._id);
 
-        Curso.findByIdAndUpdate(curso[0]._id, curso[0], (err, cursoUpdate) => {
+        Materia.findOne({curso:curso[0]._id}, (err, materiaupdate) => {
   
             if (err) {
               res.status(500).send({ message: "Error al eliminar el curso", err });
         
             } else {
-              if (!cursoUpdate) {
-                res.status(404).send({ message: "El  curso no  se ha actualizado" });
+              if (!materiaupdate) {
+                Matricula.findOne({curso: curso[0]._id}, (err, matricula) => {
+  
+                    if (err) {
+                      res.status(500).send({ message: "Error al eliminar el curso", err });
+                
+                    } else {
+                      if (!matricula) {
+                          console.log("ya vamos a ver ", matricula);
+                       
+                        Curso.findByIdAndUpdate(curso[0]._id, curso[0], (err, cursoUpdate) => {
+  
+                            if (err) {
+                              res.status(500).send({ message: "Error al eliminar el curso", err });
+                        
+                            } else {
+                              if (!cursoUpdate) {
+                                res.status(404).send({ message: "El  curso no  se ha actualizado" });
+                              } else {
+                                res.status(200).send({  message: "El curso se ha actualizado correctamente"  });
+                              }
+                            }
+                        
+                          });
+
+                      } else {
+                        res.status(200).send({  message: "No eliminar, el curso esta asignado a Matriculas"  });
+                      }
+                    }
+                
+                  });
+               
               } else {
-                res.status(200).send({  message: "El curso se ha actualizado correctamente"  });
+                res.status(200).send({  message: "No eliminar, el curso esta asignado a Materias"  });
               }
             }
         
           });
+
+        
+
 
         }
 });
