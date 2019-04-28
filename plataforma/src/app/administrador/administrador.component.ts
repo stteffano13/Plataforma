@@ -1235,8 +1235,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
     this._administradorService.getPeriodoActual().subscribe(response => {
-      console.log("este es el periodo que vino", response.periodo)
-      if (response.periodo != undefined) {
+    
+      if (response.periodo[0] != undefined) {
         this.opcionPeriodoLectivo = response.periodo[0].periodo;
         var opcionPeriodoLectivoPartido = this.opcionPeriodoLectivo.split("/");
         var opcionPeriodoLectivoPartido2 = opcionPeriodoLectivoPartido[1].split("-");
@@ -1249,6 +1249,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         console.log("periodo lectivo construido al cargar", opcionPeriodoLectivoPartido2);
 
 
+      }else{
+        this.mensajeerrormodals = "Antes de utilizar el sistema defina el periodo actual ";
+        document.getElementById("openModalError").click()
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -1262,11 +1265,14 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
     this._administradorService.getPeriodos().subscribe(response => {
-      console.log("este es el periodo que vino para llenar vector", response.periodo)
+   
       if (response.periodo != undefined) {
         this.vectorListadoPeriodos = response.periodo;
 
-
+      }else
+      {
+        this.mensajeerrormodals = "NO existen periodos ";
+      document.getElementById("openModalError").click();
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
