@@ -276,6 +276,7 @@
 
         <!-- ====================================================         Listado Docentes ============================================-->
         <div *ngIf="listadoD" class="container">
+          <br><br><br>
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
               <h3>LISTADO DOCENTES
@@ -352,8 +353,8 @@
       </div>
       <!-- ====================================================    Listado Matriculas ============================================-->
       <div class="pre-scrollable" style="max-height: 100%; " *ngIf="listadosMostrarMatriculas">
-
-        <div class="row container" style="text-align: center; margin-left: 14%">
+          <br>
+        <div class="row container" style="text-align: center; margin-left: 10%">
           <div class="col-md-4 ">
             <label>Seleccione el periodo académico </label>
             <select (change)="buscarMatriculas($event.target.value)" class=" custom-select " required>
@@ -433,7 +434,7 @@
 
       <!-- ====================================================  Listado Asignacion ============================================-->
       <div class="pre-scrollable" style="max-height: 100%; " *ngIf="listadosMostrarAsignacion">
-
+          <br>
         <div class="row" style="text-align: center; margin-left: 5%">
 
           <div class="col-md-4 ">
@@ -524,8 +525,10 @@
       </div>
       <!-- ====================================================      Formulario de Ingresar ASIGNACION ============================================-->
 
-      <div class="container">
-        <form #IngresarAsignacion="ngForm" *ngIf="IngresarAsignacion" novalidate>
+      <div class="container"  *ngIf="IngresarAsignacion">
+          <br>
+          <h5  style="color: blue">Nueva asignación de materias</h5>
+        <form #IngresarAsignacion="ngForm" novalidate>
           <div class="row">
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarAsignacion.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
@@ -600,8 +603,10 @@
 
       <!-- ====================================================       Formulario de Ingresar MATRICULA ============================================-->
 
-      <div class="container">
-        <form #IngresarMatricula="ngForm" *ngIf="IngresarMatricula" novalidate>
+      <div class="container" *ngIf="IngresarMatricula">
+        <br>
+          <h5  style="color: blue">Nueva matricula</h5>
+        <form #IngresarMatricula="ngForm"  novalidate>
           <div class="row">
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarMatricula.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
@@ -664,8 +669,10 @@
 
       <!-- ====================================================     Formulario de INGRESAR DOCENTE ============================================-->
 
-      <div class="container">
-        <form #IngresarDocente="ngForm" (ngSubmit)="onRegisterDocente()" *ngIf="IngresarDocente" novalidate>
+      <div class="container" *ngIf="IngresarDocente">
+          <br>
+          <h5  style="color: blue">Ingresar nuevo docente</h5>
+        <form #IngresarDocente="ngForm" (ngSubmit)="onRegisterDocente()"  novalidate>
           <div class="row">
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarDocente.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
@@ -756,8 +763,10 @@
 
       <!-- ====================================================      Formulario de MODIFICAR DOCENTE ============================================-->
 
-      <div class="container">
-        <form #ModificarUsuario="ngForm" *ngIf="ModificarDocente">
+      <div class="container" *ngIf="ModificarDocente">
+          <br>
+          <h5  style="color: blue">Modificar docente</h5>
+        <form #ModificarUsuario="ngForm" >
           <div class="row">
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarDocente.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
@@ -863,8 +872,10 @@
 
       <!-- ====================================================      Formulario de INGRESAR ESTUDIANTE ============================================-->
 
-      <div class="container">
-        <form #IngresarEstudiante="ngForm" (ngSubmit)="onRegisterEstudiante()" *ngIf="IngresarEstudiante">
+      <div class="container"  *ngIf="IngresarEstudiante">
+          <br>
+          <h5  style="color: blue">Ingresar nuevo estudiante</h5>
+        <form #IngresarEstudiante="ngForm" (ngSubmit)="onRegisterEstudiante()">
           <div class="row">
             <div class="col-lg-12">
               <img [src]="url2" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
@@ -965,8 +976,10 @@
 
 
       <!-- ====================================================      Formulario de MODIFICAR ESTUDIANTE ============================================-->
-      <div class="container">
-        <form #ModificarEstudiante="ngForm" *ngIf="ModificarEstudiante">
+      <div class="container" *ngIf="ModificarEstudiante">
+          <br>
+          <h5  style="color: blue">Modificar estudiantes</h5>
+        <form #ModificarEstudiante="ngForm" >
           <div class="row">
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarEstudiante.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
