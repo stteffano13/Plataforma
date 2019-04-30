@@ -17,7 +17,6 @@ export class DocenteComponent implements OnInit {
   public loading;
   public periodoLectivoActual;
   public listadoEstudianteMatriculas;
-
   public vectorListadoMisMaterias;
   // vectores
 
@@ -25,8 +24,22 @@ export class DocenteComponent implements OnInit {
   ngOnInit() {
     this.getListadoMisMaterias();
     this.getPeriodoActual();
+   
+
+
   }
 
+  pruebaclick()
+  {
+    for(let i=0; i< 2; i++){
+    document.getElementById("tdbuttonGuardar"+i).click();
+  }
+  }
+  prueba(value) {
+    console.log("prueba", value);
+    var hola= document.getElementById("param1").textContent;
+    console.log("falta en el hola",hola);
+  }
 
   getListadoMisMaterias() {
 

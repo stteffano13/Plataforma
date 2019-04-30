@@ -153,8 +153,10 @@
         </thead>
         <tbody>
             <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index">
-            <th scope="row">1</th>
+            <th scope="row">{{i}}</th>
             <td>{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
+            <td id="tdfila"><input id="param{{i}}" type="text" value="10"></td>
+            <td id="tdfila"><input id="tdboton" type="text " ></td>
             <td id="tdfila"><input id="tdboton" type="text"></td>
             <td id="tdfila"><input id="tdboton" type="text"></td>
             <td id="tdfila"><input id="tdboton" type="text"></td>
@@ -181,15 +183,14 @@
             <td id="tdfila"><input id="tdboton" type="text"></td>
             <td id="tdfila"><input id="tdboton" type="text"></td>
             <td id="tdfila"><input id="tdboton" type="text"></td>
-            <td id="tdfila"><input id="tdboton" type="text"></td>
-            <td id="tdfila"><input id="tdboton" type="text"></td>
+            <td id="tdfila"><button id="tdbuttonGuardar{{i}}" type="button" (click)="prueba(listado)">hola</button> </td>
 
 
 
           </tr>
         </tbody>
       </table>
-<button> Guardar el registro de notas</button>
+<button (click)="pruebaclick()"> Guardar el registro de notas</button>
     </div>
 
 
