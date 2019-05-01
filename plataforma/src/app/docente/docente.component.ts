@@ -127,7 +127,7 @@ export class DocenteComponent implements OnInit {
   {
     this._notaService.registerNota(this.object).subscribe(
       response => {
-        this.mensajecorrectomodals = "Los datos del Curso se han registrado satisfactoriamente.";
+        this.mensajecorrectomodals = response.message;
         console.log("satisfactoriamente");
         this.loading = false;
         document.getElementById("openModalCorrecto").click();
