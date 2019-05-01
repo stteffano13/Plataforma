@@ -2,8 +2,8 @@
 var Nota = require('../models/nota');
 
 function saveNotas(req, res) {
-    //console.log("Estoy guardadno mensjae no guarda latitud", req.body);
-    var params = req.body;
+    console.log("Estoy trayendo objetos", req.body);
+  /* var params = req.body;
   
     if (!req.user.sub || !params.receiver) {
       //console.log("entre dentro jaja huevadas");
@@ -56,7 +56,7 @@ function saveNotas(req, res) {
       return res.status(200).send({
         nota: notaStorage
       });
-    });
+    });*/
   }
   module.exports = {          // para exportar todas las funciones de este modulo
 

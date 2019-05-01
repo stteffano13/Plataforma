@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MateriaService } from '../services/materia.services';
 import { MatriculaService } from '../services/matricula.services';
 import { AdministradorService } from '../services/administrador.services';
+import { NotaService } from '../services/nota.services';
+import { Nota } from '../models/nota';
 
 @Component({
   selector: 'app-docente',
@@ -11,34 +13,45 @@ import { AdministradorService } from '../services/administrador.services';
 export class DocenteComponent implements OnInit {
 
 
-  constructor(private _materiaService: MateriaService, private _administradorService: AdministradorService, private _matriculaServices: MatriculaService) { }
+  constructor(private _materiaService: MateriaService,
+     private _administradorService: AdministradorService, 
+     private _matriculaServices: MatriculaService,
+     private _notaService:NotaService) { }
 
 
   public loading;
   public periodoLectivoActual;
   public listadoEstudianteMatriculas;
   public vectorListadoMisMaterias;
+  public obj: Nota;
+  public mensajecorrectomodals;
+  public mensajeerrormodals;
+
   // vectores
 
+  
+  public object = [];
 
   ngOnInit() {
     this.getListadoMisMaterias();
     this.getPeriodoActual();
    
-
-
   }
 
-  pruebaclick()
-  {
-    for(let i=0; i< 2; i++){
-    document.getElementById("tdbuttonGuardar"+i).click();
+  pruebaclick() {
+    for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
+      document.getElementById("tdbuttonGuardar" + i).click();
+      console.log(this.object);
+    }
   }
-  }
-  prueba(value) {
-    console.log("prueba", value);
-    var hola= document.getElementById("param1").textContent;
-    console.log("falta en el hola",hola);
+
+
+  prueba(value, i) {
+    console.log("antes de mandar la materia es",this.vectorListadoMisMaterias)
+    this.object[i].estudiante=value.estudiante._id;
+    this.object[i].materia=this.vectorListadoMisMaterias[0]._id;
+    this.object[i].periodo=this.periodoLectivoActual;
+
   }
 
   getListadoMisMaterias() {
@@ -78,6 +91,11 @@ export class DocenteComponent implements OnInit {
         console.log("satisfactoriamente matriculas", response.matriculas);
 
         this.listadoEstudianteMatriculas = response.matriculas;
+        for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
+
+          this.object.push(this.obj = new Nota("","","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+    
+        }
 
         this.loading = false;
 
@@ -103,5 +121,34 @@ export class DocenteComponent implements OnInit {
 
     );
 
+  }
+
+  registroNotas()
+  {
+    this._notaService.registerNota(this.object).subscribe(
+      response => {
+        this.mensajecorrectomodals = "Los datos del Curso se han registrado satisfactoriamente.";
+        console.log("satisfactoriamente");
+        this.loading = false;
+        document.getElementById("openModalCorrecto").click();
+        // this.limpiar(1);
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+          document.getElementById("openModalError").click();
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          this.loading = false;
+        }
+      }
+    );
   }
 }
