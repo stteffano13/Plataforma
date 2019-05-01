@@ -9,15 +9,15 @@ function saveNotas(req, res) {
 
   paramsi.forEach(params => {
 
-    Nota.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo }] }, (err, users) => {
+    Nota.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo }] }, (err, notas) => {
       if (err) {
         res.status(500).send({
           message: "Error al guardar Curso"
         });
       } else {
-        if (users) {
+        if (notas) {
           cont2++;
-          updateNotasFin(params, res, cont2, paramsi);
+          updateNotasFin(notas, params, res, cont2, paramsi);
 
 
         } else {
@@ -91,14 +91,15 @@ function saveNotas2(params, res, cont, paramsi) {
 }
 
 
- function updateNotasFin(params, res, cont, paramsi)
+ function updateNotasFin(notas, params, res, cont, paramsi)
 {
-  console.log("update", params)
+  console.log("update", notas._id)
+  params._id=notas._id;
    Nota.findByIdAndUpdate(params._id, params, (err, notaUpdate) => {
 
     if (err && cont == Object.keys(paramsi).length) {
       res.status(500).send({
-        message: "Error al actualizar nota"
+        message: err
       });
 
     } else {
