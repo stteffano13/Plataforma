@@ -7,10 +7,11 @@ function saveNotas(req, res) {
   var cont2 = 0;
   var cont3=0;
   var paramsi = req.body;
-  var nota;
+ 
+  console.log("veamos si viene materia", paramsi);
   paramsi.forEach(params => {
 
-    Nota.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo }] }, (err, notas) => {
+    Nota.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo },{materia:params.materia}] }, (err, notas) => {
       if (err) {
         cont3++;
         if(cont3==Object.keys(paramsi).length){
@@ -41,7 +42,6 @@ function saveNotas(req, res) {
 function saveNotas2(params, res, cont, paramsi) {
 
 
-  console.log("save notas", params);
   var nota = new Nota();
   nota.materia = params.materia;
   nota.estudiante = params.estudiante;
