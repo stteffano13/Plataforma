@@ -88,14 +88,15 @@ export class DocenteComponent implements OnInit {
 
   asignarMateriaCurso(value) {
     this.object=[];
-    console.log("imprimiendo objeto",   value);
+    console.log("imprimiendo objeto", value);
+    var busqueda=value.split(",");
     this.loading = true;
-    this._matriculaServices.buscarEstudianteMatricula(value).subscribe(
+    this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
       
 
         this.listadoEstudianteMatriculas = response.matriculas;
-        console.log("satisfactoriamente vector notas", Object.keys(this.listadoEstudianteMatriculas).length);
+        //console.log("satisfactoriamente vector notas", this.vectorListadoMisMaterias[0]._id);
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
           this.object.push(this.obj = new Nota("","","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
@@ -105,7 +106,7 @@ export class DocenteComponent implements OnInit {
         
         var objBuscarNotas={
 
-          materia :this.vectorListadoMisMaterias[0]._id,
+          materia :busqueda[1],
           buscar :  this.listadoEstudianteMatriculas
 
         }
