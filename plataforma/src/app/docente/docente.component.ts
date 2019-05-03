@@ -50,7 +50,7 @@ export class DocenteComponent implements OnInit {
 
 
   prueba(value, i) {
-    console.log("antes de mandar la materia es",this.vectorListadoMisMaterias)
+    console.log("antes de mandar la materia index  es",i)
     this.object[i].estudiante=value.estudiante._id;
     this.object[i].materia=this.vectorListadoMisMaterias[0]._id;
     this.object[i].periodo=this.periodoLectivoActual;
@@ -87,16 +87,18 @@ export class DocenteComponent implements OnInit {
   }
 
   asignarMateriaCurso(value) {
-    console.log("value curso", value);
+    console.log("imprimiendo objeto",   this.object);
     this.loading = true;
     this._matriculaServices.buscarEstudianteMatricula(value).subscribe(
       response => {
-        console.log("satisfactoriamente matriculas", response.matriculas);
+      
 
         this.listadoEstudianteMatriculas = response.matriculas;
+        console.log("satisfactoriamente vector notas", Object.keys(this.listadoEstudianteMatriculas).length);
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
           this.object.push(this.obj = new Nota("","","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+          console.log("me cree soy");
           
         }
         
@@ -201,7 +203,7 @@ export class DocenteComponent implements OnInit {
 
   registroNotas()
   {
-    console.log("veamos si hay examen 2",this.object[0]);
+    console.log("veamos si hay examen 2",this.object);
     this._notaService.registerNota(this.object).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
