@@ -5,15 +5,19 @@ function saveNotas(req, res) {
 
   var cont = 0;
   var cont2 = 0;
+  var cont3=0;
   var paramsi = req.body;
-var nota;
+  var nota;
   paramsi.forEach(params => {
 
     Nota.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo }] }, (err, notas) => {
       if (err) {
+        cont3++;
+        if(cont3==Object.keys(paramsi).length){
         res.status(500).send({
-          message: "Error al guardar Curso"
+          message: "Error al guardar Nota"
         });
+      }
       } else {
         if (notas) {
           cont2++;
@@ -107,6 +111,7 @@ function updateNotasFin(notas, params, res, cont, paramsi) {
           message: "la nota no ha podido actualizarse."
         });
       } else {
+        console.log("seguro se actualizo", cont, "contra",  paramsi);
         if (cont == Object.keys(paramsi).length) {
           res.status(200).send({
             message: "las notas se registraron correctamente."
@@ -122,24 +127,30 @@ function buscarNotas(req, res) {
 
 
   var paramsi = req.body;
-  console.log("mostrar el ide que voy a comprar",paramsi);
-  var vectorNotas=[];
-  var cont2=0;
+  console.log("mostrar el ide que voy a comprar", paramsi);
+  var vectorNotas = [];
+  var cont2 = 0;
+  cont3=0;
+  cont =0;
   paramsi.buscar.forEach(params => {
-    
-    Nota.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo },{materia: paramsi.materia}] }, (err, notas) => {
+
+    Nota.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }, (err, notas) => {
+
       if (err) {
-        res.status(500).send({
-          message: "Error al guardar Curso"
-        });
+        cont3++
+        if (cont == Object.keys(paramsi).length) {
+          res.status(500).send({
+            message: "Error al guardar Curso"
+          });
+        }
       } else {
         if (notas) {
-         
+
           cont2++;
-         
+
           vectorNotas.push(notas)
           if (cont2 == Object.keys(paramsi.buscar).length) {
-            console.log("estes es el vector de nbotas que regresa",vectorNotas);
+            console.log("estes es el vector de nbotas que regresa", vectorNotas);
             res.status(200).send({
               vectorNotas
             });
