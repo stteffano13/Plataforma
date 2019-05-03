@@ -22,7 +22,7 @@ var NotasSchema = Schema({
     insumo66: String,
     insumo77: String,
     insumo88: String,
-    Examen2: String,
+    examen2: String,
     examenSupletorio: String,
     examenRemedial: String,
     examenGracia: String,

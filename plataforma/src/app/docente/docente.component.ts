@@ -22,6 +22,9 @@ export class DocenteComponent implements OnInit {
   public loading;
   public periodoLectivoActual;
   public listadoEstudianteMatriculas;
+  public listadoEstudianteNotas;
+
+
   public vectorListadoMisMaterias;
   public obj: Nota;
   public mensajecorrectomodals;
@@ -96,6 +99,7 @@ export class DocenteComponent implements OnInit {
           this.object.push(this.obj = new Nota("","","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
     
         }
+        this.traerNotas(this.listadoEstudianteMatriculas);
 
         this.loading = false;
 
@@ -123,8 +127,70 @@ export class DocenteComponent implements OnInit {
 
   }
 
+
+  traerNotas(value) {
+    console.log("value curso para nota", value);
+    this.loading = true;
+    this._notaService.buscarNotas(value).subscribe(
+      response => {
+       this.listadoEstudianteNotas=response.vectorNotas[0];
+       console.log("porfin regresao las notas", this.listadoEstudianteNotas);
+       let i=0;
+       this.listadoEstudianteNotas.forEach(element => {
+        this.object[i].insumo1=element.insumo1;
+        this.object[i].insumo2=element.insumo2;
+        this.object[i].insumo3=element.insumo3;
+        this.object[i].insumo4=element.insumo4;
+        this.object[i].insumo5=element.insumo5;
+        this.object[i].insumo6=element.insumo6;
+        this.object[i].insumo7=element.insumo7;
+        this.object[i].insumo8=element.insumo8;
+        this.object[i].examen1=element.examen1;
+
+        this.object[i].insumo11=element.insumo11;
+        this.object[i].insumo22=element.insumo22;
+        this.object[i].insumo33=element.insumo33;
+        this.object[i].insumo44=element.insumo44;
+        this.object[i].insumo55=element.insumo55;
+        this.object[i].insumo66=element.insumo66;
+        this.object[i].insumo77=element.insumo77;
+        this.object[i].insumo88=element.insumo88;
+
+        this.object[i].examen2=element.examen2;
+        this.object[i].examenSupletorio=element.examenSupletorio;
+        this.object[i].examenRemedial=element.examenRemedial;
+        this.object[i].examenGracia=element.examenGracia;
+
+        i++;
+       });
+       
+        this.loading = false;
+
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          // this.loading =false;
+        }
+        // this.loading =false;
+      }
+
+    );
+
+  }
+
   registroNotas()
   {
+    console.log("veamos si hay examen 2",this.object[0]);
     this._notaService.registerNota(this.object).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;

@@ -28,6 +28,15 @@ export class NotaService {
 
 
       
+    buscarNotas(notas_buscar) {
+        let json = JSON.stringify(notas_buscar);
+        let params = json;
+        console.log("mijin la ultima par manda a buscar notas" ,params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "buscarNotas", params, { headers: headers })
+            .map(res => res.json());
+    }
 
    
 

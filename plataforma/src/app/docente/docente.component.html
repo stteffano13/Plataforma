@@ -152,11 +152,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index">
+          <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
             <th scope="row">{{i}}</th>
             <td>{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
             <td id="tdfila">
-              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
+              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" value="listadoN.insumo1" name="isumo1{{i}}" >
             </td>
             <td id="tdfila">
               <input id="tdboton" type="text " [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
