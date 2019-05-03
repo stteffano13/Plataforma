@@ -87,7 +87,8 @@ export class DocenteComponent implements OnInit {
   }
 
   asignarMateriaCurso(value) {
-    console.log("imprimiendo objeto",   this.object);
+    this.object=[];
+    console.log("imprimiendo objeto",   value);
     this.loading = true;
     this._matriculaServices.buscarEstudianteMatricula(value).subscribe(
       response => {
