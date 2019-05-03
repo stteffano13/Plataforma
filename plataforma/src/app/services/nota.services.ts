@@ -29,6 +29,7 @@ export class NotaService {
 
       
     buscarNotas(notas_buscar) {
+   
         let json = JSON.stringify(notas_buscar);
         let params = json;
         console.log("mijin la ultima par manda a buscar notas" ,params);

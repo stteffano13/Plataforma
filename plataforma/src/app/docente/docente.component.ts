@@ -97,9 +97,20 @@ export class DocenteComponent implements OnInit {
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
           this.object.push(this.obj = new Nota("","","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-    
+          
         }
-        this.traerNotas(this.listadoEstudianteMatriculas);
+        
+        var objBuscarNotas={
+
+          materia :this.vectorListadoMisMaterias[0]._id,
+          buscar :  this.listadoEstudianteMatriculas
+
+        }
+
+
+        
+     
+        this.traerNotas(objBuscarNotas);
 
         this.loading = false;
 

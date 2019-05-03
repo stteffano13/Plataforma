@@ -122,12 +122,12 @@ function buscarNotas(req, res) {
 
 
   var paramsi = req.body;
-  
+  console.log("mostrar el ide que voy a comprar",paramsi);
   var vectorNotas=[];
   var cont2=0;
-  paramsi.forEach(params => {
-    console.log("mostrar el ide que voy a comprar",params.estudiante._id);
-    Nota.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }] }, (err, notas) => {
+  paramsi.buscar.forEach(params => {
+    
+    Nota.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo },{materia: paramsi.materia}] }, (err, notas) => {
       if (err) {
         res.status(500).send({
           message: "Error al guardar Curso"
@@ -138,7 +138,7 @@ function buscarNotas(req, res) {
           cont2++;
          
           vectorNotas.push(notas)
-          if (cont2 == Object.keys(paramsi).length) {
+          if (cont2 == Object.keys(paramsi.buscar).length) {
             console.log("estes es el vector de nbotas que regresa",vectorNotas);
             res.status(200).send({
               vectorNotas
