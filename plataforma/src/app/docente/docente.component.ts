@@ -146,33 +146,34 @@ export class DocenteComponent implements OnInit {
     this.loading = true;
     this._notaService.buscarNotas(value).subscribe(
       response => {
-       this.listadoEstudianteNotas=response.vectorNotas[0];
+       this.listadoEstudianteNotas=response.vectorNotas;
        console.log("porfin regresao las notas", this.listadoEstudianteNotas);
        let i=0;
        this.listadoEstudianteNotas.forEach(element => {
-        this.object[i].insumo1=element.insumo1;
-        this.object[i].insumo2=element.insumo2;
-        this.object[i].insumo3=element.insumo3;
-        this.object[i].insumo4=element.insumo4;
-        this.object[i].insumo5=element.insumo5;
-        this.object[i].insumo6=element.insumo6;
-        this.object[i].insumo7=element.insumo7;
-        this.object[i].insumo8=element.insumo8;
-        this.object[i].examen1=element.examen1;
+         console.log("elemnto",element);
+        this.object[i].insumo1=element[0].insumo1;
+        this.object[i].insumo2=element[0].insumo2;
+        this.object[i].insumo3=element[0].insumo3;
+        this.object[i].insumo4=element[0].insumo4;
+        this.object[i].insumo5=element[0].insumo5;
+        this.object[i].insumo6=element[0].insumo6;
+        this.object[i].insumo7=element[0].insumo7;
+        this.object[i].insumo8=element[0].insumo8;
+        this.object[i].examen1=element[0].examen1;
 
-        this.object[i].insumo11=element.insumo11;
-        this.object[i].insumo22=element.insumo22;
-        this.object[i].insumo33=element.insumo33;
-        this.object[i].insumo44=element.insumo44;
-        this.object[i].insumo55=element.insumo55;
-        this.object[i].insumo66=element.insumo66;
-        this.object[i].insumo77=element.insumo77;
-        this.object[i].insumo88=element.insumo88;
+        this.object[i].insumo11=element[0].insumo11;
+        this.object[i].insumo22=element[0].insumo22;
+        this.object[i].insumo33=element[0].insumo33;
+        this.object[i].insumo44=element[0].insumo44;
+        this.object[i].insumo55=element[0].insumo55;
+        this.object[i].insumo66=element[0].insumo66;
+        this.object[i].insumo77=element[0].insumo77;
+        this.object[i].insumo88=element[0].insumo88;
 
-        this.object[i].examen2=element.examen2;
-        this.object[i].examenSupletorio=element.examenSupletorio;
-        this.object[i].examenRemedial=element.examenRemedial;
-        this.object[i].examenGracia=element.examenGracia;
+        this.object[i].examen2=element[0].examen2;
+        this.object[i].examenSupletorio=element[0].examenSupletorio;
+        this.object[i].examenRemedial=element[0].examenRemedial;
+        this.object[i].examenGracia=element[0].examenGracia;
 
         i++;
        });
