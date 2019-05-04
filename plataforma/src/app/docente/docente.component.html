@@ -255,8 +255,9 @@
           </tr>
         </tbody>
       </table>
-      <button (click)="pruebaclick()"> Guardar el registro de notas</button>
-      <button (click)="registroNotas()"> Finalizar</button>
+      <button (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
+      <button [hidden]="btnFinalizar" (click)="habilitarGR()"> Cancelar</button>
+      <button [hidden]="btnFinalizar" (click)="registroNotas()"> Finalizar</button>
     </div>
 
 

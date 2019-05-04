@@ -21,6 +21,7 @@ export class DocenteComponent implements OnInit {
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService) { }
 
+  public btnFinalizar = true;
   public mensajeerrormodal;
   public loading;
   public periodoLectivoActual;
@@ -76,43 +77,53 @@ export class DocenteComponent implements OnInit {
       || this.object[i].examenRemedial > 10 || this.object[i].examenSupletorio > 10) {
       this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
       document.getElementById("openModalError").click();
-    }else{
+      this.btnFinalizar = true;
+    } else {
 
-    var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
-      + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
-      + parseFloat(this.object[i].insumo6) + parseFloat(this.object[i].insumo7) + parseFloat(this.object[i].insumo8)) / 8) * 0.8;
-
-
-    var veinteporciento1 = parseFloat(this.object[i].examen1) * 0.2;
+      var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
+        + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
+        + parseFloat(this.object[i].insumo6) + parseFloat(this.object[i].insumo7) + parseFloat(this.object[i].insumo8)) / 8) * 0.8;
 
 
-    var promedio1 = ochentaporciento1 + veinteporciento1
+      var veinteporciento1 = parseFloat(this.object[i].examen1) * 0.2;
 
 
-    var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
-      + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
-      + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
+      var promedio1 = ochentaporciento1 + veinteporciento1
+
+
+      var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
+        + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
+        + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
 
 
 
 
-    var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
+      var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
 
 
-    var promedio2 = ochentaporciento2 + veinteporciento2
+      var promedio2 = ochentaporciento2 + veinteporciento2
 
-    var promedioPeriodo = promedio1 + promedio2;
+      var promedioPeriodo = promedio1 + promedio2;
 
 
-    this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
-    this.objectCalculable[i].veinteporciento1 = veinteporciento1;
-    this.objectCalculable[i].promedio1 = promedio1;
-    this.objectCalculable[i].ochentaporciento2 = ochentaporciento2;
-    this.objectCalculable[i].veinteporciento2 = veinteporciento2;
-    this.objectCalculable[i].promedio2 = promedio2;
-    this.objectCalculable[i].promedioPeriodo = promedioPeriodo;
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1;
+      this.objectCalculable[i].promedio1 = promedio1;
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2;
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2;
+      this.objectCalculable[i].promedio2 = promedio2;
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo;
+      this.btnFinalizar = false;
+
+    }
   }
+
+
+  habilitarGR()
+  {
+    this.btnFinalizar=true;
   }
+
 
   getListadoMisMaterias() {
 
