@@ -275,7 +275,7 @@ function getEstudiantesMatriculas(req, res) {
                     path: 'estudiante'
                 }).populate({
                     path: 'curso'
-                }).exec((err, matriculas) => {
+                }).sort({ $natural: -1 }).exec((err, matriculas) => {
                     if (err) {
                         return res.status(500).send({
                             message: 'No se han podido obtener sus Viajes'

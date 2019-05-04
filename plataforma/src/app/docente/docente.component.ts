@@ -35,6 +35,15 @@ export class DocenteComponent implements OnInit {
   
   public object = [];
 
+  public objectCalculable=[]
+
+  public calculable=
+  {
+    ochentaporciento:String,
+    veinteporcientoE1:String,
+
+  }
+
   ngOnInit() {
     this.getListadoMisMaterias();
     this.getPeriodoActual();
@@ -54,7 +63,8 @@ export class DocenteComponent implements OnInit {
     this.object[i].estudiante=value.estudiante._id;
     this.object[i].materia=this.vectorListadoMisMaterias[0]._id;
     this.object[i].periodo=this.periodoLectivoActual;
-
+    this.objectCalculable[i].ochentaporciento= this.object[i].insumo1;
+  
   }
 
   getListadoMisMaterias() {
@@ -100,9 +110,12 @@ export class DocenteComponent implements OnInit {
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
           this.object.push(this.obj = new Nota("","","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-          console.log("me cree soy");
+          this.objectCalculable.push(this.calculable);
+    
           
         }
+
+        console.log(" este es el objeto calculable", this.objectCalculable);
         
         var objBuscarNotas={
 
@@ -117,9 +130,7 @@ export class DocenteComponent implements OnInit {
         this.traerNotas(objBuscarNotas);
 
         this.loading = false;
-
-        // console.log(this.listadoChoferes);
-        this.loading = false;
+;
       },
       error => {
         var errorMessage = <any>error;
