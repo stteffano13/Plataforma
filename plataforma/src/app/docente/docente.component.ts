@@ -64,7 +64,7 @@ export class DocenteComponent implements OnInit {
     this.object[i].materia=this.vectorListadoMisMaterias[0]._id;
     this.object[i].periodo=this.periodoLectivoActual;
     this.objectCalculable[i].ochentaporciento= this.object[i].insumo1;
-  
+  console.log( "ochenta", this.objectCalculable[i].ochentaporciento,"lo que paso", this.object[i].insumo1,"indice", i );
   }
 
   getListadoMisMaterias() {
