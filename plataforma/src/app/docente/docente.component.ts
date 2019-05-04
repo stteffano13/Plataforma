@@ -65,6 +65,7 @@ export class DocenteComponent implements OnInit {
 
     this.calculos(i);
 
+
   }
 
   calculos(i) {
@@ -113,15 +114,65 @@ export class DocenteComponent implements OnInit {
       this.objectCalculable[i].veinteporciento2 = veinteporciento2;
       this.objectCalculable[i].promedio2 = promedio2;
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo;
+
       this.btnFinalizar = false;
+    }
+  }
+
+
+  calculosInit(i) {
+    this.btnFinalizar = true;
+    if (this.object[i].insumo1 > 10 || this.object[i].insumo2 > 10 || this.object[i].insumo3 > 10 || this.object[i].insumo4 > 10
+      || this.object[i].insumo5 > 10 || this.object[i].insumo6 > 10 || this.object[i].insumo7 > 10 || this.object[i].insumo8 > 10
+      || this.object[i].examen1 > 10 || this.object[i].insumo11 > 10 || this.object[i].insumo22 > 10 || this.object[i].insumo33 > 10
+      || this.object[i].insumo44 > 10 || this.object[i].insumo55 > 10 || this.object[i].insumo66 > 10 || this.object[i].insumo77 > 10
+      || this.object[i].insumo88 > 10 || this.object[i].examen2 > 10 || this.object[i].examenGracia > 10
+      || this.object[i].examenRemedial > 10 || this.object[i].examenSupletorio > 10) {
+      this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
+      document.getElementById("openModalError").click();
+
+    } else {
+
+      var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
+        + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
+        + parseFloat(this.object[i].insumo6) + parseFloat(this.object[i].insumo7) + parseFloat(this.object[i].insumo8)) / 8) * 0.8;
+
+
+      var veinteporciento1 = parseFloat(this.object[i].examen1) * 0.2;
+
+
+      var promedio1 = ochentaporciento1 + veinteporciento1
+
+
+      var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
+        + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
+        + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
+
+
+
+
+      var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
+
+
+      var promedio2 = ochentaporciento2 + veinteporciento2
+
+      var promedioPeriodo = promedio1 + promedio2;
+
+
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1;
+      this.objectCalculable[i].promedio1 = promedio1;
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2;
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2;
+      this.objectCalculable[i].promedio2 = promedio2;
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo;
 
     }
   }
 
 
-  habilitarGR()
-  {
-    this.btnFinalizar=true;
+  habilitarGR() {
+    this.btnFinalizar = true;
   }
 
 
@@ -155,6 +206,7 @@ export class DocenteComponent implements OnInit {
 
   asignarMateriaCurso(value) {
     this.object = [];
+    this.objectCalculable=[];
     console.log("imprimiendo objeto", value);
     var busqueda = value.split(",");
     this.loading = true;
@@ -249,7 +301,9 @@ export class DocenteComponent implements OnInit {
               this.object[i].examenRemedial = element[0].examenRemedial;
               this.object[i].examenGracia = element[0].examenGracia;
 
+              this.calculosInit(i);
               i++;
+
             }
           });
         });
