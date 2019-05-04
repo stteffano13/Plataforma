@@ -118,7 +118,7 @@ export class DocenteComponent implements OnInit {
 
       var promedio2 = ochentaporciento2 + veinteporciento2
 
-      var promedioPeriodo = promedio1 + promedio2;
+      var promedioPeriodo = (promedio1 + promedio2)/2;
 
 
       this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
@@ -162,7 +162,7 @@ export class DocenteComponent implements OnInit {
 
       var promedio2 = ochentaporciento2 + veinteporciento2
 
-      var promedioPeriodo = promedio1 + promedio2;
+      var promedioPeriodo = (promedio1 + promedio2)/2;
 
       this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
       this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
@@ -172,11 +172,12 @@ export class DocenteComponent implements OnInit {
       this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
-      this.bloqueo(i);
 
 
     }
   }
+
+  // esto puede servir pero aun no ocupo
 
   bloqueo(i) {
 

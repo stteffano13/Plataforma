@@ -110,7 +110,7 @@
       <!--Listado -->
 
 
-      <!-- ====================================================    Tabla para Notas ============================================-->
+      <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
 
@@ -155,11 +155,11 @@
           <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
             <th scope="row">{{i}}</th>
             <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
-            <td id="tdfila" >
-              <input  [disabled]="banderInsumo1" id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
+            <td id="tdfila">
+              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
             </td>
             <td id="tdfila">
-              <input  [disabled]="banderInsumo2" id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
+              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
             </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo3" name="insumo3{{i}}">
@@ -264,11 +264,228 @@
       </table>
       <div class="col-md-7" style="text-align: right;">
         <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
-        <button class="btn btn-secondary" [hidden]="btnFinalizar" (click)="habilitarGR()"> Cancelar</button>
-        <button class="btn btn-success" [hidden]="btnFinalizar" (click)="registroNotas()"> Finalizar</button>
+        <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
+          Cancelar</button>
+
+        <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
+          Finalizar</button>
       </div>
     </div>
 
+    <!-- ---------------------------------- tabla de notas basica tabla   2 ------------------ -->
+    <table class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80% ">
+      <thead>
+        <tr >
+          <th COLSPAN="2"></th>
+          <th COLSPAN="22">Primer Quimestre</th>
+          <th COLSPAN="22">Segundo Quimestre</th>
+        </tr>
+        <tr>
+          <th COLSPAN="2">Nomina de Estudiantes</th>
+          <th COLSPAN="6">1er Parcial</th>
+          <th COLSPAN="6">2do Parcial</th>
+          <th COLSPAN="6">3er Parcial</th>
+          <th COLSPAN="1">Ftva</th>
+          <th COLSPAN="1">E.Q</th>
+          <th COLSPAN="1">Stva</th>
+          <th COLSPAN="1">Nota 1Q.</th>
+
+          <th COLSPAN="6">1er Parcial</th>
+          <th COLSPAN="6">2do Parcial</th>
+          <th COLSPAN="6">3er Parcial</th>
+          <th COLSPAN="1">Ftva</th>
+          <th COLSPAN="1">E.Q</th>
+          <th COLSPAN="1">Stva</th>
+          <th COLSPAN="1">Nota 2Q.</th>
+          <th COLSPAN="1">Nota Final</th>
+        </tr>
+        <tr style="background-color: #343a40; align-content: left; font-size: 95%">
+          <th style="color: white; padding-top: 3%" scope="col">#</th>
+
+          <!-- parcial 1 quimestre 1-->
+          <th  style="color: white;" scope="col">Apellidos y Nombres</th>
+        
+          <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+
+
+          <!-- parcial 2 quimestre 1-->
+          <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+
+          <!-- parcial 3 quimestre 1-->
+          <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+
+          <th style="color: white" scope="col" class="verticalText">80% </th>
+          <th style="color: white" scope="col" class="verticalText">Examen</th>
+          <th style="color: white" scope="col" class="verticalText">20%</th>
+          <th style="color: white" scope="col" class="verticalText">Promedio</th>
+
+            <!-- parcial 1 quimestre 2-->
+          <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+
+           <!-- parcial 2 quimestre 2-->
+           <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+           <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+           <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+           <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+           <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+           <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+
+            <!-- parcial 3 quimestre 2-->
+          <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
+          <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
+
+          <th style="color: white" scope="col" class="verticalText">80% </th>
+          <th style="color: white" scope="col" class="verticalText">Examen</th>
+          <th style="color: white" scope="col" class="verticalText">20%</th>
+          <th style="color: white" scope="col" class="verticalText">Promedio</th>
+          <th style="color: white" scope="col" class="verticalText">Promedio total</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
+          <th scope="row">{{i}}</th>
+          <td >{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
+      
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo3" name="insumo3{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo4" name="insumo4{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo5" name="insumo5{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo6" name="insumo6{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo7" name="insumo7{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo8" name="insumo8{{i}}">
+          </td>
+          <td id="tdfila" style="background-color:yellow">
+            <input style="background-color: yellow" id="tdboton" type="text" [(ngModel)]="  this.objectCalculable[i].ochentaporciento1"
+              name="ochentaporciento1{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen1" name="examen1{{i}}">
+          </td>
+
+          <td id="tdfila" style="background-color:yellow">
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento1" name="veinteporciento1{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila" style="background-color:rgb(215, 253, 138)">
+            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio1" name="promedio1{{i}}"
+              type="text">
+          </td>
+
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo11" name="insumo11{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo22" name="insumo22{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo33" name="insumo33{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo44" name="insumo44{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo55" name="insumo55{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo66" name="insumo66{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo77" name="insumo77{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo88" name="insumo88{{i}}">
+          </td>
+          <td id="tdfila" style="background-color:yellow">
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]=" this.objectCalculable[i].ochentaporciento2" name="ochentaporciento2{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen2" name="examen2{{i}}">
+          </td>
+          <td id="tdfila" style="background-color:yellow">
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento2" name="veinteporciento2{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila" style="background-color:rgb(215, 253, 138)">
+            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio2" name="promedio2{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila" style="background-color: lawngreen">
+            <input id="tdboton" style="background-color:lawngreen" [(ngModel)]=" this.objectCalculable[i].promedioPeriodo" name="promedioPeriodo{{i}}"
+              type="text">
+          </td>
+
+
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenSupletorio" name="examenSupletorio{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenRemedial" name="examenRemedial{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenGracia" name="examenGracia{{i}}">
+          </td>
+
+
+
+          <td id="tdfila">
+            <button id="tdbuttonGuardar{{i}}" type="button" (click)="prueba(listado,i)" style="border: none;" hidden></button>
+          </td>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+    <div class="col-md-7" style="text-align: right;">
+      <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
+      <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
+        Cancelar</button>
+
+      <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
+        Finalizar</button>
+    </div>
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
