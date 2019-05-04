@@ -4,6 +4,9 @@ import { MatriculaService } from '../services/matricula.services';
 import { AdministradorService } from '../services/administrador.services';
 import { NotaService } from '../services/nota.services';
 import { Nota } from '../models/nota';
+import { Calculable } from '../models/calculable';
+import { isNumber } from 'util';
+
 
 @Component({
   selector: 'app-docente',
@@ -14,9 +17,9 @@ export class DocenteComponent implements OnInit {
 
 
   constructor(private _materiaService: MateriaService,
-     private _administradorService: AdministradorService, 
-     private _matriculaServices: MatriculaService,
-     private _notaService:NotaService) { }
+    private _administradorService: AdministradorService,
+    private _matriculaServices: MatriculaService,
+    private _notaService: NotaService) { }
 
 
   public loading;
@@ -27,27 +30,22 @@ export class DocenteComponent implements OnInit {
 
   public vectorListadoMisMaterias;
   public obj: Nota;
+  public objC: Calculable;
   public mensajecorrectomodals;
   public mensajeerrormodals;
 
   // vectores
 
-  
+
   public object = [];
 
-  public objectCalculable=[]
+  public objectCalculable = []
 
-  public calculable=
-  {
-    ochentaporciento:String,
-    veinteporcientoE1:String,
-
-  }
 
   ngOnInit() {
     this.getListadoMisMaterias();
     this.getPeriodoActual();
-   
+
   }
 
   pruebaclick() {
@@ -59,12 +57,22 @@ export class DocenteComponent implements OnInit {
 
 
   prueba(value, i) {
-    console.log("antes de mandar la materia index  es",i)
-    this.object[i].estudiante=value.estudiante._id;
-    this.object[i].materia=this.vectorListadoMisMaterias[0]._id;
-    this.object[i].periodo=this.periodoLectivoActual;
-    this.objectCalculable[i].ochentaporciento= this.object[i].insumo1;
-  console.log( "ochenta", this.objectCalculable[i].ochentaporciento,"lo que paso", this.object[i].insumo1,"indice", i );
+    console.log("antes de mandar la materia index  es", i)
+    this.object[i].estudiante = value.estudiante._id;
+    this.object[i].materia = this.vectorListadoMisMaterias[0]._id;
+    this.object[i].periodo = this.periodoLectivoActual;
+
+
+    // calculos
+
+    var ochentaporciento1 =( (parseInt(this.object[i].insumo1) +parseInt(this.object[i].insumo2)
+    +parseInt(this.object[i].insumo3)+parseInt(this.object[i].insumo4)+parseInt(this.object[i].insumo5)
+    +parseInt(this.object[i].insumo6)+parseInt(this.object[i].insumo7)+parseInt(this.object[i].insumo8) )/8) *0.8;
+
+    // fin calculos
+
+    this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
+    console.log("ochenta", this.objectCalculable[i].ochentaporciento1);
   }
 
   getListadoMisMaterias() {
@@ -97,40 +105,37 @@ export class DocenteComponent implements OnInit {
   }
 
   asignarMateriaCurso(value) {
-    this.object=[];
+    this.object = [];
     console.log("imprimiendo objeto", value);
-    var busqueda=value.split(",");
+    var busqueda = value.split(",");
     this.loading = true;
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
-      
+
 
         this.listadoEstudianteMatriculas = response.matriculas;
         //console.log("satisfactoriamente vector notas", this.vectorListadoMisMaterias[0]._id);
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-          this.object.push(this.obj = new Nota("","","","", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-          this.objectCalculable.push(this.calculable);
-    
-          
+          this.object.push(this.obj = new Nota("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+          this.objectCalculable.push(this.objC = new Calculable(""));
+
+
         }
 
         console.log(" este es el objeto calculable", this.objectCalculable);
-        
-        var objBuscarNotas={
 
-          materia :busqueda[1],
-          buscar :  this.listadoEstudianteMatriculas
+        var objBuscarNotas = {
+
+          materia: busqueda[1],
+          buscar: this.listadoEstudianteMatriculas
 
         }
 
-
-        
-     
         this.traerNotas(objBuscarNotas);
 
-        this.loading = false;
-;
+
+        ;
       },
       error => {
         var errorMessage = <any>error;
@@ -156,41 +161,52 @@ export class DocenteComponent implements OnInit {
 
   traerNotas(value) {
     console.log("value curso para nota", value);
-    this.loading = true;
+
     this._notaService.buscarNotas(value).subscribe(
       response => {
-       this.listadoEstudianteNotas=response.vectorNotas;
-       console.log("porfin regresao las notas", this.listadoEstudianteNotas);
-       let i=0;
-       this.listadoEstudianteNotas.forEach(element => {
-         console.log("elemnto",element);
-        this.object[i].insumo1=element[0].insumo1;
-        this.object[i].insumo2=element[0].insumo2;
-        this.object[i].insumo3=element[0].insumo3;
-        this.object[i].insumo4=element[0].insumo4;
-        this.object[i].insumo5=element[0].insumo5;
-        this.object[i].insumo6=element[0].insumo6;
-        this.object[i].insumo7=element[0].insumo7;
-        this.object[i].insumo8=element[0].insumo8;
-        this.object[i].examen1=element[0].examen1;
+        this.loading = false;
+        this.listadoEstudianteNotas = response.vectorNotas;
 
-        this.object[i].insumo11=element[0].insumo11;
-        this.object[i].insumo22=element[0].insumo22;
-        this.object[i].insumo33=element[0].insumo33;
-        this.object[i].insumo44=element[0].insumo44;
-        this.object[i].insumo55=element[0].insumo55;
-        this.object[i].insumo66=element[0].insumo66;
-        this.object[i].insumo77=element[0].insumo77;
-        this.object[i].insumo88=element[0].insumo88;
+        //  ordenar
+        let i = 0;
+        this.listadoEstudianteMatriculas.forEach(elementE => {
 
-        this.object[i].examen2=element[0].examen2;
-        this.object[i].examenSupletorio=element[0].examenSupletorio;
-        this.object[i].examenRemedial=element[0].examenRemedial;
-        this.object[i].examenGracia=element[0].examenGracia;
+          this.listadoEstudianteNotas.forEach(element => {
 
-        i++;
-       });
-       
+            console.log("elementoE", elementE.estudiante._id, "elemento", element[0].estudiante)
+
+            if (elementE.estudiante._id == element[0].estudiante) {
+              this.object[i].insumo1 = element[0].insumo1;
+              this.object[i].insumo2 = element[0].insumo2;
+              this.object[i].insumo3 = element[0].insumo3;
+              this.object[i].insumo4 = element[0].insumo4;
+              this.object[i].insumo5 = element[0].insumo5;
+              this.object[i].insumo6 = element[0].insumo6;
+              this.object[i].insumo7 = element[0].insumo7;
+              this.object[i].insumo8 = element[0].insumo8;
+              this.object[i].examen1 = element[0].examen1;
+
+              this.object[i].insumo11 = element[0].insumo11;
+              this.object[i].insumo22 = element[0].insumo22;
+              this.object[i].insumo33 = element[0].insumo33;
+              this.object[i].insumo44 = element[0].insumo44;
+              this.object[i].insumo55 = element[0].insumo55;
+              this.object[i].insumo66 = element[0].insumo66;
+              this.object[i].insumo77 = element[0].insumo77;
+              this.object[i].insumo88 = element[0].insumo88;
+
+              this.object[i].examen2 = element[0].examen2;
+              this.object[i].examenSupletorio = element[0].examenSupletorio;
+              this.object[i].examenRemedial = element[0].examenRemedial;
+              this.object[i].examenGracia = element[0].examenGracia;
+
+              i++;
+            }
+          });
+        });
+
+
+
         this.loading = false;
 
       },
@@ -215,9 +231,8 @@ export class DocenteComponent implements OnInit {
 
   }
 
-  registroNotas()
-  {
-    console.log("veamos si hay examen 2",this.object);
+  registroNotas() {
+    console.log("veamos si hay examen 2", this.object);
     this._notaService.registerNota(this.object).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
