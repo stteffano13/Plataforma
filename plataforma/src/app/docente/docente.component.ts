@@ -76,9 +76,28 @@ export class DocenteComponent implements OnInit {
     var promedio1 = ochentaporciento1 + veinteporciento1
 
 
+    var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
+    + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
+    + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
+
+
+
+
+    var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
+
+
+    var promedio2 = ochentaporciento2 + veinteporciento2
+
+    var promedioPeriodo =promedio1+promedio2;
+
+
     this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
     this.objectCalculable[i].veinteporciento1 = veinteporciento1;
     this.objectCalculable[i]. promedio1= promedio1;
+    this.objectCalculable[i].ochentaporciento2 = ochentaporciento2;
+    this.objectCalculable[i].veinteporciento2 = veinteporciento2;
+    this.objectCalculable[i].promedio2= promedio2;
+    this.objectCalculable[i].promedioPeriodo =promedioPeriodo;
    
   }
 
@@ -124,7 +143,7 @@ export class DocenteComponent implements OnInit {
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
           this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
-          this.objectCalculable.push(this.objC = new Calculable("0", "0", "0"));
+          this.objectCalculable.push(this.objC = new Calculable("0", "0", "0","0", "0", "0","0"));
 
 
         }
