@@ -21,7 +21,7 @@ export class DocenteComponent implements OnInit {
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService) { }
 
-
+  public mensajeerrormodal;
   public loading;
   public periodoLectivoActual;
   public listadoEstudianteMatriculas;
@@ -62,8 +62,22 @@ export class DocenteComponent implements OnInit {
     this.object[i].materia = this.vectorListadoMisMaterias[0]._id;
     this.object[i].periodo = this.periodoLectivoActual;
 
+    this.calculos(i);
 
-    // calculos
+  }
+
+  calculos(i) {
+
+    if(this.object[i].insumo1>10 || this.object[i].insumo2>10 || this.object[i].insumo3>10 || this.object[i].insumo4>10
+    || this.object[i].insumo5>10 || this.object[i].insumo6>10 || this.object[i].insumo7>10 || this.object[i].insumo8>10
+  || this.object[i].examen1>10 || this.object[i].insumo11>10 || this.object[i].insumo22>10 || this.object[i].insumo33>10 
+  || this.object[i].insumo44>10|| this.object[i].insumo55>10 || this.object[i].insumo66>10 || this.object[i].insumo77>10
+   || this.object[i].insumo88>10 || this.object[i].examen2>10  || this.object[i].examenGracia>10 
+   ||this.object[i].examenRemedial>10 || this.object[i].examenSupletorio>10 )
+    {
+      this.mensajeerrormodal="Alguna de las notas es mayor a 10 reviselas nuevamente";
+      document.getElementById("openModalError").click();
+    }
 
     var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
       + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
@@ -77,8 +91,8 @@ export class DocenteComponent implements OnInit {
 
 
     var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
-    + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
-    + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
+      + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
+      + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
 
 
 
@@ -88,17 +102,16 @@ export class DocenteComponent implements OnInit {
 
     var promedio2 = ochentaporciento2 + veinteporciento2
 
-    var promedioPeriodo =promedio1+promedio2;
+    var promedioPeriodo = promedio1 + promedio2;
 
 
     this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
     this.objectCalculable[i].veinteporciento1 = veinteporciento1;
-    this.objectCalculable[i]. promedio1= promedio1;
+    this.objectCalculable[i].promedio1 = promedio1;
     this.objectCalculable[i].ochentaporciento2 = ochentaporciento2;
     this.objectCalculable[i].veinteporciento2 = veinteporciento2;
-    this.objectCalculable[i].promedio2= promedio2;
-    this.objectCalculable[i].promedioPeriodo =promedioPeriodo;
-   
+    this.objectCalculable[i].promedio2 = promedio2;
+    this.objectCalculable[i].promedioPeriodo = promedioPeriodo;
   }
 
   getListadoMisMaterias() {
@@ -143,7 +156,7 @@ export class DocenteComponent implements OnInit {
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
           this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
-          this.objectCalculable.push(this.objC = new Calculable("0", "0", "0","0", "0", "0","0"));
+          this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
 
         }

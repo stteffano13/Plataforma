@@ -156,10 +156,10 @@
             <th scope="row">{{i}}</th>
             <td>{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
             <td id="tdfila">
-              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" value="listadoN.insumo1" name="isumo1{{i}}" >
+              <input   id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1"  name="isumo1{{i}}" >
             </td>
             <td id="tdfila">
-              <input id="tdboton" type="text " [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
+              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
             </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo3" name="insumo3{{i}}">
@@ -394,7 +394,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeError="ngModel" [(ngModel)]="this.mensajeerrormodals"
+            <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeError="ngModel" [(ngModel)]="this.mensajeerrormodal"
               name="mensajeerror">
           </div>
           <div class="modal-footer">
