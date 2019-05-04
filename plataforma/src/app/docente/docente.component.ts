@@ -107,13 +107,13 @@ export class DocenteComponent implements OnInit {
       var promedioPeriodo = promedio1 + promedio2;
 
 
-      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
-      this.objectCalculable[i].veinteporciento1 = veinteporciento1;
-      this.objectCalculable[i].promedio1 = promedio1;
-      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2;
-      this.objectCalculable[i].veinteporciento2 = veinteporciento2;
-      this.objectCalculable[i].promedio2 = promedio2;
-      this.objectCalculable[i].promedioPeriodo = promedioPeriodo;
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculable[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
       this.btnFinalizar = false;
     }
@@ -159,13 +159,13 @@ export class DocenteComponent implements OnInit {
       var promedioPeriodo = promedio1 + promedio2;
 
 
-      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
-      this.objectCalculable[i].veinteporciento1 = veinteporciento1;
-      this.objectCalculable[i].promedio1 = promedio1;
-      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2;
-      this.objectCalculable[i].veinteporciento2 = veinteporciento2;
-      this.objectCalculable[i].promedio2 = promedio2;
-      this.objectCalculable[i].promedioPeriodo = promedioPeriodo;
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculable[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
     }
   }
