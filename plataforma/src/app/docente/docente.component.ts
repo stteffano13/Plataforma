@@ -65,14 +65,14 @@ export class DocenteComponent implements OnInit {
 
     // calculos
 
-    var ochentaporciento1 =( (parseInt(this.object[i].insumo1) +parseInt(this.object[i].insumo2)
-    +parseInt(this.object[i].insumo3)+parseInt(this.object[i].insumo4)+parseInt(this.object[i].insumo5)
-    +parseInt(this.object[i].insumo6)+parseInt(this.object[i].insumo7)+parseInt(this.object[i].insumo8) )/8) *0.8;
+    var ochentaporciento1 =( (parseFloat(this.object[i].insumo1) +parseFloat(this.object[i].insumo2)
+    +parseFloat(this.object[i].insumo3)+parseFloat(this.object[i].insumo4)+parseFloat(this.object[i].insumo5)
+    +parseFloat(this.object[i].insumo6)+parseFloat(this.object[i].insumo7)+parseFloat(this.object[i].insumo8) )/8)*0.8;
 
     // fin calculos
 
     this.objectCalculable[i].ochentaporciento1 = ochentaporciento1;
-    console.log("ochenta", this.objectCalculable[i].ochentaporciento1);
+   
   }
 
   getListadoMisMaterias() {
@@ -80,10 +80,9 @@ export class DocenteComponent implements OnInit {
     this.vectorListadoMisMaterias = [];
     this._materiaService.getListadoMioMateria().subscribe(response => {
 
-      console.log("esto iene de la peticion materias docente" + JSON.stringify(response));
       if (response.materias[0] != undefined) {
         this.vectorListadoMisMaterias = response.materias;
-        console.log("materias del docente", this.vectorListadoMisMaterias);
+      
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -117,8 +116,8 @@ export class DocenteComponent implements OnInit {
         //console.log("satisfactoriamente vector notas", this.vectorListadoMisMaterias[0]._id);
         for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-          this.object.push(this.obj = new Nota("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-          this.objectCalculable.push(this.objC = new Calculable(""));
+          this.object.push(this.obj = new Nota("", "", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+          this.objectCalculable.push(this.objC = new Calculable("0"));
 
 
         }
