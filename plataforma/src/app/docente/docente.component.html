@@ -154,12 +154,12 @@
         <tbody>
           <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
             <th scope="row">{{i}}</th>
-            <td>{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
-            <td id="tdfila">
-              <input   id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1"  name="isumo1{{i}}" >
+            <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
+            <td id="tdfila" >
+              <input  [disabled]="banderInsumo1" id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
             </td>
             <td id="tdfila">
-              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
+              <input  [disabled]="banderInsumo2" id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
             </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo3" name="insumo3{{i}}">
@@ -179,18 +179,21 @@
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo8" name="insumo8{{i}}">
             </td>
-            <td id="tdfila">
-              <input id="tdboton" type="text"  [(ngModel)]="  this.objectCalculable[i].ochentaporciento1"  name="ochentaporciento1{{i}}">
+            <td id="tdfila" style="background-color:yellow">
+              <input style="background-color: yellow" id="tdboton" type="text" [(ngModel)]="  this.objectCalculable[i].ochentaporciento1"
+                name="ochentaporciento1{{i}}">
             </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen1" name="examen1{{i}}">
             </td>
 
-            <td id="tdfila">
-              <input id="tdboton"   [(ngModel)]="this.objectCalculable[i].veinteporciento1" name="veinteporciento1{{i}}" type="text">
+            <td id="tdfila" style="background-color:yellow">
+              <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento1" name="veinteporciento1{{i}}"
+                type="text">
             </td>
-            <td id="tdfila">
-              <input id="tdboton"    [(ngModel)]="this.objectCalculable[i].promedio1" name="promedio1{{i}}"   type="text">
+            <td id="tdfila" style="background-color:rgb(215, 253, 138)">
+              <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio1" name="promedio1{{i}}"
+                type="text">
             </td>
 
             <td id="tdfila">
@@ -217,20 +220,24 @@
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo88" name="insumo88{{i}}">
             </td>
-            <td id="tdfila">
-              <input id="tdboton"    [(ngModel)]=" this.objectCalculable[i].ochentaporciento2"  name="ochentaporciento2{{i}}" type="text">
+            <td id="tdfila" style="background-color:yellow">
+              <input id="tdboton" style="background-color:yellow" [(ngModel)]=" this.objectCalculable[i].ochentaporciento2" name="ochentaporciento2{{i}}"
+                type="text">
             </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen2" name="examen2{{i}}">
             </td>
-            <td id="tdfila">
-              <input id="tdboton"    [(ngModel)]="this.objectCalculable[i].veinteporciento2"   name="veinteporciento2{{i}}" type="text">
+            <td id="tdfila" style="background-color:yellow">
+              <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento2" name="veinteporciento2{{i}}"
+                type="text">
             </td>
-            <td id="tdfila">
-              <input id="tdboton"   [(ngModel)]="this.objectCalculable[i].promedio2" name="promedio2{{i}}"   type="text">
+            <td id="tdfila" style="background-color:rgb(215, 253, 138)">
+              <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio2" name="promedio2{{i}}"
+                type="text">
             </td>
-            <td id="tdfila">
-              <input id="tdboton"   [(ngModel)]=" this.objectCalculable[i].promedioPeriodo"  name="promedioPeriodo{{i}}"  type="text">
+            <td id="tdfila" style="background-color: lawngreen">
+              <input id="tdboton" style="background-color:lawngreen" [(ngModel)]=" this.objectCalculable[i].promedioPeriodo" name="promedioPeriodo{{i}}"
+                type="text">
             </td>
 
 
@@ -255,9 +262,11 @@
           </tr>
         </tbody>
       </table>
-      <button (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
-      <button [hidden]="btnFinalizar" (click)="habilitarGR()"> Cancelar</button>
-      <button [hidden]="btnFinalizar" (click)="registroNotas()"> Finalizar</button>
+      <div class="col-md-7" style="text-align: right;">
+        <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
+        <button class="btn btn-secondary" [hidden]="btnFinalizar" (click)="habilitarGR()"> Cancelar</button>
+        <button class="btn btn-success" [hidden]="btnFinalizar" (click)="registroNotas()"> Finalizar</button>
+      </div>
     </div>
 
 

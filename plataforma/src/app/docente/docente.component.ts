@@ -21,6 +21,20 @@ export class DocenteComponent implements OnInit {
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService) { }
 
+  // banderas bloquer input
+
+  public banderInsumo1 = false;
+  public banderInsumo2 = false;
+  public banderInsumo3 = false;
+  public banderInsumo4 = false;
+  public banderInsumo5 = false;
+  public banderInsumo6 = false;
+  public banderInsumo7 = false;
+  public banderInsumo8 = false;
+
+
+
+
   public btnFinalizar = true;
   public mensajeerrormodal;
   public loading;
@@ -128,6 +142,7 @@ export class DocenteComponent implements OnInit {
       || this.object[i].insumo44 > 10 || this.object[i].insumo55 > 10 || this.object[i].insumo66 > 10 || this.object[i].insumo77 > 10
       || this.object[i].insumo88 > 10 || this.object[i].examen2 > 10 || this.object[i].examenGracia > 10
       || this.object[i].examenRemedial > 10 || this.object[i].examenSupletorio > 10) {
+
       this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
       document.getElementById("openModalError").click();
 
@@ -137,27 +152,17 @@ export class DocenteComponent implements OnInit {
         + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
         + parseFloat(this.object[i].insumo6) + parseFloat(this.object[i].insumo7) + parseFloat(this.object[i].insumo8)) / 8) * 0.8;
 
-
       var veinteporciento1 = parseFloat(this.object[i].examen1) * 0.2;
-
-
       var promedio1 = ochentaporciento1 + veinteporciento1
-
-
       var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
         + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
         + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
 
-
-
-
       var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
-
 
       var promedio2 = ochentaporciento2 + veinteporciento2
 
       var promedioPeriodo = promedio1 + promedio2;
-
 
       this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
       this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
@@ -166,6 +171,52 @@ export class DocenteComponent implements OnInit {
       this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
       this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
+
+      this.bloqueo(i);
+
+
+    }
+  }
+
+  bloqueo(i) {
+
+
+
+    if (this.object[i].insumo1 != 0) {this.banderInsumo1 = true;}
+    if (this.object[i].insumo2 != 0) { this.banderInsumo2 = true; }
+    if (this.object[i].insumo3 != 0) { this.banderInsumo3 = true; }
+    if (this.object[i].insumo4 != 0) { this.banderInsumo4 = true; }
+    if (this.object[i].insumo5 != 0) { this.banderInsumo5 = true;}
+    if (this.object[i].insumo6 != 0) { this.banderInsumo6 = true;}
+    if (this.object[i].insumo7 != 0) { this.banderInsumo7 = true; }
+    if (this.object[i].insumo8 != 0) { this.banderInsumo8 = true }
+    if (this.object[i].examen1 != 0) { }
+    if (this.object[i].insumo11 != 0) { }
+    if (this.object[i].insumo22 != 0) { }
+
+    if (this.object[i].insumo33 != 0) { }
+
+    if (this.object[i].insumo44 != 0) { }
+
+    if (this.object[i].insumo55 != 10) { }
+
+    if (this.object[i].insumo66 != 0) {
+
+    }
+
+    if (this.object[i].insumo77 != 0) { }
+
+    if (this.object[i].insumo88 != 0) { }
+
+    if (this.object[i].examen2 != 0) { }
+
+    if (this.object[i].examenGracia != 0) { }
+
+
+    if (this.object[i].examenRemedial != 0) { }
+
+    if (this.object[i].examenSupletorio > 10) {
+
 
     }
   }
@@ -206,7 +257,7 @@ export class DocenteComponent implements OnInit {
 
   asignarMateriaCurso(value) {
     this.object = [];
-    this.objectCalculable=[];
+    this.objectCalculable = [];
     console.log("imprimiendo objeto", value);
     var busqueda = value.split(",");
     this.loading = true;
@@ -234,9 +285,6 @@ export class DocenteComponent implements OnInit {
         }
 
         this.traerNotas(objBuscarNotas);
-
-
-        ;
       },
       error => {
         var errorMessage = <any>error;
@@ -342,7 +390,7 @@ export class DocenteComponent implements OnInit {
         console.log("satisfactoriamente");
         this.loading = false;
         document.getElementById("openModalCorrecto").click();
-        // this.limpiar(1);
+        this.btnFinalizar = true;
       },
       error => {
         var errorMessage = <any>error;
