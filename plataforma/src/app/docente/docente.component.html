@@ -272,7 +272,7 @@
       </div>
     </div>
 
-    <!-- ---------------------------------- tabla de notas basica tabla   2 ------------------ -->
+    <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
     <table  *ngIf="banderTabla2"  class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80% ">
       <thead>
         <tr >
@@ -544,7 +544,7 @@
 
 
           <td id="tdfila">
-            <button id="tdbuttonGuardar{{i}}" type="button" (click)="prueba(listado,i)" style="border: none;" hidden></button>
+            <button id="tdbuttonGuardar{{i}}" type="button" (click)="pruebaB(listado,i)" style="border: none;" hidden></button>
           </td>
 
 
@@ -558,7 +558,7 @@
     
     <div *ngIf="banderTabla2" class="col-md-7" style="text-align: right;">
       <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar2"> Guardar el registro de notas</button>
-      <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="habilitarGR()">
+      <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="habilitarGRB()">
         Cancelar</button>
 
       <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="registroNotas()">

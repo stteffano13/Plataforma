@@ -97,8 +97,80 @@ export class DocenteComponent implements OnInit {
 
     this.calculos(i);
 
+  }
+
+
+  pruebaB(value, i) {
+    console.log("antes de mandar la materia index Basico es", i)
+    this.objectB[i].estudiante = value.estudiante._id;
+    this.objectB[i].materia = this.vectorListadoMisMaterias[0]._id;
+    this.objectB[i].periodo = this.periodoLectivoActual;
+
+   this.calculosB(i);
 
   }
+
+
+  calculosB(i) {
+
+
+    if (this.objectB[i].Q1P1insumo1 > 10 || this.objectB[i].Q1P1insumo2  > 10 || this.objectB[i].Q1P1insumo3  > 10 
+      || this.objectB[i].Q1P1insumo4  > 10  || this.objectB[i].Q1P1insumo5 > 10  || this.objectB[i].Q1P1insumo6 > 10
+      || this.objectB[i].Q1P2insumo1 > 10 || this.objectB[i].Q1P2insumo2  > 10 || this.objectB[i].Q1P2insumo3  > 10 
+      || this.objectB[i].Q1P2insumo4  > 10  || this.objectB[i].Q1P2insumo5 > 10  || this.objectB[i].Q1P2insumo6 > 10
+      || this.objectB[i].Q1P3insumo1 > 10 || this.objectB[i].Q1P3insumo2  > 10 || this.objectB[i].Q1P3insumo3  > 10 
+      || this.objectB[i].Q1P3insumo4  > 10  || this.objectB[i].Q1P3insumo5 > 10  || this.objectB[i].Q1P3insumo6 > 10
+      || this.objectB[i].examen1 > 10
+      
+      ||this.objectB[i].Q2P1insumo1 > 10 || this.objectB[i].Q2P1insumo2  > 10 || this.objectB[i].Q2P1insumo3  > 10 
+      || this.objectB[i].Q2P1insumo4  > 10  || this.objectB[i].Q2P1insumo5 > 10  || this.objectB[i].Q2P1insumo6 > 10
+      || this.objectB[i].Q2P2insumo1 > 10 || this.objectB[i].Q2P2insumo2  > 10 || this.objectB[i].Q2P2insumo3  > 10 
+      || this.objectB[i].Q2P2insumo4  > 10  || this.objectB[i].Q2P2insumo5 > 10  || this.objectB[i].Q2P2insumo6 > 10
+      || this.objectB[i].Q2P3insumo1 > 10 || this.objectB[i].Q2P3insumo2  > 10 || this.objectB[i].Q2P3insumo3  > 10 
+      || this.objectB[i].Q2P3insumo4  > 10  || this.objectB[i].Q2P3insumo5 > 10  || this.objectB[i].Q2P3insumo6 > 10
+      ||this.objectB[i].examen2 > 10 || this.objectB[i].examenGracia > 10|| this.objectB[i].examenRemedial > 10 || this.objectB[i].examenSupletorio > 10) {
+      this.btnFinalizar2 = true;
+      this.banderAux = true;
+      this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
+
+      document.getElementById("openModalError").click();
+
+    } else {
+      if (this.banderAux) {this.btnFinalizar2 = true;} else { this.btnFinalizar2 = false; }
+
+      var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
+        + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
+        + parseFloat(this.object[i].insumo6) + parseFloat(this.object[i].insumo7) + parseFloat(this.object[i].insumo8)) / 8) * 0.8;
+
+
+      var veinteporciento1 = parseFloat(this.object[i].examen1) * 0.2;
+
+      var promedio1 = ochentaporciento1 + veinteporciento1
+
+      var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
+        + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
+        + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
+
+      var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
+      var promedio2 = ochentaporciento2 + veinteporciento2
+      var promedioPeriodo = (promedio1 + promedio2) / 2;
+
+
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculable[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
+
+
+    }
+  }
+
+
+
+
 
   calculos(i) {
 
@@ -241,7 +313,10 @@ export class DocenteComponent implements OnInit {
   habilitarGR() {
     this.btnFinalizar = true;
   }
-
+  habilitarGRB()
+  {
+    this.btnFinalizar2 = true;
+  }
 
   getListadoMisMaterias() {
 
