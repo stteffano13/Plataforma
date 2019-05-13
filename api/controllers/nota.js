@@ -1,5 +1,6 @@
 
 var Nota = require('../models/nota');
+var NotaB  = require('../models/notaB');
 
 function saveNotas(req, res) {
 
@@ -175,11 +176,216 @@ function buscarNotas(req, res) {
 }
 
 
+// notas b
+
+function saveNotasB(req, res) {
+
+  var cont = 0;
+  var cont2 = 0;
+  var cont3=0;
+  var paramsi = req.body;
+ 
+  console.log("veamos si viene materia", paramsi);
+  paramsi.forEach(params => {
+
+    NotaB.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo },{materia:params.materia}] }, (err, notasB) => {
+      if (err) {
+        cont3++;
+        if(cont3==Object.keys(paramsi).length){
+        res.status(500).send({
+          message: "Error al guardar Nota"
+        });
+      }
+      } else {
+        if (notasB) {
+          cont2++;
+          updateNotasFinB(notasB, params, res, cont2, paramsi);
+
+
+        } else {
+          cont++;
+          saveNotasB2(params, res, cont, paramsi);
+
+
+        }
+      }
+
+    });
+
+  });
+
+}
+
+
+function saveNotasB2(params, res, cont, paramsi) {
+  var notaB = new NotaB();
+  notaB.materia = params.materia;
+  notaB.estudiante = params.estudiante;
+  notaB.periodo = params.periodo;
+
+
+  notaB.Q1P1insumo1 = params.Q1P1insumo1;
+  notaB.Q1P1insumo2 = params.Q1P1insumo2;
+  notaB.Q1P1insumo3 = params.Q1P1insumo3;
+  notaB.Q1P1insumo4 = params.Q1P1insumo4;
+  notaB.Q1P1insumo5 = params.Q1P1insumo5;
+  notaB.Q1P1insumo6 = params.Q1P1insumo6;
+
+  notaB.Q1P2insumo1 = params.Q1P2insumo1;
+  notaB.Q1P2insumo2 = params.Q1P2insumo2;
+  notaB.Q1P2insumo3 = params.Q1P2insumo3;
+  notaB.Q1P2insumo4 = params.Q1P2insumo4;
+  notaB.Q1P2insumo5 = params.Q1P2insumo5;
+  notaB.Q1P2insumo6 = params.Q1P2insumo6;
+
+  notaB.Q1P3insumo1 = params.Q1P3insumo1;
+  notaB.Q1P3insumo2 = params.Q1P3insumo2;
+  notaB.Q1P3insumo3 = params.Q1P3insumo3;
+  notaB.Q1P3insumo4 = params.Q1P3insumo4;
+  notaB.Q1P3insumo5 = params.Q1P3insumo5;
+  notaB.Q1P3insumo6 = params.Q1P3insumo6;
+
+  notaB.examen1 = params.examen1;
+
+  notaB.Q2P1insumo1 = params.Q2P1insumo1;
+  notaB.Q2P1insumo2 = params.Q2P1insumo2;
+  notaB.Q2P1insumo3 = params.Q2P1insumo3;
+  notaB.Q2P1insumo4 = params.Q2P1insumo4;
+  notaB.Q2P1insumo5 = params.Q2P1insumo5;
+  notaB.Q2P1insumo6 = params.Q1P1insumo6;
+
+  notaB.Q2P2insumo1 = params.Q2P2insumo1;
+  notaB.Q2P2insumo2 = params.Q2P2insumo2;
+  notaB.Q2P2insumo3 = params.Q2P2insumo3;
+  notaB.Q2P2insumo4 = params.Q2P2insumo4;
+  notaB.Q2P2insumo5 = params.Q2P2insumo5;
+  notaB.Q2P2insumo6 = params.Q2P2insumo6;
+
+  notaB.Q2P3insumo1 = params.Q2P3insumo1;
+  notaB.Q2P3insumo2 = params.Q2P3insumo2;
+  notaB.Q2P3insumo3 = params.Q2P3insumo3;
+  notaB.Q2P3insumo4 = params.Q2P3insumo4;
+  notaB.Q2P3insumo5 = params.Q2P3insumo5;
+  notaB.Q2P3insumo6 = params.Q2P3insumo6;
+
+  notaB.examen2 = params.examen2;
+
+  notaB.examenSupletorio = params.examenSupletorio;
+  notaB.examenRemedial = params.examenRemedial;
+  notaB.examenGracia = params.examenGracia;
+
+
+  notaB.save((err, notaStored) => {
+    if (err && cont == Object.keys(paramsi).length) {
+      res.status(500).send({
+        message: 'Errro al Generar asignacion'
+      });
+    } else {
+      if (!notaStored && cont == Object.keys(paramsi).length) {
+        res.status(404).send({
+          message: 'No se ha generado la asignacion'
+        });
+      } else {
+        if (cont == Object.keys(paramsi).length) {
+          res.status(200).send({
+            message: 'La asignacion se ha generado correctamente'
+          });
+        }
+      }
+    }
+
+  });
+}
+
+
+
+function updateNotasFinB(notas, params, res, cont, paramsi) {
+  console.log("update", notas._id)
+  params._id = notas._id;
+  NotaB.findByIdAndUpdate(params._id, params, (err, notaUpdate) => {
+
+    if (err && cont == Object.keys(paramsi).length) {
+      res.status(500).send({
+        message: err
+      });
+
+    } else {
+      if (!notaUpdate && cont == Object.keys(paramsi).length) {
+        res.status(404).send({
+          message: "la nota no ha podido actualizarse."
+        });
+      } else {
+        console.log("seguro se actualizo", cont, "contra",  paramsi);
+        if (cont == Object.keys(paramsi).length) {
+          res.status(200).send({
+            message: "las notas se registraron correctamente."
+          });
+        }
+      }
+    }
+
+  });
+}
+
+
+function buscarNotasB(req, res) {
+
+
+  var paramsi = req.body;
+  console.log("mostrar el ide que voy a comprar notas b", paramsi);
+  var vectorNotas = [];
+  var cont2 = 0;
+  cont3=0;
+  cont =0;
+  paramsi.buscar.forEach(params => {
+  console.log("notas b params estudiante id", params.estudiante._id, params.periodo, paramsi.materia)
+    NotaB.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
+
+      if (err) {
+        cont3++
+        if (cont == Object.keys(paramsi).length) {
+          res.status(500).send({
+            message: "Error al guardar Curso"
+          });
+        }
+      } else {
+        if (notas) {
+
+          cont2++;
+
+          vectorNotas.push(notas)
+          if (cont2 == Object.keys(paramsi.buscar).length) {
+            console.log("estes es el vector de nbotas que regresa", vectorNotas);
+            res.status(200).send({
+              vectorNotas
+            });
+          }
+        } else {
+          cont++;
+          if (cont == Object.keys(paramsi).length) {
+            res.status(200).send({
+              message: "no existen notas registradas"
+            });
+          }
+
+
+        }
+      }
+
+    });
+
+  });
+
+
+}
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
   saveNotas,
   buscarNotas,
-  updateNotasFin
+  updateNotasFin,
+  saveNotasB,
+  buscarNotasB
 
 
 };

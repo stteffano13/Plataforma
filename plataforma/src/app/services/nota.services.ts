@@ -27,6 +27,17 @@ export class NotaService {
     }
 
 
+    registerNotaB(notaB_to_register) {
+        let json = JSON.stringify(notaB_to_register);
+        let params = json;
+        console.log("Materia",params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "registerNotaB", params, { headers: headers })
+            .map(res => res.json());
+    }
+
+
       
     buscarNotas(notas_buscar) {
    
@@ -39,6 +50,16 @@ export class NotaService {
             .map(res => res.json());
     }
 
+
+    buscarNotasB(notasB_buscar) {
+   
+        let json = JSON.stringify(notasB_buscar);
+        let params = json;
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "buscarNotasB", params, { headers: headers })
+            .map(res => res.json());
+    }
    
 
     getToken() {

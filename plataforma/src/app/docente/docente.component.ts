@@ -22,6 +22,9 @@ export class DocenteComponent implements OnInit {
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService) { }
 
+
+
+    public guardarMateriaMatricula;
   // banderas bloquer input
 
   public banderInsumo1 = false;
@@ -43,9 +46,9 @@ export class DocenteComponent implements OnInit {
 
 
   public btnFinalizar = true;
-  public  banderAux = false;
+  public banderAux = false;
   public btnFinalizar2 = true;
-  
+
 
   public mensajeerrormodal;
   public loading;
@@ -81,7 +84,7 @@ export class DocenteComponent implements OnInit {
   }
 
   pruebaclick() {
-    this.banderAux=false;
+    this.banderAux = false;
     for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
       document.getElementById("tdbuttonGuardar" + i).click();
       console.log(this.object);
@@ -101,12 +104,12 @@ export class DocenteComponent implements OnInit {
 
 
   pruebaB(value, i) {
-    console.log("antes de mandar la materia index Basico es", i)
+    console.log("antes de mandar la materia index Basico es", this.guardarMateriaMatricula)
     this.objectB[i].estudiante = value.estudiante._id;
-    this.objectB[i].materia = this.vectorListadoMisMaterias[0]._id;
+    this.objectB[i].materia = this.guardarMateriaMatricula;
     this.objectB[i].periodo = this.periodoLectivoActual;
 
-   this.calculosB(i);
+    this.calculosB(i);
 
   }
 
@@ -114,21 +117,26 @@ export class DocenteComponent implements OnInit {
   calculosB(i) {
 
 
-    if (this.objectB[i].Q1P1insumo1 > 10 || this.objectB[i].Q1P1insumo2  > 10 || this.objectB[i].Q1P1insumo3  > 10 
-      || this.objectB[i].Q1P1insumo4  > 10  || this.objectB[i].Q1P1insumo5 > 10  || this.objectB[i].Q1P1insumo6 > 10
-      || this.objectB[i].Q1P2insumo1 > 10 || this.objectB[i].Q1P2insumo2  > 10 || this.objectB[i].Q1P2insumo3  > 10 
-      || this.objectB[i].Q1P2insumo4  > 10  || this.objectB[i].Q1P2insumo5 > 10  || this.objectB[i].Q1P2insumo6 > 10
-      || this.objectB[i].Q1P3insumo1 > 10 || this.objectB[i].Q1P3insumo2  > 10 || this.objectB[i].Q1P3insumo3  > 10 
-      || this.objectB[i].Q1P3insumo4  > 10  || this.objectB[i].Q1P3insumo5 > 10  || this.objectB[i].Q1P3insumo6 > 10
+    if (this.objectB[i].Q1P1insumo1 > 10 || this.objectB[i].Q1P1insumo2 > 10 || this.objectB[i].Q1P1insumo3 > 10
+      || this.objectB[i].Q1P1insumo4 > 10 || this.objectB[i].Q1P1insumo5 > 10 || this.objectB[i].Q1P1insumo6 > 10
+
+      || this.objectB[i].Q1P2insumo1 > 10 || this.objectB[i].Q1P2insumo2 > 10 || this.objectB[i].Q1P2insumo3 > 10
+      || this.objectB[i].Q1P2insumo4 > 10 || this.objectB[i].Q1P2insumo5 > 10 || this.objectB[i].Q1P2insumo6 > 10
+
+      || this.objectB[i].Q1P3insumo1 > 10 || this.objectB[i].Q1P3insumo2 > 10 || this.objectB[i].Q1P3insumo3 > 10
+      || this.objectB[i].Q1P3insumo4 > 10 || this.objectB[i].Q1P3insumo5 > 10 || this.objectB[i].Q1P3insumo6 > 10
       || this.objectB[i].examen1 > 10
-      
-      ||this.objectB[i].Q2P1insumo1 > 10 || this.objectB[i].Q2P1insumo2  > 10 || this.objectB[i].Q2P1insumo3  > 10 
-      || this.objectB[i].Q2P1insumo4  > 10  || this.objectB[i].Q2P1insumo5 > 10  || this.objectB[i].Q2P1insumo6 > 10
-      || this.objectB[i].Q2P2insumo1 > 10 || this.objectB[i].Q2P2insumo2  > 10 || this.objectB[i].Q2P2insumo3  > 10 
-      || this.objectB[i].Q2P2insumo4  > 10  || this.objectB[i].Q2P2insumo5 > 10  || this.objectB[i].Q2P2insumo6 > 10
-      || this.objectB[i].Q2P3insumo1 > 10 || this.objectB[i].Q2P3insumo2  > 10 || this.objectB[i].Q2P3insumo3  > 10 
-      || this.objectB[i].Q2P3insumo4  > 10  || this.objectB[i].Q2P3insumo5 > 10  || this.objectB[i].Q2P3insumo6 > 10
-      ||this.objectB[i].examen2 > 10 || this.objectB[i].examenGracia > 10|| this.objectB[i].examenRemedial > 10 || this.objectB[i].examenSupletorio > 10) {
+
+      || this.objectB[i].Q2P1insumo1 > 10 || this.objectB[i].Q2P1insumo2 > 10 || this.objectB[i].Q2P1insumo3 > 10
+      || this.objectB[i].Q2P1insumo4 > 10 || this.objectB[i].Q2P1insumo5 > 10 || this.objectB[i].Q2P1insumo6 > 10
+
+      || this.objectB[i].Q2P2insumo1 > 10 || this.objectB[i].Q2P2insumo2 > 10 || this.objectB[i].Q2P2insumo3 > 10
+      || this.objectB[i].Q2P2insumo4 > 10 || this.objectB[i].Q2P2insumo5 > 10 || this.objectB[i].Q2P2insumo6 > 10
+
+      || this.objectB[i].Q2P3insumo1 > 10 || this.objectB[i].Q2P3insumo2 > 10 || this.objectB[i].Q2P3insumo3 > 10
+      || this.objectB[i].Q2P3insumo4 > 10 || this.objectB[i].Q2P3insumo5 > 10 || this.objectB[i].Q2P3insumo6 > 10
+
+      || this.objectB[i].examen2 > 10 || this.objectB[i].examenGracia > 10 || this.objectB[i].examenRemedial > 10 || this.objectB[i].examenSupletorio > 10) {
       this.btnFinalizar2 = true;
       this.banderAux = true;
       this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
@@ -136,33 +144,47 @@ export class DocenteComponent implements OnInit {
       document.getElementById("openModalError").click();
 
     } else {
-      if (this.banderAux) {this.btnFinalizar2 = true;} else { this.btnFinalizar2 = false; }
-
-      var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
-        + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
-        + parseFloat(this.object[i].insumo6) + parseFloat(this.object[i].insumo7) + parseFloat(this.object[i].insumo8)) / 8) * 0.8;
+      if (this.banderAux) { this.btnFinalizar2 = true; } else { this.btnFinalizar2 = false; }
 
 
-      var veinteporciento1 = parseFloat(this.object[i].examen1) * 0.2;
+      var ochentaporciento1 = ((parseFloat(this.objectB[i].Q1P1insumo1) + parseFloat(this.objectB[i].Q1P1insumo2)
+        + parseFloat(this.objectB[i].Q1P1insumo3) + parseFloat(this.objectB[i].Q1P1insumo4) + parseFloat(this.objectB[i].Q1P1insumo5)
+        + parseFloat(this.objectB[i].Q1P1insumo6) +
+
+        parseFloat(this.objectB[i].Q1P2insumo1) + parseFloat(this.objectB[i].Q1P2insumo2) + parseFloat(this.objectB[i].Q1P2insumo3) +
+        + parseFloat(this.objectB[i].Q1P2insumo4) + parseFloat(this.objectB[i].Q1P2insumo5) + parseFloat(this.objectB[i].Q1P2insumo6) +
+
+        parseFloat(this.objectB[i].Q1P3insumo1) + parseFloat(this.objectB[i].Q1P3insumo2) + parseFloat(this.objectB[i].Q1P3insumo3) +
+        parseFloat(this.objectB[i].Q1P3insumo4) + parseFloat(this.objectB[i].Q1P3insumo5) + parseFloat(this.objectB[i].Q1P3insumo6)) / 18) * 0.8;
+
+
+      var veinteporciento1 = parseFloat(this.objectB[i].examen1) * 0.2;
 
       var promedio1 = ochentaporciento1 + veinteporciento1
 
-      var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
-        + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
-        + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
+      var ochentaporciento2 =  ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
+      + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
+      + parseFloat(this.objectB[i].Q1P1insumo6) +
 
-      var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
+      parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3) 
+      + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
+
+      parseFloat(this.objectB[i].Q2P3insumo1) + parseFloat(this.objectB[i].Q2P3insumo2) + parseFloat(this.objectB[i].Q2P3insumo3) +
+      parseFloat(this.objectB[i].Q2P3insumo4) + parseFloat(this.objectB[i].Q2P3insumo5) + parseFloat(this.objectB[i].Q2P3insumo6)) / 18) * 0.8;
+
+
+      var veinteporciento2 = parseFloat(this.objectB[i].examen2) * 0.2;
       var promedio2 = ochentaporciento2 + veinteporciento2
       var promedioPeriodo = (promedio1 + promedio2) / 2;
 
 
-      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
-      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
-      this.objectCalculable[i].promedio1 = promedio1.toFixed(2);
-      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
-      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
-      this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
-      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
+      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculableB[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
 
     }
@@ -188,7 +210,7 @@ export class DocenteComponent implements OnInit {
       document.getElementById("openModalError").click();
 
     } else {
-      if (this.banderAux) {this.btnFinalizar = true;} else { this.btnFinalizar = false; }
+      if (this.banderAux) { this.btnFinalizar = true; } else { this.btnFinalizar = false; }
 
       var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
         + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
@@ -220,6 +242,82 @@ export class DocenteComponent implements OnInit {
     }
   }
 
+
+  calculosBInit(i) {
+
+
+    if (this.objectB[i].Q1P1insumo1 > 10 || this.objectB[i].Q1P1insumo2 > 10 || this.objectB[i].Q1P1insumo3 > 10
+      || this.objectB[i].Q1P1insumo4 > 10 || this.objectB[i].Q1P1insumo5 > 10 || this.objectB[i].Q1P1insumo6 > 10
+
+      || this.objectB[i].Q1P2insumo1 > 10 || this.objectB[i].Q1P2insumo2 > 10 || this.objectB[i].Q1P2insumo3 > 10
+      || this.objectB[i].Q1P2insumo4 > 10 || this.objectB[i].Q1P2insumo5 > 10 || this.objectB[i].Q1P2insumo6 > 10
+
+      || this.objectB[i].Q1P3insumo1 > 10 || this.objectB[i].Q1P3insumo2 > 10 || this.objectB[i].Q1P3insumo3 > 10
+      || this.objectB[i].Q1P3insumo4 > 10 || this.objectB[i].Q1P3insumo5 > 10 || this.objectB[i].Q1P3insumo6 > 10
+      || this.objectB[i].examen1 > 10
+
+      || this.objectB[i].Q2P1insumo1 > 10 || this.objectB[i].Q2P1insumo2 > 10 || this.objectB[i].Q2P1insumo3 > 10
+      || this.objectB[i].Q2P1insumo4 > 10 || this.objectB[i].Q2P1insumo5 > 10 || this.objectB[i].Q2P1insumo6 > 10
+
+      || this.objectB[i].Q2P2insumo1 > 10 || this.objectB[i].Q2P2insumo2 > 10 || this.objectB[i].Q2P2insumo3 > 10
+      || this.objectB[i].Q2P2insumo4 > 10 || this.objectB[i].Q2P2insumo5 > 10 || this.objectB[i].Q2P2insumo6 > 10
+
+      || this.objectB[i].Q2P3insumo1 > 10 || this.objectB[i].Q2P3insumo2 > 10 || this.objectB[i].Q2P3insumo3 > 10
+      || this.objectB[i].Q2P3insumo4 > 10 || this.objectB[i].Q2P3insumo5 > 10 || this.objectB[i].Q2P3insumo6 > 10
+
+      || this.objectB[i].examen2 > 10 || this.objectB[i].examenGracia > 10 || this.objectB[i].examenRemedial > 10 || this.objectB[i].examenSupletorio > 10) {
+      this.btnFinalizar2 = true;
+      this.banderAux = true;
+      this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
+
+      document.getElementById("openModalError").click();
+
+    } else {
+   
+
+
+      var ochentaporciento1 = ((parseFloat(this.objectB[i].Q1P1insumo1) + parseFloat(this.objectB[i].Q1P1insumo2)
+        + parseFloat(this.objectB[i].Q1P1insumo3) + parseFloat(this.objectB[i].Q1P1insumo4) + parseFloat(this.objectB[i].Q1P1insumo5)
+        + parseFloat(this.objectB[i].Q1P1insumo6) +
+
+        parseFloat(this.objectB[i].Q1P2insumo1) + parseFloat(this.objectB[i].Q1P2insumo2) + parseFloat(this.objectB[i].Q1P2insumo3) +
+        + parseFloat(this.objectB[i].Q1P2insumo4) + parseFloat(this.objectB[i].Q1P2insumo5) + parseFloat(this.objectB[i].Q1P2insumo6) +
+
+        parseFloat(this.objectB[i].Q1P3insumo1) + parseFloat(this.objectB[i].Q1P3insumo2) + parseFloat(this.objectB[i].Q1P3insumo3) +
+        parseFloat(this.objectB[i].Q1P3insumo4) + parseFloat(this.objectB[i].Q1P3insumo5) + parseFloat(this.objectB[i].Q1P3insumo6)) / 18) * 0.8;
+
+
+      var veinteporciento1 = parseFloat(this.objectB[i].examen1) * 0.2;
+
+      var promedio1 = ochentaporciento1 + veinteporciento1
+
+      var ochentaporciento2 =  ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
+      + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
+      + parseFloat(this.objectB[i].Q1P1insumo6) +
+
+      parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3) 
+      + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
+
+      parseFloat(this.objectB[i].Q2P3insumo1) + parseFloat(this.objectB[i].Q2P3insumo2) + parseFloat(this.objectB[i].Q2P3insumo3) +
+      parseFloat(this.objectB[i].Q2P3insumo4) + parseFloat(this.objectB[i].Q2P3insumo5) + parseFloat(this.objectB[i].Q2P3insumo6)) / 18) * 0.8;
+
+
+      var veinteporciento2 = parseFloat(this.objectB[i].examen2) * 0.2;
+      var promedio2 = ochentaporciento2 + veinteporciento2
+      var promedioPeriodo = (promedio1 + promedio2) / 2;
+
+
+      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculableB[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
+
+
+    }
+  }
 
   calculosInit(i) {
     this.btnFinalizar = true;
@@ -313,8 +411,7 @@ export class DocenteComponent implements OnInit {
   habilitarGR() {
     this.btnFinalizar = true;
   }
-  habilitarGRB()
-  {
+  habilitarGRB() {
     this.btnFinalizar2 = true;
   }
 
@@ -351,10 +448,11 @@ export class DocenteComponent implements OnInit {
     this.objectCalculable = [];
     this.objectB = [];
     this.objectCalculableB = [];
- 
+
 
     var busqueda = value.split(",");
     this.loading = true;
+    this.guardarMateriaMatricula=busqueda[0];
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
@@ -365,8 +463,8 @@ export class DocenteComponent implements OnInit {
 
         if (this.listadoEstudianteMatriculas != "" && busqueda[2] != "BÁSICO SUPERIOR INTENSIVO") {
           this.banderTabla1 = true;
-          this.banderTabla2=false;
-        
+          this.banderTabla2 = false;
+
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
             this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
@@ -386,7 +484,7 @@ export class DocenteComponent implements OnInit {
           console.log(" este es el objeto calculable 2", this.objectCalculable);
           this.loading = false;
           this.banderTabla1 = false;
-          this.banderTabla2= true;
+          this.banderTabla2 = true;
 
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
@@ -401,7 +499,7 @@ export class DocenteComponent implements OnInit {
             materia: busqueda[1],
             buscar: this.listadoEstudianteMatriculas
           }
-          //this.traerNotas(objBuscarNotas);
+          this.traerNotasB(objBuscarNotas);
         }
 
 
@@ -506,26 +604,92 @@ export class DocenteComponent implements OnInit {
 
   }
 
-  registroNotas() {
-
-this.pruebaclick();
-if(this.banderAux==false)
-{
 
 
-    this._notaService.registerNota(this.object).subscribe(
+  traerNotasB(value) {
+    console.log("value curso para nota", value);
+
+    this._notaService.buscarNotasB(value).subscribe(
       response => {
-        this.mensajecorrectomodals = response.message;
-        console.log("satisfactoriamente");
         this.loading = false;
-        document.getElementById("openModalCorrecto").click();
-        this.btnFinalizar = true;
+        this.listadoEstudianteNotas = response.vectorNotas;
+
+        //  ordenar
+        let i = 0;
+        this.listadoEstudianteMatriculas.forEach(elementE => {
+
+          this.listadoEstudianteNotas.forEach(element => {
+
+            console.log("elementoE", elementE.estudiante._id, "elemento", element[0].estudiante)
+
+            if (elementE.estudiante._id == element[0].estudiante) {
+              this.objectB[i].Q1P1insumo1 = element[0].Q1P1insumo1;
+              this.objectB[i].Q1P1insumo2 = element[0].Q1P1insumo2;
+              this.objectB[i].Q1P1insumo3 = element[0].Q1P1insumo3;
+              this.objectB[i].Q1P1insumo4 = element[0].Q1P1insumo4;
+              this.objectB[i].Q1P1insumo5 = element[0].Q1P1insumo5;
+              this.objectB[i].Q1P1insumo6 = element[0].Q1P1insumo6;
+
+              this.objectB[i].Q1P2insumo1 = element[0].Q1P2insumo1;
+              this.objectB[i].Q1P2insumo2 = element[0].Q1P2insumo2;
+              this.objectB[i].Q1P2insumo3 = element[0].Q1P2insumo3;
+              this.objectB[i].Q1P2insumo4 = element[0].Q1P2insumo4;
+              this.objectB[i].Q1P2insumo5 = element[0].Q1P2insumo5;
+              this.objectB[i].Q1P2insumo6 = element[0].Q1P2insumo6;
+
+              this.objectB[i].Q1P3insumo1 = element[0].Q1P3insumo1;
+              this.objectB[i].Q1P3insumo2 = element[0].Q1P3insumo2;
+              this.objectB[i].Q1P3insumo3 = element[0].Q1P3insumo3;
+              this.objectB[i].Q1P3insumo4 = element[0].Q1P3insumo4;
+              this.objectB[i].Q1P3insumo5 = element[0].Q1P3insumo5;
+              this.objectB[i].Q1P3insumo6 = element[0].Q1P3insumo6;
+
+            
+              this.objectB[i].examen1 = element[0].examen1;
+
+              this.objectB[i].Q2P1insumo1 = element[0].Q2P1insumo1;
+              this.objectB[i].Q2P1insumo2 = element[0].Q2P1insumo2;
+              this.objectB[i].Q2P1insumo3 = element[0].Q2P1insumo3;
+              this.objectB[i].Q2P1insumo4 = element[0].Q2P1insumo4;
+              this.objectB[i].Q2P1insumo5 = element[0].Q2P1insumo5;
+              this.objectB[i].Q2P1insumo6 = element[0].Q2P1insumo6;
+
+              this.objectB[i].Q2P2insumo1 = element[0].Q2P2insumo1;
+              this.objectB[i].Q2P2insumo2 = element[0].Q2P2insumo2;
+              this.objectB[i].Q2P2insumo3 = element[0].Q2P2insumo3;
+              this.objectB[i].Q2P2insumo4 = element[0].Q2P2insumo4;
+              this.objectB[i].Q2P2insumo5 = element[0].Q2P2insumo5;
+              this.objectB[i].Q2P2insumo6 = element[0].Q2P2insumo6;
+
+              this.objectB[i].Q2P3insumo1 = element[0].Q2P3insumo1;
+              this.objectB[i].Q2P3insumo2 = element[0].Q2P3insumo2;
+              this.objectB[i].Q2P3insumo3 = element[0].Q2P3insumo3;
+              this.objectB[i].Q2P3insumo4 = element[0].Q2P3insumo4;
+              this.objectB[i].Q2P3insumo5 = element[0].Q2P3insumo5;
+              this.objectB[i].Q2P3insumo6 = element[0].Q2P3insumo6;
+
+              this.objectB[i].examen2 = element[0].examen2;
+              this.objectB[i].examenSupletorio = element[0].examenSupletorio;
+              this.objectB[i].examenRemedial = element[0].examenRemedial;
+              this.objectB[i].examenGracia = element[0].examenGracia;
+
+              this.calculosBInit(i);
+              i++;
+
+            }
+          });
+        });
+
+
+
+        this.loading = false;
+
       },
       error => {
+        this.loading = false;
         var errorMessage = <any>error;
         if (errorMessage) {
-          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
-          document.getElementById("openModalError").click();
+          console.log(errorMessage);
           try {
             var body = JSON.parse(error._body);
             errorMessage = body.message;
@@ -534,10 +698,82 @@ if(this.banderAux==false)
             this.loading = false;
             document.getElementById("openModalError").click();
           }
-          this.loading = false;
+          // this.loading =false;
         }
+        // this.loading =false;
       }
+
     );
+
   }
+
+  registroNotas() {
+
+    this.pruebaclick();
+    if (this.banderAux == false) {
+
+
+      this._notaService.registerNota(this.object).subscribe(
+        response => {
+          this.mensajecorrectomodals = response.message;
+          console.log("satisfactoriamente");
+          this.loading = false;
+          document.getElementById("openModalCorrecto").click();
+          this.btnFinalizar = true;
+        },
+        error => {
+          var errorMessage = <any>error;
+          if (errorMessage) {
+            this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+            document.getElementById("openModalError").click();
+            try {
+              var body = JSON.parse(error._body);
+              errorMessage = body.message;
+            } catch {
+              errorMessage = "No hay conexión intentelo más tarde";
+              this.loading = false;
+              document.getElementById("openModalError").click();
+            }
+            this.loading = false;
+          }
+        }
+      );
+    }
+  }
+
+
+
+  registroNotasB() {
+
+   // this.pruebaclick();
+    if (this.banderAux == false) {
+
+
+      this._notaService.registerNotaB(this.objectB).subscribe(
+        response => {
+          this.mensajecorrectomodals = response.message;
+          console.log("satisfactoriamente");
+          this.loading = false;
+          document.getElementById("openModalCorrecto").click();
+          this.btnFinalizar2 = true;
+        },
+        error => {
+          var errorMessage = <any>error;
+          if (errorMessage) {
+            this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+            document.getElementById("openModalError").click();
+            try {
+              var body = JSON.parse(error._body);
+              errorMessage = body.message;
+            } catch {
+              errorMessage = "No hay conexión intentelo más tarde";
+              this.loading = false;
+              document.getElementById("openModalError").click();
+            }
+            this.loading = false;
+          }
+        }
+      );
+    }
   }
 }
