@@ -4,6 +4,7 @@ import { MatriculaService } from '../services/matricula.services';
 import { AdministradorService } from '../services/administrador.services';
 import { NotaService } from '../services/nota.services';
 import { Nota } from '../models/nota';
+import { NotaBasica } from '../models/notaBasica';
 import { Calculable } from '../models/calculable';
 import { isNumber } from 'util';
 
@@ -32,10 +33,20 @@ export class DocenteComponent implements OnInit {
   public banderInsumo7 = false;
   public banderInsumo8 = false;
 
+  // fin bloquear botones
+
+  // aparecer  tabla 
+
+  public banderTabla1 = false;
+  public banderTabla2 = false;
 
 
 
   public btnFinalizar = true;
+  public  banderAux = false;
+  public btnFinalizar2 = true;
+  
+
   public mensajeerrormodal;
   public loading;
   public periodoLectivoActual;
@@ -46,15 +57,21 @@ export class DocenteComponent implements OnInit {
   public vectorListadoMisMaterias;
   public obj: Nota;
   public objC: Calculable;
+
+  public objB: NotaBasica;
+  public objCB: Calculable;
+
   public mensajecorrectomodals;
   public mensajeerrormodals;
 
   // vectores
-
-
   public object = [];
 
-  public objectCalculable = []
+  public objectCalculable = [];
+
+  public objectB = [];
+
+  public objectCalculableB = []
 
 
   ngOnInit() {
@@ -64,6 +81,7 @@ export class DocenteComponent implements OnInit {
   }
 
   pruebaclick() {
+    this.banderAux=false;
     for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
       document.getElementById("tdbuttonGuardar" + i).click();
       console.log(this.object);
@@ -84,16 +102,21 @@ export class DocenteComponent implements OnInit {
 
   calculos(i) {
 
+
     if (this.object[i].insumo1 > 10 || this.object[i].insumo2 > 10 || this.object[i].insumo3 > 10 || this.object[i].insumo4 > 10
       || this.object[i].insumo5 > 10 || this.object[i].insumo6 > 10 || this.object[i].insumo7 > 10 || this.object[i].insumo8 > 10
       || this.object[i].examen1 > 10 || this.object[i].insumo11 > 10 || this.object[i].insumo22 > 10 || this.object[i].insumo33 > 10
       || this.object[i].insumo44 > 10 || this.object[i].insumo55 > 10 || this.object[i].insumo66 > 10 || this.object[i].insumo77 > 10
       || this.object[i].insumo88 > 10 || this.object[i].examen2 > 10 || this.object[i].examenGracia > 10
       || this.object[i].examenRemedial > 10 || this.object[i].examenSupletorio > 10) {
-      this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
-      document.getElementById("openModalError").click();
       this.btnFinalizar = true;
+      this.banderAux = true;
+      this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
+
+      document.getElementById("openModalError").click();
+
     } else {
+      if (this.banderAux) {this.btnFinalizar = true;} else { this.btnFinalizar = false; }
 
       var ochentaporciento1 = ((parseFloat(this.object[i].insumo1) + parseFloat(this.object[i].insumo2)
         + parseFloat(this.object[i].insumo3) + parseFloat(this.object[i].insumo4) + parseFloat(this.object[i].insumo5)
@@ -102,23 +125,15 @@ export class DocenteComponent implements OnInit {
 
       var veinteporciento1 = parseFloat(this.object[i].examen1) * 0.2;
 
-
       var promedio1 = ochentaporciento1 + veinteporciento1
-
 
       var ochentaporciento2 = ((parseFloat(this.object[i].insumo11) + parseFloat(this.object[i].insumo22)
         + parseFloat(this.object[i].insumo33) + parseFloat(this.object[i].insumo44) + parseFloat(this.object[i].insumo55)
         + parseFloat(this.object[i].insumo66) + parseFloat(this.object[i].insumo77) + parseFloat(this.object[i].insumo88)) / 8) * 0.8;
 
-
-
-
       var veinteporciento2 = parseFloat(this.object[i].examen2) * 0.2;
-
-
       var promedio2 = ochentaporciento2 + veinteporciento2
-
-      var promedioPeriodo = (promedio1 + promedio2)/2;
+      var promedioPeriodo = (promedio1 + promedio2) / 2;
 
 
       this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
@@ -129,7 +144,7 @@ export class DocenteComponent implements OnInit {
       this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
-      this.btnFinalizar = false;
+
     }
   }
 
@@ -162,7 +177,7 @@ export class DocenteComponent implements OnInit {
 
       var promedio2 = ochentaporciento2 + veinteporciento2
 
-      var promedioPeriodo = (promedio1 + promedio2)/2;
+      var promedioPeriodo = (promedio1 + promedio2) / 2;
 
       this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
       this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
@@ -183,12 +198,12 @@ export class DocenteComponent implements OnInit {
 
 
 
-    if (this.object[i].insumo1 != 0) {this.banderInsumo1 = true;}
+    if (this.object[i].insumo1 != 0) { this.banderInsumo1 = true; }
     if (this.object[i].insumo2 != 0) { this.banderInsumo2 = true; }
     if (this.object[i].insumo3 != 0) { this.banderInsumo3 = true; }
     if (this.object[i].insumo4 != 0) { this.banderInsumo4 = true; }
-    if (this.object[i].insumo5 != 0) { this.banderInsumo5 = true;}
-    if (this.object[i].insumo6 != 0) { this.banderInsumo6 = true;}
+    if (this.object[i].insumo5 != 0) { this.banderInsumo5 = true; }
+    if (this.object[i].insumo6 != 0) { this.banderInsumo6 = true; }
     if (this.object[i].insumo7 != 0) { this.banderInsumo7 = true; }
     if (this.object[i].insumo8 != 0) { this.banderInsumo8 = true }
     if (this.object[i].examen1 != 0) { }
@@ -259,7 +274,10 @@ export class DocenteComponent implements OnInit {
   asignarMateriaCurso(value) {
     this.object = [];
     this.objectCalculable = [];
-    console.log("imprimiendo objeto", value);
+    this.objectB = [];
+    this.objectCalculableB = [];
+ 
+
     var busqueda = value.split(",");
     this.loading = true;
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
@@ -267,27 +285,56 @@ export class DocenteComponent implements OnInit {
 
 
         this.listadoEstudianteMatriculas = response.matriculas;
-        //console.log("satisfactoriamente vector notas", this.vectorListadoMisMaterias[0]._id);
-        for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-          this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
-          this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
+        console.log("para habilitar  tablas", busqueda[2]);
+
+        if (this.listadoEstudianteMatriculas != "" && busqueda[2] != "BÁSICO SUPERIOR INTENSIVO") {
+          this.banderTabla1 = true;
+          this.banderTabla2=false;
+        
+          for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
+
+            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
+
+          }
+          console.log(" este es el objeto calculable", this.objectCalculable);
+          var objBuscarNotas = {
+
+            materia: busqueda[1],
+            buscar: this.listadoEstudianteMatriculas
+          }
+          this.traerNotas(objBuscarNotas);
+
+        } else {
+
+          console.log(" este es el objeto calculable 2", this.objectCalculable);
+          this.loading = false;
+          this.banderTabla1 = false;
+          this.banderTabla2= true;
 
 
+          for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
+
+            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
+
+          }
+          console.log(" este es el objeto calculable", this.objectCalculable);
+          var objBuscarNotas = {
+
+            materia: busqueda[1],
+            buscar: this.listadoEstudianteMatriculas
+          }
+          //this.traerNotas(objBuscarNotas);
         }
 
-        console.log(" este es el objeto calculable", this.objectCalculable);
 
-        var objBuscarNotas = {
 
-          materia: busqueda[1],
-          buscar: this.listadoEstudianteMatriculas
 
-        }
-
-        this.traerNotas(objBuscarNotas);
       },
       error => {
+        this.loading = false;
         var errorMessage = <any>error;
         if (errorMessage) {
           console.log(errorMessage);
@@ -363,6 +410,7 @@ export class DocenteComponent implements OnInit {
 
       },
       error => {
+        this.loading = false;
         var errorMessage = <any>error;
         if (errorMessage) {
           console.log(errorMessage);
@@ -384,7 +432,12 @@ export class DocenteComponent implements OnInit {
   }
 
   registroNotas() {
-    console.log("veamos si hay examen 2", this.object);
+
+this.pruebaclick();
+if(this.banderAux==false)
+{
+
+
     this._notaService.registerNota(this.object).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
@@ -410,5 +463,6 @@ export class DocenteComponent implements OnInit {
         }
       }
     );
+  }
   }
 }

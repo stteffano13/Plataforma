@@ -34,8 +34,8 @@
         </li>
         <li>
           <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
-            <option [value]="" selected></option>
-            <option *ngFor="let oneDoor of vectorListadoMisMaterias" value="{{oneDoor.curso._id}},{{oneDoor._id}}">{{oneDoor.nombre}} {{oneDoor.curso.curso}}</option>
+            <option [value]="" selected>Selecciona materia y curso</option>
+            <option *ngFor="let oneDoor of vectorListadoMisMaterias" value="{{oneDoor.curso._id}},{{oneDoor._id}},{{oneDoor.curso.curso}}">{{oneDoor.nombre}}:  {{oneDoor.curso.curso}}</option>
           </select>
 
 
@@ -114,7 +114,7 @@
 
 
 
-      <table class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ">
+      <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ">
         <thead>
           <tr style="background-color: #343a40; align-content: center;">
             <th style="color: white; padding-top: 3%" scope="col">#</th>
@@ -273,7 +273,7 @@
     </div>
 
     <!-- ---------------------------------- tabla de notas basica tabla   2 ------------------ -->
-    <table  class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80% ">
+    <table  *ngIf="banderTabla2"  class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80% ">
       <thead>
         <tr >
           <th COLSPAN="2"></th>
@@ -363,6 +363,9 @@
           <th style="color: white" scope="col" class="verticalText">20%</th>
           <th style="color: white" scope="col" class="verticalText">Promedio</th>
           <th style="color: white" scope="col" class="verticalText">Promedio total</th>
+          <th style="color: white" scope="col" class="verticalText">Examen Supletorio</th>
+          <th style="color: white" scope="col" class="verticalText">Examen Remedial</th>
+          <th style="color: white" scope="col" class="verticalText">Examen Gracia</th>
 
         </tr>
       </thead>
@@ -372,99 +375,170 @@
           <td >{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
       
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo1" name="Q1P1insumo1{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo2" name="insumo2{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo3" name="insumo3{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo3" name="insumo3{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo4" name="insumo4{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo4" name="insumo4{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo5" name="insumo5{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo5" name="insumo5{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo6" name="insumo6{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo6" name="insumo6{{i}}">
+          </td>
+          
+
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P2insumo1" name="insumo11{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo7" name="insumo7{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P2insumo2" name="insumo22{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo8" name="insumo8{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P2insumo3" name="insumo33{{i}}">
           </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P2insumo4" name="insumo44{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P2insumo5" name="insumo55{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P2insumo6" name="insumo66{{i}}">
+          </td>
+
+
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P3insumo1" name="insumo11{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P3insumo2" name="insumo22{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P3insumo3" name="insumo33{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P3insumo4" name="insumo44{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P3insumo5" name="insumo55{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P3insumo6" name="insumo66{{i}}">
+          </td>
+         
           <td id="tdfila" style="background-color:yellow">
-            <input style="background-color: yellow" id="tdboton" type="text" [(ngModel)]="  this.objectCalculable[i].ochentaporciento1"
-              name="ochentaporciento1{{i}}">
+            <input style="background-color: yellow" id="tdboton" type="text" [(ngModel)]="  this.objectCalculableB[i].ochentaporciento1"
+              name="ochentaporcientoB1{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen1" name="examen1{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].examen1" name="examen1{{i}}">
           </td>
 
           <td id="tdfila" style="background-color:yellow">
-            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento1" name="veinteporciento1{{i}}"
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculableB[i].veinteporciento1" name="veinteporciento1{{i}}"
               type="text">
           </td>
           <td id="tdfila" style="background-color:rgb(215, 253, 138)">
-            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio1" name="promedio1{{i}}"
+            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculableB[i].promedio1" name="promedio1{{i}}"
               type="text">
           </td>
 
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo11" name="insumo11{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P1insumo1" name="insumo11{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo22" name="insumo22{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P1insumo2" name="insumo22{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo33" name="insumo33{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P1insumo3" name="insumo33{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo44" name="insumo44{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P1insumo4" name="insumo44{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo55" name="insumo55{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P1insumo5" name="insumo55{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo66" name="insumo66{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P1insumo6" name="insumo66{{i}}">
+          </td>
+        
+
+          
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P2insumo1" name="insumo11{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo77" name="insumo77{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P2insumo2" name="insumo22{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo88" name="insumo88{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P2insumo3" name="insumo33{{i}}">
           </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P2insumo4" name="insumo44{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P2insumo5" name="insumo55{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P2insumo6" name="insumo66{{i}}">
+          </td>
+
+          
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P3insumo1" name="insumo11{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P3insumo2" name="insumo22{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P3insumo3" name="insumo33{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P3insumo4" name="insumo44{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P3insumo5" name="insumo55{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q2P3insumo6" name="insumo66{{i}}">
+          </td>
+
           <td id="tdfila" style="background-color:yellow">
-            <input id="tdboton" style="background-color:yellow" [(ngModel)]=" this.objectCalculable[i].ochentaporciento2" name="ochentaporciento2{{i}}"
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]=" this.objectCalculableB[i].ochentaporciento2" name="ochentaporciento2{{i}}"
               type="text">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen2" name="examen2{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].examen2" name="examen2{{i}}">
           </td>
           <td id="tdfila" style="background-color:yellow">
-            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento2" name="veinteporciento2{{i}}"
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculableB[i].veinteporciento2" name="veinteporciento2{{i}}"
               type="text">
           </td>
           <td id="tdfila" style="background-color:rgb(215, 253, 138)">
-            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio2" name="promedio2{{i}}"
+            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculableB[i].promedio2" name="promedio2{{i}}"
               type="text">
           </td>
           <td id="tdfila" style="background-color: lawngreen">
-            <input id="tdboton" style="background-color:lawngreen" [(ngModel)]=" this.objectCalculable[i].promedioPeriodo" name="promedioPeriodo{{i}}"
+            <input id="tdboton" style="background-color:lawngreen" [(ngModel)]=" this.objectCalculableB[i].promedioPeriodo" name="promedioPeriodo{{i}}"
               type="text">
           </td>
 
 
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenSupletorio" name="examenSupletorio{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].examenSupletorio" name="examenSupletorio{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenRemedial" name="examenRemedial{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].examenRemedial" name="examenRemedial{{i}}">
           </td>
           <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenGracia" name="examenGracia{{i}}">
+            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].examenGracia" name="examenGracia{{i}}">
           </td>
 
 
@@ -477,13 +551,17 @@
 
         </tr>
       </tbody>
+
+
     </table>
-    <div class="col-md-7" style="text-align: right;">
-      <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
-      <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
+    
+    
+    <div *ngIf="banderTabla2" class="col-md-7" style="text-align: right;">
+      <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar2"> Guardar el registro de notas</button>
+      <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="habilitarGR()">
         Cancelar</button>
 
-      <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
+      <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="registroNotas()">
         Finalizar</button>
     </div>
 
