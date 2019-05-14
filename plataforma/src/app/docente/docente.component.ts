@@ -24,7 +24,7 @@ export class DocenteComponent implements OnInit {
 
 
 
-    public guardarMateriaMatricula;
+  public guardarMateriaMatricula;
   // banderas bloquer input
 
   public banderInsumo1 = false;
@@ -162,15 +162,15 @@ export class DocenteComponent implements OnInit {
 
       var promedio1 = ochentaporciento1 + veinteporciento1
 
-      var ochentaporciento2 =  ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
-      + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
-      + parseFloat(this.objectB[i].Q1P1insumo6) +
+      var ochentaporciento2 = ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
+        + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
+        + parseFloat(this.objectB[i].Q1P1insumo6) +
 
-      parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3) 
-      + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
+        parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3)
+        + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
 
-      parseFloat(this.objectB[i].Q2P3insumo1) + parseFloat(this.objectB[i].Q2P3insumo2) + parseFloat(this.objectB[i].Q2P3insumo3) +
-      parseFloat(this.objectB[i].Q2P3insumo4) + parseFloat(this.objectB[i].Q2P3insumo5) + parseFloat(this.objectB[i].Q2P3insumo6)) / 18) * 0.8;
+        parseFloat(this.objectB[i].Q2P3insumo1) + parseFloat(this.objectB[i].Q2P3insumo2) + parseFloat(this.objectB[i].Q2P3insumo3) +
+        parseFloat(this.objectB[i].Q2P3insumo4) + parseFloat(this.objectB[i].Q2P3insumo5) + parseFloat(this.objectB[i].Q2P3insumo6)) / 18) * 0.8;
 
 
       var veinteporciento2 = parseFloat(this.objectB[i].examen2) * 0.2;
@@ -273,7 +273,7 @@ export class DocenteComponent implements OnInit {
       document.getElementById("openModalError").click();
 
     } else {
-   
+
 
 
       var ochentaporciento1 = ((parseFloat(this.objectB[i].Q1P1insumo1) + parseFloat(this.objectB[i].Q1P1insumo2)
@@ -291,15 +291,15 @@ export class DocenteComponent implements OnInit {
 
       var promedio1 = ochentaporciento1 + veinteporciento1
 
-      var ochentaporciento2 =  ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
-      + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
-      + parseFloat(this.objectB[i].Q1P1insumo6) +
+      var ochentaporciento2 = ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
+        + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
+        + parseFloat(this.objectB[i].Q1P1insumo6) +
 
-      parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3) 
-      + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
+        parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3)
+        + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
 
-      parseFloat(this.objectB[i].Q2P3insumo1) + parseFloat(this.objectB[i].Q2P3insumo2) + parseFloat(this.objectB[i].Q2P3insumo3) +
-      parseFloat(this.objectB[i].Q2P3insumo4) + parseFloat(this.objectB[i].Q2P3insumo5) + parseFloat(this.objectB[i].Q2P3insumo6)) / 18) * 0.8;
+        parseFloat(this.objectB[i].Q2P3insumo1) + parseFloat(this.objectB[i].Q2P3insumo2) + parseFloat(this.objectB[i].Q2P3insumo3) +
+        parseFloat(this.objectB[i].Q2P3insumo4) + parseFloat(this.objectB[i].Q2P3insumo5) + parseFloat(this.objectB[i].Q2P3insumo6)) / 18) * 0.8;
 
 
       var veinteporciento2 = parseFloat(this.objectB[i].examen2) * 0.2;
@@ -452,7 +452,7 @@ export class DocenteComponent implements OnInit {
 
     var busqueda = value.split(",");
     this.loading = true;
-    this.guardarMateriaMatricula=busqueda[0];
+    this.guardarMateriaMatricula = busqueda[1];
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
@@ -471,17 +471,21 @@ export class DocenteComponent implements OnInit {
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
-          console.log(" este es el objeto calculable", this.objectCalculable);
+         
+          console.log("estas es la materia a busca",busqueda[1]);
+
+        
           var objBuscarNotas = {
 
             materia: busqueda[1],
             buscar: this.listadoEstudianteMatriculas
           }
           this.traerNotas(objBuscarNotas);
+          this.traerNotasB(objBuscarNotas);
 
         } else {
 
-          console.log(" este es el objeto calculable 2", this.objectCalculable);
+         
           this.loading = false;
           this.banderTabla1 = false;
           this.banderTabla2 = true;
@@ -493,7 +497,7 @@ export class DocenteComponent implements OnInit {
             this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
-          console.log(" este es el objeto calculable", this.objectCalculable);
+          console.log("estas es la materia a busca",busqueda[1]);
           var objBuscarNotas = {
 
             materia: busqueda[1],
@@ -613,69 +617,70 @@ export class DocenteComponent implements OnInit {
       response => {
         this.loading = false;
         this.listadoEstudianteNotas = response.vectorNotas;
-
+        console.log(this.listadoEstudianteMatriculas);
         //  ordenar
         let i = 0;
         this.listadoEstudianteMatriculas.forEach(elementE => {
 
           this.listadoEstudianteNotas.forEach(element => {
 
-            console.log("elementoE", elementE.estudiante._id, "elemento", element[0].estudiante)
 
-            if (elementE.estudiante._id == element[0].estudiante) {
-              this.objectB[i].Q1P1insumo1 = element[0].Q1P1insumo1;
-              this.objectB[i].Q1P1insumo2 = element[0].Q1P1insumo2;
-              this.objectB[i].Q1P1insumo3 = element[0].Q1P1insumo3;
-              this.objectB[i].Q1P1insumo4 = element[0].Q1P1insumo4;
-              this.objectB[i].Q1P1insumo5 = element[0].Q1P1insumo5;
-              this.objectB[i].Q1P1insumo6 = element[0].Q1P1insumo6;
+            if (element[0] != null) {
+              if (elementE.estudiante._id == element[0].estudiante) {
+                this.objectB[i].Q1P1insumo1 = element[0].Q1P1insumo1;
+                this.objectB[i].Q1P1insumo2 = element[0].Q1P1insumo2;
+                this.objectB[i].Q1P1insumo3 = element[0].Q1P1insumo3;
+                this.objectB[i].Q1P1insumo4 = element[0].Q1P1insumo4;
+                this.objectB[i].Q1P1insumo5 = element[0].Q1P1insumo5;
+                this.objectB[i].Q1P1insumo6 = element[0].Q1P1insumo6;
 
-              this.objectB[i].Q1P2insumo1 = element[0].Q1P2insumo1;
-              this.objectB[i].Q1P2insumo2 = element[0].Q1P2insumo2;
-              this.objectB[i].Q1P2insumo3 = element[0].Q1P2insumo3;
-              this.objectB[i].Q1P2insumo4 = element[0].Q1P2insumo4;
-              this.objectB[i].Q1P2insumo5 = element[0].Q1P2insumo5;
-              this.objectB[i].Q1P2insumo6 = element[0].Q1P2insumo6;
+                this.objectB[i].Q1P2insumo1 = element[0].Q1P2insumo1;
+                this.objectB[i].Q1P2insumo2 = element[0].Q1P2insumo2;
+                this.objectB[i].Q1P2insumo3 = element[0].Q1P2insumo3;
+                this.objectB[i].Q1P2insumo4 = element[0].Q1P2insumo4;
+                this.objectB[i].Q1P2insumo5 = element[0].Q1P2insumo5;
+                this.objectB[i].Q1P2insumo6 = element[0].Q1P2insumo6;
 
-              this.objectB[i].Q1P3insumo1 = element[0].Q1P3insumo1;
-              this.objectB[i].Q1P3insumo2 = element[0].Q1P3insumo2;
-              this.objectB[i].Q1P3insumo3 = element[0].Q1P3insumo3;
-              this.objectB[i].Q1P3insumo4 = element[0].Q1P3insumo4;
-              this.objectB[i].Q1P3insumo5 = element[0].Q1P3insumo5;
-              this.objectB[i].Q1P3insumo6 = element[0].Q1P3insumo6;
+                this.objectB[i].Q1P3insumo1 = element[0].Q1P3insumo1;
+                this.objectB[i].Q1P3insumo2 = element[0].Q1P3insumo2;
+                this.objectB[i].Q1P3insumo3 = element[0].Q1P3insumo3;
+                this.objectB[i].Q1P3insumo4 = element[0].Q1P3insumo4;
+                this.objectB[i].Q1P3insumo5 = element[0].Q1P3insumo5;
+                this.objectB[i].Q1P3insumo6 = element[0].Q1P3insumo6;
 
-            
-              this.objectB[i].examen1 = element[0].examen1;
 
-              this.objectB[i].Q2P1insumo1 = element[0].Q2P1insumo1;
-              this.objectB[i].Q2P1insumo2 = element[0].Q2P1insumo2;
-              this.objectB[i].Q2P1insumo3 = element[0].Q2P1insumo3;
-              this.objectB[i].Q2P1insumo4 = element[0].Q2P1insumo4;
-              this.objectB[i].Q2P1insumo5 = element[0].Q2P1insumo5;
-              this.objectB[i].Q2P1insumo6 = element[0].Q2P1insumo6;
+                this.objectB[i].examen1 = element[0].examen1;
 
-              this.objectB[i].Q2P2insumo1 = element[0].Q2P2insumo1;
-              this.objectB[i].Q2P2insumo2 = element[0].Q2P2insumo2;
-              this.objectB[i].Q2P2insumo3 = element[0].Q2P2insumo3;
-              this.objectB[i].Q2P2insumo4 = element[0].Q2P2insumo4;
-              this.objectB[i].Q2P2insumo5 = element[0].Q2P2insumo5;
-              this.objectB[i].Q2P2insumo6 = element[0].Q2P2insumo6;
+                this.objectB[i].Q2P1insumo1 = element[0].Q2P1insumo1;
+                this.objectB[i].Q2P1insumo2 = element[0].Q2P1insumo2;
+                this.objectB[i].Q2P1insumo3 = element[0].Q2P1insumo3;
+                this.objectB[i].Q2P1insumo4 = element[0].Q2P1insumo4;
+                this.objectB[i].Q2P1insumo5 = element[0].Q2P1insumo5;
+                this.objectB[i].Q2P1insumo6 = element[0].Q2P1insumo6;
 
-              this.objectB[i].Q2P3insumo1 = element[0].Q2P3insumo1;
-              this.objectB[i].Q2P3insumo2 = element[0].Q2P3insumo2;
-              this.objectB[i].Q2P3insumo3 = element[0].Q2P3insumo3;
-              this.objectB[i].Q2P3insumo4 = element[0].Q2P3insumo4;
-              this.objectB[i].Q2P3insumo5 = element[0].Q2P3insumo5;
-              this.objectB[i].Q2P3insumo6 = element[0].Q2P3insumo6;
+                this.objectB[i].Q2P2insumo1 = element[0].Q2P2insumo1;
+                this.objectB[i].Q2P2insumo2 = element[0].Q2P2insumo2;
+                this.objectB[i].Q2P2insumo3 = element[0].Q2P2insumo3;
+                this.objectB[i].Q2P2insumo4 = element[0].Q2P2insumo4;
+                this.objectB[i].Q2P2insumo5 = element[0].Q2P2insumo5;
+                this.objectB[i].Q2P2insumo6 = element[0].Q2P2insumo6;
 
-              this.objectB[i].examen2 = element[0].examen2;
-              this.objectB[i].examenSupletorio = element[0].examenSupletorio;
-              this.objectB[i].examenRemedial = element[0].examenRemedial;
-              this.objectB[i].examenGracia = element[0].examenGracia;
+                this.objectB[i].Q2P3insumo1 = element[0].Q2P3insumo1;
+                this.objectB[i].Q2P3insumo2 = element[0].Q2P3insumo2;
+                this.objectB[i].Q2P3insumo3 = element[0].Q2P3insumo3;
+                this.objectB[i].Q2P3insumo4 = element[0].Q2P3insumo4;
+                this.objectB[i].Q2P3insumo5 = element[0].Q2P3insumo5;
+                this.objectB[i].Q2P3insumo6 = element[0].Q2P3insumo6;
 
-              this.calculosBInit(i);
-              i++;
+                this.objectB[i].examen2 = element[0].examen2;
+                this.objectB[i].examenSupletorio = element[0].examenSupletorio;
+                this.objectB[i].examenRemedial = element[0].examenRemedial;
+                this.objectB[i].examenGracia = element[0].examenGracia;
 
+                this.calculosBInit(i);
+                i++;
+
+              }
             }
           });
         });
@@ -754,7 +759,7 @@ export class DocenteComponent implements OnInit {
           this.mensajecorrectomodals = response.message;
           console.log("satisfactoriamente");
           this.loading = false;
-          document.getElementById("openModalCorrecto").click();
+         document.getElementById("openModalCorrecto").click();
           this.btnFinalizar2 = true;
         },
         error => {
