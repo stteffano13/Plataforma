@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MateriaService } from '../services/materia.services';
 import { MatriculaService } from '../services/matricula.services';
 import { AdministradorService } from '../services/administrador.services';
+import { DocenteService } from '../services/docente.services';
 import { NotaService } from '../services/nota.services';
 import { Nota } from '../models/nota';
 import { NotaBasica } from '../models/notaBasica';
@@ -20,7 +21,7 @@ export class DocenteComponent implements OnInit {
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
-    private _notaService: NotaService) { }
+    private _notaService: NotaService, private _docenteService:DocenteService) { }
 
 
 
@@ -759,7 +760,7 @@ export class DocenteComponent implements OnInit {
           this.mensajecorrectomodals = response.message;
           console.log("satisfactoriamente");
           this.loading = false;
-         document.getElementById("openModalCorrecto").click();
+        document.getElementById("openModalCorrecto").click();
           this.btnFinalizar2 = true;
         },
         error => {
@@ -781,4 +782,10 @@ export class DocenteComponent implements OnInit {
       );
     }
   }
+
+  logout() {
+    this._docenteService.logout();
+    location.reload(true);
+  }
+
 }
