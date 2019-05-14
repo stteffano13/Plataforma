@@ -745,7 +745,7 @@ export class DocenteComponent implements OnInit {
 
   registroNotasB() {
 
-   // this.pruebaclick();
+    this.pruebaclick();
     if (this.banderAux == false) {
 
 

@@ -273,15 +273,16 @@
     </div>
 
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
-    <table  *ngIf="banderTabla2"  class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80% ">
+
+    <table  *ngIf="banderTabla2"  class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80%; width: 90%; margin-left: 5%">
       <thead>
         <tr >
           <th COLSPAN="2"></th>
           <th COLSPAN="22">Primer Quimestre</th>
-          <th COLSPAN="22">Segundo Quimestre</th>
+          <th COLSPAN="23">Segundo Quimestre</th>
         </tr>
         <tr>
-          <th COLSPAN="2">Nomina de Estudiantes</th>
+          <th COLSPAN="4">Nomina de Estudiantes</th>
           <th COLSPAN="6">1er Parcial</th>
           <th COLSPAN="6">2do Parcial</th>
           <th COLSPAN="6">3er Parcial</th>
@@ -303,7 +304,11 @@
           <th style="color: white; padding-top: 3%" scope="col">#</th>
 
           <!-- parcial 1 quimestre 1-->
-          <th  style="color: white;" scope="col " >Apellidos y Nombres</th>
+          <th   style="color: white;  border-right: 0; ">Apellidos </th>
+          <th   style="color: white; padding-left: 0; padding-right: 0; border-left: 0;  border-right: 0;"> y </th>
+          <th   style="color: white; border-left: 0; border-right: 0;"> Nombres</th>
+          <th   style="color:  rgb(43, 41, 41); border-left: 0;  border-right: 0;">. </th>
+          <th   style="color: rgb(43, 41, 41); border-left: 0; ">. </th>
         
           <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
           <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
@@ -372,7 +377,8 @@
       <tbody>
         <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
           <th scope="row">{{i}}</th>
-          <td >{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
+          <td  colspan="5" valign="middle" style="padding-right: 0.5%;  padding-left: 0.5%; border-right: 0px;">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}} </td>
+         
       
           <td id="tdfila">
             <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo1" name="Q1P1insumo1{{i}}">
@@ -564,7 +570,7 @@
       <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="registroNotasB()">
         Finalizar</button>
     </div>
-
+  </div>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fa fa-angle-up"></i>
@@ -588,7 +594,7 @@
           </div>
         </div>
       </div>
-    </div>
+
 
     <!-- ====================================================              Modal Ingresar Paralelo =================================-->
 
