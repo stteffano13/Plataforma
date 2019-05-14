@@ -3,6 +3,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var moment = require('moment');
 var Matricula = require('../models/matricula');
+var Materia = require('../models/materia');
 var Estudiante = require('../models/estudiante');
 var Curso = require('../models/curso'); //importar el modelo del usuario  o lo que son las clases comunes
 var Periodo = require('../models/periodo'); //importar el modelo del usuario  o lo que son las clases comunes
@@ -161,19 +162,6 @@ function guardarSegundo(idE, idC, params, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -266,11 +254,11 @@ function getEstudiantesMatriculas(req, res) {
                     message: 'No tiene viajes'
                 });
             } else {
-           console.log(periodo);
+                console.log(periodo);
                 var matriculas = Matricula.find({
                     '$and': [{
                         estado: '0'
-                    }, { curso: busqueda },{periodo:periodo[0].periodo}]
+                    }, { curso: busqueda }, { periodo: periodo[0].periodo }]
                 }).populate({
                     path: 'estudiante'
                 }).populate({
@@ -303,11 +291,138 @@ function getEstudiantesMatriculas(req, res) {
 }
 
 
+
+function getlistadoMateriasE(req, res) {
+
+    console.log("entre a materias estudiante");
+    var busqueda = req.user.sub;
+    console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+
+
+        //////////////////////
+
+        var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
+            }
+
+            if (!periodo) {
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
+            } else {
+                var matriculas = Matricula.find({
+                    '$and': [{ estudiante: busqueda }, { estado: '0' }, { periodo: periodo[0].periodo }]
+                }).populate({
+                    path: 'estudiante'
+                }).populate({
+                    path: 'curso'
+                }).exec((err, matriculas) => {
+                    if (err) {
+                        return res.status(500).send({
+                            message: 'No se han podido obtener sus Viajes'
+                        });
+                    }
+        
+                    if (!matriculas) {
+                        return res.status(200).send({
+                            message: 'No tiene viajes'
+                        });
+                    }
+                    console.log("response curso", matriculas[0].curso._id);
+                    getListadoMioMateriasE(req, res, matriculas[0].curso._id)
+        
+                });
+              
+            }
+        });
+
+
+
+
+
+
+
+
+
+      
+    }
+}
+
+
+function getListadoMioMateriasE(req, res, busquedaE) {
+    var busqueda = busquedaE;
+
+    console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+
+        var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
+            }
+
+            if (!periodo) {
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
+            } else {
+
+                console.log("todo ready entre a buscar", periodo[0].periodo);
+                var materia = Materia.find({
+                    '$and': [{ curso: busqueda }, { estado: '0' }, { periodo: periodo[0].periodo }]
+                }).populate({
+                    path: 'curso'
+                }).exec((err, materias) => {
+                    if (err) {
+                        return res.status(500).send({
+                            message: 'No se han podido obtener sus Viajes'
+                        });
+                    }
+
+                    if (!materias) {
+                        return res.status(200).send({
+                            message: 'No tiene viajes'
+                        });
+                    } else {
+
+                        return res.status(200).send({
+
+                            materias
+
+
+                        });
+                    }
+                });
+            }
+        });
+
+
+
+    }
+
+}
+
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveMatricula,
     busquedaMatriculas,
     updateMatricula,
-    getEstudiantesMatriculas
+    getEstudiantesMatriculas,
+    getlistadoMateriasE
+
 
 };

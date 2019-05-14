@@ -28,6 +28,7 @@
 
 
       <ul class="navbar-nav ml-auto">
+        <li><p style="color: #ffffff">Usuario Activo: {{identity.nombre}}   {{identity.apellido}}   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p></li>
         <li>
           <p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
@@ -35,7 +36,7 @@
         <li>
           <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
             <option [value]="" selected>Selecciona materia y curso</option>
-            <option *ngFor="let oneDoor of vectorListadoMisMaterias" value="{{oneDoor.curso._id}},{{oneDoor._id}},{{oneDoor.curso.curso}},{{oneDoor.nombre}}">{{oneDoor.nombre}}: {{oneDoor.curso.curso}}</option>
+            <option *ngFor="let oneDoor of vectorListadoMisMaterias" value="{{oneDoor.curso._id}},{{oneDoor._id}},{{oneDoor.curso.curso}},{{oneDoor.nombre}}">{{oneDoor.nombre}}</option>
           </select>
 
 
@@ -104,7 +105,7 @@
   <div style="height: 100%; overflow: auto;">
 
 
-    <h3 style="margin-top: 10%; margin-left: 40%">{{this.Titulo1}} </h3>
+    <h3 style="margin-top: 10%; margin-left: 5%; text-align: center">{{this.Titulo}} </h3>
 
 
     <div class="container-fluid">

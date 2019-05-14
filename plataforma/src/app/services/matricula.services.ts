@@ -49,6 +49,13 @@ export class MatriculaService {
 
     }
 
+    getListadoMioMateria() {
+   
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+          .get(this.url + "getListadoMioMateriasE",  { headers: headers })
+          .map(res => res.json());
+      }
     
 
     update_matricula(matricula_to_update) {

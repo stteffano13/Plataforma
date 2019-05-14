@@ -202,18 +202,17 @@ export class LoguinComponent {
           }
           break;
         case "estudiante":
-          this.loading = true;
+        this.loading = true;
+        if (this.obj.email != null && this.obj.password != null) {
           this._estudianteServices.singupEstudiante(this.obj, "").subscribe(
             response => {
               this.loading = false;
-              console.log(response + "esto viene en la respuesta");
               let identity = response.user;
               this.identity = identity;
               console.log(identity);
               if (!this.identity._id) {
-                console.log("el usuario no se ha logueado correctamente");
-
-                // aqui la alerta
+                this.mensajeerrormodals = "Clave incorrecta el usuario no se pudo autenticar";
+                document.getElementById("openModalError").click();
               } else {
                 // crear local storage
                 localStorage.setItem("identityEstudiante", JSON.stringify(identity));
@@ -224,8 +223,8 @@ export class LoguinComponent {
                     this.token = token;
                     console.log(token)
                     if (this.token.length <= 0) {
-                      // aqui mensaje
-                      console.log("el token nose ha generado");
+                      this.mensajeerrormodals = "El token no se ha generado";
+                      document.getElementById("openModalError").click();
                     } else {
                       localStorage.setItem("Token", token);
                       location.reload(true);
@@ -239,9 +238,16 @@ export class LoguinComponent {
                       try {
                         var body = JSON.parse(error._body);
                         errorMessage = body.message;
-                      } catch{ errorMessage = "NO hay conexion intentelo Ms Tarde"; }
+                      } catch{
+                        errorMessage = "No hay conexión intentelo más tarde";
+                        this.loading = false;
+                        this.mensajeerrormodals = errorMessage;
+                        document.getElementById("openModalError").click();
+                      }
+                      this.loading = false;
                       this.error = errorMessage;
-                      console.log(this.error);
+                      this.mensajeerrormodals = this.error;
+                      document.getElementById("openModalError").click();
                     }
                   }
                 );
@@ -255,11 +261,24 @@ export class LoguinComponent {
                 try {
                   var body = JSON.parse(error._body);
                   errorMessage = body.message;
-                } catch{ errorMessage = "No hay conexión intentelo más tarde"; }
+                } catch{
+                  errorMessage = "No hay conexión intentelo más tarde";
+                  this.loading = false;
+                  this.mensajeerrormodals = errorMessage;
+                  document.getElementById("openModalError").click();
+                }
+                this.loading = false;
                 this.error = errorMessage;
-                console.log(this.error);
+                this.mensajeerrormodals = this.error;
+                document.getElementById("openModalError").click();
               }
             });
+        } else {
+          this.loading = false;
+          this.mensajeerrormodals = "Existen campos en vacios introduce Usuario y Contraseña";
+          document.getElementById("openModalError").click();
+
+        }
           break;
       }
     } else {
