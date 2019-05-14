@@ -23,7 +23,7 @@ export class DocenteComponent implements OnInit {
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService, private _docenteService:DocenteService) { }
 
-
+public Titulo;
 
   public guardarMateriaMatricula;
   // banderas bloquer input
@@ -453,6 +453,7 @@ export class DocenteComponent implements OnInit {
 
     var busqueda = value.split(",");
     this.loading = true;
+    this.Titulo= busqueda[2]+busqueda[3];
     this.guardarMateriaMatricula = busqueda[1];
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
