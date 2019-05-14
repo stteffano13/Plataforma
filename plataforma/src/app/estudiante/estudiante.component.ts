@@ -59,6 +59,7 @@ export class EstudianteComponent implements OnInit {
 
       if (response.materias[0] != undefined) {
         this.vectorListadoMisMaterias = response.materias;
+        console.log("las amterias",   this.vectorListadoMisMaterias )
 
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }

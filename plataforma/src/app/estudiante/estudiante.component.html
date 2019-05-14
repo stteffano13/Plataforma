@@ -105,7 +105,7 @@
   <div style="height: 100%; overflow: auto;">
 
 
-    <h3 style="margin-top: 10%; margin-left: 5%; text-align: center">{{this.Titulo}} </h3>
+   <!-- <h3 style="margin-top: 10%; margin-left: 5%; text-align: center">{{this.Titulo}} </h3>-->
 
 
     <div class="container-fluid">
@@ -119,10 +119,10 @@
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table  class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
         <div class="  form-control form-inline">
-          <h4>{{this.Titulo2}} </h4>
+          <h4>{{this.Titulo}} </h4>
         </div>
 
         <thead>
@@ -162,9 +162,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
+          <tr *ngFor=" let listado of  vectorListadoMisMaterias; let i = index; let listadoN of listadoEstudianteNotas">
             <th scope="row">{{i}}</th>
-            <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
+            <td class="active" >  uno {{listado.nombre}} {{listado.nombre}}</td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
             </td>
