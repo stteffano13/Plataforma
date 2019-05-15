@@ -24,6 +24,10 @@ export class EstudianteComponent implements OnInit {
 
   public Titulo;
   public identity;
+  public object = [];
+  public obj : Nota;
+ public  objectCalculable;
+ public objC : Calculable;
 
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
@@ -36,7 +40,7 @@ export class EstudianteComponent implements OnInit {
     this.getListadoMisMaterias();
 
 
-    this.identity= this._estudianteServices.getIdentity()
+    this.identity = this._estudianteServices.getIdentity()
   }
   getPeriodoActual() {
 
@@ -59,7 +63,15 @@ export class EstudianteComponent implements OnInit {
 
       if (response.materias[0] != undefined) {
         this.vectorListadoMisMaterias = response.materias;
-        console.log("las amterias",   this.vectorListadoMisMaterias )
+        console.log("las amterias", this.vectorListadoMisMaterias);
+
+
+        for (let i = 0; i < Object.keys(this.vectorListadoMisMaterias).length; i++) {
+
+          this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+         this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
+
+        }
 
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
@@ -78,8 +90,7 @@ export class EstudianteComponent implements OnInit {
     location.reload(true);
   }
 
-  recargar()
-  {
+  recargar() {
     location.reload();
   }
 }
