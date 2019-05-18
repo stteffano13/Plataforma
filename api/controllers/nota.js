@@ -379,13 +379,60 @@ function buscarNotasB(req, res) {
 
 }
 
+
+
+function buscarNotasEstudiante(req, res) {
+  console.log("entre a sacar als notas de las materias");
+  var estudianteE = req.user.sub;
+  var periodoE = req.body.fecha;
+ 
+  var vectorNotas = [];
+
+ 
+  console.log("notas del estudiante ull params estudiante id", estudianteE, periodoE);
+    Nota.find({ '$and': [{ estudiante:estudianteE }, { periodo: periodoE } ]}).sort({ $natural: -1 }).exec((err, notas) => {
+
+      if (err) {
+     
+      
+          res.status(500).send({
+            message: "Error al buscar nota"
+       
+        });
+      } else {
+        if (notas) {
+
+
+            console.log("estes es el vector de toditititas las notas que regresa", notas);
+            res.status(200).send({
+              notas
+            });
+          }
+         else {
+         
+            res.status(200).send({
+              message: "no existen notas registradas"
+            });
+          
+
+
+        }
+      }
+
+    });
+
+
+
+}
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
   saveNotas,
   buscarNotas,
   updateNotasFin,
   saveNotasB,
-  buscarNotasB
+  buscarNotasB,
+  buscarNotasEstudiante
 
 
 };

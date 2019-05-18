@@ -62,6 +62,22 @@ export class NotaService {
     }
    
 
+    buscarNotasEstudiante(notasE_buscar)
+    {
+        var objFecha={
+            fecha:notasE_buscar
+        }
+
+        console.log("buscador de periodo", objFecha);
+        let json = JSON.stringify(objFecha);
+        let params = json;
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "buscarNotasEstudianteee",params, { headers: headers })
+            .map(res => res.json());
+    }
+
+
     getToken() {
 
         let token = localStorage.getItem("Token");

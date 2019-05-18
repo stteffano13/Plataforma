@@ -129,7 +129,7 @@
           <tr style="background-color: #343a40; align-content: center;">
             <th style="color: white; padding-top: 3%" scope="col">#</th>
 
-            <th style="color: white; " scope="col">Apellidos y Nombres</th>
+            <th style="color: white; " scope="col">Materias</th>
             <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
             <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
             <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
@@ -164,7 +164,7 @@
         <tbody>
           <tr *ngFor=" let listado of  vectorListadoMisMaterias; let i = index; let listadoN of listadoEstudianteNotas">
             <th scope="row">{{i}}</th>
-            <td class="active" >  uno {{listado.nombre}} {{listado.nombre}}</td>
+            <td class="active" >{{listado.nombre}} </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
             </td>
