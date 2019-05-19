@@ -119,7 +119,7 @@
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table  class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table  *ngIf="banderTabla1"  class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
         <div class="form-control form-inline">
           <h4>{{this.Titulo}} </h4>
@@ -389,9 +389,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
+        <tr *ngFor=" let listado of  vectorListadoMisMaterias; let i = index; let listadoN of listadoEstudianteNotas">
           <th scope="row">{{i}}</th>
-          <td colspan="5" valign="middle" style="padding-right: 0.5%;  padding-left: 0.5%; border-right: 0px;">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}} </td>
+          <td colspan="5" valign="middle" style="padding-right: 0.5%;  padding-left: 0.5%; border-right: 0px;">{{listado.nombre}} </td>
 
 
           <td id="tdfila">

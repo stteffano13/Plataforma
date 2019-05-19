@@ -19,7 +19,7 @@ export class NotaService {
     registerNota(nota_to_register) {
         let json = JSON.stringify(nota_to_register);
         let params = json;
-        console.log("Materia",params);
+        console.log("Materia", params);
         let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
         return this._http
             .post(this.url + "registerNota", params, { headers: headers })
@@ -30,7 +30,7 @@ export class NotaService {
     registerNotaB(notaB_to_register) {
         let json = JSON.stringify(notaB_to_register);
         let params = json;
-        console.log("Materia",params);
+        console.log("Materia", params);
         let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
         return this._http
             .post(this.url + "registerNotaB", params, { headers: headers })
@@ -38,12 +38,12 @@ export class NotaService {
     }
 
 
-      
+
     buscarNotas(notas_buscar) {
-   
+
         let json = JSON.stringify(notas_buscar);
         let params = json;
-        console.log("mijin la ultima par manda a buscar notas" ,params);
+        console.log("mijin la ultima par manda a buscar notas", params);
         let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
         return this._http
             .post(this.url + "buscarNotas", params, { headers: headers })
@@ -52,7 +52,7 @@ export class NotaService {
 
 
     buscarNotasB(notasB_buscar) {
-   
+
         let json = JSON.stringify(notasB_buscar);
         let params = json;
         let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
@@ -60,12 +60,11 @@ export class NotaService {
             .post(this.url + "buscarNotasB", params, { headers: headers })
             .map(res => res.json());
     }
-   
 
-    buscarNotasEstudiante(notasE_buscar)
-    {
-        var objFecha={
-            fecha:notasE_buscar
+
+    buscarNotasEstudiante(notasE_buscar) {
+        var objFecha = {
+            fecha: notasE_buscar
         }
 
         console.log("buscador de periodo", objFecha);
@@ -73,7 +72,22 @@ export class NotaService {
         let params = json;
         let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
         return this._http
-            .post(this.url + "buscarNotasEstudianteee",params, { headers: headers })
+            .post(this.url + "buscarNotasEstudiante", params, { headers: headers })
+            .map(res => res.json());
+    }
+
+
+    buscarNotasEstudianteB(notasEB_buscar) {
+        var objFecha = {
+            fecha: notasEB_buscar
+        }
+
+        console.log("buscador de periodo", objFecha);
+        let json = JSON.stringify(objFecha);
+        let params = json;
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "buscarNotasEstudianteB", params, { headers: headers })
             .map(res => res.json());
     }
 
