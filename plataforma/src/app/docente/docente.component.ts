@@ -187,6 +187,25 @@ public Titulo2;
       this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
+      if(this.objectB[i].examenSupletorio>=7)
+      {
+        this.objectCalculableB[i].promedioPeriodo=7;
+
+      }
+
+
+      if(this.objectB[i].examenRemedial>=7)
+      {
+        this.objectCalculableB[i].promedioPeriodo=7;
+
+      }
+
+      
+      if(this.objectB[i].examenGracia>=7)
+      {
+        this.objectCalculableB[i].promedioPeriodo=7;
+
+      }
 
     }
   }
@@ -239,6 +258,27 @@ public Titulo2;
       this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
+      // calculo para examenes complementarios
+
+      if(this.object[i].examenSupletorio>=7)
+      {
+        this.objectCalculable[i].promedioPeriodo=7;
+
+      }
+
+
+      if(this.object[i].examenRemedial>=7)
+      {
+        this.objectCalculable[i].promedioPeriodo=7;
+
+      }
+
+      
+      if(this.object[i].examenGracia>=7)
+      {
+        this.objectCalculable[i].promedioPeriodo=7;
+
+      }
 
     }
   }
@@ -317,6 +357,28 @@ public Titulo2;
       this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
 
+      
+      if(this.objectB[i].examenSupletorio>=7)
+      {
+        this.objectCalculableB[i].promedioPeriodo=7;
+
+      }
+
+
+      if(this.objectB[i].examenRemedial>=7)
+      {
+        this.objectCalculableB[i].promedioPeriodo=7;
+
+      }
+
+      
+      if(this.objectB[i].examenGracia>=7)
+      {
+        this.objectCalculableB[i].promedioPeriodo=7;
+
+      }
+
+
     }
   }
 
@@ -359,6 +421,25 @@ public Titulo2;
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
 
+      if(this.object[i].examenSupletorio>=7)
+      {
+        this.objectCalculable[i].promedioPeriodo=7;
+
+      }
+
+
+      if(this.object[i].examenRemedial>=7)
+      {
+        this.objectCalculable[i].promedioPeriodo=7;
+
+      }
+
+      
+      if(this.object[i].examenGracia>=7)
+      {
+        this.objectCalculable[i].promedioPeriodo=7;
+
+      }
 
     }
   }
