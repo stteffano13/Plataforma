@@ -187,6 +187,7 @@ public Titulo2;
       this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
+      // calculos de examennes complementarios
       if(this.objectB[i].examenSupletorio>=7)
       {
         this.objectCalculableB[i].promedioPeriodo=7;
