@@ -87,19 +87,19 @@ export class DocenteComponent implements OnInit, DoCheck  {
  
     this.getListadoMisMaterias();
     this.getPeriodoActual();
-    this.saveDescripcionInsumos();
+ 
     
 
 
   }
 
   ngDoCheck() {
-    this.saveDescripcionInsumos();
+    this.DescripcionInsumos();
     this.recivir =this.descripcionInsumo.Descinsumo1;
-
+    
   } 
 
-  saveDescripcionInsumos()
+  DescripcionInsumos()
   {
     this.descripcionInsumo = new Insumo("","","","","","","","","","","","","","","","","","","");
     
@@ -123,6 +123,11 @@ export class DocenteComponent implements OnInit, DoCheck  {
     this.descripcionInsumo.Descinsumo88="Insumo 8";
 
 
+  }
+
+  saveDescripcionInsumos()
+  {
+    
     this._insumoService.registerInsumo( this.descripcionInsumo).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
@@ -148,7 +153,6 @@ export class DocenteComponent implements OnInit, DoCheck  {
         }
       }
     );
-
 
   }
 
@@ -625,7 +629,8 @@ export class DocenteComponent implements OnInit, DoCheck  {
             buscar: this.listadoEstudianteMatriculas
           }
           this.traerNotas(objBuscarNotas);
-          this.traerNotasB(objBuscarNotas);
+        
+          //this.traerNotasB(objBuscarNotas);
 
         } else {
 
