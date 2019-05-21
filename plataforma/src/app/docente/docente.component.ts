@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { MateriaService } from '../services/materia.services';
 import { MatriculaService } from '../services/matricula.services';
 import { AdministradorService } from '../services/administrador.services';
@@ -7,6 +7,7 @@ import { NotaService } from '../services/nota.services';
 import { Nota } from '../models/nota';
 import { NotaBasica } from '../models/notaBasica';
 import { Calculable } from '../models/calculable';
+import { Insumo } from '../models/insumos';
 import { isNumber } from 'util';
 
 
@@ -15,16 +16,16 @@ import { isNumber } from 'util';
   templateUrl: './docente.component.html',
   styleUrls: ['./docente.component.css']
 })
-export class DocenteComponent implements OnInit {
+export class DocenteComponent implements OnInit, DoCheck  {
 
 
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
-    private _notaService: NotaService, private _docenteService:DocenteService) { }
+    private _notaService: NotaService, private _docenteService: DocenteService) { }
 
-public Titulo1;
-public Titulo2;
+  public Titulo1;
+  public Titulo2;
   public guardarMateriaMatricula;
   // banderas bloquer input
 
@@ -64,23 +65,68 @@ public Titulo2;
 
   public objB: NotaBasica;
   public objCB: Calculable;
+ 
+  public descripcionInsumo:Insumo;
+
 
   public mensajecorrectomodals;
   public mensajeerrormodals;
 
   // vectores
   public object = [];
-
   public objectCalculable = [];
-
   public objectB = [];
-
   public objectCalculableB = []
 
 
+  public recivir;
   ngOnInit() {
+ 
     this.getListadoMisMaterias();
     this.getPeriodoActual();
+    this.saveDescripcionInsumos();
+    
+
+
+  }
+
+  ngDoCheck() {
+    this.saveDescripcionInsumos();
+    this.recivir =this.descripcionInsumo.Descinsumo1;
+
+  } 
+
+  saveDescripcionInsumos()
+  {
+    this.descripcionInsumo = new Insumo("","","","","","","","","","","","","","","","","","","");
+    
+    this.descripcionInsumo.materia=this.vectorListadoMisMaterias[0]._id;
+    this.descripcionInsumo.periodo=this.periodoLectivoActual;
+    this.descripcionInsumo.Descinsumo1="Insumo 1";
+    this.descripcionInsumo.Descinsumo2="Insumo 2";
+    this.descripcionInsumo.Descinsumo3="Insumo 3";
+    this.descripcionInsumo.Descinsumo4="Insumo 4";
+    this.descripcionInsumo.Descinsumo5="Insumo 5";
+    this.descripcionInsumo.Descinsumo6="Insumo 6";
+    this.descripcionInsumo.Descinsumo7="Insumo 7";
+    this.descripcionInsumo.Descinsumo8="Insumo 8";
+    this.descripcionInsumo.Descinsumo11="Insumo 1";
+    this.descripcionInsumo.Descinsumo22="Insumo 2";
+    this.descripcionInsumo.Descinsumo33="Insumo 3";
+    this.descripcionInsumo.Descinsumo44="Insumo 4";
+    this.descripcionInsumo.Descinsumo55="Insumo 5";
+    this.descripcionInsumo.Descinsumo66="Insumo 6";
+    this.descripcionInsumo.Descinsumo77="Insumo 7";
+    this.descripcionInsumo.Descinsumo88="Insumo 8";
+
+
+
+
+  }
+
+
+  recivo() {
+    console.log("lo hicimos", this.recivir);
 
   }
 
@@ -188,31 +234,25 @@ public Titulo2;
       this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
       // calculos de examennes complementarios
-      if(this.objectB[i].examenSupletorio>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+      if (this.objectB[i].examenSupletorio >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
 
-      if(this.objectB[i].examenRemedial>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+      if (this.objectB[i].examenRemedial >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
-      
-      if(this.objectB[i].examenGracia>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+
+      if (this.objectB[i].examenGracia >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
     }
   }
-
-
-
 
 
   calculos(i) {
@@ -261,23 +301,20 @@ public Titulo2;
 
       // calculo para examenes complementarios
 
-      if(this.object[i].examenSupletorio>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+      if (this.object[i].examenSupletorio >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
 
-      if(this.object[i].examenRemedial>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+      if (this.object[i].examenRemedial >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
-      
-      if(this.object[i].examenGracia>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+
+      if (this.object[i].examenGracia >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
@@ -358,24 +395,21 @@ public Titulo2;
       this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
 
-      
-      if(this.objectB[i].examenSupletorio>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+
+      if (this.objectB[i].examenSupletorio >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
 
-      if(this.objectB[i].examenRemedial>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+      if (this.objectB[i].examenRemedial >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
-      
-      if(this.objectB[i].examenGracia>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+
+      if (this.objectB[i].examenGracia >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
@@ -422,23 +456,20 @@ public Titulo2;
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
 
-      if(this.object[i].examenSupletorio>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+      if (this.object[i].examenSupletorio >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
 
-      if(this.object[i].examenRemedial>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+      if (this.object[i].examenRemedial >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
-      
-      if(this.object[i].examenGracia>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+
+      if (this.object[i].examenGracia >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
@@ -535,8 +566,8 @@ public Titulo2;
 
     var busqueda = value.split(",");
     this.loading = true;
-    this.Titulo1= busqueda[2];
-    this.Titulo2=busqueda[3];
+    this.Titulo1 = busqueda[2];
+    this.Titulo2 = busqueda[3];
     this.guardarMateriaMatricula = busqueda[1];
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
@@ -556,10 +587,10 @@ public Titulo2;
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
-         
-          console.log("estas es la materia a busca",busqueda[1]);
 
-        
+          console.log("estas es la materia a busca", busqueda[1]);
+
+
           var objBuscarNotas = {
 
             materia: busqueda[1],
@@ -570,7 +601,7 @@ public Titulo2;
 
         } else {
 
-         
+
           this.loading = false;
           this.banderTabla1 = false;
           this.banderTabla2 = true;
@@ -582,7 +613,7 @@ public Titulo2;
             this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
-          console.log("estas es la materia a busca",busqueda[1]);
+          console.log("estas es la materia a busca", busqueda[1]);
           var objBuscarNotas = {
 
             materia: busqueda[1],
@@ -831,8 +862,6 @@ public Titulo2;
     }
   }
 
-
-
   registroNotasB() {
 
     this.pruebaclick();
@@ -844,7 +873,7 @@ public Titulo2;
           this.mensajecorrectomodals = response.message;
           console.log("satisfactoriamente");
           this.loading = false;
-        document.getElementById("openModalCorrecto").click();
+          document.getElementById("openModalCorrecto").click();
           this.btnFinalizar2 = true;
         },
         error => {

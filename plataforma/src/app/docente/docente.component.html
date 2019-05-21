@@ -116,14 +116,16 @@
 
       <div id="formContent">
         <p ><b>DESCRIPCIÓN DEL INSUMO</b></p>
-          &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-        <button type="button" class="btn btn-light"><i class="fa fa-trash fa-lg"></i></button>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-        <button  class="btn btn-light"><i class="fa fa-save fa-lg"></i></button> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-        <button  class="btn btn-light"><i class="fa fa-window-close fa-lg"></i> </button> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+         
+        
 
+        <textarea  [(ngModel)] = "recivir" id="comentarios" name="comentarios" rows="5" cols="40"></textarea>
 
-        <textarea name="comentarios" rows="10" cols="40">Escribe aquí tus comentarios</textarea>
-
+        
+      
+        <button type="button" class="btn btn-light"><i class="fa fa-trash fa-lg"></i></button>  &nbsp;&nbsp;&nbsp;&nbsp;
+        <button (click)="recivo()"  class="btn btn-light"><i class="fa fa-save fa-lg"></i></button> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button  class="btn btn-light"><i class="fa fa-window-close fa-lg"></i> </button> 
       </div>
 
 
