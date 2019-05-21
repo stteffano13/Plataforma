@@ -4,10 +4,12 @@ import { MatriculaService } from '../services/matricula.services';
 import { AdministradorService } from '../services/administrador.services';
 import { DocenteService } from '../services/docente.services';
 import { NotaService } from '../services/nota.services';
+import { InsumoService } from '../services/insumo.services';
 import { Nota } from '../models/nota';
 import { NotaBasica } from '../models/notaBasica';
 import { Calculable } from '../models/calculable';
 import { Insumo } from '../models/insumos';
+
 import { isNumber } from 'util';
 
 
@@ -22,7 +24,8 @@ export class DocenteComponent implements OnInit, DoCheck  {
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
-    private _notaService: NotaService, private _docenteService: DocenteService) { }
+    private _notaService: NotaService, private _docenteService: DocenteService,
+  private _insumoService: InsumoService) { }
 
   public Titulo1;
   public Titulo2;
@@ -120,6 +123,31 @@ export class DocenteComponent implements OnInit, DoCheck  {
     this.descripcionInsumo.Descinsumo88="Insumo 8";
 
 
+    this._insumoService.registerInsumo( this.descripcionInsumo).subscribe(
+      response => {
+        this.mensajecorrectomodals = response.message;
+        console.log("satisfactoriamente");
+        this.loading = false;
+        document.getElementById("openModalCorrecto").click();
+        this.btnFinalizar2 = true;
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+          document.getElementById("openModalError").click();
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          this.loading = false;
+        }
+      }
+    );
 
 
   }
