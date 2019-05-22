@@ -18,14 +18,14 @@ import { isNumber } from 'util';
   templateUrl: './docente.component.html',
   styleUrls: ['./docente.component.css']
 })
-export class DocenteComponent implements OnInit, DoCheck  {
+export class DocenteComponent implements OnInit, DoCheck {
 
 
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService, private _docenteService: DocenteService,
-  private _insumoService: InsumoService) { }
+    private _insumoService: InsumoService) { }
 
   public Titulo1;
   public Titulo2;
@@ -68,8 +68,8 @@ export class DocenteComponent implements OnInit, DoCheck  {
 
   public objB: NotaBasica;
   public objCB: Calculable;
- 
-  public descripcionInsumo:Insumo;
+
+  public descripcionInsumo: Insumo;
 
 
   public mensajecorrectomodals;
@@ -83,52 +83,117 @@ export class DocenteComponent implements OnInit, DoCheck  {
 
 
   public recivir;
+  public caso;
+
+ public banderInsumo =false;
   ngOnInit() {
- 
+
     this.getListadoMisMaterias();
     this.getPeriodoActual();
- 
-    
+
+
 
 
   }
 
   ngDoCheck() {
-    this.DescripcionInsumos();
-    this.recivir =this.descripcionInsumo.Descinsumo1;
-    
-  } 
 
-  DescripcionInsumos()
-  {
-    this.descripcionInsumo = new Insumo("","","","","","","","","","","","","","","","","","","");
-    
-    this.descripcionInsumo.materia=this.vectorListadoMisMaterias[0]._id;
-    this.descripcionInsumo.periodo=this.periodoLectivoActual;
-    this.descripcionInsumo.Descinsumo1="Insumo 1";
-    this.descripcionInsumo.Descinsumo2="Insumo 2";
-    this.descripcionInsumo.Descinsumo3="Insumo 3";
-    this.descripcionInsumo.Descinsumo4="Insumo 4";
-    this.descripcionInsumo.Descinsumo5="Insumo 5";
-    this.descripcionInsumo.Descinsumo6="Insumo 6";
-    this.descripcionInsumo.Descinsumo7="Insumo 7";
-    this.descripcionInsumo.Descinsumo8="Insumo 8";
-    this.descripcionInsumo.Descinsumo11="Insumo 1";
-    this.descripcionInsumo.Descinsumo22="Insumo 2";
-    this.descripcionInsumo.Descinsumo33="Insumo 3";
-    this.descripcionInsumo.Descinsumo44="Insumo 4";
-    this.descripcionInsumo.Descinsumo55="Insumo 5";
-    this.descripcionInsumo.Descinsumo66="Insumo 6";
-    this.descripcionInsumo.Descinsumo77="Insumo 7";
-    this.descripcionInsumo.Descinsumo88="Insumo 8";
+    this.recivir;
+
+  }
+
+
+
+
+  DescripcionInsumos() {
+    this.descripcionInsumo = new Insumo("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+    this.descripcionInsumo.materia = this.guardarMateriaMatricula;
+    this.descripcionInsumo.periodo = this.periodoLectivoActual;
+    this.descripcionInsumo.Descinsumo1 = "Insumo 1";
+    this.descripcionInsumo.Descinsumo2 = "Insumo 2";
+    this.descripcionInsumo.Descinsumo3 = "Insumo 3";
+    this.descripcionInsumo.Descinsumo4 = "Insumo 4";
+    this.descripcionInsumo.Descinsumo5 = "Insumo 5";
+    this.descripcionInsumo.Descinsumo6 = "Insumo 6";
+    this.descripcionInsumo.Descinsumo7 = "Insumo 7";
+    this.descripcionInsumo.Descinsumo8 = "Insumo 8";
+    this.descripcionInsumo.Descinsumo11 = "Insumo 1";
+    this.descripcionInsumo.Descinsumo22 = "Insumo 2";
+    this.descripcionInsumo.Descinsumo33 = "Insumo 3";
+    this.descripcionInsumo.Descinsumo44 = "Insumo 4";
+    this.descripcionInsumo.Descinsumo55 = "Insumo 5";
+    this.descripcionInsumo.Descinsumo66 = "Insumo 6";
+    this.descripcionInsumo.Descinsumo77 = "Insumo 7";
+    this.descripcionInsumo.Descinsumo88 = "Insumo 8";
 
 
   }
 
-  saveDescripcionInsumos()
-  {
-    
-    this._insumoService.registerInsumo( this.descripcionInsumo).subscribe(
+
+  actualizacionInsumos(insumo) {
+
+    this.caso = insumo;
+    this.banderInsumo = !this.banderInsumo; 
+  }
+
+
+  saveDescripcionInsumos() {
+
+    switch (this.caso) {
+      case 1:
+        this.descripcionInsumo.Descinsumo1 = this.recivir;
+        break;
+
+      case 2:
+        this.descripcionInsumo.Descinsumo2 = this.recivir;
+        break;
+      case 3:
+        this.descripcionInsumo.Descinsumo3 = this.recivir;
+        break;
+      case 4:
+        this.descripcionInsumo.Descinsumo4 = this.recivir;
+        break;
+      case 5:
+        this.descripcionInsumo.Descinsumo5 = this.recivir;
+        break;
+      case 6:
+        this.descripcionInsumo.Descinsumo6 = this.recivir;
+        break;
+      case 7:
+        this.descripcionInsumo.Descinsumo7 = this.recivir;
+        break;
+      case 8:
+        this.descripcionInsumo.Descinsumo8 = this.recivir;
+        break;
+      case 11:
+        this.descripcionInsumo.Descinsumo11 = this.recivir;
+        break;
+      case 22:
+        this.descripcionInsumo.Descinsumo22 = this.recivir;
+        break;
+      case 33:
+        this.descripcionInsumo.Descinsumo33 = this.recivir;
+        break;
+      case 44:
+        this.descripcionInsumo.Descinsumo44 = this.recivir;
+        break;
+      case 55:
+        this.descripcionInsumo.Descinsumo55 = this.recivir;
+        break;
+      case 66:
+        this.descripcionInsumo.Descinsumo66 = this.recivir;
+        break;
+      case 77:
+        this.descripcionInsumo.Descinsumo77 = this.recivir;
+        break;
+
+      case 88:
+        this.descripcionInsumo.Descinsumo88 = this.recivir;
+        break;
+    }
+
+    this._insumoService.registerInsumo(this.descripcionInsumo).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
         console.log("satisfactoriamente");
@@ -601,6 +666,7 @@ export class DocenteComponent implements OnInit, DoCheck  {
     this.Titulo1 = busqueda[2];
     this.Titulo2 = busqueda[3];
     this.guardarMateriaMatricula = busqueda[1];
+
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
@@ -629,7 +695,7 @@ export class DocenteComponent implements OnInit, DoCheck  {
             buscar: this.listadoEstudianteMatriculas
           }
           this.traerNotas(objBuscarNotas);
-        
+          this.DescripcionInsumos();
           //this.traerNotasB(objBuscarNotas);
 
         } else {

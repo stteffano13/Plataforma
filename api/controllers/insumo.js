@@ -7,52 +7,114 @@ var NotaB  = require('../models/notaB');
 function saveInsumos(req, res) {
   var params = req.body;  
 
-  console.log("estos son tus parametros de insumos", params);
-   var insumo = new Insumo();
+
+ 
+  Insumo.findOne({ '$and': [{ periodo: params.periodo },{materia:params.materia}] }, (err, insumos) => {
+    if (err) {
     
-   insumo.insumo1= params.Descinsumo1,
-   insumo.insumo2= params.Descinsumo2,
-   insumo.insumo3 = params.Descinsumo3,
-   insumo.insumo4=  params.Descinsumo4,
-   params.insumo5= insumo.Descinsumo5,
-   insumo.insumo6= params.Descinsumo6,
-   insumo.insumo7= params.Descinsumo7,
-   insumo.insumo8= params.Descinsumo8,
-   insumo.insumo11= params.Descinsumo11,
-   insumo.insumo22= params.Descinsumo22,
-   insumo.insumo33=params.Descinsumo33,
-   insumo.insumo44= params.Descinsumo44,
-   insumo.insumo55= params.Descinsumo55,
-   insumo.insumo66= params.Descinsumo66,
-   insumo.insumo77= params.Descinsumo77,
-   insumo.insumo88= params.Descinsumo88,
-   insumo.periodo= params.periodo,
-   insumo.materia= params.materia,
+      res.status(500).send({
+        message: "Error al buscar Insumos en la base"
+      });
+    
+    } else {
+      if (insumos) {
+      
+        updateInsumos(insumos, params, res);
 
-     insumo.save((err, insumoStored) => {
-        if (err) {
-            res.status(500).send({
-                message: 'Error al guardar descripcion del insumo'
-            });
-        } else {
-            if (!insumoStored) {
-                res.status(404).send({
-                    message: 'No se ha registrado el insumo'
-                });
-            } else {
-                res.status(200).send({
-                    message: 'El Insumo se ha registrado correctamente'
-                });
 
-            }
-        }
+      } else {
+      
+        saveInsumos2(params, res);
 
-    });
+
+      }
+    }
+
+  });
+
+
+ 
 
 }
+
+
+function saveInsumos2(params, res)
+{
+    var insumo = new Insumo();
+    
+    insumo.Descinsumo1= params.Descinsumo1,
+    insumo.Descinsumo2= params.Descinsumo2,
+    insumo.Descinsumo3 = params.Descinsumo3,
+    insumo.Descinsumo4=  params.Descinsumo4,
+    params.Descinsumo5= insumo.Descinsumo5,
+    insumo.Descinsumo6= params.Descinsumo6,
+    insumo.Descinsumo7= params.Descinsumo7,
+    insumo.Descinsumo8= params.Descinsumo8,
+    insumo.Descinsumo11= params.Descinsumo11,
+    insumo.Descinsumo22= params.Descinsumo22,
+    insumo.Descinsumo33=params.Descinsumo33,
+    insumo.Descinsumo44= params.Descinsumo44,
+    insumo.Descinsumo55= params.Descinsumo55,
+    insumo.Descinsumo66= params.Descinsumo66,
+    insumo.Descinsumo77= params.Descinsumo77,
+    insumo.Descinsumo88= params.Descinsumo88,
+    insumo.periodo= params.periodo,
+    insumo.materia= params.materia,
+ 
+      insumo.save((err, insumoStored) => {
+         if (err) {
+             res.status(500).send({
+                 message: 'Error al guardar descripcion del insumo'
+             });
+         } else {
+             if (!insumoStored) {
+                 res.status(404).send({
+                     message: 'No se ha registrado el insumo'
+                 });
+             } else {
+                 res.status(200).send({
+                     message: 'El Insumo se ha registrado correctamente'
+                 });
+ 
+             }
+         }
+ 
+     });
+}
+
+
+function updateInsumos(insumos, params, res) {
+    console.log("estos son losinsumos que viene", params);
+    params._id = insumos._id;
+    
+    Insumo.findByIdAndUpdate(insumos._id, params, (err, insumoUpdate) => {
+  
+      if (err) {
+        res.status(500).send({
+          message: err
+        });
+  
+      } else {
+        if (!insumoUpdate) {
+          res.status(404).send({
+            message: "El insumo no ha podido actualizarse."
+          });
+        } else {
+        
+            res.status(200).send({
+              message: "El insumo se actualizo correctamente."
+            });
+          
+        }
+      }
+  
+    });
+  }
+
     module.exports = {          // para exportar todas las funciones de este modulo
 
-        saveInsumos
+        saveInsumos,
+        saveInsumos2
       
       
       };

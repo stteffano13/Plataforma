@@ -114,18 +114,23 @@
 
       <!--Listado -->
 
-      <div id="formContent">
-        <p ><b>DESCRIPCIÓN DEL INSUMO</b></p>
-         
-        
 
-        <textarea  [(ngModel)] = "recivir" id="comentarios" name="comentarios" rows="5" cols="40"></textarea>
+      <!-- cuadro agregar comentario insumos-->
+      <div *ngIf="banderInsumo" id="formContent">
+        <p>
+          <b>DESCRIPCIÓN DEL INSUMO</b>
+        </p>
 
-        
-      
-        <button type="button" class="btn btn-light"><i class="fa fa-trash fa-lg"></i></button>  &nbsp;&nbsp;&nbsp;&nbsp;
-        <button (click)="recivo()"  class="btn btn-light"><i class="fa fa-save fa-lg"></i></button> &nbsp;&nbsp;&nbsp;&nbsp;
-        <button  class="btn btn-light"><i class="fa fa-window-close fa-lg"></i> </button> 
+
+
+        <textarea [(ngModel)]="recivir" id="comentarios" name="comentarios" rows="5" cols="45"></textarea>
+
+        <button (click)="saveDescripcionInsumos()" class="btn btn-light">
+          <i class="fa fa-save fa-lg"></i>
+        </button> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button (click)="actualizacionInsumos(0)" class="btn btn-light">
+          <i class="fa fa-window-close fa-lg"></i>
+        </button>
       </div>
 
 
@@ -134,53 +139,136 @@
 
       <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
-        <div class="  form-control form-inline">
+        <div class="  form-control ">
           <h4>{{this.Titulo2}} </h4>
         </div>
 
         <thead>
 
-          <tr style="align-content: center;">
-            <th COLSPAN="2" style="color: white;" scope="col">#</th>
-            <th>
-              <a title="Crear paralelo" id="openModalIngresarParalelo" data-toggle="modal" data-target="#exampleModal">
-                <i style="padding: 15%; margin-left: 12%" class="fa fa-eye fa-lg"></i>
-              </a>
 
+          <tr style="align-content: center;">
+
+            <th COLSPAN="2" style="color: white;" scope="col">################################</th>
+
+            <th>
+              <button (click)="actualizacionInsumos(1)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
             </th>
-            <th scope="col" class="verticalText">Insumo 3 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 7 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 8 </th>
-            <th style="color: white" scope="col" class="verticalText">80% </th>
-            <th style="color: white" scope="col" class="verticalText">Examen</th>
-            <th style="color: white" scope="col" class="verticalText">20%</th>
-            <th style="color: white" scope="col" class="verticalText">Promedio</th>
+
+            <th>
+              <button (click)="actualizacionInsumos(2)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(3)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(4)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(5)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(6)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(7)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(8)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
 
             <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
             <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
             <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 4 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 5 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 6 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 7 </th>
-            <th style="color: white" scope="col" class="verticalText">Insumo 8 </th>
-            <th style="color: white" scope="col" class="verticalText">80% </th>
-            <th style="color: white" scope="col" class="verticalText">Examen</th>
-            <th style="color: white" scope="col" class="verticalText">20%</th>
-            <th style="color: white" scope="col" class="verticalText">Promedio</th>
-            <th style="color: white" scope="col" class="verticalText">Promedio periodo</th>
-            <th style="color: white" scope="col" class="verticalText">Examen Supletorio</th>
-            <th style="color: white" scope="col" class="verticalText">Examen Remedial</th>
-            <th style="color: white" scope="col" class="verticalText">Examen Gracia</th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(44)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+
+            <th>
+              <button (click)="actualizacionInsumos(55)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+
+            <th>
+              <button (click)="actualizacionInsumos(66)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(77)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(88)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(88)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(88)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th>
+              <button (click)="actualizacionInsumos(88)" class="btn btn-light">
+                <i class="fa fa-plus fa-1fx"></i>
+              </button>
+            </th>
+
+            <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
+            <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
+            <th style="color: white" scope="col">Insu</th>
+            <th style="color: white" scope="col">Insumo</th>
+            <th style="color: white" scope="col">Insumo</th>
+
           </tr>
 
+
+
           <tr style="background-color: #343a40; align-content: center;">
-            <th style="color: white; padding-top: 3%" scope="col">#</th>
-            <th style="color: white; " scope="col">Apellidos y Nombres</th>
+            <th style="color: white; padding-top: 2%" scope="col">#</th>
+            <th style="color: white;   align-content: center;  padding-bottom: 1.2%; text-align: center" scope="col">Apellidos y Nombres</th>
             <th style="color: white" scope="col" class="verticalText">Insumo 1 </th>
             <th style="color: white" scope="col" class="verticalText">Insumo 2 </th>
             <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
