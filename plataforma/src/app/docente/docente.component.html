@@ -115,8 +115,8 @@
       <!--Listado -->
 
 
-      <!-- cuadro agregar comentario insumos-->
-      <div *ngIf="banderInsumo" id="formContent">
+      <!-- cuadro agregar comentario insumos de la Basica-->
+      <div *ngIf="banderInsumoB" id="formContent">
         <p>
           <b>DESCRIPCIÓN DEL INSUMO</b>
         </p>
@@ -125,14 +125,36 @@
 
         <textarea [(ngModel)]="recivir" id="comentarios" name="comentarios" rows="5" cols="45"></textarea>
 
-        <button (click)="saveDescripcionInsumos()" class="btn btn-light">
+        <button (click)="saveDescripcionInsumosB()" class="btn btn-light">
           <i class="fa fa-save fa-lg"></i>
 
         </button> &nbsp;&nbsp;&nbsp;&nbsp;
-        <button (click)="cerrarDescInsumos()" class="btn btn-light">
+        <button (click)="cerrarDescInsumosB()" class="btn btn-light">
           <i class="fa fa-window-close fa-lg"></i>
         </button>
       </div>
+
+      
+
+          <!-- cuadro agregar comentario insumos-->
+          <div *ngIf="banderInsumo" id="formContent">
+              <p>
+                <b>DESCRIPCIÓN DEL INSUMO</b>
+              </p>
+      
+      
+      
+              <textarea [(ngModel)]="recivir" id="comentarios" name="comentarios" rows="5" cols="45"></textarea>
+      
+              <button (click)="saveDescripcionInsumos()" class="btn btn-light">
+                <i class="fa fa-save fa-lg"></i>
+      
+              </button> &nbsp;&nbsp;&nbsp;&nbsp;
+              <button (click)="cerrarDescInsumos()" class="btn btn-light">
+                <i class="fa fa-window-close fa-lg"></i>
+              </button>
+            </div>
+      
 
 
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
@@ -463,37 +485,37 @@
           <th COLSPAN="2" style="color: white;" scope="col">##################################</th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p1i1)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p1i1')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p1i2)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p1i2')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p1i3)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p1i3')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p1i4)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p1i4')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p1i5)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p1i5')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p1i6)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p1i6')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
@@ -501,66 +523,66 @@
 
 
           <th>
-            <button (click)="actualizacionInsumos(q1p2i1)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p2i1')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
           <th>
-            <button (click)="actualizacionInsumos(q1p2i2)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p2i2')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
           <th>
-            <button (click)="actualizacionInsumos(q1p2i3)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p2i3')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
           <th>
-            <button (click)="actualizacionInsumos(q1p2i4)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p2i4')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
           <th>
-            <button (click)="actualizacionInsumos(q1p2i5)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p2i5')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
           <th>
-            <button (click)="actualizacionInsumos(q1p2i6)" class="btn btn-light">
-              <i class="fa fa-plus fa-1fx"></i>
-            </button>
-          </th>
-
-          <th>
-            <button (click)="actualizacionInsumos(q1p3i1)" class="btn btn-light">
-              <i class="fa fa-plus fa-1fx"></i>
-            </button>
-          </th>
-          <th>
-            <button (click)="actualizacionInsumos(q1p3i2)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p2i6')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p3i3)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p3i1')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
           <th>
-            <button (click)="actualizacionInsumos(q1p3i4)" class="btn btn-light">
-              <i class="fa fa-plus fa-1fx"></i>
-            </button>
-          </th>
-
-          <th>
-            <button (click)="actualizacionInsumos(q1p3i5)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p3i2')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q1p3i6)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q1p3i3')" class="btn btn-light">
+              <i class="fa fa-plus fa-1fx"></i>
+            </button>
+          </th>
+          <th>
+            <button (click)="actualizacionInsumosB('q1p3i4')" class="btn btn-light">
+              <i class="fa fa-plus fa-1fx"></i>
+            </button>
+          </th>
+
+          <th>
+            <button (click)="actualizacionInsumosB('q1p3i5')" class="btn btn-light">
+              <i class="fa fa-plus fa-1fx"></i>
+            </button>
+          </th>
+
+          <th>
+            <button (click)="actualizacionInsumosB('q1p3i6')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
@@ -570,111 +592,111 @@
           <th style="color: white" scope="col" class="verticalText">Insumo 3 </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p1i1)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p1i1')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
 
           <th>
-            <button (click)="actualizacionInsumos(q2p1i2)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p1i2')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
 
           <th>
-            <button (click)="actualizacionInsumos(q2p1i3)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p1i3')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p1i4)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p1i4')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p1i5)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p1i5')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p1i6)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p1i6')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p2i1)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p2i1')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p2i2)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p2i2')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p2i3)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p2i3')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p2i4)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p2i4')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p2i5)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p2i5')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p2i6)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p2i6')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
           <th>
-            <button (click)="actualizacionInsumos(q2p3i1)" class="btn btn-light">
-              <i class="fa fa-plus fa-1fx"></i>
-            </button>
-          </th>
-
-          <th>
-            <button (click)="actualizacionInsumos(q2p3i2)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p3i1')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p3i3)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p3i2')" class="btn btn-light">
+              <i class="fa fa-plus fa-1fx"></i>
+            </button>
+          </th>
+
+          <th>
+            <button (click)="actualizacionInsumosB('q2p3i3')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
 
           <th>
-            <button (click)="actualizacionInsumos(q2p3i4)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p3i4')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p3i5)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p3i5')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>
 
           <th>
-            <button (click)="actualizacionInsumos(q2p3i6)" class="btn btn-light">
+            <button (click)="actualizacionInsumosB('q2p3i6')" class="btn btn-light">
               <i class="fa fa-plus fa-1fx"></i>
             </button>
           </th>

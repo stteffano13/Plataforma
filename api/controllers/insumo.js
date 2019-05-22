@@ -1,7 +1,8 @@
 
 
 var Insumo = require('../models/insumo');
-var NotaB = require('../models/notaB');
+var InsumoB = require('../models/insumoB');
+
 
 
 function saveInsumos(req, res) {
@@ -39,6 +40,7 @@ function saveInsumos(req, res) {
 
 
 function saveInsumos2(params, res) {
+
     var insumo = new Insumo();
 
     insumo.Descinsumo1 = params.Descinsumo1,
@@ -114,7 +116,7 @@ function updateInsumos(insumos, params, res) {
 
 function getDiscInsumo(req, res) {
     var busqueda = req.body;
-    console.log("busqueda insumos",busqueda);
+    console.log("busqueda insumos", busqueda);
     if (!busqueda) {
         res.status(404).send({
             message: 'Ingrese un parametro de busqueda'
@@ -122,7 +124,7 @@ function getDiscInsumo(req, res) {
     } else {
 
 
-        var insumos = Insumo.findOne({'$and': [{ materia: busqueda.materia }, {periodo: busqueda.periodo}] }).exec((err, insumos) => {
+        var insumos = Insumo.findOne({ '$and': [{ materia: busqueda.materia }, { periodo: busqueda.periodo }] }).exec((err, insumos) => {
             if (err) {
                 return res.status(500).send({
                     message: 'No se han podido obtener la descripcion de insumos'
@@ -143,11 +145,176 @@ function getDiscInsumo(req, res) {
 }
 
 
+
+function saveInsumosB(req, res) {
+    var params = req.body;
+
+console.log("estos son los  insumosd e la basica que vienen", params);
+
+    InsumoB.findOne({ '$and': [{ periodo: params.periodo }, { materia: params.materia }] }, (err, insumosB) => {
+        if (err) {
+
+            res.status(500).send({
+                message: "Error al buscar Insumos en la base"
+            });
+
+        } else {
+            if (insumosB) {
+
+                updateInsumosB(insumosB, params, res);
+
+
+            } else {
+
+                saveInsumosB2(params, res);
+
+
+            }
+        }
+
+    });
+
+
+
+
+}
+
+
+
+function saveInsumosB2(params, res) {
+    var insumoB = new InsumoB();
+console.log("entre a los insumos basica 2", params);
+
+    insumoB.DescQ1P1insumo1 = params.DescQ1P1insumo1;
+    insumoB.DescQ1P1insumo2 = params.DescQ1P1insumo2;
+    insumoB.DescQ1P1insumo3 = params.DescQ1P1insumo3;
+    insumoB.DescQ1P1insumo4 = params.DescQ1P1insumo4;
+    insumoB.DescQ1P1insumo5 = params.DescQ1P1insumo5;
+    insumoB.DescQ1P1insumo6 = params.DescQ1P1insumo6;
+    insumoB.DescQ1P2insumo1 = params.DescQ1P2insumo1;
+    insumoB.DescQ1P2insumo2 = params.DescQ1P2insumo2;
+    insumoB.DescQ1P2insumo3 = params.DescQ1P2insumo3;
+    insumoB.DescQ1P2insumo4 = params.DescQ1P2insumo4;
+    insumoB.DescQ1P2insumo5 = params.DescQ1P2insumo5;
+    insumoB.DescQ1P2insumo6 = params.DescQ1P2insumo6;
+    insumoB.DescQ1P3insumo1 = params.DescQ1P3insumo1;
+    insumoB.DescQ1P3insumo2 = params.DescQ1P3insumo2;
+    insumoB.DescQ1P3insumo3 = params.DescQ1P3insumo3;
+    insumoB.DescQ1P3insumo4 = params.DescQ1P3insumo4;
+    insumoB.DescQ1P3insumo5 = params.DescQ1P3insumo5;
+    insumoB.DescQ1P3insumo6 = params.DescQ1P3insumo6;
+
+    insumoB.DescQ2P1insumo1 = params.DescQ2P1insumo1;
+    insumoB.DescQ2P1insumo2 = params.DescQ2P1insumo2;
+    insumoB.DescQ2P1insumo3 = params.DescQ2P1insumo3;
+    insumoB.DescQ2P1insumo4 = params.DescQ2P1insumo4;
+    insumoB.DescQ2P1insumo5 = params.DescQ2P1insumo5;
+    insumoB.DescQ2P1insumo6 = params.DescQ2P1insumo6;
+    insumoB.DescQ2P2insumo1 = params.DescQ2P2insumo1;
+    insumoB.DescQ2P2insumo2 = params.DescQ2P2insumo2;
+    insumoB.DescQ2P2insumo3 = params.DescQ2P2insumo3;
+    insumoB.DescQ2P2insumo4 = params.DescQ2P2insumo4;
+    insumoB.DescQ2P2insumo5 = params.DescQ2P2insumo5;
+    insumoB.DescQ2P2insumo6 = params.DescQ2P2insumo6;
+    insumoB.DescQ2P3insumo1 = params.DescQ2P3insumo1;
+    insumoB.DescQ2P3insumo2 = params.DescQ2P3insumo2;
+    insumoB.DescQ2P3insumo3 = params.DescQ2P3insumo3;
+    insumoB.DescQ2P3insumo4 = params.DescQ2P3insumo4;
+    insumoB.DescQ2P3insumo5 = params.DescQ2P3insumo5;
+    insumoB.DescQ2P3insumo6 = params.DescQ2P3insumo6;
+
+    insumoB.periodo = params.periodo;
+    insumoB.materia = params.materia;
+
+    insumoB.save((err, insumoBStored) => {
+        if (err) {
+            res.status(500).send({
+                message: 'Error al guardar descripcion del insumo'
+            });
+        } else {
+            if (!insumoBStored) {
+                res.status(404).send({
+                    message: 'No se ha registrado el insumo'
+                });
+            } else {
+                res.status(200).send({
+                    message: 'El Insumo se ha registrado correctamente'
+                });
+
+            }
+        }
+
+    });
+}
+
+
+function updateInsumosB(insumosB, params, res) {
+    console.log("estos son losinsumos que viene para la basica en el update", params);
+    params._id = insumosB._id;
+
+    InsumoB.findByIdAndUpdate(insumosB._id, params, (err, insumoBUpdate) => {
+
+        if (err) {
+            res.status(500).send({
+                message: err
+            });
+
+        } else {
+            if (!insumoBUpdate) {
+                res.status(404).send({
+                    message: "El insumo no ha podido actualizarse."
+                });
+            } else {
+
+                res.status(200).send({
+                    message: "El insumo se actualizo correctamente."
+                });
+
+            }
+        }
+
+    });
+}
+
+
+function getDiscInsumoB(req, res) {
+    var busqueda = req.body;
+    console.log("busqueda insumos", busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+
+
+        var insumosB = InsumoB.findOne({ '$and': [{ materia: busqueda.materia }, { periodo: busqueda.periodo }] }).exec((err, insumosB) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'No se han podido obtener la descripcion de insumos'
+                });
+            }
+
+            if (!insumosB) {
+                return res.status(200).send({
+                    message: 'No existe descripcion algna de insumos'
+                });
+            }
+
+            return res.status(200).send({
+                insumosB
+            });
+        });
+    }
+}
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveInsumos,
     saveInsumos2,
-    getDiscInsumo
+    getDiscInsumo,
+    saveInsumosB,
+    saveInsumosB2,
+    updateInsumosB,
+    getDiscInsumoB
 
 
 };
