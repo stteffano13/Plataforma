@@ -9,6 +9,7 @@ import { Nota } from '../models/nota';
 import { NotaBasica } from '../models/notaBasica';
 import { Calculable } from '../models/calculable';
 import { Insumo } from '../models/insumos';
+import { InsumoBasica } from '../models/insumoB';
 
 import { isNumber } from 'util';
 
@@ -70,6 +71,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   public objCB: Calculable;
 
   public descripcionInsumo: Insumo;
+  public descripcionInsumoB: InsumoBasica;
 
 
   public mensajecorrectomodals;
@@ -88,6 +90,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   public banderInsumo = false;
 
   public listadoInsumos;
+  public listadoInsumoB;
 
 
   ngOnInit() {
@@ -111,6 +114,108 @@ cerrarDescInsumos()
 
   this.banderInsumo =false;
 }
+
+
+
+DescripcionInsumosB() {
+  this.descripcionInsumoB = new InsumoBasica("", "", "", "", "", "", "", "", "", "", "", "", "", "",
+   "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+  this.descripcionInsumoB.materia = this.guardarMateriaMatricula;
+  this.descripcionInsumoB.periodo = this.periodoLectivoActual;
+ 
+ 
+  this.descripcionInsumoB.DescQ1P1insumo1= "Insumo 1";
+  this.descripcionInsumoB.DescQ1P1insumo2= "Insumo2";
+  this.descripcionInsumoB.DescQ1P1insumo3 = "Insumo 3";
+  this.descripcionInsumoB.DescQ1P1insumo4= "Insumo 4";
+  this.descripcionInsumoB.DescQ1P1insumo5 ="Insumo 5";
+  this.descripcionInsumoB.DescQ1P1insumo6 ="Insumo 6";
+  this.descripcionInsumoB.DescQ1P2insumo1 ="Insumo 1";
+  this.descripcionInsumoB.DescQ1P2insumo2 ="Insumo 2";
+  this.descripcionInsumoB.DescQ1P2insumo3= "Insumo 3";
+  this.descripcionInsumoB.DescQ1P2insumo4 = "Insumo 4";
+  this.descripcionInsumoB.DescQ1P2insumo5= "Insumo 5";
+  this.descripcionInsumoB.DescQ1P2insumo6= "Insumo 6";
+  this.descripcionInsumoB.DescQ1P3insumo1= "Insumo 1";
+  this.descripcionInsumoB.DescQ1P3insumo2= "Insumo 2";
+  this.descripcionInsumoB.DescQ1P3insumo3= "Insumo 3";
+  this.descripcionInsumoB.DescQ1P3insumo4= "Insumo 4";
+  this.descripcionInsumoB.DescQ1P3insumo5= "Insumo 5";
+  this.descripcionInsumoB.DescQ1P3insumo6= "Insumo 6";
+
+  this.descripcionInsumoB.DescQ2P1insumo1= "Insumo 1";
+  this.descripcionInsumoB.DescQ2P1insumo2= "Insumo 2";
+  this.descripcionInsumoB.DescQ2P1insumo3= "Insumo 3";
+  this.descripcionInsumoB.DescQ2P1insumo4= "Insumo 4";
+  this.descripcionInsumoB.DescQ2P1insumo5= "Insumo 5";
+  this.descripcionInsumoB.DescQ2P1insumo6= "Insumo 6";
+  this.descripcionInsumoB.DescQ2P2insumo1= "Insumo 1";
+  this.descripcionInsumoB.DescQ2P2insumo2= "Insumo 2";
+  this.descripcionInsumoB.DescQ2P2insumo3= "Insumo 3";
+  this.descripcionInsumoB.DescQ2P2insumo4= "Insumo 4";
+  this.descripcionInsumoB.DescQ2P2insumo5= "Insumo 5";
+  this.descripcionInsumoB.DescQ2P2insumo6= "Insumo 6";
+  this.descripcionInsumoB.DescQ2P3insumo1= "Insumo 1";
+  this.descripcionInsumoB.DescQ2P3insumo2= "Insumo 2";
+  this.descripcionInsumoB.DescQ2P3insumo3= "Insumo 3";
+  this.descripcionInsumoB.DescQ2P3insumo4= "Insumo 4";
+  this.descripcionInsumoB.DescQ2P3insumo5= "Insumo 5";
+  this.descripcionInsumoB.DescQ2P3insumo6= "Insumo 6";
+
+
+}
+
+
+actualizacionInsumosB(insumo) {
+
+  this.caso = insumo;
+  this.banderInsumo = true;
+
+
+  var objDescInsumosB =
+  {
+    materia: this.guardarMateriaMatricula,
+    periodo: this.periodoLectivoActual
+  }
+
+ /* this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
+
+    if (response.insumosB != undefined) {
+      this.listadoInsumosB = response.insumosB;
+
+      switch (insumo) {
+
+        case 1: this.recivir= this.listadoInsumos.Descinsumo1;  break;
+        case 2:  this.recivir= this.listadoInsumos.Descinsumo2; break;
+        case 3: this.recivir= this.listadoInsumos.Descinsumo3; break;
+        case 4: this.recivir= this.listadoInsumos.Descinsumo4; break;
+        case 5: this.recivir= this.listadoInsumos.Descinsumo5; break;
+        case 6: this.recivir= this.listadoInsumos.Descinsumo6; break;
+        case 7: this.recivir= this.listadoInsumos.Descinsumo7; break;
+        case 8: this.recivir= this.listadoInsumos.Descinsumo8; break;
+
+        case 11: this.recivir= this.listadoInsumos.Descinsumo11;  break;
+        case 22:  this.recivir= this.listadoInsumos.Descinsumo22; break;
+        case 33: this.recivir= this.listadoInsumos.Descinsumo33; break;
+        case 44: this.recivir= this.listadoInsumos.Descinsumo44; break;
+        case 55: this.recivir= this.listadoInsumos.Descinsumo55; break;
+        case 66: this.recivir= this.listadoInsumos.Descinsumo66; break;
+        case 77: this.recivir= this.listadoInsumos.Descinsumo77; break;
+        case 88: this.recivir= this.listadoInsumos.Descinsumo88; break;
+  
+      }
+
+    }
+  }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+  );
+
+*/
+ 
+
+
+}
+
 
 
   DescripcionInsumos() {
