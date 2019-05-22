@@ -85,7 +85,11 @@ export class DocenteComponent implements OnInit, DoCheck {
   public recivir;
   public caso;
 
- public banderInsumo =false;
+  public banderInsumo = false;
+
+  public listadoInsumos;
+
+
   ngOnInit() {
 
     this.getListadoMisMaterias();
@@ -134,7 +138,50 @@ export class DocenteComponent implements OnInit, DoCheck {
   actualizacionInsumos(insumo) {
 
     this.caso = insumo;
-    this.banderInsumo = !this.banderInsumo; 
+    this.banderInsumo = !this.banderInsumo;
+
+
+    var objDescInsumos =
+    {
+      materia: this.guardarMateriaMatricula,
+      periodo: this.periodoLectivoActual
+    }
+
+    this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
+
+      if (response.insumos != undefined) {
+        this.listadoInsumos = response.insumos;
+
+        switch (insumo) {
+
+          case 1: this.recivir= this.listadoInsumos.Descinsumo1;  break;
+          case 2:  this.recivir= this.listadoInsumos.Descinsumo2; break;
+          case 3: this.recivir= this.listadoInsumos.Descinsumo3; break;
+          case 4: this.recivir= this.listadoInsumos.Descinsumo4; break;
+          case 5: this.recivir= this.listadoInsumos.Descinsumo5; break;
+          case 6: this.recivir= this.listadoInsumos.Descinsumo6; break;
+          case 7: this.recivir= this.listadoInsumos.Descinsumo7; break;
+          case 8: this.recivir= this.listadoInsumos.Descinsumo8; break;
+
+          case 11: this.recivir= this.listadoInsumos.Descinsumo11;  break;
+          case 22:  this.recivir= this.listadoInsumos.Descinsumo22; break;
+          case 33: this.recivir= this.listadoInsumos.Descinsumo33; break;
+          case 44: this.recivir= this.listadoInsumos.Descinsumo44; break;
+          case 55: this.recivir= this.listadoInsumos.Descinsumo55; break;
+          case 66: this.recivir= this.listadoInsumos.Descinsumo66; break;
+          case 77: this.recivir= this.listadoInsumos.Descinsumo77; break;
+          case 88: this.recivir= this.listadoInsumos.Descinsumo88; break;
+    
+        }
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+
+   
+
+
   }
 
 

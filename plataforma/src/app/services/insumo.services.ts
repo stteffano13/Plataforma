@@ -26,6 +26,18 @@ export class InsumoService {
     }
 
 
+    getDescInsumos(insumo_to_search) {
+        let json = JSON.stringify(insumo_to_search);
+        let params = json;
+        console.log("Materia", params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "getDiscInsumo", params, { headers: headers })
+            .map(res => res.json());
+    }
+
+
+
     getToken() {
 
         let token = localStorage.getItem("Token");

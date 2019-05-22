@@ -7,5 +7,5 @@ var md_auth = require('../middleware/authenticated');
 
 var api = express.Router(); // esto sirve para crear las rutas 
 api.post('/registerInsumo',md_auth.ensureAuth, InsumoController.saveInsumos);
-
+api.post('/getDiscInsumo',md_auth.ensureAuth, InsumoController.getDiscInsumo);
 module.exports = api;
