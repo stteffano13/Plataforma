@@ -106,7 +106,11 @@ export class DocenteComponent implements OnInit, DoCheck {
 
   }
 
+cerrarDescInsumos()
+{
 
+  this.banderInsumo =false;
+}
 
 
   DescripcionInsumos() {
@@ -138,7 +142,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   actualizacionInsumos(insumo) {
 
     this.caso = insumo;
-    this.banderInsumo = !this.banderInsumo;
+    this.banderInsumo = true;
 
 
     var objDescInsumos =
