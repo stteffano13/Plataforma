@@ -43,9 +43,11 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
   public caso;
-  public banderInsumo;
+  public banderInsumo=false;
+  public banderInsumoB=false;
   public guardarMateriaMatricula;
   public listadoInsumos;
+  public listadoInsumosB;
   public recivir;
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
@@ -492,6 +494,74 @@ export class EstudianteComponent implements OnInit, DoCheck {
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
+
+
+
+
+  }
+
+  actualizacionInsumosB(insumo, materia) {
+
+    this.recivir = materia;
+    this.banderInsumoB = true;
+
+
+    var objDescInsumosB =
+    {
+      materia: insumo,
+      periodo: this.periodoLectivoActual
+    }
+
+    this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
+
+      if (response.insumosB != undefined) {
+        this.listadoInsumosB = response.insumosB;
+        console.log("listado insumos de la basica", this.listadoInsumosB);
+     
+
+        this.listadoInsumosB.DescQ1P1insumo1
+        this.listadoInsumosB.DescQ1P1insumo2;
+        this.listadoInsumosB.DescQ1P1insumo3;
+      this.listadoInsumosB.DescQ1P1insumo4; 
+       this.listadoInsumosB.DescQ1P1insumo5;
+       this.listadoInsumosB.DescQ1P1insumo6;
+this.listadoInsumosB.DescQ1P2insumo1; 
+ this.listadoInsumosB.DescQ1P2insumo2;
+ this.listadoInsumosB.DescQ1P2insumo3; 
+this.listadoInsumosB.DescQ1P2insumo4; 
+ this.listadoInsumosB.DescQ1P2insumo5; 
+ this.listadoInsumosB.DescQ1P2insumo6; 
+this.listadoInsumosB.DescQ1P3insumo1; 
+ this.listadoInsumosB.DescQ1P3insumo2;
+this.listadoInsumosB.DescQ1P3insumo3; 
+this.listadoInsumosB.DescQ1P3insumo4; 
+ this.listadoInsumosB.DescQ1P3insumo5;
+this.listadoInsumosB.DescQ1P3insumo6; 
+
+ this.listadoInsumosB.DescQ2P1insumo1;
+this.listadoInsumosB.DescQ2P1insumo2; 
+this.listadoInsumosB.DescQ2P1insumo3; 
+ this.listadoInsumosB.DescQ2P1insumo4;
+ this.listadoInsumosB.DescQ2P1insumo5;
+this.listadoInsumosB.DescQ2P1insumo6; 
+
+ this.listadoInsumosB.DescQ2P2insumo1;
+this.listadoInsumosB.DescQ2P2insumo2; 
+this.listadoInsumosB.DescQ2P2insumo3; 
+this.listadoInsumosB.DescQ2P2insumo4; 
+ this.listadoInsumosB.DescQ2P2insumo5;
+ this.listadoInsumosB.DescQ2P2insumo6;
+
+
+this.listadoInsumosB.DescQ2P3insumo1; 
+  this.listadoInsumosB.DescQ2P3insumo2; 
+  this.listadoInsumosB.DescQ2P3insumo3; 
+  this.listadoInsumosB.DescQ2P3insumo4;
+  this.listadoInsumosB.DescQ2P3insumo5;
+ this.listadoInsumosB.DescQ2P3insumo6;     
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
 
 
 
