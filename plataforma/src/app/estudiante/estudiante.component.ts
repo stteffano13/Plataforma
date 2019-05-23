@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, ViewChild, ElementRef } from '@angular/core';
 
 import { MateriaService } from '../services/materia.services';
 import { MatriculaService } from '../services/matricula.services';
@@ -11,6 +11,10 @@ import { Calculable } from '../models/calculable';
 import { InsumoService } from '../services/insumo.services';
 import { isNumber } from 'util';
 import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { UserOptions } from 'jspdf-autotable';
+
+import * as html2canvas from 'html2canvas';
 
 
 @Component({
@@ -19,6 +23,8 @@ import * as jsPDF from 'jspdf';
   styleUrls: ['./estudiante.component.css']
 })
 export class EstudianteComponent implements OnInit, DoCheck {
+
+  @ViewChild('content') content: ElementRef;
   // banderas tablas
   public banderTabla1 = false;
   public banderTabla2 = false;
@@ -44,8 +50,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
   public caso;
-  public banderInsumo=false;
-  public banderInsumoB=false;
+  public banderInsumo = false;
+  public banderInsumoB = false;
   public guardarMateriaMatricula;
   public listadoInsumos;
   public listadoInsumosB;
@@ -62,8 +68,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
     this.identity = this._estudianteServices.getIdentity()
   }
 
-  ngDoCheck()
-  {
+  ngDoCheck() {
     this.listadoInsumos;
   }
   getPeriodoActual() {
@@ -475,9 +480,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
   actualizacionInsumos(insumo, materia) {
-    this.listadoInsumos ="";
+    this.listadoInsumos = "";
     this.banderInsumo = true;
-   this.recivir = materia;
+    this.recivir = materia;
 
     var objDescInsumos =
     {
@@ -490,7 +495,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
       if (response.insumos != undefined) {
         this.listadoInsumos = response.insumos;
         //this.recivir = this.listadoInsumos;
-       
+
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -502,7 +507,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
   }
 
   actualizacionInsumosB(insumo, materia) {
-    this.listadoInsumosB="";
+    this.listadoInsumosB = "";
     this.recivir = materia;
     this.banderInsumoB = true;
 
@@ -518,14 +523,14 @@ export class EstudianteComponent implements OnInit, DoCheck {
       if (response.insumosB != undefined) {
         this.listadoInsumosB = response.insumosB;
         console.log("listado insumos de la basica", this.listadoInsumosB);
-     
 
-       
-        
-      
-    
-      
-     
+
+
+
+
+
+
+
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -540,14 +545,62 @@ export class EstudianteComponent implements OnInit, DoCheck {
     this.banderInsumo = false;
   }
 
-  generarPdf()
-  {
-    const doc = new jsPDF();
+
+
+  generarPdf() {
+
+    interface jsPDFWithPlugin extends jsPDF {
+      autoTable: (options: UserOptions) => jsPDF;
+    }
+
+    //const doc = new jsPDF('l', 'mm');
     var logo = new Image();
-      logo.src = '../../assets/imgs/IngresarMatricula.png';
-      doc.addImage(logo, 'PNG', 15, 40,148,210);
-  
+    logo.src = '../../assets/imgs/IngresarMatricula.png';
+
+
+    const doc = new jsPDF('portrait', 'px', 'a4') as jsPDFWithPlugin;
+    doc.autoTable({
+      head: [['Name', 'Email', 'Country']],
+      body: [
+
+        ['David', 'david@example.com', 'Sweden'],
+        ['Castille', 'castille@example.com', 'Norway']
+      ]
+    });
+
+    //doc.autoTable({html :  '#results' });
+    for (var i = 0; i <= 1; i++) {
+      doc.fromHTML(" <table>    <tr>    <td>"+this.vectorListadoMisMaterias[i].nombre+"</td> </tr><tr> <td>Celda 6</td>  </tr> </table>" ,15*i,
+      15*i,
+      {
+        'width': 180, 
+      });
+
+     
+    }
+
+  /*  var elementHandler = {
+      '#ignorePDF': function (element, renderer) {
+        return true;
+      }
+    };*/
+
+   // var source = window.document.getElementsByTagName("body")[0];
+    
+    
+
+   
+    // doc.addImage(logo, 'PNG', 15, 40,148,210);
+
     doc.save("prueba");
+
+
+    /*  html2canvas(document.getElementById('results')).then(function(canvas) {
+        var img = canvas.toDataURL("image/png");
+        var doc = new jsPDF('l', 'mm');
+        doc.addImage(img,'JPEG',5,2, 100, 100);
+        doc.save('testCanvas.pdf');
+        });*/
   }
 }
 

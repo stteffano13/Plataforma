@@ -14,7 +14,8 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
-<body>
+
+<body >
 
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -111,7 +112,7 @@
     <!-- <h3 style="margin-top: 10%; margin-left: 5%; text-align: center">{{this.Titulo}} </h3>-->
 
 
-    <div class="container-fluid">
+    <div  class="container-fluid">
 
       <!-- Division Principal-->
       <div class="rows1" style="width: 70%; height: 70vh; margin-left: 12%" *ngIf="imagen"> </div>
@@ -491,7 +492,7 @@
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
 
 
@@ -952,6 +953,7 @@
 
     <button (click)="generarPdf()">pdf</button>
 
+    <div id="hol">OL mijines</div>
 
   </div>
   <!-- Scroll to Top Button-->
