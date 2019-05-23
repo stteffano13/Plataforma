@@ -519,38 +519,20 @@ export class EstudianteComponent implements OnInit, DoCheck {
         console.log("listado insumos de la basica", this.listadoInsumosB);
      
 
-        this.listadoInsumosB.DescQ1P1insumo1
-        this.listadoInsumosB.DescQ1P1insumo2;
-        this.listadoInsumosB.DescQ1P1insumo3;
-      this.listadoInsumosB.DescQ1P1insumo4; 
-       this.listadoInsumosB.DescQ1P1insumo5;
-       this.listadoInsumosB.DescQ1P1insumo6;
-this.listadoInsumosB.DescQ1P2insumo1; 
- this.listadoInsumosB.DescQ1P2insumo2;
- this.listadoInsumosB.DescQ1P2insumo3; 
-this.listadoInsumosB.DescQ1P2insumo4; 
- this.listadoInsumosB.DescQ1P2insumo5; 
- this.listadoInsumosB.DescQ1P2insumo6; 
-this.listadoInsumosB.DescQ1P3insumo1; 
- this.listadoInsumosB.DescQ1P3insumo2;
-this.listadoInsumosB.DescQ1P3insumo3; 
-this.listadoInsumosB.DescQ1P3insumo4; 
- this.listadoInsumosB.DescQ1P3insumo5;
-this.listadoInsumosB.DescQ1P3insumo6; 
+       
+        
+      
+    
+      
 
- this.listadoInsumosB.DescQ2P1insumo1;
-this.listadoInsumosB.DescQ2P1insumo2; 
-this.listadoInsumosB.DescQ2P1insumo3; 
- this.listadoInsumosB.DescQ2P1insumo4;
- this.listadoInsumosB.DescQ2P1insumo5;
-this.listadoInsumosB.DescQ2P1insumo6; 
 
- this.listadoInsumosB.DescQ2P2insumo1;
-this.listadoInsumosB.DescQ2P2insumo2; 
-this.listadoInsumosB.DescQ2P2insumo3; 
-this.listadoInsumosB.DescQ2P2insumo4; 
- this.listadoInsumosB.DescQ2P2insumo5;
- this.listadoInsumosB.DescQ2P2insumo6;
+
+  
+
+ 
+
+
+
 
 
 this.listadoInsumosB.DescQ2P3insumo1; 
