@@ -555,11 +555,13 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     //const doc = new jsPDF('l', 'mm');
     var logo = new Image();
-    logo.src = '../../assets/imgs/IngresarMatricula.png';
+    logo.src = '../../assets/imgs/logo.png';
 
 
-    const doc = new jsPDF('portrait', 'px', 'a4') as jsPDFWithPlugin;
-    doc.autoTable({
+    const doc = new jsPDF('l', 'px', 'a4') as jsPDFWithPlugin;
+
+    doc.addImage(logo, 'PNG', 15, 20,148,120);
+   /* doc.autoTable({
       head: [['Name', 'Email', 'Country']],
       body: [
 
@@ -576,8 +578,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
         'width': 180, 
       });
 
+
      
-    }
+    }*/
 
   /*  var elementHandler = {
       '#ignorePDF': function (element, renderer) {
@@ -590,7 +593,6 @@ export class EstudianteComponent implements OnInit, DoCheck {
     
 
    
-    // doc.addImage(logo, 'PNG', 15, 40,148,210);
 
     doc.save("prueba");
 
