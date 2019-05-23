@@ -28,7 +28,10 @@
 
 
       <ul class="navbar-nav ml-auto">
-        <li><p style="color: #ffffff">Usuario Activo: {{identity.nombre}}   {{identity.apellido}}   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p></li>
+        <li>
+          <p style="color: #ffffff">Usuario Activo: {{identity.nombre}} {{identity.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </p>
+        </li>
         <li>
           <p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
@@ -105,7 +108,7 @@
   <div style="height: 100%; overflow: auto;">
 
 
-   <!-- <h3 style="margin-top: 10%; margin-left: 5%; text-align: center">{{this.Titulo}} </h3>-->
+    <!-- <h3 style="margin-top: 10%; margin-left: 5%; text-align: center">{{this.Titulo}} </h3>-->
 
 
     <div class="container-fluid">
@@ -116,17 +119,131 @@
       <!--Listado -->
 
 
+      <div *ngIf="banderInsumo" id="formContent">
+          <button (click)="cerrarDescInsumos()" class="btn btn-light">
+              <i class="fa fa-window-close fa-lg"></i>
+            </button>
+      <table *ngIf="banderInsumo" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; height: 40%; margin-left: 5%">
+
+
+
+        <thead>
+
+
+          <tr style=" align-content: center;">
+            <th colspan="2" style="padding-top: 3%" scope="col">  <h6>Descripción de insumos de la materia de:  {{recivir}}</h6> <p  style="color: #ffffff">holaaaaaaaaaaaaaaaaaammmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p></th>
+
+          </tr>
+
+
+          <tr style="background-color: #343a40; align-content: center;">
+            <th style="color: white;" scope="col">#</th>
+            <th style="color: white;" scope="col">Descripcion del insumo</th>
+
+          </tr>
+
+
+        </thead>
+        <tbody>
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 1</td>
+            <td scope="col">{{listadoInsumos.Descinsumo1}}</td>
+
+          </tr>
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 2</td>
+            <td scope="col">{{listadoInsumos.Descinsumo2}}</td>
+          </tr>
+
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 3</td>
+            <td scope="col">{{listadoInsumos.Descinsumo3}}</td>
+          </tr>
+
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 4</td>
+            <td scope="col">{{listadoInsumos.Descinsumo4}}</td>
+          </tr>
+
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 5</td>
+            <td scope="col">{{listadoInsumos.Descinsumo5}}</td>
+          </tr>
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 6</td>
+            <td scope="col">{{listadoInsumos.Descinsumo6}}</td>
+          </tr>
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 7</td>
+            <td scope="col">{{listadoInsumos.Descinsumo8}}</td>
+          </tr>
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 8</td>
+            <td scope="col">{{listadoInsumos.Descinsumo8}}</td>
+          </tr>
+
+          <tr style="background-color: #343a40; align-content: center;">
+            <th colspan="2" style="color: white; padding-top: 3%" scope="col">Segundo Parcial</th>
+
+
+          </tr>
+
+          <tr style=" align-content: center;">
+            <td scope="col">Insumo 1</td>
+            <td scope="col">{{listadoInsumos.Descinsumo11}}</td>
+
+            <tr style=" align-content: center;">
+              <td  scope="col">Insumo 2</td>
+              <td  scope="col">{{listadoInsumos.Descinsumo22}}</td>
+            </tr>
+
+            <tr style=" align-content: center;">
+              <td  scope="col">Insumo 3</td>
+              <td  scope="col">{{listadoInsumos.Descinsumo33}}</td>
+            </tr>
+
+            <tr style=" align-content: center;">
+              <td  scope="col">Insumo 4</td>
+              <td  scope="col">{{listadoInsumos.Descinsumo44}}</td>
+            </tr>
+
+            <tr style=" align-content: center;">
+              <td  scope="col">Insumo 5</td>
+              <td style="padding-top: 3%" scope="col">{{listadoInsumos.Descinsumo55}}</td>
+            </tr>
+
+            <tr style=" align-content: center;">
+              <td  scope="col">Insumo 6</td>
+              <td  scope="col">{{listadoInsumos.Descinsumo66}}</td>
+            </tr>
+
+            <tr style=" align-content: center;">
+              <td  scope="col">Insumo 7</td>
+              <td  scope="col">{{listadoInsumos.Descinsumo77}}</td>
+            </tr>
+
+            <tr style=" align-content: center;">
+              <td  scope="col">Insumo 8</td>
+              <td  scope="col">{{listadoInsumos.Descinsumo88}}</td>
+            </tr>
+
+        </tbody>
+      </table>
+
+      
+</div>
+
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table  *ngIf="banderTabla1"  class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
-        <div class="form-control form-inline">
-          <h4>{{this.Titulo}} </h4>
-        </div>
+
 
         <thead>
+
           <tr style="background-color: #343a40; align-content: center;">
+            <th style="color: white; padding-top: 3%" scope="col">Más</th>
             <th style="color: white; padding-top: 3%" scope="col">#</th>
 
             <th style="color: white; " scope="col">Materias</th>
@@ -163,8 +280,15 @@
         </thead>
         <tbody>
           <tr *ngFor=" let listado of  vectorListadoMisMaterias; let i = index; let listadoN of listadoEstudianteNotas">
+
+            <th>
+              <button (click)="actualizacionInsumos(listado._id, listado.nombre)" class="btn btn-light">
+                <i class="fa fa-plus fa-xs"></i>
+              </button>
+            </th>
+
             <th scope="row">{{i}}</th>
-            <td class="active" >{{listado.nombre}} </td>
+            <td class="active">{{listado.nombre}} </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
             </td>
@@ -272,14 +396,7 @@
           </tr>
         </tbody>
       </table>
-      <div *ngIf="banderTabla1" class="col-md-7" style="text-align: right;">
-        <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
-        <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
-          Cancelar</button>
 
-        <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
-          Finalizar</button>
-      </div>
     </div>
 
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->

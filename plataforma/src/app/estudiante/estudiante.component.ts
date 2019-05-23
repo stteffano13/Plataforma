@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 
 import { MateriaService } from '../services/materia.services';
 import { MatriculaService } from '../services/matricula.services';
@@ -8,6 +8,7 @@ import { NotaService } from '../services/nota.services';
 import { Nota } from '../models/nota';
 import { NotaBasica } from '../models/notaBasica';
 import { Calculable } from '../models/calculable';
+import { InsumoService } from '../services/insumo.services';
 import { isNumber } from 'util';
 
 
@@ -16,10 +17,10 @@ import { isNumber } from 'util';
   templateUrl: './estudiante.component.html',
   styleUrls: ['./estudiante.component.css']
 })
-export class EstudianteComponent implements OnInit {
-// banderas tablas
-public banderTabla1= false;
-public banderTabla2 = false;
+export class EstudianteComponent implements OnInit, DoCheck {
+  // banderas tablas
+  public banderTabla1 = false;
+  public banderTabla2 = false;
 
   public loading;
   public periodoLectivoActual;
@@ -39,16 +40,28 @@ public banderTabla2 = false;
   public objectCalculableB = [];
 
   public mensajeerrormodal;
+
+
+  public caso;
+  public banderInsumo;
+  public guardarMateriaMatricula;
+  public listadoInsumos;
+  public recivir;
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
-    private _notaService: NotaService, private _estudianteServices: EstudianteService) { }
+    private _notaService: NotaService, private _estudianteServices: EstudianteService, private _insumoService: InsumoService) { }
 
   ngOnInit() {
     this.getListadoMisMaterias();
     this.getPeriodoActual();
 
     this.identity = this._estudianteServices.getIdentity()
+  }
+
+  ngDoCheck()
+  {
+    this.listadoInsumos;
   }
   getPeriodoActual() {
 
@@ -57,7 +70,7 @@ public banderTabla2 = false;
       console.log("este es el periodo que vino", response.periodo)
       if (response.periodo != undefined) {
         this.periodoLectivoActual = response.periodo[0].periodo;
-       
+
 
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
@@ -74,19 +87,18 @@ public banderTabla2 = false;
         this.vectorListadoMisMaterias = response.materias;
         console.log("las amterias", this.vectorListadoMisMaterias);
         if (this.vectorListadoMisMaterias[0].curso.curso != "BÁSICO SUPERIOR INTENSIVO") {
-          
-        this.banderTabla1=true;
 
-        for (let i = 0; i <= Object.keys(this.vectorListadoMisMaterias).length; i++) {
+          this.banderTabla1 = true;
 
-          this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
-          this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
-          console.log("estos son los seros del objeto", this.object);
-        }
-        this.traerNotas(this.periodoLectivoActual);
-      }else
-      {
-        this.banderTabla1 = false;
+          for (let i = 0; i <= Object.keys(this.vectorListadoMisMaterias).length; i++) {
+
+            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
+            console.log("estos son los seros del objeto", this.object);
+          }
+          this.traerNotas(this.periodoLectivoActual);
+        } else {
+          this.banderTabla1 = false;
           this.banderTabla2 = true;
 
 
@@ -98,12 +110,12 @@ public banderTabla2 = false;
           }
 
           this.traerNotasB(this.periodoLectivoActual);
-      }
+        }
 
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
-   
+
   }
 
 
@@ -124,37 +136,37 @@ public banderTabla2 = false;
           this.listadoNotas.forEach(element => {
 
             console.log("elementoE", elementE._id, "elemento", element.materia);
-            if(elementE!=null && element!= null){
-            if (elementE._id == element.materia) {
-              this.object[i].insumo1 = element.insumo1;
-              this.object[i].insumo2 = element.insumo2;
-              this.object[i].insumo3 = element.insumo3;
-              this.object[i].insumo4 = element.insumo4;
-              this.object[i].insumo5 = element.insumo5;
-              this.object[i].insumo6 = element.insumo6;
-              this.object[i].insumo7 = element.insumo7;
-              this.object[i].insumo8 = element.insumo8;
-              this.object[i].examen1 = element.examen1;
+            if (elementE != null && element != null) {
+              if (elementE._id == element.materia) {
+                this.object[i].insumo1 = element.insumo1;
+                this.object[i].insumo2 = element.insumo2;
+                this.object[i].insumo3 = element.insumo3;
+                this.object[i].insumo4 = element.insumo4;
+                this.object[i].insumo5 = element.insumo5;
+                this.object[i].insumo6 = element.insumo6;
+                this.object[i].insumo7 = element.insumo7;
+                this.object[i].insumo8 = element.insumo8;
+                this.object[i].examen1 = element.examen1;
 
-              this.object[i].insumo11 = element.insumo11;
-              this.object[i].insumo22 = element.insumo22;
-              this.object[i].insumo33 = element.insumo33;
-              this.object[i].insumo44 = element.insumo44;
-              this.object[i].insumo55 = element.insumo55;
-              this.object[i].insumo66 = element.insumo66;
-              this.object[i].insumo77 = element.insumo77;
-              this.object[i].insumo88 = element.insumo88;
+                this.object[i].insumo11 = element.insumo11;
+                this.object[i].insumo22 = element.insumo22;
+                this.object[i].insumo33 = element.insumo33;
+                this.object[i].insumo44 = element.insumo44;
+                this.object[i].insumo55 = element.insumo55;
+                this.object[i].insumo66 = element.insumo66;
+                this.object[i].insumo77 = element.insumo77;
+                this.object[i].insumo88 = element.insumo88;
 
-              this.object[i].examen2 = element.examen2;
-              this.object[i].examenSupletorio = element.examenSupletorio;
-              this.object[i].examenRemedial = element.examenRemedial;
-              this.object[i].examenGracia = element.examenGracia;
+                this.object[i].examen2 = element.examen2;
+                this.object[i].examenSupletorio = element.examenSupletorio;
+                this.object[i].examenRemedial = element.examenRemedial;
+                this.object[i].examenGracia = element.examenGracia;
 
-              this.calculosInit(i);
-              i++;
+                this.calculosInit(i);
+                i++;
 
+              }
             }
-          }
           });
         });
 
@@ -223,23 +235,20 @@ public banderTabla2 = false;
       this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
 
-      if(this.object[i].examenSupletorio>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+      if (this.object[i].examenSupletorio >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
 
-      if(this.object[i].examenRemedial>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+      if (this.object[i].examenRemedial >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
-      
-      if(this.object[i].examenGracia>=7)
-      {
-        this.objectCalculable[i].promedioPeriodo=7;
+
+      if (this.object[i].examenGracia >= 7) {
+        this.objectCalculable[i].promedioPeriodo = 7;
 
       }
 
@@ -248,7 +257,7 @@ public banderTabla2 = false;
   }
 
 
-  
+
   traerNotasB(periodo) {
 
 
@@ -266,63 +275,63 @@ public banderTabla2 = false;
           this.listadoNotas.forEach(element => {
 
             console.log("elementoE", elementE._id, "elemento", element.materia);
-            if(elementE!=null && element!= null){
-            if (elementE._id == element.materia) {
-              this.objectB[i].Q1P1insumo1 = element.Q1P1insumo1;
-              this.objectB[i].Q1P1insumo2 = element.Q1P1insumo2;
-              this.objectB[i].Q1P1insumo3 = element.Q1P1insumo3;
-              this.objectB[i].Q1P1insumo4 = element.Q1P1insumo4;
-              this.objectB[i].Q1P1insumo5 = element.Q1P1insumo5;
-              this.objectB[i].Q1P1insumo6 = element.Q1P1insumo6;
+            if (elementE != null && element != null) {
+              if (elementE._id == element.materia) {
+                this.objectB[i].Q1P1insumo1 = element.Q1P1insumo1;
+                this.objectB[i].Q1P1insumo2 = element.Q1P1insumo2;
+                this.objectB[i].Q1P1insumo3 = element.Q1P1insumo3;
+                this.objectB[i].Q1P1insumo4 = element.Q1P1insumo4;
+                this.objectB[i].Q1P1insumo5 = element.Q1P1insumo5;
+                this.objectB[i].Q1P1insumo6 = element.Q1P1insumo6;
 
-              this.objectB[i].Q1P2insumo1 = element.Q1P2insumo1;
-              this.objectB[i].Q1P2insumo2 = element.Q1P2insumo2;
-              this.objectB[i].Q1P2insumo3 = element.Q1P2insumo3;
-              this.objectB[i].Q1P2insumo4 = element.Q1P2insumo4;
-              this.objectB[i].Q1P2insumo5 = element.Q1P2insumo5;
-              this.objectB[i].Q1P2insumo6 = element.Q1P2insumo6;
+                this.objectB[i].Q1P2insumo1 = element.Q1P2insumo1;
+                this.objectB[i].Q1P2insumo2 = element.Q1P2insumo2;
+                this.objectB[i].Q1P2insumo3 = element.Q1P2insumo3;
+                this.objectB[i].Q1P2insumo4 = element.Q1P2insumo4;
+                this.objectB[i].Q1P2insumo5 = element.Q1P2insumo5;
+                this.objectB[i].Q1P2insumo6 = element.Q1P2insumo6;
 
-              this.objectB[i].Q1P3insumo1 = element.Q1P3insumo1;
-              this.objectB[i].Q1P3insumo2 = element.Q1P3insumo2;
-              this.objectB[i].Q1P3insumo3 = element.Q1P3insumo3;
-              this.objectB[i].Q1P3insumo4 = element.Q1P3insumo4;
-              this.objectB[i].Q1P3insumo5 = element.Q1P3insumo5;
-              this.objectB[i].Q1P3insumo6 = element.Q1P3insumo6;
+                this.objectB[i].Q1P3insumo1 = element.Q1P3insumo1;
+                this.objectB[i].Q1P3insumo2 = element.Q1P3insumo2;
+                this.objectB[i].Q1P3insumo3 = element.Q1P3insumo3;
+                this.objectB[i].Q1P3insumo4 = element.Q1P3insumo4;
+                this.objectB[i].Q1P3insumo5 = element.Q1P3insumo5;
+                this.objectB[i].Q1P3insumo6 = element.Q1P3insumo6;
 
 
-              this.objectB[i].examen1 = element.examen1;
+                this.objectB[i].examen1 = element.examen1;
 
-              this.objectB[i].Q2P1insumo1 = element.Q2P1insumo1;
-              this.objectB[i].Q2P1insumo2 = element.Q2P1insumo2;
-              this.objectB[i].Q2P1insumo3 = element.Q2P1insumo3;
-              this.objectB[i].Q2P1insumo4 = element.Q2P1insumo4;
-              this.objectB[i].Q2P1insumo5 = element.Q2P1insumo5;
-              this.objectB[i].Q2P1insumo6 = element.Q2P1insumo6;
+                this.objectB[i].Q2P1insumo1 = element.Q2P1insumo1;
+                this.objectB[i].Q2P1insumo2 = element.Q2P1insumo2;
+                this.objectB[i].Q2P1insumo3 = element.Q2P1insumo3;
+                this.objectB[i].Q2P1insumo4 = element.Q2P1insumo4;
+                this.objectB[i].Q2P1insumo5 = element.Q2P1insumo5;
+                this.objectB[i].Q2P1insumo6 = element.Q2P1insumo6;
 
-              this.objectB[i].Q2P2insumo1 = element.Q2P2insumo1;
-              this.objectB[i].Q2P2insumo2 = element.Q2P2insumo2;
-              this.objectB[i].Q2P2insumo3 = element.Q2P2insumo3;
-              this.objectB[i].Q2P2insumo4 = element.Q2P2insumo4;
-              this.objectB[i].Q2P2insumo5 = element.Q2P2insumo5;
-              this.objectB[i].Q2P2insumo6 = element.Q2P2insumo6;
+                this.objectB[i].Q2P2insumo1 = element.Q2P2insumo1;
+                this.objectB[i].Q2P2insumo2 = element.Q2P2insumo2;
+                this.objectB[i].Q2P2insumo3 = element.Q2P2insumo3;
+                this.objectB[i].Q2P2insumo4 = element.Q2P2insumo4;
+                this.objectB[i].Q2P2insumo5 = element.Q2P2insumo5;
+                this.objectB[i].Q2P2insumo6 = element.Q2P2insumo6;
 
-              this.objectB[i].Q2P3insumo1 = element.Q2P3insumo1;
-              this.objectB[i].Q2P3insumo2 = element.Q2P3insumo2;
-              this.objectB[i].Q2P3insumo3 = element.Q2P3insumo3;
-              this.objectB[i].Q2P3insumo4 = element.Q2P3insumo4;
-              this.objectB[i].Q2P3insumo5 = element.Q2P3insumo5;
-              this.objectB[i].Q2P3insumo6 = element.Q2P3insumo6;
+                this.objectB[i].Q2P3insumo1 = element.Q2P3insumo1;
+                this.objectB[i].Q2P3insumo2 = element.Q2P3insumo2;
+                this.objectB[i].Q2P3insumo3 = element.Q2P3insumo3;
+                this.objectB[i].Q2P3insumo4 = element.Q2P3insumo4;
+                this.objectB[i].Q2P3insumo5 = element.Q2P3insumo5;
+                this.objectB[i].Q2P3insumo6 = element.Q2P3insumo6;
 
-              this.objectB[i].examen2 = element.examen2;
-              this.objectB[i].examenSupletorio = element.examenSupletorio;
-              this.objectB[i].examenRemedial = element.examenRemedial;
-              this.objectB[i].examenGracia = element.examenGracia;
+                this.objectB[i].examen2 = element.examen2;
+                this.objectB[i].examenSupletorio = element.examenSupletorio;
+                this.objectB[i].examenRemedial = element.examenRemedial;
+                this.objectB[i].examenGracia = element.examenGracia;
 
-              this.calculosBInit(i);
-              i++;
+                this.calculosBInit(i);
+                i++;
 
+              }
             }
-          }
           });
         });
 
@@ -376,7 +385,7 @@ public banderTabla2 = false;
       || this.objectB[i].Q2P3insumo4 > 10 || this.objectB[i].Q2P3insumo5 > 10 || this.objectB[i].Q2P3insumo6 > 10
 
       || this.objectB[i].examen2 > 10 || this.objectB[i].examenGracia > 10 || this.objectB[i].examenRemedial > 10 || this.objectB[i].examenSupletorio > 10) {
-   
+
 
       this.mensajeerrormodal = "Alguna de las notas es mayor a 10 reviselas nuevamente";
 
@@ -425,23 +434,20 @@ public banderTabla2 = false;
       this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
-      if(this.objectB[i].examenSupletorio>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+      if (this.objectB[i].examenSupletorio >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
 
-      if(this.objectB[i].examenRemedial>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+      if (this.objectB[i].examenRemedial >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
-      
-      if(this.objectB[i].examenGracia>=7)
-      {
-        this.objectCalculableB[i].promedioPeriodo=7;
+
+      if (this.objectB[i].examenGracia >= 7) {
+        this.objectCalculableB[i].promedioPeriodo = 7;
 
       }
 
@@ -462,5 +468,38 @@ public banderTabla2 = false;
 
   recargar() {
     location.reload();
+  }
+
+
+  actualizacionInsumos(insumo, materia) {
+    this.listadoInsumos ="";
+    this.banderInsumo = true;
+   this.recivir = materia;
+
+    var objDescInsumos =
+    {
+      materia: insumo,
+      periodo: this.periodoLectivoActual
+    }
+    console.log("esto e sloq ue hay que buscar como estudainte", objDescInsumos);
+    this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
+
+      if (response.insumos != undefined) {
+        this.listadoInsumos = response.insumos;
+        //this.recivir = this.listadoInsumos;
+       
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+
+
+
+
+  }
+
+  cerrarDescInsumos() {
+
+    this.banderInsumo = false;
   }
 }
