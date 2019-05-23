@@ -10,6 +10,7 @@ import { NotaBasica } from '../models/notaBasica';
 import { Calculable } from '../models/calculable';
 import { InsumoService } from '../services/insumo.services';
 import { isNumber } from 'util';
+import * as jsPDF from 'jspdf';
 
 
 @Component({
@@ -501,7 +502,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
   }
 
   actualizacionInsumosB(insumo, materia) {
-
+    this.listadoInsumosB="";
     this.recivir = materia;
     this.banderInsumoB = true;
 
@@ -524,23 +525,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
       
     
       
-
-
-
-  
-
- 
-
-
-
-
-
-this.listadoInsumosB.DescQ2P3insumo1; 
-  this.listadoInsumosB.DescQ2P3insumo2; 
-  this.listadoInsumosB.DescQ2P3insumo3; 
-  this.listadoInsumosB.DescQ2P3insumo4;
-  this.listadoInsumosB.DescQ2P3insumo5;
- this.listadoInsumosB.DescQ2P3insumo6;     
+     
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -554,4 +539,16 @@ this.listadoInsumosB.DescQ2P3insumo1;
 
     this.banderInsumo = false;
   }
+
+  generarPdf()
+  {
+    const doc = new jsPDF();
+    var logo = new Image();
+      logo.src = '../../assets/imgs/IngresarMatricula.png';
+      doc.addImage(logo, 'PNG', 15, 40,148,210);
+  
+    doc.save("prueba");
+  }
 }
+
+
