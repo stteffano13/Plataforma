@@ -565,76 +565,84 @@ export class EstudianteComponent implements OnInit, DoCheck {
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 190, 28);
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
     doc.fromHTML("<h4>ESTUDIANTE: " + this.identity.apellido + "  " + this.identity.nombre + "</h4>", 260, 68);
-    
-    html2canvas(document.getElementById('results')).then(function(canvas) {
+
+    html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
       var img = canvas.toDataURL("image/png");
-     // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img,'JPEG',30,150, 580, 70);
+      var context = canvas.getContext("2d");
+      context.scale(5, 5);
+      context["imageSmoothingEnabled"] = false;
+      context["mozImageSmoothingEnabled"] = false
+      context["oImageSmoothingEnabled"] = false
+      context["webkitImageSmoothingEnabled"] = false
+      context["msImageSmoothingEnabled"] = false
+     
+      // var doc = new jsPDF('l', 'mm');
+      doc.addImage(img, 'JPEG', 30, 150, 580, 70);
       doc.save('testCanvas.pdf');
-      });
+    });
 
-     /* doc.fromHTML(" <table>" +
+    /* doc.fromHTML(" <table>" +
 
-     
-        " <tr>" +
-        "<th style='color: white; 'scope='col'>Materias</th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I1 </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I2 </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I3 </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I4 </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I5 </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I6 </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I7 </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>I8 </th>" +
+    
+       " <tr>" +
+       "<th style='color: white; 'scope='col'>Materias</th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I1 </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I2 </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I3 </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I4 </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I5 </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I6 </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I7 </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>I8 </th>" +
 
-        "<th style='color: white' scope='col' class='verticalText'>80% </th>" +
-        "<th style='color: white' scope='col' class='verticalText'>Ex</th>" +
-        " <th style='color: white' scope='col' class='verticalText'>20%</th>" +
-        "<th style='color: white' scope='col' class='verticalText'>P1</th>" +
+       "<th style='color: white' scope='col' class='verticalText'>80% </th>" +
+       "<th style='color: white' scope='col' class='verticalText'>Ex</th>" +
+       " <th style='color: white' scope='col' class='verticalText'>20%</th>" +
+       "<th style='color: white' scope='col' class='verticalText'>P1</th>" +
 
 
-       
-        " </tr>" +
-     
-       
-       "</table>",15,100,{width:100} );
-        
-       /* html2canvas(document.getElementById('results')).then(function(canvas) {
-          var img = canvas.toDataURL("image/png");
-          var doc = new jsPDF('l', 'mm');
-          doc.addImage(img,'JPEG',5,2, 280, 50);
-          doc.save('testCanvas.pdf');
-          });*/
-
-      /*  var j = 0;
-        for (var i = 1; i <= 2; i++) {
-          doc.fromHTML( "<tr>   <td>" + this.vectorListadoMisMaterias[j].nombre + "</td> </tr><tr> <td>Celda 6</td>  </tr>  <tbody> </table>", 15,
-        100 * i,
-        {
-          width:100,
-        });
-      j++;
-    }*/
-   /* doc.autoTable({
-       head: [['Name', 'Email', 'Country']],
-       body: [
-      for(var h=0; h<=2; h++){
-         [this.vectorListadoMisMaterias[0].nombre, 'david@example.com', 'Sweden'],
-      }
-       ]
-     });*/
- 
-     //doc.autoTable({html :  '#results' });
-     /*for (var i = 0; i <= 1; i++) {
-       doc.fromHTML(" <table>    <tr>    <td>"+this.vectorListadoMisMaterias[i].nombre+"</td> </tr><tr> <td>Celda 6</td>  </tr> </table>" ,15*i,
-       15*i,
-       {
-         'width': 180, 
-       });
- 
- 
       
-     }*/
+       " </tr>" +
+    
+      
+      "</table>",15,100,{width:100} );
+       
+      /* html2canvas(document.getElementById('results')).then(function(canvas) {
+         var img = canvas.toDataURL("image/png");
+         var doc = new jsPDF('l', 'mm');
+         doc.addImage(img,'JPEG',5,2, 280, 50);
+         doc.save('testCanvas.pdf');
+         });*/
+
+    /*  var j = 0;
+      for (var i = 1; i <= 2; i++) {
+        doc.fromHTML( "<tr>   <td>" + this.vectorListadoMisMaterias[j].nombre + "</td> </tr><tr> <td>Celda 6</td>  </tr>  <tbody> </table>", 15,
+      100 * i,
+      {
+        width:100,
+      });
+    j++;
+  }*/
+    /* doc.autoTable({
+        head: [['Name', 'Email', 'Country']],
+        body: [
+       for(var h=0; h<=2; h++){
+          [this.vectorListadoMisMaterias[0].nombre, 'david@example.com', 'Sweden'],
+       }
+        ]
+      });*/
+
+    //doc.autoTable({html :  '#results' });
+    /*for (var i = 0; i <= 1; i++) {
+      doc.fromHTML(" <table>    <tr>    <td>"+this.vectorListadoMisMaterias[i].nombre+"</td> </tr><tr> <td>Celda 6</td>  </tr> </table>" ,15*i,
+      15*i,
+      {
+        'width': 180, 
+      });
+ 
+ 
+     
+    }*/
 
     /*  var elementHandler = {
         '#ignorePDF': function (element, renderer) {
@@ -648,7 +656,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
 
-  //  doc.save("prueba");
+    //  doc.save("prueba");
 
 
     /*  html2canvas(document.getElementById('results')).then(function(canvas) {
