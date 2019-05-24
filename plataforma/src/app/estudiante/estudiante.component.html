@@ -29,6 +29,9 @@
 
 
       <ul class="navbar-nav ml-auto">
+          <li>
+          <button (click)="generarPdf()">pdf</button>
+          </li>
         <li>
           <p style="color: #ffffff">Usuario Activo: {{identity.nombre}} {{identity.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
@@ -492,11 +495,11 @@
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table  *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
 
 
-        <thead>
+        <thead  >
 
           <tr style="background-color: #343a40; align-content: center;">
             <th style="color: white; padding-top: 3%" scope="col">Más</th>
@@ -655,6 +658,200 @@
 
     </div>
 
+    <!--------------------------------- TTABLA DE EMERGENCIA UNO------------------------------------- -->
+
+    <table   id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: -100%; font-size: 80% ; width: 90% ; margin-left: 5%; ">
+
+
+
+      <thead  >
+
+        <tr style="background-color: #343a40; align-content: center;">
+      
+
+          <th style="color: white; " scope="col">Materias</th>
+          <th style="color: white"  >I1 </th>
+          <th style="color: white">I2 </th>
+          <th style="color: white">I3 </th>
+          <th style="color: white" >I4 </th>
+          <th style="color: white" >I5 </th>
+          <th style="color: white" >I6 </th>
+          <th style="color: white" >I7 </th>
+          <th style="color: white" >I8 </th>
+          <th style="color: white" >80% </th>
+          <th style="color: white" >Ex</th>
+          <th style="color: white" >20%</th>
+          <th style="color: white" >P1</th>
+
+          <th style="color: white">I1 </th>
+          <th style="color: white" >I2 </th>
+          <th style="color: white">I3 </th>
+          <th style="color: white" >I4 </th>
+          <th style="color: white" >I5 </th>
+          <th style="color: white">I6 </th>
+          <th style="color: white" >I7 </th>
+          <th style="color: white" >I8 </th>
+          <th style="color: white" >80% </th>
+          <th style="color: white" >Ex</th>
+          <th style="color: white" >20%</th>
+          <th style="color: white" >P2</th>
+          <th style="color: white" >PT</th>
+          <th style="color: white">ExSuple</th>
+          <th style="color: white" >ExnRem</th>
+          <th style="color: white" >ExGracia</th>
+        </tr>
+        <tr style="background-color: #343a40; align-content: center;">
+      
+
+          <th style="color: white; " scope="col">Materias</th>
+          <th style="color: white"  >I1 </th>
+          <th style="color: white">I2 </th>
+          <th style="color: white">I3 </th>
+          <th style="color: white" >I4 </th>
+          <th style="color: white" >I5 </th>
+          <th style="color: white" >I6 </th>
+          <th style="color: white" >I7 </th>
+          <th style="color: white" >I8 </th>
+          <th style="color: white" >80% </th>
+          <th style="color: white" >Ex</th>
+          <th style="color: white" >20%</th>
+          <th style="color: white" >P1</th>
+
+          <th style="color: white">I1 </th>
+          <th style="color: white" >I2 </th>
+          <th style="color: white">I3 </th>
+          <th style="color: white" >I4 </th>
+          <th style="color: white" >I5 </th>
+          <th style="color: white">I6 </th>
+          <th style="color: white" >I7 </th>
+          <th style="color: white" >I8 </th>
+          <th style="color: white" >80% </th>
+          <th style="color: white" >Ex</th>
+          <th style="color: white" >20%</th>
+          <th style="color: white" >P2</th>
+          <th style="color: white" >PT</th>
+          <th style="color: white">ExSuple</th>
+          <th style="color: white" >ExnRem</th>
+          <th style="color: white" >ExGracia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let listado of  vectorListadoMisMaterias; let i = index; let listadoN of listadoEstudianteNotas">
+
+          
+          <td class="active">{{listado.nombre}} </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo3" name="insumo3{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo4" name="insumo4{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo5" name="insumo5{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo6" name="insumo6{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo7" name="insumo7{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo8" name="insumo8{{i}}">
+          </td>
+          <td id="tdfila" style="background-color:yellow">
+            <input style="background-color: yellow" id="tdboton" type="text" [(ngModel)]="  this.objectCalculable[i].ochentaporciento1"
+              name="ochentaporciento1{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen1" name="examen1{{i}}">
+          </td>
+
+          <td id="tdfila" style="background-color:yellow">
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento1" name="veinteporciento1{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila" style="background-color:rgb(215, 253, 138)">
+            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio1" name="promedio1{{i}}"
+              type="text">
+          </td>
+
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo11" name="insumo11{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo22" name="insumo22{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo33" name="insumo33{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo44" name="insumo44{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo55" name="insumo55{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo66" name="insumo66{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo77" name="insumo77{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo88" name="insumo88{{i}}">
+          </td>
+          <td id="tdfila" style="background-color:yellow">
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]=" this.objectCalculable[i].ochentaporciento2" name="ochentaporciento2{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examen2" name="examen2{{i}}">
+          </td>
+          <td id="tdfila" style="background-color:yellow">
+            <input id="tdboton" style="background-color:yellow" [(ngModel)]="this.objectCalculable[i].veinteporciento2" name="veinteporciento2{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila" style="background-color:rgb(215, 253, 138)">
+            <input id="tdboton" style="background-color:rgb(215, 253, 138)" [(ngModel)]="this.objectCalculable[i].promedio2" name="promedio2{{i}}"
+              type="text">
+          </td>
+          <td id="tdfila" style="background-color: lawngreen">
+            <input id="tdboton" style="background-color:lawngreen" [(ngModel)]=" this.objectCalculable[i].promedioPeriodo" name="promedioPeriodo{{i}}"
+              type="text">
+          </td>
+
+
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenSupletorio" name="examenSupletorio{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenRemedial" name="examenRemedial{{i}}">
+          </td>
+          <td id="tdfila">
+            <input id="tdboton" type="text" [(ngModel)]="this.object[i].examenGracia" name="examenGracia{{i}}">
+          </td>
+
+
+
+          <td id="tdfila">
+            <button id="tdbuttonGuardar{{i}}" type="button" (click)="prueba(listado,i)" style="border: none;" hidden></button>
+          </td>
+
+
+
+        </tr>
+      </tbody>
+    </table>
+
+ 
+
+
+  <!-- FIN TABLA DE-->
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
 
     <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80%; width: 90%; margin-left: 5%">
@@ -951,9 +1148,9 @@
 
     </table>
 
-    <button (click)="generarPdf()">pdf</button>
+    
 
-    <div id="hol">OL mijines</div>
+  
 
   </div>
   <!-- Scroll to Top Button-->

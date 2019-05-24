@@ -560,47 +560,95 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     const doc = new jsPDF('l', 'px', 'a4') as jsPDFWithPlugin;
 
-    doc.addImage(logo, 'PNG', 15, 15,100,80);
-    doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170,2);
-    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO"+"  "+this.periodoLectivoActual+"</h4>", 190,28);
-    doc.fromHTML("<h4>"+this.vectorListadoMisMaterias[0].curso.curso +" "+this.vectorListadoMisMaterias[0].curso.paralelo +"</h4>", 250,48);
-    doc.fromHTML("<h4>ESTUDIANTE: "+this.identity.apellido+"  "+this.identity.nombre+"</h4>", 260,68);
-   
-
-   /* doc.autoTable({
-      head: [['Name', 'Email', 'Country']],
-      body: [
-
-        ['David', 'david@example.com', 'Sweden'],
-        ['Castille', 'castille@example.com', 'Norway']
-      ]
-    });
-
-    //doc.autoTable({html :  '#results' });
-    for (var i = 0; i <= 1; i++) {
-      doc.fromHTML(" <table>    <tr>    <td>"+this.vectorListadoMisMaterias[i].nombre+"</td> </tr><tr> <td>Celda 6</td>  </tr> </table>" ,15*i,
-      15*i,
-      {
-        'width': 180, 
+    doc.addImage(logo, 'PNG', 30, 15, 100, 80);
+    doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
+    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 190, 28);
+    doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
+    doc.fromHTML("<h4>ESTUDIANTE: " + this.identity.apellido + "  " + this.identity.nombre + "</h4>", 260, 68);
+    
+    html2canvas(document.getElementById('results')).then(function(canvas) {
+      var img = canvas.toDataURL("image/png");
+     // var doc = new jsPDF('l', 'mm');
+      doc.addImage(img,'JPEG',30,150, 580, 70);
+      doc.save('testCanvas.pdf');
       });
 
+     /* doc.fromHTML(" <table>" +
 
      
+        " <tr>" +
+        "<th style='color: white; 'scope='col'>Materias</th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I1 </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I2 </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I3 </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I4 </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I5 </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I6 </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I7 </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>I8 </th>" +
+
+        "<th style='color: white' scope='col' class='verticalText'>80% </th>" +
+        "<th style='color: white' scope='col' class='verticalText'>Ex</th>" +
+        " <th style='color: white' scope='col' class='verticalText'>20%</th>" +
+        "<th style='color: white' scope='col' class='verticalText'>P1</th>" +
+
+
+       
+        " </tr>" +
+     
+       
+       "</table>",15,100,{width:100} );
+        
+       /* html2canvas(document.getElementById('results')).then(function(canvas) {
+          var img = canvas.toDataURL("image/png");
+          var doc = new jsPDF('l', 'mm');
+          doc.addImage(img,'JPEG',5,2, 280, 50);
+          doc.save('testCanvas.pdf');
+          });*/
+
+      /*  var j = 0;
+        for (var i = 1; i <= 2; i++) {
+          doc.fromHTML( "<tr>   <td>" + this.vectorListadoMisMaterias[j].nombre + "</td> </tr><tr> <td>Celda 6</td>  </tr>  <tbody> </table>", 15,
+        100 * i,
+        {
+          width:100,
+        });
+      j++;
     }*/
-
-  /*  var elementHandler = {
-      '#ignorePDF': function (element, renderer) {
-        return true;
+   /* doc.autoTable({
+       head: [['Name', 'Email', 'Country']],
+       body: [
+      for(var h=0; h<=2; h++){
+         [this.vectorListadoMisMaterias[0].nombre, 'david@example.com', 'Sweden'],
       }
-    };*/
+       ]
+     });*/
+ 
+     //doc.autoTable({html :  '#results' });
+     /*for (var i = 0; i <= 1; i++) {
+       doc.fromHTML(" <table>    <tr>    <td>"+this.vectorListadoMisMaterias[i].nombre+"</td> </tr><tr> <td>Celda 6</td>  </tr> </table>" ,15*i,
+       15*i,
+       {
+         'width': 180, 
+       });
+ 
+ 
+      
+     }*/
 
-   // var source = window.document.getElementsByTagName("body")[0];
-    
-    
+    /*  var elementHandler = {
+        '#ignorePDF': function (element, renderer) {
+          return true;
+        }
+      };*/
 
-   
+    // var source = window.document.getElementsByTagName("body")[0];
 
-    doc.save("prueba");
+
+
+
+
+  //  doc.save("prueba");
 
 
     /*  html2canvas(document.getElementById('results')).then(function(canvas) {
@@ -609,7 +657,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
         doc.addImage(img,'JPEG',5,2, 100, 100);
         doc.save('testCanvas.pdf');
         });*/
+
   }
+
+
 }
-
-
