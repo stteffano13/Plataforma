@@ -598,7 +598,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
       context["msImageSmoothingEnabled"] = false
      
       // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 30, 150, 580, 70);
+      doc.addImage(img, 'JPEG', 18, 130, 580, 120);
       doc.save('testCanvas.pdf');
     });
 
