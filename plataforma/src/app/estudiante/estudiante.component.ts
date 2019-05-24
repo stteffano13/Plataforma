@@ -554,6 +554,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
     }
 
     //const doc = new jsPDF('l', 'mm');
+
+    if( this.banderTabla1=true){
     var logo = new Image();
     logo.src = '../../assets/imgs/logo.png';
 
@@ -581,38 +583,11 @@ export class EstudianteComponent implements OnInit, DoCheck {
       doc.save('testCanvas.pdf');
     });
 
-    /* doc.fromHTML(" <table>" +
-
+  }else
+  {
     
-       " <tr>" +
-       "<th style='color: white; 'scope='col'>Materias</th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I1 </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I2 </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I3 </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I4 </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I5 </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I6 </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I7 </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>I8 </th>" +
-
-       "<th style='color: white' scope='col' class='verticalText'>80% </th>" +
-       "<th style='color: white' scope='col' class='verticalText'>Ex</th>" +
-       " <th style='color: white' scope='col' class='verticalText'>20%</th>" +
-       "<th style='color: white' scope='col' class='verticalText'>P1</th>" +
-
-
-      
-       " </tr>" +
+  }
     
-      
-      "</table>",15,100,{width:100} );
-       
-      /* html2canvas(document.getElementById('results')).then(function(canvas) {
-         var img = canvas.toDataURL("image/png");
-         var doc = new jsPDF('l', 'mm');
-         doc.addImage(img,'JPEG',5,2, 280, 50);
-         doc.save('testCanvas.pdf');
-         });*/
 
     /*  var j = 0;
       for (var i = 1; i <= 2; i++) {
@@ -633,16 +608,11 @@ export class EstudianteComponent implements OnInit, DoCheck {
       });*/
 
     //doc.autoTable({html :  '#results' });
-    /*for (var i = 0; i <= 1; i++) {
-      doc.fromHTML(" <table>    <tr>    <td>"+this.vectorListadoMisMaterias[i].nombre+"</td> </tr><tr> <td>Celda 6</td>  </tr> </table>" ,15*i,
-      15*i,
-      {
-        'width': 180, 
-      });
+  
  
  
      
-    }*/
+    
 
     /*  var elementHandler = {
         '#ignorePDF': function (element, renderer) {
@@ -654,17 +624,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
 
-
-
     //  doc.save("prueba");
 
 
-    /*  html2canvas(document.getElementById('results')).then(function(canvas) {
-        var img = canvas.toDataURL("image/png");
-        var doc = new jsPDF('l', 'mm');
-        doc.addImage(img,'JPEG',5,2, 100, 100);
-        doc.save('testCanvas.pdf');
-        });*/
 
   }
 
