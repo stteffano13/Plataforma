@@ -555,7 +555,6 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     //const doc = new jsPDF('l', 'mm');
 
-    if( this.banderTabla1=true){
     var logo = new Image();
     logo.src = '../../assets/imgs/logo.png';
 
@@ -567,6 +566,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 190, 28);
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
     doc.fromHTML("<h4>ESTUDIANTE: " + this.identity.apellido + "  " + this.identity.nombre + "</h4>", 260, 68);
+
+    if( this.banderTabla1){
+   
 
     html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
       var img = canvas.toDataURL("image/png");
@@ -585,7 +587,21 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
   }else
   {
-    
+    html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
+      var img = canvas.toDataURL("image/png");
+      var context = canvas.getContext("2d");
+      context.scale(5, 5);
+      context["imageSmoothingEnabled"] = false;
+      context["mozImageSmoothingEnabled"] = false
+      context["oImageSmoothingEnabled"] = false
+      context["webkitImageSmoothingEnabled"] = false
+      context["msImageSmoothingEnabled"] = false
+     
+      // var doc = new jsPDF('l', 'mm');
+      doc.addImage(img, 'JPEG', 30, 150, 580, 70);
+      doc.save('testCanvas.pdf');
+    });
+
   }
     
 
