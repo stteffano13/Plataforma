@@ -97,12 +97,12 @@ export class DocenteComponent implements OnInit, DoCheck {
   public listadoInsumos;
   public listadoInsumosB;
 
-
+public identity;
   ngOnInit() {
 
     this.getListadoMisMaterias();
     this.getPeriodoActual();
-
+    this.identity = this._docenteService.getIdentity()
 
 
 
@@ -1029,7 +1029,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     var busqueda = value.split(",");
     this.loading = true;
-    this.Titulo1 = busqueda[2];
+    this.Titulo1 = busqueda[2]+" "+busqueda[4];
     this.Titulo2 = busqueda[3];
     this.guardarMateriaMatricula = busqueda[1];
 
@@ -1370,19 +1370,21 @@ export class DocenteComponent implements OnInit, DoCheck {
 
   generarPdf() {
 
-
-    //const doc = new jsPDF('l', 'mm');
     var logo = new Image();
     logo.src = '../../assets/imgs/logo.png';
 
 
-    const doc = new jsPDF('l', 'px', 'a4') ;
+    const doc = new jsPDF('l', 'px', 'a4');
 
     doc.addImage(logo, 'PNG', 30, 15, 100, 80);
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 190, 28);
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
-    //doc.fromHTML("<h4>ESTUDIANTE: " + this.identity.apellido + "  " + this.identity.nombre + "</h4>", 260, 68);
+    doc.fromHTML("<h4>MATERIA: " + this.Titulo2+"</h4>", 270, 75);
+    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido+" "+this.identity.nombre+"</h4>",250,100);
+
+    if( this.banderTabla1){
+   
 
     html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
       var img = canvas.toDataURL("image/png");
@@ -1395,15 +1397,36 @@ export class DocenteComponent implements OnInit, DoCheck {
       context["msImageSmoothingEnabled"] = false
      
       // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 30, 150, 580, 70);
+      doc.addImage(img, 'JPEG', 30, 150, 580, 150);
       doc.save('testCanvas.pdf');
     });
 
-   
+    
+
+  }else
+  {
+    html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
+      var img = canvas.toDataURL("image/png");
+      var context = canvas.getContext("2d");
+      context.scale(5, 5);
+      context["imageSmoothingEnabled"] = false;
+      context["mozImageSmoothingEnabled"] = false
+      context["oImageSmoothingEnabled"] = false
+      context["webkitImageSmoothingEnabled"] = false
+      context["msImageSmoothingEnabled"] = false
+     
+      // var doc = new jsPDF('l', 'mm');
+      doc.addImage(img, 'JPEG', 18, 130, 580, 120);
+      doc.save('testCanvas.pdf');
+    });
+
+  }
     
 
 
 
   }
+
+
 
 }
