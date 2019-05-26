@@ -1343,6 +1343,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       response => {
 
         this.listadoEstudianteMatriculas = response.matriculas;
+       
         this.getListadoMaterias(busqueda[0], busqueda[1]);
 
 
@@ -1377,7 +1378,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
         console.log("materias que traigo ", this.listadoMateriasCurso);
 
-        if (this.listadoEstudianteMatriculas != "" && valu1 != "BÁSICO SUPERIOR INTENSIVO") {
+        if (this.listadoEstudianteMatriculas != null && valu1 != "BÁSICO SUPERIOR INTENSIVO ") {
 
 
           this.loading = false;
@@ -1397,7 +1398,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             materias: this.listadoMateriasCurso,
             buscar: this.listadoEstudianteMatriculas
           }
-          //  this.traerNotasB(objBuscarNotas);
+          this.traerNotasMatrisB(objBuscarNotas);
 
         }
 
@@ -1425,11 +1426,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
   traerNotasMatris(value) {
-    console.log("value curso para nota", value);
-
-
-
-
+    this.objNotasPT = [];
+    this.diviciones;
+    this.nuevo = [];
+    this.nuevo2 = [];
     this._notaService.buscarNotasMatris(value).subscribe(
       response => {
         this.loading = false;
@@ -1470,19 +1470,19 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         console.log("divicione1", this.diviciones[1]);
         console.log("divicione2", this.diviciones[2]);
 
-        for (let i = 0; i <= 2; i++) {
-          if (i == 2) {
+        for (let i = 0; i < this.diviciones.length; i++) {
+          if (i == this.diviciones.length - 1) {
             this.nuevo = this.diviciones[i].substring(1).split(",");
             console.log("este necesito ahor amiji", this.nuevo);
           } else {
-          if (i % 2 == 0) {
+            if (i % 2 == 0) {
 
-            this.nuevo = this.diviciones[i].slice(0, -1).split(",");
-          } else {
-            this.nuevo = this.diviciones[i].slice(1, -1).split(",");
+              this.nuevo = this.diviciones[i].slice(0, -1).split(",");
+            } else {
+              this.nuevo = this.diviciones[i].slice(1, -1).split(",");
 
+            }
           }
-        }
           this.nuevo2.push(this.nuevo);
           console.log("final", this.nuevo2);
         }
@@ -1512,6 +1512,81 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   }
 
+
+
+  traerNotasMatrisB(value) {
+    this.objNotasPT = [];
+    this.diviciones;
+    this.nuevo = [];
+    this.nuevo2 = [];
+    this._notaService.buscarNotasMatrisB(value).subscribe(
+      response => {
+        this.loading = false;
+        this.listadoNotas = response.vectorNotas;
+
+        //  ordenar
+
+        this.listadoEstudianteMatriculas.forEach(elementE => {
+          this.listadoMateriasCurso.forEach(elementM => {
+            this.listadoNotas.forEach(element => {
+              console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
+              if (elementE.estudiante._id == element.estudiante && element.materia == elementM._id) {
+                this.objNotasPT.push(element.pt)
+              }
+            });
+          });
+          this.objNotasPT.push(";");
+        });
+        this.objNotasPT.pop();
+        console.log("notas del promedio total", this.objNotasPT);
+        this.diviciones = this.objNotasPT.toString().split(";");
+        console.log("diviciones0", this.diviciones[0]);
+        console.log("divicione1", this.diviciones[1]);
+        console.log("divicione2", this.diviciones[2]);
+
+        for (let i = 0; i < this.diviciones.length; i++) {
+
+          if (i == this.diviciones.length - 1) {
+            this.nuevo = this.diviciones[i].substring(1).split(",");
+           
+          } else {
+
+            if (i % 2 == 0) {
+
+              this.nuevo = this.diviciones[i].slice(0, -1).split(",");
+            } else {
+              this.nuevo = this.diviciones[i].slice(1, -1).split(",");
+
+            }
+          }
+          this.nuevo2.push(this.nuevo);
+          console.log("final", this.nuevo2);
+        }
+
+        this.loading = false;
+
+      },
+      error => {
+        this.loading = false;
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          // this.loading =false;
+        }
+        // this.loading =false;
+      }
+
+    );
+
+  }
 
 
   getListadoDocentes() {

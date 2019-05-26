@@ -530,6 +530,67 @@ console.log("esta es la multiplicacion de los vectores",multi);
 }
 
 
+function buscarNotasMatrisB(req, res) {
+
+  var paramsi = req.body;
+
+  var vectorNotas = [];
+  var cont2 = 0;
+  cont3 = 0;
+  cont = 0;
+
+var contM =Object.keys(paramsi.materias).length;
+var contE= Object.keys(paramsi.buscar).length;
+var multi = contM * contE;
+
+console.log("esta es la multiplicacion de los vectores",multi);
+  paramsi.buscar.forEach(params => {
+    paramsi.materias.forEach(paramsM => {
+      console.log("estudiante", params.estudiante._id,  "materia", paramsM._id);
+
+      NotaB.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsM._id }] }).sort({ $natural: -1 }).exec((err, notas) => {
+
+        if (err) {
+          cont3++
+          if (cont == multi ) {
+            res.status(500).send({
+              message: "Error al optener promedios finales"
+            });
+          }
+        } else {
+          if (notas) {
+            console.log("materias una por una", notas);
+            cont2++;
+
+            vectorNotas.push(notas);
+            if (cont2 == multi ) {
+              console.log("estes es el vector de nbotas que regresa para l matris", vectorNotas);
+              res.status(200).send({
+                vectorNotas
+              });
+            }
+         
+          } else {
+            cont++;
+            if (cont ==  multi ) {
+              res.status(200).send({
+                message: "no existen notas registradas"
+              });
+            }
+
+
+          }
+        }
+
+      });
+
+    });
+
+  });
+
+
+}
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
   saveNotas,
@@ -539,7 +600,8 @@ module.exports = {          // para exportar todas las funciones de este modulo
   buscarNotasB,
   buscarNotasEstudiante,
   buscarNotasEstudianteB,
-  buscarNotasMatris
+  buscarNotasMatris,
+  buscarNotasMatrisB
 
 
 };

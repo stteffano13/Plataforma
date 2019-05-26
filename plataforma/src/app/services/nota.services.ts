@@ -108,6 +108,16 @@ export class NotaService {
             .map(res => res.json());
     }
  
+    buscarNotasMatrisB(notasB_buscar) {
+
+        let json = JSON.stringify(notasB_buscar);
+        let params = json;
+      
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "buscarNotasMatrisB", params, { headers: headers })
+            .map(res => res.json());
+    }
 
     getToken() {
 
