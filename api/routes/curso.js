@@ -10,4 +10,5 @@ api.post('/registerCurso', md_auth.ensureAuth, CursoController.saveCurso);
 api.get('/getListadoCursos',md_auth.ensureAuth, CursoController.getCursos);
 api.post('/update-curso', md_auth.ensureAuth, CursoController.updateCurso);
 
+api.get('/getAllListadoCursos',md_auth.ensureAuth, CursoController.getCursos);
 module.exports = api;

@@ -47,6 +47,7 @@ export class NotaBasica {
         public examenSupletorio:String,
         public examenRemedial:String,
         public examenGracia:String,
+        public pt:String,
     ) { }
 }
 

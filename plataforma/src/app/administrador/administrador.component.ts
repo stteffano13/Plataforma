@@ -206,6 +206,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     otro: null
   };
 
+  // para los reportes
+
+ public  listadoEstudianteMatriculas;
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
@@ -611,11 +614,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
     this.busquedaAsignacionPeriodo = "no asignar"
-   
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
+    this.getListadoCursos();
 
-    
   }
 
 
@@ -1321,6 +1323,76 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.vectorListadoCursos = response.listadoCursos;
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
+
+
+  asignarMateriaCurso(value) {
+
+    var busqueda = value.split(",");
+    this.loading = true;
+
+    this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
+      response => {
+
+
+        this.listadoEstudianteMatriculas = response.matriculas;
+
+        console.log("para habilitar  tablas", busqueda[1]);
+
+        console.log("estos son los estudiantes que viene ", this.listadoEstudianteMatriculas);
+
+        if (this.listadoEstudianteMatriculas != "" && busqueda[1] != "BÁSICO SUPERIOR INTENSIVO") {
+       
+
+          this.loading = false;
+          var objBuscarNotas = {
+
+            materia: busqueda[1],
+            buscar: this.listadoEstudianteMatriculas
+          }
+         // this.traerNotas(objBuscarNotas);
+          
+          //this.traerNotasB(objBuscarNotas);
+
+        } else {
+
+
+          this.loading = false;
+       
+
+          var objBuscarNotas = {
+
+            materia: busqueda[1],
+            buscar: this.listadoEstudianteMatriculas
+          }
+        //  this.traerNotasB(objBuscarNotas);
+        
+        }
+
+
+
+
+      },
+      error => {
+        this.loading = false;
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          // this.loading =false;
+        }
+        // this.loading =false;
+      }
+
     );
 
   }

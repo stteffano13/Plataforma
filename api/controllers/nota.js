@@ -273,7 +273,7 @@ function saveNotasB2(params, res, cont, paramsi) {
   notaB.examenSupletorio = params.examenSupletorio;
   notaB.examenRemedial = params.examenRemedial;
   notaB.examenGracia = params.examenGracia;
-
+  notaB.pt = params.pt;
 
   notaB.save((err, notaStored) => {
     if (err && cont == Object.keys(paramsi).length) {
