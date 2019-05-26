@@ -334,7 +334,7 @@
             <th scope="row">{{i}}</th>
             <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
             <td id="tdfila">
-              <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo1" name="isumo1{{i}}">
+              <input id="tdboton" type="text"  [(ngModel)]="this.object[i].insumo1"  name="isumo1{{i}}">
             </td>
             <td id="tdfila">
               <input id="tdboton" type="text" [(ngModel)]="this.object[i].insumo2" name="insumo2{{i}}">
@@ -451,7 +451,7 @@
     </div>
 <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 1 ============================================-->
 
-<table  id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: -100%; font-size: 100% ; width: 90% ; margin-left: 5%">
+<table  id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 100% ; width: 90% ; margin-left: 5%">
 
     <div class="  form-control ">
       <h4>{{this.Titulo2}} </h4>

@@ -51,6 +51,10 @@ export class NotaService {
     }
 
 
+
+
+    
+
     buscarNotasB(notasB_buscar) {
 
         let json = JSON.stringify(notasB_buscar);
@@ -92,7 +96,17 @@ export class NotaService {
     }
 
 
+    
+    buscarNotasMatris(notas_buscar) {
 
+        let json = JSON.stringify(notas_buscar);
+        let params = json;
+      
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url + "buscarNotasMatris", params, { headers: headers })
+            .map(res => res.json());
+    }
  
 
     getToken() {

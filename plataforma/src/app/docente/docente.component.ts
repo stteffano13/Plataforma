@@ -605,7 +605,7 @@ public identity;
   prueba(value, i) {
     console.log("antes de mandar la materia index  es", i)
     this.object[i].estudiante = value.estudiante._id;
-    this.object[i].materia = this.vectorListadoMisMaterias[0]._id;
+    this.object[i].materia = this.guardarMateriaMatricula;
     this.object[i].periodo = this.periodoLectivoActual;
     this.object[i].pt=this.objectCalculable[i].promedioPeriodo;
     this.calculos(i);
@@ -1047,7 +1047,7 @@ public identity;
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.object.push(this.obj = new Nota("","", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0","0"));
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -1074,7 +1074,7 @@ public identity;
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.objectB.push(this.objB = new NotaBasica("","", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0","0"));
             this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -1129,7 +1129,7 @@ public identity;
 
           this.listadoEstudianteNotas.forEach(element => {
 
-            console.log("elementoE", elementE.estudiante._id, "elemento", element[0].estudiante)
+            console.log("elementoE", elementE.estudiante._id, "elemento", element[0])
 
             if (elementE.estudiante._id == element[0].estudiante) {
               this.object[i].insumo1 = element[0].insumo1;
@@ -1299,6 +1299,7 @@ public identity;
     this.pruebaclick();
     if (this.banderAux == false) {
 
+      console.log("notas antes de registrarse",this.object);
 
       this._notaService.registerNota(this.object).subscribe(
         response => {
@@ -1428,10 +1429,5 @@ public identity;
   }
 
 
-  registrarActaFinal()
-  {
-
-
-  }
 
 }

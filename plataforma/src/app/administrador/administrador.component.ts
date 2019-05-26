@@ -9,7 +9,7 @@ import { CursoService } from '../services/curso.services';
 import { EstudianteService } from '../services/estudiante.services';
 import { MatriculaService } from '../services/matricula.services';
 import { MateriaService } from '../services/materia.services';
-
+import { NotaService } from '../services/nota.services';
 import { AdministradorService } from '../services/administrador.services';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
@@ -93,7 +93,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // objetos de carga
   public datosDocentes;
   public datosEstudiantes;
-
+  public listadoEstudianteNotas;
   // vectores de materias
 
   public arrayOctavo = [
@@ -210,14 +210,15 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   public listadoEstudianteMatriculas;
   public listadoMateriasCurso;
-
+  public listadoNotas;
 
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
     private _matriculaServices: MatriculaService,
     private _materiaServices: MateriaService,
-    private _administradorService: AdministradorService) {
+    private _administradorService: AdministradorService,
+    private _notaService: NotaService) {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
@@ -1338,18 +1339,50 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       response => {
 
         this.listadoEstudianteMatriculas = response.matriculas;
-        this.getListadoMaterias(busqueda[0]);
+        this.getListadoMaterias(busqueda[0], busqueda[1]);
 
-        if (this.listadoEstudianteMatriculas != "" && busqueda[1] != "BÁSICO SUPERIOR INTENSIVO") {
+
+      },
+      error => {
+        this.loading = false;
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+
+        }
+
+      }
+
+    );
+
+  }
+
+  getListadoMaterias(value, valu1) {
+    this._materiaServices.getListadoMateriaCurso(value).subscribe(
+      response => {
+
+        this.listadoMateriasCurso = response.materias;
+
+        console.log("materias que traigo ", this.listadoMateriasCurso);
+
+        if (this.listadoEstudianteMatriculas != "" && valu1 != "BÁSICO SUPERIOR INTENSIVO") {
 
 
           this.loading = false;
           var objBuscarNotas = {
 
-            materia: busqueda[1],
+            materias: this.listadoMateriasCurso,
             buscar: this.listadoEstudianteMatriculas
           }
-          // this.traerNotas(objBuscarNotas);
+          this.traerNotasMatris(objBuscarNotas);
 
           //this.traerNotasB(objBuscarNotas);
 
@@ -1357,14 +1390,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
           this.loading = false;
           var objBuscarNotas = {
 
-            materia: busqueda[1],
+            materias: this.listadoMateriasCurso,
             buscar: this.listadoEstudianteMatriculas
           }
           //  this.traerNotasB(objBuscarNotas);
 
         }
 
-
       },
       error => {
         this.loading = false;
@@ -1385,18 +1417,43 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       }
 
     );
-
   }
 
-  getListadoMaterias(value) {
-    this._materiaServices.getListadoMateriaCurso(value).subscribe(
+
+  traerNotasMatris(value) {
+    console.log("value curso para nota", value);
+    var objNotasPT = [];
+
+
+
+    this._notaService.buscarNotasMatris(value).subscribe(
       response => {
+        this.loading = false;
+        this.listadoNotas = response.vectorNotas;
+        console.log("notas que viene", this.listadoNotas);
+        //  ordenar
+        let i = 0;
+        this.listadoEstudianteMatriculas.forEach(elementE => {
 
-        this.listadoMateriasCurso = response.materias;
+          this.listadoNotas.forEach(element => {
+
+            console.log("elementoE", elementE.estudiante._id, "elemento", element);
+
+
+            if ( element[0].estudiante!=null &&  elementE.estudiante._id == element[0].estudiante) {
+
+              objNotasPT.push(element[0].pt)
+
+
+              i++;
+
+            }
+          });
+        });
+
+        console.log("notas del promedio total", objNotasPT);
 
         this.loading = false;
-
-        console.log("materias que traigo ", this.listadoMateriasCurso);
 
       },
       error => {
@@ -1412,13 +1469,15 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             this.loading = false;
             document.getElementById("openModalError").click();
           }
-
+          // this.loading =false;
         }
-
+        // this.loading =false;
       }
 
     );
+
   }
+
 
 
   getListadoDocentes() {
@@ -1434,6 +1493,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     );
 
   }
+
+
 
 
 
@@ -1454,10 +1515,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  getRecDet(value) {
 
-    console.log("Vamos mijin", value);
-  }
 
   selectedCursoA(value) {
     console.log("value", value);

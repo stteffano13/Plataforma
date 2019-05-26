@@ -12,6 +12,7 @@ api.post('/buscarNotas',md_auth.ensureAuth, NotaController.buscarNotas);
 api.post('/buscarNotasB',md_auth.ensureAuth, NotaController.buscarNotasB);
 api.post('/buscarNotasEstudiante',md_auth.ensureAuth, NotaController.buscarNotasEstudiante);
 api.post('/buscarNotasEstudianteB',md_auth.ensureAuth, NotaController.buscarNotasEstudianteB);
+api.post('/buscarNotasMatris',md_auth.ensureAuth, NotaController.buscarNotasMatris);
 
 
 module.exports = api;

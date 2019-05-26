@@ -465,6 +465,64 @@ function buscarNotasEstudianteB(req, res) {
 
 
 }
+
+
+
+function buscarNotasMatris(req, res) {
+
+  var paramsi = req.body;
+
+  var vectorNotas = [];
+  var cont2 = 0;
+  cont3 = 0;
+  cont = 0;
+  paramsi.buscar.forEach(params => {
+    paramsi.materias.forEach(paramsM => {
+      console.log("estudiante", params.estudiante._id, "periodo", params.periodo, "materia", paramsM._id);
+
+      Nota.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsM._id }] }).sort({ $natural: -1 }).exec((err, notas) => {
+
+        if (err) {
+          cont3++
+          if (cont == Object.keys(paramsi.buscar).length) {
+            res.status(500).send({
+              message: "Error al guardar Curso"
+            });
+          }
+        } else {
+          if (notas) {
+            console.log("materias una por una", notas);
+            cont2++;
+
+            vectorNotas.push(notas)
+            if (cont2 == Object.keys(paramsi.buscar).length) {
+              console.log("estes es el vector de nbotas que regresa para l matris", vectorNotas);
+              res.status(200).send({
+                vectorNotas
+              });
+            }
+          } else {
+            cont++;
+            if (cont == Object.keys(paramsi.buscar).length) {
+              res.status(200).send({
+                message: "no existen notas registradas"
+              });
+            }
+
+
+          }
+        }
+
+      });
+
+    });
+
+  });
+
+
+}
+
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
   saveNotas,
@@ -473,7 +531,8 @@ module.exports = {          // para exportar todas las funciones de este modulo
   saveNotasB,
   buscarNotasB,
   buscarNotasEstudiante,
-  buscarNotasEstudianteB
+  buscarNotasEstudianteB,
+  buscarNotasMatris
 
 
 };
