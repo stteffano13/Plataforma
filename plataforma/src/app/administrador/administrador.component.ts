@@ -211,7 +211,11 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public listadoEstudianteMatriculas;
   public listadoMateriasCurso;
   public listadoNotas;
+  public objNotasPT = [];
+  public diviciones;
+  public  nuevo;
 
+  public nuevo2=[];
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
@@ -1422,7 +1426,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   traerNotasMatris(value) {
     console.log("value curso para nota", value);
-    var objNotasPT = [];
+
 
 
 
@@ -1430,29 +1434,46 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       response => {
         this.loading = false;
         this.listadoNotas = response.vectorNotas;
-        console.log("notas que viene", this.listadoNotas);
+
         //  ordenar
         let i = 0;
         this.listadoEstudianteMatriculas.forEach(elementE => {
-
-          this.listadoNotas.forEach(element => {
-
-            console.log("elementoE", elementE.estudiante._id, "elemento", element);
+          this.listadoMateriasCurso.forEach(elementM => {
 
 
-            if ( element[0].estudiante!=null &&  elementE.estudiante._id == element[0].estudiante) {
+            this.listadoNotas.forEach(element => {
 
-              objNotasPT.push(element[0].pt)
+              console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
 
 
-              i++;
+              if (elementE.estudiante._id == element.estudiante && element.materia == elementM._id) {
 
-            }
+                this.objNotasPT.push(element.pt)
+
+
+                i++;
+
+              }
+
+            });
           });
+
+          this.objNotasPT.push(";");
         });
+        this.objNotasPT.pop();
+        console.log("notas del promedio total", this.objNotasPT);
+        this.diviciones = this.objNotasPT.toString().split(";");
 
-        console.log("notas del promedio total", objNotasPT);
 
+       
+        //console.log("diviciones", JSON.parse(this.diviciones[0].slice(0,-1)));
+        
+        for (let i = 0; i <= 2; i++) {
+          this.nuevo = this.diviciones[i].slice(0,-1).split(",");
+          this.nuevo2.push(this.nuevo);
+          console.log("final", this.nuevo2);
+        }
+        
         this.loading = false;
 
       },
