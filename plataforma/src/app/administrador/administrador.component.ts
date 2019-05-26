@@ -1469,7 +1469,17 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         //console.log("diviciones", JSON.parse(this.diviciones[0].slice(0,-1)));
         
         for (let i = 0; i <= 2; i++) {
-          this.nuevo = this.diviciones[i].slice(0,-1).split(",");
+          if(i==2)
+          {
+            this.nuevo = this.diviciones[i].slice(1,0).split(",");
+          }else{
+          }if(i % 2== 0){
+            
+            this.nuevo = this.diviciones[i].slice(0,-1).split(",");
+        }else{
+          this.nuevo = this.diviciones[i].slice(1,-1).split(",");
+      
+        }
           this.nuevo2.push(this.nuevo);
           console.log("final", this.nuevo2);
         }
