@@ -213,9 +213,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public listadoNotas;
   public objNotasPT = [];
   public diviciones;
-  public  nuevo;
+  public nuevo;
 
-  public nuevo2=[];
+  public nuevo2 = [];
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
@@ -1465,25 +1465,28 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.diviciones = this.objNotasPT.toString().split(";");
 
 
-       
-        //console.log("diviciones", JSON.parse(this.diviciones[0].slice(0,-1)));
-        
+
+        console.log("diviciones0", this.diviciones[0]);
+        console.log("divicione1", this.diviciones[1]);
+        console.log("divicione2", this.diviciones[2]);
+
         for (let i = 0; i <= 2; i++) {
-          if(i==2)
-          {
-            this.nuevo = this.diviciones[i].slice(1,0).split(",");
-          }else{
-          }if(i % 2== 0){
-            
-            this.nuevo = this.diviciones[i].slice(0,-1).split(",");
-        }else{
-          this.nuevo = this.diviciones[i].slice(1,-1).split(",");
-      
+          if (i == 2) {
+            this.nuevo = this.diviciones[i].substring(1).split(",");
+            console.log("este necesito ahor amiji", this.nuevo);
+          } else {
+          if (i % 2 == 0) {
+
+            this.nuevo = this.diviciones[i].slice(0, -1).split(",");
+          } else {
+            this.nuevo = this.diviciones[i].slice(1, -1).split(",");
+
+          }
         }
           this.nuevo2.push(this.nuevo);
           console.log("final", this.nuevo2);
         }
-        
+
         this.loading = false;
 
       },
