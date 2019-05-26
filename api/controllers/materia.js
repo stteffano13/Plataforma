@@ -287,11 +287,74 @@ function updateMateria(req, res) {
 
     });
 }
+
+
+
+
+function getListadoMateriasCurso(req, res)
+{
+    var busqueda = req.params.curso;
+
+    console.log(busqueda);
+    if (!busqueda) {
+        res.status(404).send({
+            message: 'Ingrese un parametro de busqueda'
+        });
+    } else {
+
+        var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
+            if (err) {
+                return res.status(500).send({
+                    message: 'No se han podido obtener sus Viajes'
+                });
+            }
+    
+            if (!periodo) {
+                return res.status(200).send({
+                    message: 'No tiene viajes'
+                });
+            }else{
+
+                console.log("todo ready entre a buscar",periodo[0].periodo);
+                var materia = Materia.find({
+                    '$and': [{ curso: busqueda }, { estado: '0' },{periodo: periodo[0].periodo}]
+                }).populate({
+                    path: 'curso'
+                }).exec((err, materias) => {
+                    if (err) {
+                        return res.status(500).send({
+                            message: 'No se han podido obtener sus Viajes'
+                        });
+                    }
+        
+                    if (!materias) {
+                        return res.status(200).send({
+                            message: 'No tiene viajes'
+                        });
+                    } else {
+                        
+                        return res.status(200).send({
+                    
+                            materias
+                            
+                
+                        });
+                    }
+                });
+            }
+        });
+
+
+    
+    }
+
+}
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveAsignacion,
     busquedaMateria,
     updateMateria,
-    getListadoMioMaterias
+    getListadoMioMaterias,
+    getListadoMateriasCurso
 
 };

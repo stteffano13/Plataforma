@@ -1111,24 +1111,24 @@
 
  <!-- tabla del reporte de notas finales-->
 
- <table  class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
+ <table     class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
   <div class="  form-control ">
     <h4>{{this.Titulo2}} </h4>
   </div>
 
-  <thead>
+  <thead  >
 
 
-    <tr style="background-color: #343a40; align-content: center;">
+    <tr  style="background-color: #343a40; align-content: center;">
       <th style="color: white; padding-top: 2%" scope="col">#</th>
       <th style="color: white;   align-content: center;   text-align: center" scope="col">Apellidos y Nombres</th>
-      <th style="color: white" scope="col" class="verticalText2">Insumo 1 </th>
+      <th  *ngFor=" let listado of  listadoMateriasCurso;" style="color: white" scope="col" class="verticalText2">{{listado.nombre}} </th>
      
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
+    <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index;">
       <th scope="row">{{i}}</th>
       <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
       <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>

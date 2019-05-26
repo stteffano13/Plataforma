@@ -208,7 +208,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   // para los reportes
 
- public  listadoEstudianteMatriculas;
+  public listadoEstudianteMatriculas;
+  public listadoMateriasCurso;
+
+
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
@@ -278,7 +281,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.listadosMostrarMatriculas = false;
       this.listadosMostrarAsignacion = false;
       this.ModificarDocente = false;
-      this.ModificarEstudiante= false;
+      this.ModificarEstudiante = false;
       this.listados = true;
 
       this.IngresarDocente = false;
@@ -603,8 +606,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   // modulos
-  aparecerReportesNotas()
-  {
+  aparecerReportesNotas() {
     this.listados = false;
     this.IngresarDocente = false;
     this.IngresarEstudiante = false;
@@ -1256,7 +1258,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
     this._administradorService.getPeriodoActual().subscribe(response => {
-    
+
       if (response.periodo[0] != undefined) {
         this.opcionPeriodoLectivo = response.periodo[0].periodo;
         var opcionPeriodoLectivoPartido = this.opcionPeriodoLectivo.split("/");
@@ -1270,7 +1272,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         console.log("periodo lectivo construido al cargar", opcionPeriodoLectivoPartido2);
 
 
-      }else{
+      } else {
         this.mensajeerrormodals = "Antes de utilizar el sistema defina el periodo actual ";
         document.getElementById("openModalError").click()
       }
@@ -1286,14 +1288,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
     this._administradorService.getPeriodos().subscribe(response => {
-   
+
       if (response.periodo != undefined) {
         this.vectorListadoPeriodos = response.periodo;
 
-      }else
-      {
+      } else {
         this.mensajeerrormodals = "NO existen periodos ";
-      document.getElementById("openModalError").click();
+        document.getElementById("openModalError").click();
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -1336,15 +1337,11 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
-
         this.listadoEstudianteMatriculas = response.matriculas;
-
-        console.log("para habilitar  tablas", busqueda[1]);
-
-        console.log("estos son los estudiantes que viene ", this.listadoEstudianteMatriculas);
+        this.getListadoMaterias(busqueda[0]);
 
         if (this.listadoEstudianteMatriculas != "" && busqueda[1] != "BÁSICO SUPERIOR INTENSIVO") {
-       
+
 
           this.loading = false;
           var objBuscarNotas = {
@@ -1352,26 +1349,20 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             materia: busqueda[1],
             buscar: this.listadoEstudianteMatriculas
           }
-         // this.traerNotas(objBuscarNotas);
-          
+          // this.traerNotas(objBuscarNotas);
+
           //this.traerNotasB(objBuscarNotas);
 
         } else {
-
-
           this.loading = false;
-       
-
           var objBuscarNotas = {
 
             materia: busqueda[1],
             buscar: this.listadoEstudianteMatriculas
           }
-        //  this.traerNotasB(objBuscarNotas);
-        
+          //  this.traerNotasB(objBuscarNotas);
+
         }
-
-
 
 
       },
@@ -1388,14 +1379,47 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             this.loading = false;
             document.getElementById("openModalError").click();
           }
-          // this.loading =false;
+
         }
-        // this.loading =false;
+
       }
 
     );
 
   }
+
+  getListadoMaterias(value) {
+    this._materiaServices.getListadoMateriaCurso(value).subscribe(
+      response => {
+
+        this.listadoMateriasCurso = response.materias;
+
+        this.loading = false;
+
+        console.log("materias que traigo ", this.listadoMateriasCurso);
+
+      },
+      error => {
+        this.loading = false;
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          console.log(errorMessage);
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+
+        }
+
+      }
+
+    );
+  }
+
 
   getListadoDocentes() {
 
@@ -1475,6 +1499,6 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  
+
 
 }

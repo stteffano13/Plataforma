@@ -47,6 +47,15 @@ export class MateriaService {
       .map(res => res.json());
   }
 
+
+  getListadoMateriaCurso(curso) {
+
+
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    return this._http
+      .get(this.url + "getListadoMateriasCurso/"+curso, { headers: headers })
+      .map(res => res.json());
+  }
  
   
 
