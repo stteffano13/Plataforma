@@ -1,25 +1,25 @@
 
 var Nota = require('../models/nota');
-var NotaB  = require('../models/notaB');
+var NotaB = require('../models/notaB');
 
 function saveNotas(req, res) {
 
   var cont = 0;
   var cont2 = 0;
-  var cont3=0;
+  var cont3 = 0;
   var paramsi = req.body;
- 
+
   console.log("veamos si viene materia", paramsi);
   paramsi.forEach(params => {
 
-    Nota.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo },{materia:params.materia}] }, (err, notas) => {
+    Nota.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo }, { materia: params.materia }] }, (err, notas) => {
       if (err) {
         cont3++;
-        if(cont3==Object.keys(paramsi).length){
-        res.status(500).send({
-          message: "Error al guardar Nota"
-        });
-      }
+        if (cont3 == Object.keys(paramsi).length) {
+          res.status(500).send({
+            message: "Error al guardar Nota"
+          });
+        }
       } else {
         if (notas) {
           cont2++;
@@ -71,7 +71,7 @@ function saveNotas2(params, res, cont, paramsi) {
   nota.examenSupletorio = params.examenSupletorio;
   nota.examenRemedial = params.examenRemedial;
   nota.examenGracia = params.examenGracia;
-
+  nota.pt = params.pt;
 
   nota.save((err, notaStored) => {
     if (err && cont == Object.keys(paramsi).length) {
@@ -112,7 +112,7 @@ function updateNotasFin(notas, params, res, cont, paramsi) {
           message: "la nota no ha podido actualizarse."
         });
       } else {
-        console.log("seguro se actualizo", cont, "contra",  paramsi);
+        console.log("seguro se actualizo", cont, "contra", paramsi);
         if (cont == Object.keys(paramsi).length) {
           res.status(200).send({
             message: "las notas se registraron correctamente."
@@ -131,8 +131,8 @@ function buscarNotas(req, res) {
   console.log("mostrar el ide que voy a comprar", paramsi);
   var vectorNotas = [];
   var cont2 = 0;
-  cont3=0;
-  cont =0;
+  cont3 = 0;
+  cont = 0;
   paramsi.buscar.forEach(params => {
 
     Nota.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
@@ -182,20 +182,20 @@ function saveNotasB(req, res) {
 
   var cont = 0;
   var cont2 = 0;
-  var cont3=0;
+  var cont3 = 0;
   var paramsi = req.body;
- 
+
   console.log("veamos si viene materia", paramsi);
   paramsi.forEach(params => {
 
-    NotaB.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo },{materia:params.materia}] }, (err, notasB) => {
+    NotaB.findOne({ '$and': [{ estudiante: params.estudiante }, { periodo: params.periodo }, { materia: params.materia }] }, (err, notasB) => {
       if (err) {
         cont3++;
-        if(cont3==Object.keys(paramsi).length){
-        res.status(500).send({
-          message: "Error al guardar Nota"
-        });
-      }
+        if (cont3 == Object.keys(paramsi).length) {
+          res.status(500).send({
+            message: "Error al guardar Nota"
+          });
+        }
       } else {
         if (notasB) {
           cont2++;
@@ -315,7 +315,7 @@ function updateNotasFinB(notas, params, res, cont, paramsi) {
           message: "la nota no ha podido actualizarse."
         });
       } else {
-        console.log("seguro se actualizo", cont, "contra",  paramsi);
+        console.log("seguro se actualizo", cont, "contra", paramsi);
         if (cont == Object.keys(paramsi).length) {
           res.status(200).send({
             message: "las notas se registraron correctamente."
@@ -335,10 +335,10 @@ function buscarNotasB(req, res) {
   console.log("mostrar el ide que voy a comprar notas b", paramsi);
   var vectorNotas = [];
   var cont2 = 0;
-  cont3=0;
-  cont =0;
+  cont3 = 0;
+  cont = 0;
   paramsi.buscar.forEach(params => {
-  console.log("notas b params estudiante id", params.estudiante._id, params.periodo, paramsi.materia)
+    console.log("notas b params estudiante id", params.estudiante._id, params.periodo, paramsi.materia)
     NotaB.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
 
       if (err) {
@@ -385,41 +385,41 @@ function buscarNotasEstudiante(req, res) {
   console.log("entre a sacar als notas de las materias");
   var estudianteE = req.user.sub;
   var periodoE = req.body.fecha;
- 
+
   var vectorNotas = [];
 
- 
+
   console.log("notas del estudiante ull params estudiante id", estudianteE, periodoE);
-    Nota.find({ '$and': [{ estudiante:estudianteE }, { periodo: periodoE } ]}).sort({ $natural: -1 }).exec((err, notas) => {
+  Nota.find({ '$and': [{ estudiante: estudianteE }, { periodo: periodoE }] }).sort({ $natural: -1 }).exec((err, notas) => {
 
-      if (err) {
-     
-      
-          res.status(500).send({
-            message: "Error al buscar nota"
-       
+    if (err) {
+
+
+      res.status(500).send({
+        message: "Error al buscar nota"
+
+      });
+    } else {
+      if (notas) {
+
+
+        console.log("estes es el vector de toditititas las notas que regresa", notas);
+        res.status(200).send({
+          notas
         });
-      } else {
-        if (notas) {
-
-
-            console.log("estes es el vector de toditititas las notas que regresa", notas);
-            res.status(200).send({
-              notas
-            });
-          }
-         else {
-         
-            res.status(200).send({
-              message: "no existen notas registradas"
-            });
-          
-
-
-        }
       }
+      else {
 
-    });
+        res.status(200).send({
+          message: "no existen notas registradas"
+        });
+
+
+
+      }
+    }
+
+  });
 
 
 
@@ -430,37 +430,37 @@ function buscarNotasEstudianteB(req, res) {
   console.log("entre a sacar als notas de las materias");
   var estudianteE = req.user.sub;
   var periodoE = req.body.fecha;
- 
+
   console.log("notas del estudiante ull params estudiante id", estudianteE, periodoE);
-    NotaB.find({ '$and': [{ estudiante:estudianteE }, { periodo: periodoE } ]}).sort({ $natural: -1 }).exec((err, notas) => {
+  NotaB.find({ '$and': [{ estudiante: estudianteE }, { periodo: periodoE }] }).sort({ $natural: -1 }).exec((err, notas) => {
 
-      if (err) {
-     
-      
-          res.status(500).send({
-            message: "Error al buscar nota"
-       
+    if (err) {
+
+
+      res.status(500).send({
+        message: "Error al buscar nota"
+
+      });
+    } else {
+      if (notas) {
+
+        console.log("estes es el vector de toditititas las notas  Basica que regresa", notas);
+        res.status(200).send({
+          notas
         });
-      } else {
-        if (notas) {
-
-            console.log("estes es el vector de toditititas las notas  Basica que regresa", notas);
-            res.status(200).send({
-              notas
-            });
-          }
-         else {
-         
-            res.status(200).send({
-              message: "no existen notas registradas"
-            });
-          
-
-
-        }
       }
+      else {
 
-    });
+        res.status(200).send({
+          message: "no existen notas registradas"
+        });
+
+
+
+      }
+    }
+
+  });
 
 
 

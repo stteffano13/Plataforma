@@ -607,7 +607,7 @@ public identity;
     this.object[i].estudiante = value.estudiante._id;
     this.object[i].materia = this.vectorListadoMisMaterias[0]._id;
     this.object[i].periodo = this.periodoLectivoActual;
-
+    this.object[i].pt=this.objectCalculable[i].promedioPeriodo;
     this.calculos(i);
 
   }
@@ -1047,7 +1047,7 @@ public identity;
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.object.push(this.obj = new Nota("","", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -1380,7 +1380,7 @@ public identity;
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 190, 28);
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
-    doc.fromHTML("<h4>MATERIA: " + this.Titulo2+"</h4>", 270, 75);
+    doc.fromHTML("<h4>MATERIA: " + this.Titulo2+"</h4>", 250, 75);
     doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido+" "+this.identity.nombre+"</h4>",250,100);
 
     if( this.banderTabla1){
@@ -1428,5 +1428,10 @@ public identity;
   }
 
 
+  registrarActaFinal()
+  {
+
+
+  }
 
 }

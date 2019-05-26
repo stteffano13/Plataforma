@@ -38,7 +38,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ingreso de nuevos Choferes">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvChofer" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-users"></i>
             <span class="nav-link-text"> Estudiante</span>
@@ -50,7 +50,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ingreso de nuevos Automóviles">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvautomovil" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-list-alt"></i>
             <span class="nav-link-text"> Matricula</span>
@@ -65,7 +65,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Clientes de MontecarloTransVip">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#listarClientes" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-address-book"></i>
             <span class="nav-link-text"> Asignación</span>
@@ -80,6 +80,19 @@
           </ul>
         </li>
 
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#reportes" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-clipboard"></i>
+            <span class="nav-link-text"> Reportes</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="reportes">
+            <li>
+              <a href="#" (click)="aparecerReportesNotas()">Notas por Curso</a>
+            </li>
+           
+          </ul>
+        </li>
 
       </ul>
 
@@ -269,6 +282,8 @@
       <div class="rows1" style="width: 70%; height: 70vh; margin-left: 12%" *ngIf="imagen"> </div>
 
       <!--Listado -->
+
+
 
       <div class="pre-scrollable" style="max-height: 100%;" *ngIf="listados">
 
@@ -1082,6 +1097,18 @@
           </div>
         </form>
       </div>
+
+
+ <!-- ====================================================      Reportes Notas ============================================-->
+
+
+ <div>
+  <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
+    <option [value]="" selected>Selecciona materia y curso</option>
+    <option *ngFor="let oneDoor of vectorListadoMisMaterias" value="{{oneDoor.curso._id}},{{oneDoor._id}},{{oneDoor.curso.curso}},{{oneDoor.nombre}},{{oneDoor.curso.paralelo}} ">{{oneDoor.nombre}}: {{oneDoor.curso.curso}}  {{oneDoor.curso.paralelo}}</option>
+  </select>
+ </div>
+
     </div>
 
 

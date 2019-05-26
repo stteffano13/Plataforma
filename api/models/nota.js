@@ -27,6 +27,7 @@ var NotasSchema = Schema({
     examenRemedial: String,
     examenGracia: String,
     periodo: String,
+    pt:String,
     estudiante: { type: Schema.ObjectId, ref: "Estudiante" },
     materia: { type: Schema.ObjectId, ref: "Materia" },
 });

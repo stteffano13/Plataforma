@@ -600,6 +600,25 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   // modulos
+  aparecerReportesNotas()
+  {
+    this.listados = false;
+    this.IngresarDocente = false;
+    this.IngresarEstudiante = false;
+    this.IngresarMatricula = false;
+    this.IngresarAsignacion = false;
+    this.imagen = false;
+    this.listadosMostrarMatriculas = false;
+    this.listadosMostrarAsignacion = false;
+    this.busquedaAsignacionPeriodo = "no asignar"
+   
+    this.ModificarDocente = false;
+    this.ModificarEstudiante = false;
+
+    
+  }
+
+
   aparecerEliminarAsignar() {
     this.listados = false;
     this.IngresarDocente = false;
@@ -1383,5 +1402,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     location.reload(true);
   }
 
+
+  
 
 }
