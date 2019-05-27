@@ -12,7 +12,7 @@ import { MatriculaService } from './services/matricula.services';
 import { MateriaService } from './services/materia.services';
 import { NotaService} from './services/nota.services';
 import { InsumoService} from './services/insumo.services';
-
+import {ExcelService} from './sharedServices/excel.service';
 import { FormsModule } from '@angular/forms';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { DocenteComponent } from './docente/docente.component';
@@ -38,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ComboBoxModule,
     BrowserAnimationsModule
   ],
-  providers: [AdministradorService,DocenteService, EstudianteService, CursoService, MatriculaService,MateriaService, NotaService,InsumoService],
+  providers: [AdministradorService,DocenteService, EstudianteService, CursoService, MatriculaService,MateriaService, NotaService,InsumoService,ExcelService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

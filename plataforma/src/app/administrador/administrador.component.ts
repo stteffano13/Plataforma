@@ -13,10 +13,11 @@ import { NotaService } from '../services/nota.services';
 import { AdministradorService } from '../services/administrador.services';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
-
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { Local } from 'protractor/built/driverProviders';
-
+import {ExcelService} from '../sharedServices/excel.service';
 
 
 
@@ -214,15 +215,32 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public objNotasPT = [];
   public diviciones;
   public nuevo;
-
   public nuevo2 = [];
+
+  // servicios excel
+
+  data: any = [{
+    eid: 'e101',
+    ename: 'ravi',
+    esal: 1000
+    },{
+    eid: 'e102',
+    ename: 'ram',
+    esal: 2000
+    },{
+    eid: 'e103',
+    ename: 'rajesh',
+    esal: 3000
+    }];
+  
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
     private _matriculaServices: MatriculaService,
     private _materiaServices: MateriaService,
     private _administradorService: AdministradorService,
-    private _notaService: NotaService) {
+    private _notaService: NotaService,
+    private excelService:ExcelService) {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
@@ -1653,19 +1671,14 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-
-
-
-
-
-
-
   logout() {
     this._administradorService.logout();
     location.reload(true);
   }
 
 
-
+  exportAsXLSX():void {
+    this.excelService.exportAsExcelFile(this.data, 'sample');
+ }
 
 }
