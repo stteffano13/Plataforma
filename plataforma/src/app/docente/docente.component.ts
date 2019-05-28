@@ -1398,7 +1398,7 @@ public identity;
      
       // var doc = new jsPDF('l', 'mm');
       doc.addImage(img, 'JPEG', 30, 150, 580, 60 * cont);
-      doc.save('testCanvas.pdf');
+      doc.save('Reporte_Notas_Docente.pdf');
     });
 
     
@@ -1417,7 +1417,7 @@ public identity;
      
       // var doc = new jsPDF('l', 'mm');
       doc.addImage(img, 'JPEG', 18, 130, 580, 70 * cont);
-      doc.save('testCanvas.pdf');
+      doc.save('Reporte_Notas_Docente.pdf');
     });
 
   }

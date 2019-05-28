@@ -546,6 +546,11 @@ export class EstudianteComponent implements OnInit, DoCheck {
   }
 
 
+  cerrarDescInsumosB() {
+
+    this.banderInsumoB = false;
+  }
+
 
   generarPdf() {
 
@@ -567,6 +572,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
     doc.fromHTML("<h4>ESTUDIANTE: " + this.identity.apellido + "  " + this.identity.nombre + "</h4>", 260, 68);
 
+    var cont = this.vectorListadoMisMaterias.length;
+
     if( this.banderTabla1){
    
 
@@ -581,8 +588,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
       context["msImageSmoothingEnabled"] = false
      
       // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 30, 150, 580, 70);
-      doc.save('testCanvas.pdf');
+      doc.addImage(img, 'JPEG', 30, 150, 580, 40*cont);
+      doc.save('Reporte_Notas_Alumno.pdf');
     });
 
   }else
@@ -598,8 +605,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
       context["msImageSmoothingEnabled"] = false
      
       // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 18, 130, 580, 120);
-      doc.save('testCanvas.pdf');
+      doc.addImage(img, 'JPEG', 18, 130, 580, 40*cont);
+      doc.save('Reporte_Notas_Alumno.pdf');
     });
 
   }

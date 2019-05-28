@@ -29,13 +29,12 @@
 
 
       <ul class="navbar-nav ml-auto">
-          <li>
-          <button (click)="generarPdf()">pdf</button>
-          </li>
+          
         <li>
-          <p style="color: #ffffff">Usuario Activo: {{identity.nombre}} {{identity.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <p style="color: #ffffff">Usuario Activo: {{identity.nombre}} {{identity.apellido}} 
           </p>
         </li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
         <li>
           <p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
@@ -120,7 +119,8 @@
       <!-- Division Principal-->
       <div class="rows1" style="width: 70%; height: 70vh; margin-left: 12%" *ngIf="imagen"> </div>
 
-      <!--Listado -->
+
+<h1  style="margin-top: 5%">{{identity.nombre}} {{identity.apellido}} </h1>
 
       <!-- tabola de insumos -->
 
@@ -128,7 +128,7 @@
         <button (click)="cerrarDescInsumos()" class="btn btn-light">
           <i class="fa fa-window-close fa-lg"></i>
         </button>
-        <table *ngIf="banderInsumo" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; height: 40%; margin-left: 5%">
+        <table *ngIf="banderInsumo" class="table table-hover table-bordered table-responsive" style="margin-top: 0%; font-size: 80% ; width: 90% ; height: 40%; margin-left: 5%">
 
 
 
@@ -244,7 +244,7 @@
       <!--Tbla insumos basica-->
 
       <div *ngIf="banderInsumoB" id="formContent">
-        <button (click)="cerrarDescInsumos()" class="btn btn-light">
+        <button (click)="cerrarDescInsumosB()" class="btn btn-light">
           <i class="fa fa-window-close fa-lg"></i>
         </button>
         <table *ngIf="banderInsumoB" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; height: 40%; margin-left: 5%">
@@ -495,7 +495,7 @@
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table  *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table  *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 5%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
 
 
@@ -654,6 +654,10 @@
 
           </tr>
         </tbody>
+        <br>
+        <div  class="col-md-12" style="text-align: center;">
+          <button class="btn btn-primary" (click)="generarPdf()">Generar reporte en PDF de las calificaciones</button>
+    </div>
       </table>
 
     </div>
@@ -820,7 +824,7 @@
   <!-- FIN TABLA DE-->
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
 
-    <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 80%; width: 90%; margin-left: 5%">
+    <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 5%; font-size: 80%; width: 90%; margin-left: 5%">
 
 
       <thead>
@@ -1110,15 +1114,18 @@
 
         </tr>
       </tbody>
-
-
+      <br>
+      
+      <div  class="col-md-12" style="text-align: center;">
+      <button class="btn btn-primary" (click)="generarPdf()">Generar reporte en PDF de las calificaciones</button>
+</div>
     </table>
 
     
 <!--------------------------------- TTABLA DE EMERGENCIA dos------------------------------------- -->
   
 
-<table  id="results2" *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: -100%; font-size: 80%; width: 100%; margin-left: 0%">
+<table  id="results2" *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 20%; font-size: 80%; width: 100%; margin-left: 0%">
 
 
     <thead>
