@@ -56,6 +56,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
   public listadoInsumos;
   public listadoInsumosB;
   public recivir;
+  public counter = 5;
+
+
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
@@ -100,7 +103,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
           for (let i = 0; i <= Object.keys(this.vectorListadoMisMaterias).length; i++) {
 
-            this.object.push(this.obj = new Nota("","", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.object.push(this.obj = new Nota("", "", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
             console.log("estos son los seros del objeto", this.object);
           }
@@ -112,7 +115,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
           for (let i = 0; i < Object.keys(this.vectorListadoMisMaterias).length; i++) {
 
-            this.objectB.push(this.objB = new NotaBasica("","", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -554,6 +557,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
   generarPdf() {
 
+    this.loading = true;
+
     interface jsPDFWithPlugin extends jsPDF {
       autoTable: (options: UserOptions) => jsPDF;
     }
@@ -574,43 +579,61 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     var cont = this.vectorListadoMisMaterias.length;
 
-    if( this.banderTabla1){
-   
-
-    html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
-      var img = canvas.toDataURL("image/png");
-      var context = canvas.getContext("2d");
-      context.scale(5, 5);
-      context["imageSmoothingEnabled"] = false;
-      context["mozImageSmoothingEnabled"] = false
-      context["oImageSmoothingEnabled"] = false
-      context["webkitImageSmoothingEnabled"] = false
-      context["msImageSmoothingEnabled"] = false
+    if (this.banderTabla1) {
      
-      // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 30, 150, 580, 30*cont);
-      doc.save('Reporte_Notas_Alumno.pdf');
-    });
 
-  }else
-  {
-    html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
-      var img = canvas.toDataURL("image/png");
-      var context = canvas.getContext("2d");
-      context.scale(5, 5);
-      context["imageSmoothingEnabled"] = false;
-      context["mozImageSmoothingEnabled"] = false
-      context["oImageSmoothingEnabled"] = false
-      context["webkitImageSmoothingEnabled"] = false
-      context["msImageSmoothingEnabled"] = false
-     
-      // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 18, 130, 580, 40*cont);
-      doc.save('Reporte_Notas_Alumno.pdf');
-    });
+      html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
+        var img = canvas.toDataURL("image/png");
+        var context = canvas.getContext("2d");
+        context.scale(5, 5);
+        context["imageSmoothingEnabled"] = false;
+        context["mozImageSmoothingEnabled"] = false
+        context["oImageSmoothingEnabled"] = false
+        context["webkitImageSmoothingEnabled"] = false
+        context["msImageSmoothingEnabled"] = false
 
-  }
-    
+        // var doc = new jsPDF('l', 'mm');
+        doc.addImage(img, 'JPEG', 30, 150, 580, 30 * cont);
+
+        doc.save('Reporte_Notas_Alumno.pdf');
+        
+      }
+      );
+
+      let intervalId = setInterval(() => {
+        this.counter = this.counter - 1;
+       
+        console.log(this.counter)
+        if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
+    }, 1000)
+
+        
+        console.log("contador");
+
+    } else {
+      html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
+        var img = canvas.toDataURL("image/png");
+        var context = canvas.getContext("2d");
+        context.scale(5, 5);
+        context["imageSmoothingEnabled"] = false;
+        context["mozImageSmoothingEnabled"] = false
+        context["oImageSmoothingEnabled"] = false
+        context["webkitImageSmoothingEnabled"] = false
+        context["msImageSmoothingEnabled"] = false
+
+        // var doc = new jsPDF('l', 'mm');
+        doc.addImage(img, 'JPEG', 18, 130, 580, 40 * cont);
+        doc.save('Reporte_Notas_Alumno.pdf');
+      });
+      let intervalId = setInterval(() => {
+        this.counter = this.counter - 1;
+       
+        console.log(this.counter)
+        if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
+    }, 1000)
+
+    }
+
 
     /*  var j = 0;
       for (var i = 1; i <= 2; i++) {
@@ -631,11 +654,11 @@ export class EstudianteComponent implements OnInit, DoCheck {
       });*/
 
     //doc.autoTable({html :  '#results' });
-  
- 
- 
-     
-    
+
+
+
+
+
 
     /*  var elementHandler = {
         '#ignorePDF': function (element, renderer) {
@@ -652,6 +675,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
   }
-
-
+apagar()
+{
+  this.loading=false;
+}
 }

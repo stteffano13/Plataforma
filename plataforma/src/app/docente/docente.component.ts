@@ -97,6 +97,8 @@ export class DocenteComponent implements OnInit, DoCheck {
   public listadoInsumosB;
 
 public identity;
+
+public counter=5;
   ngOnInit() {
 
     this.getListadoMisMaterias();
@@ -1400,7 +1402,12 @@ public identity;
       doc.addImage(img, 'JPEG', 30, 150, 580, 60 * cont);
       doc.save('Reporte_Notas_Docente.pdf');
     });
-
+    let intervalId = setInterval(() => {
+      this.counter = this.counter - 1;
+     
+      console.log(this.counter)
+      if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
+  }, 1000)
     
 
   }else
@@ -1419,7 +1426,12 @@ public identity;
       doc.addImage(img, 'JPEG', 18, 130, 580, 70 * cont);
       doc.save('Reporte_Notas_Docente.pdf');
     });
-
+   let intervalId = setInterval(() => {
+        this.counter = this.counter - 1;
+       
+        console.log(this.counter)
+        if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
+    }, 1000)
   }
     
 
