@@ -40,14 +40,14 @@
           <p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
         </li>
-        <li>
+<!--        <li>
           <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
             <option [value]="" selected>Selecciona materia y curso</option>
             <option *ngFor="let oneDoor of vectorListadoMisMaterias" value="{{oneDoor.curso._id}},{{oneDoor._id}},{{oneDoor.curso.curso}},{{oneDoor.nombre}}">{{oneDoor.nombre}}</option>
           </select>
 
 
-        </li>
+        </li>-->
 
         <!-- ====================================================       Notificaciones  INGRESAR PARALELO ============================================-->
 
@@ -660,7 +660,7 @@
 
     <!--------------------------------- TTABLA DE EMERGENCIA UNO------------------------------------- -->
 
-    <table   id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: -2%; font-size: 92% ; width: 90% ; margin-left: 5%; ">
+    <table   id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: -100%; font-size: 80% ; width: 90% ; margin-left: 5%; ">
 
 
 
@@ -696,9 +696,9 @@
           <th style="color: white" >20%</th>
           <th style="color: white" >P2</th>
           <th style="color: white" >PT</th>
-          <th style="color: white">ExSuple</th>
-          <th style="color: white" >ExnRem</th>
-          <th style="color: white" >ExGracia</th>
+          <th style="color: white">ExS</th>
+          <th style="color: white" >ExnR</th>
+          <th style="color: white" >ExG</th>
         </tr>
       </thead>
       <tbody>
@@ -1118,7 +1118,7 @@
 <!--------------------------------- TTABLA DE EMERGENCIA dos------------------------------------- -->
   
 
-<table  id="results2" *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 2%; font-size: 100%; width: 90%; margin-left: 5%">
+<table  id="results2" *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: -100%; font-size: 80%; width: 100%; margin-left: 0%">
 
 
     <thead>
@@ -1212,9 +1212,9 @@
         <th style="color: white ;  padding-left:0.3%;" >20%</th>
         <th style="color: white; padding-left:0.3%;" >P2</th>
         <th style="color: white; padding-left:0.3%;" >PT</th>
-        <th style="color: white; padding-left:0.3%;" >ExSup</th>
-        <th style="color: white; padding-left:0.3%;" >ExReme</th>
-        <th style="color: white; padding-left:0.3%;" >ExGrac</th>
+        <th style="color: white; padding-left:0.3%;" >ExS</th>
+        <th style="color: white; padding-left:0.3%;" >ExR</th>
+        <th style="color: white; padding-left:0.3%;" >ExG</th>
 
       </tr>
     </thead>
