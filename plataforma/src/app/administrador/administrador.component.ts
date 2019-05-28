@@ -17,7 +17,7 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { Local } from 'protractor/built/driverProviders';
-import {ExcelService} from '../sharedServices/excel.service';
+import { ExcelService } from '../sharedServices/excel.service';
 
 
 
@@ -218,21 +218,21 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   public nuevo2 = [];
 
   // servicios excel
-
+  public banderReporteExcel = false;
   data: any = [{
     eid: this.listadoEstudiantes,
     ename: this.listadoMateriasCurso,
     esal: 1000
-    },{
+  }, {
     eid: 'e102',
     ename: 'ram',
     esal: 2000
-    },{
+  }, {
     eid: 'e103',
     ename: 'rajesh',
     esal: 3000
-    }];
-  
+  }];
+
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
@@ -240,7 +240,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     private _materiaServices: MateriaService,
     private _administradorService: AdministradorService,
     private _notaService: NotaService,
-    private excelService:ExcelService) {
+    private excelService: ExcelService) {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
@@ -292,7 +292,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // busquedas
   public busqueda() {
 
-
+    this.loading = true;
     if (this.buscar != undefined) {
 
 
@@ -314,6 +314,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.imagen = false;
       this.busquedaDocente();
       this.busquedaEstudiantes();
+      this.loading=true;
     } else {
       this.mensajeerrormodals = "Ingresar parametros en la busqueda ";
       document.getElementById("openModalError").click();
@@ -585,6 +586,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     }
     console.log('estadoClaveContrasenaUsuario......', this.estadoClaveDocente);
   }
+
   habilitarContrasenaC() {
 
     if (this.tipoUsuarioC === 'text') {
@@ -641,6 +643,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.busquedaAsignacionPeriodo = "no asignar"
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
+    this.banderReporteExcel = true;
+    this.listadoD = false;
+    this.listadoE = false;
     this.getListadoCursos();
 
   }
@@ -661,6 +666,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.getListadoCursos();
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
 
   }
 
@@ -677,7 +685,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.getPeriodos();
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
-
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
     // this.url2 = '../../assets/imgs/IngresarMatricula.png';
   }
 
@@ -696,8 +706,13 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.ModificarDocente = false;
 
     this.ModificarEstudiante = false;
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
 
   }
+
+
   apareceIngreseDocente() {
     this.IngresarDocente = true;
     this.IngresarEstudiante = false;
@@ -710,6 +725,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.url2 = '../../assets/imgs/IngresarDocente.png';
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
 
   }
 
@@ -726,6 +744,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     this.ModificarDocente = false;
     this.ModificarEstudiante = false;
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
   }
 
 
@@ -739,11 +760,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadosMostrarMatriculas = false;
     this.listadosMostrarAsignacion = false;
     this.ModificarDocente = false;
-
     this.ModificarEstudiante = false;
-
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
 
   }
+
+
+
+
 
   buscarMatriculas(value) {
     this.buscarMatriculaPeriodo = value;
@@ -1025,6 +1051,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.datosDocentes = datosDocente;
     this.listados = false;
     this.ModificarEstudiante = false;
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
 
   }
 
@@ -1043,6 +1072,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.ModificarEstudiante = true;
     this.datosEstudiantes = datosEstudiante;
     this.listados = false;
+    this.banderReporteExcel = false;
+    this.listadoD = false;
+    this.listadoE = false;
   }
 
   onUpdateDocentes(estado) {
@@ -1361,7 +1393,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       response => {
 
         this.listadoEstudianteMatriculas = response.matriculas;
-       
+
         this.getListadoMaterias(busqueda[0], busqueda[1]);
 
 
@@ -1566,7 +1598,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
           if (i == this.diviciones.length - 1) {
             this.nuevo = this.diviciones[i].substring(1).split(",");
-           
+
           } else {
 
             if (i % 2 == 0) {
@@ -1650,18 +1682,18 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     curso = value.split(" ");
     this.disabledMateriaImpartir = false;
     console.log("value[1]", curso[1]);
-    if (curso[2].indexOf("SUPERIOR") != -1) {
+    if (curso[2].indexOf("SUPERIOR") != -1  || curso[2].indexOf("OCTAVO") != -1 || curso[2].indexOf("NOVENO") != -1 || curso[2].indexOf("DECIMO") != -1) {
       this.vectorlistadoMaterias = this.arrayOctavo;
       console.log("entre basico");
     } else {
-      if (curso[1].indexOf("1ER") != -1) {
+      if (curso[1].indexOf("PRIMER") != -1) {
         this.vectorlistadoMaterias = this.array1Bach;
         console.log("entre 1er");
       } else {
-        if (curso[1].indexOf("2DO") != -1) {
+        if (curso[1].indexOf("SEGUNDO") != -1) {
           this.vectorlistadoMaterias = this.array2Bach;
         } else {
-          if (curso[1].indexOf("3ER") != -1) {
+          if (curso[1].indexOf("TERCERO") != -1) {
             this.vectorlistadoMaterias = this.array3Bach;
           }
         }
@@ -1677,8 +1709,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  exportAsXLSX():void {
+  exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.data, 'sample');
- }
+  }
 
 }

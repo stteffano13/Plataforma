@@ -59,8 +59,8 @@ function saveEstudiante(req, res) {
                             });
                              count=count+1;
                             estudiante.codigo = "CODE"+count;
-                            estudiante.nombre = params.nombre;
-                            estudiante.apellido = params.apellido;
+                            estudiante.nombre = params.nombre.toUpperCase();;
+                            estudiante.apellido = params.apellido.toUpperCase();;
                             estudiante.correo = params.correo;
                             estudiante.contrasena = params.contrasena;
                             estudiante.tel_celular = params.tel_celular;

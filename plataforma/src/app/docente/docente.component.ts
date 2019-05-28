@@ -13,7 +13,6 @@ import { InsumoBasica } from '../models/insumoB';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { UserOptions } from 'jspdf-autotable';
-
 import * as html2canvas from 'html2canvas';
 import { isNumber } from 'util';
 

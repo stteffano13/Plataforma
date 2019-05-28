@@ -38,7 +38,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
+        <li class="nav-item" data-toggle="tooltip" data-placement="right">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvChofer" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-users"></i>
             <span class="nav-link-text"> Estudiante</span>
@@ -50,7 +50,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
+        <li class="nav-item" data-toggle="tooltip" data-placement="right">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#nvautomovil" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-list-alt"></i>
             <span class="nav-link-text"> Matricula</span>
@@ -65,7 +65,7 @@
           </ul>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
+        <li class="nav-item" data-toggle="tooltip" data-placement="right">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#listarClientes" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-address-book"></i>
             <span class="nav-link-text"> Asignación</span>
@@ -81,7 +81,7 @@
         </li>
 
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" >
+        <li class="nav-item" data-toggle="tooltip" data-placement="right">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#reportes" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-clipboard"></i>
             <span class="nav-link-text"> Reportes</span>
@@ -90,7 +90,7 @@
             <li>
               <a href="#" (click)="aparecerReportesNotas()">Notas por Curso</a>
             </li>
-           
+
           </ul>
         </li>
 
@@ -105,83 +105,83 @@
       </ul>
       <ul class="navbar-nav ml-auto">
 
-        
+
         <li class="nav-item">
 
           <form class="form-control  form-inline my-4 my-lg-0 mr-lg-4">
-              <div class="input-group">
-            <p style=" font-size: 80% ">Mes inicio &nbsp;&nbsp;&nbsp;</p>
+            <div class="input-group">
+              <p style=" font-size: 80% ">Mes inicio &nbsp;&nbsp;&nbsp;</p>
 
 
 
 
-            <select style="font-size: 80%" (change)="asignarMesInicio($event.target.value)" class=" form-control custom-select " required>
-              <option disabled selected hidde [value]="opcionMesInicio" selected>{{opcionMesInicio}} </option>
-              <option value="Enero">Enero</option>
-              <option value="Febrero">Febrero</option>
-              <option value="Marzo">Marzo</option>
-              <option value="Abril">Abril</option>
-              <option value="Mayo">Mayo</option>
-              <option value="Junio">Junio</option>
-              <option value="Julio">Julio</option>
-              <option value="Agosto">Agosto</option>
-              <option value="Septiembre">Septiembre</option>
-              <option value="Octubre">Octubre</option>
-              <option value="Nobiembre">Noviembre</option>
-              <option value="Diciembre">Diciembre</option>
-            </select>
+              <select style="font-size: 80%" (change)="asignarMesInicio($event.target.value)" class=" form-control custom-select " required>
+                <option disabled selected hidde [value]="opcionMesInicio" selected>{{opcionMesInicio}} </option>
+                <option value="ENERO">ENERO</option>
+                <option value="FEBRERO">FEBRERO</option>
+                <option value="MARZO">MARZO</option>
+                <option value="ABRIL">ABRIL</option>
+                <option value="MAYO">MAYO</option>
+                <option value="JUNIO">JUNIO</option>
+                <option value="JULIO">JULIO</option>
+                <option value="AGOSTO">AGOSTO</option>
+                <option value="SEPTIEMBRE">SEPTIEMBRE</option>
+                <option value="OCTUBRE">OCTUBRE</option>
+                <option value="NOVIEMBRE">NOVIEMBRE</option>
+                <option value="DICIEMBRE">DICIEMBRE</option>
+              </select>
 
 
-            <p style="color: transparent">d</p>
+              <p style="color: transparent">d</p>
 
-            <p style="font-size: 80%">Año inicio &nbsp;&nbsp;&nbsp;</p>
-
-
-
-
-            <select style="font-size: 80%" (change)="asignarAnoInicio($event.target.value)" class=" custom-select " required>
-              <option disabled selected hidde [value]="opcionAnoInicio" selected>{{opcionAnoInicio}} </option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-            </select>
+              <p style="font-size: 80%">Año inicio &nbsp;&nbsp;&nbsp;</p>
 
 
 
 
-            <!-- periodo Final -->
-            <p style="color: transparent">d</p>
+              <select style="font-size: 80%" (change)="asignarAnoInicio($event.target.value)" class=" custom-select " required>
+                <option disabled selected hidde [value]="opcionAnoInicio" selected>{{opcionAnoInicio}} </option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+              </select>
 
-            <p style=" font-size: 80% ">Mes final &nbsp;&nbsp;&nbsp;</p>
 
 
 
-           
+              <!-- periodo Final -->
+              <p style="color: transparent">d</p>
+
+              <p style=" font-size: 80% ">Mes final &nbsp;&nbsp;&nbsp;</p>
+
+
+
+
               <select style="font-size: 80%" (change)="asignarMesFinal($event.target.value)" class=" custom-select " required>
                 <option disabled selected hidde [value]="opcionMesFinal" selected>{{opcionMesFinal}} </option>
-                <option value="Enero">Enero</option>
-                <option value="Febrero">Febrero</option>
-                <option value="Marzo">Marzo</option>
-                <option value="Abril">Abril</option>
-                <option value="Mayo">Mayo</option>
-                <option value="Junio">Junio</option>
-                <option value="Julio">Julio</option>
-                <option value="Agosto">Agosto</option>
-                <option value="Septiembre">Septiembre</option>
-                <option value="Octubre">Octubre</option>
-                <option value="Nobiembre">Noviembre</option>
-                <option value="Diciembre">Diciembre</option>
+                <option value="ENERO">ENERO</option>
+                <option value="FEBRERO">FEBRERO</option>
+                <option value="MARZO">MARZO</option>
+                <option value="ABRIL">ABRIL</option>
+                <option value="MAYO">MAYO</option>
+                <option value="JUNIO">JUNIO</option>
+                <option value="JULIO">JULIO</option>
+                <option value="AGOSTO">AGOSTO</option>
+                <option value="SEPTIEMBRE">SEPTIEMBRE</option>
+                <option value="OCTUBRE">OCTUBRE</option>
+                <option value="NOVIEMBRE">NOVIEMBRE</option>
+                <option value="DICIEMBRE">DICIEMBRE</option>
               </select>
 
               <p style="color: transparent">d</p>
@@ -211,66 +211,67 @@
 
 
               <p style="color: transparent">ddd</p>
-           <button class="btn btn-primary" style="font-size: 70%" (click)="asignarPeriodoLectivo()"> Guardar Periodo</button>
+              <button class="btn btn-primary" style="font-size: 70%" (click)="asignarPeriodoLectivo()"> Guardar</button>
             </div>
           </form>
-          </li>
-          <li> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</li>
-          <!-- ====================================================       Notificaciones  INGRESAR PARALELO ============================================-->
+        </li>
+        <li> &nbsp;&nbsp;&nbsp; &nbsp;</li>
+        <!-- ====================================================       Notificaciones  INGRESAR PARALELO ============================================-->
 
 
-          <li class="nav-item dropdown">
-            <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" data-toggle="modal" aria-haspopup="true"
-              aria-expanded="false" data-target="#ModalIngresarParalelo">
-              <i class="fa fa-fw fa-list-alt"></i>
-              <span class="d-lg-none">Paralelo
-                <span class="badge badge-pill badge-primary"> Nuevos</span>
+        <li class="nav-item dropdown">
+          <a title="Crear paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalIngresarParalelo" data-toggle="modal" aria-haspopup="true"
+            aria-expanded="false" data-target="#ModalIngresarParalelo">
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span class="d-lg-none">Paralelo
+              <span class="badge badge-pill badge-primary"> Nuevos</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-arrows"></i>
+
+            </span>
+          </a>
+        </li>
+
+        <!-- ====================================================       Notificaciones  ELIMINAR  PARALELO ============================================-->
+
+
+        <li class="nav-item dropdown">
+          <a title="Eliminar  Paralelo" class="nav-link dropdown-toggle mr-lg-2 " id="openModalEliminarParalelo" data-toggle="modal"
+            aria-haspopup="true" aria-expanded="false" data-target="#ModalEliminarParalelo">
+            <i class="fa fa-fw fa-list-alt"></i>
+            <span class="d-lg-none">Paralelo
+              <span class="badge badge-pill badge-primary"> Nuevos</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class=" fa fa-minus" style="width: 80%"></i>
+
+            </span>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+
+          <!-- ====================================================       BUSCADOR UNIVERSAL  ============================================-->
+
+          <form class="form-inline my-8 my-lg-0 mr-lg-8">
+            <div class="input-group">
+              <input style="padding: 5%" title="Buscardor de usuarios, choferes y automóviles" class="form-control" type="text" placeholder="Buscar"
+                #Buscar="ngModel" [(ngModel)]="buscar" name="buscar">
+              <span class="input-group-append">
+                <button title="Buscardor de usuarios, choferes y automóviles" class="btn btn-primary" (click)="busqueda()" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
               </span>
-              <span class="indicator text-primary d-none d-lg-block">
-                <i class="fa fa-arrows"></i>
-
-              </span>
-            </a>
-          </li>
-
-          <!-- ====================================================       Notificaciones  ELIMINAR  PARALELO ============================================-->
-
-
-          <li class="nav-item dropdown">
-            <a title="Eliminar  Paralelo" class="nav-link dropdown-toggle mr-lg-2" id="openModalEliminarParalelo" data-toggle="modal"
-              aria-haspopup="true" aria-expanded="false" data-target="#ModalEliminarParalelo">
-              <i class="fa fa-fw fa-list-alt"></i>
-              <span class="d-lg-none">Paralelo
-                <span class="badge badge-pill badge-primary"> Nuevos</span>
-              </span>
-              <span class="indicator text-primary d-none d-lg-block">
-                <i class=" fa fa-minus" style="width: 80%"></i>
-
-              </span>
-            </a>
-          </li>
-
-
-          <li class="nav-item">
-
-            <!-- ====================================================       BUSCADOR UNIVERSAL  ============================================-->
-
-            <form class="form-inline my-2 my-lg-0 mr-lg-2">
-              <div class="input-group">
-                <input title="Buscardor de usuarios, choferes y automóviles" class="form-control" type="text" placeholder="Buscar" #Buscar="ngModel"
-                  [(ngModel)]="buscar" name="buscar">
-                <span class="input-group-append">
-                  <button title="Buscardor de usuarios, choferes y automóviles" class="btn btn-primary" (click)="busqueda()" type="button">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>
-          </li>
-          <li class="nav-item" title="Salir del Sistema Montecarlo VIP">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-fw fa-sign-out"></i>Salir</a>
-          </li>
+            </div>
+          </form>
+        </li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li class="nav-item" title="Salir del Sistema Montecarlo VIP">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Salir</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -291,15 +292,17 @@
 
 
         <!-- ====================================================         Listado Docentes ============================================-->
-        <div *ngIf="listadoD" class="container">
-          <br><br><br>
+        <div *ngIf="listadoD" class="">
+          <br>
+          <br>
+          <br>
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
               <h3>LISTADO DOCENTES
               </h3>
             </div>
             <div class="col-md-12">
-              <hr style="background-color: #000000; width: 50%;">
+              <hr style="background-color: #000000; width: 100%;">
             </div>
           </div>
           <table class="table  text-center">
@@ -330,7 +333,7 @@
 
         <!-- ====================================================       Listado Estudiantes ============================================-->
 
-        <div *ngIf="listadoE" class="container">
+        <div *ngIf="listadoE" class="">
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
               <h3>LISTADO ESTUDIANTES
@@ -369,7 +372,7 @@
       </div>
       <!-- ====================================================    Listado Matriculas ============================================-->
       <div class="pre-scrollable" style="max-height: 100%; " *ngIf="listadosMostrarMatriculas">
-          <br>
+        <br>
         <div class="row container" style="text-align: center; margin-left: 10%">
           <div class="col-md-4 ">
             <label>Seleccione el periodo académico </label>
@@ -406,8 +409,10 @@
 
 
         </div>
-        <br><br><br>
-        <div *ngIf="listadoM" >
+        <br>
+        <br>
+        <br>
+        <div *ngIf="listadoM">
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
               <h3>LISTADO MATRICULAS
@@ -450,20 +455,19 @@
 
       <!-- ====================================================  Listado Asignacion ============================================-->
       <div class="pre-scrollable" style="max-height: 100%; " *ngIf="listadosMostrarAsignacion">
-          <br>
+        <br>
         <div class="row" style="text-align: center; margin-left: 5%">
 
           <div class="col-md-4 ">
             <label for="apellido">Seleccione el Docente</label>
-            <input list="busquedaDocentesAsignacion" style="font-size: 85%"  type="text"  [(ngModel)]="busquedaDocenteAsignacion" name="busquedaDocenteAsignacion"
+            <input list="busquedaDocentesAsignacion" style="font-size: 85%" type="text" [(ngModel)]="busquedaDocenteAsignacion" name="busquedaDocenteAsignacion"
               required class="form-control">
 
 
             <datalist id="busquedaDocentesAsignacion">
               <option id="oneDoor._id" *ngFor="let oneDoor of vectorListadoDocentes">
 
-                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp;  {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;{{oneDoor.cedula}}
+                {{oneDoor.codigo}}.&nbsp;&nbsp;&nbsp;&nbsp; {{oneDoor.nombre}} {{oneDoor.apellido}} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{oneDoor.cedula}}
               </option>
 
 
@@ -493,13 +497,15 @@
           <div class="col-lg-1">
             <label style="color: white"> hola</label>
 
-            <input   style="align-content: center" class=" btn btn-primary form-control" value="Buscar" type="button" (click)="busquedaAsignacionFiltrado()">
+            <input style="align-content: center" class=" btn btn-primary form-control" value="Buscar" type="button" (click)="busquedaAsignacionFiltrado()">
           </div>
 
 
         </div>
-        <br><br><br>
-        <div *ngIf="listadoA" >
+        <br>
+        <br>
+        <br>
+        <div *ngIf="listadoA">
           <div class="row">
             <div class="col-md-12" style="text-align: center; color: #2863a9">
               <h3>LISTADO ASIGNACIONES
@@ -541,13 +547,13 @@
       </div>
       <!-- ====================================================      Formulario de Ingresar ASIGNACION ============================================-->
 
-      <div class="container"  *ngIf="IngresarAsignacion">
-          <br>
-          <h5  style="color: blue">Nueva asignación de materias</h5>
+      <div class="container" *ngIf="IngresarAsignacion">
+        <br>
+        <h5 style="color: blue">Nueva asignación de materias</h5>
         <form #IngresarAsignacion="ngForm" novalidate>
           <div class="row">
             <div class="col-lg-12">
-              <img src="../../assets/imgs/IngresarAsignacion.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
+              <img src="../../assets/imgs/IngresarAsignacion.png" style="display: block; margin-left: 42%; width: 13%;  height:18%; border-radius:50%">
             </div>
           </div>
           <br>
@@ -621,11 +627,11 @@
 
       <div class="container" *ngIf="IngresarMatricula">
         <br>
-          <h5  style="color: blue">Nueva matricula</h5>
-        <form #IngresarMatricula="ngForm"  novalidate>
+        <h5 style="color: blue">Nueva matricula</h5>
+        <form #IngresarMatricula="ngForm" novalidate>
           <div class="row">
             <div class="col-lg-12">
-              <img src="../../assets/imgs/IngresarMatricula.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
+              <img src="../../assets/imgs/IngresarMatricula.png" style="display: block; margin-left: 43%; width: 13%;  height:18%; border-radius:50%">
             </div>
           </div>
           <br>
@@ -686,12 +692,12 @@
       <!-- ====================================================     Formulario de INGRESAR DOCENTE ============================================-->
 
       <div class="container" *ngIf="IngresarDocente">
-          <br>
-          <h5  style="color: blue">Ingresar nuevo docente</h5>
-        <form #IngresarDocente="ngForm" (ngSubmit)="onRegisterDocente()"  novalidate>
+        <br>
+        <h5 style="color: blue">Ingresar nuevo docente</h5>
+        <form #IngresarDocente="ngForm" (ngSubmit)="onRegisterDocente()" novalidate>
           <div class="row">
             <div class="col-lg-12">
-              <img src="../../assets/imgs/IngresarDocente.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
+              <img src="../../assets/imgs/IngresarDocente.png" style="display: block; margin-left: 45%; width: 12%;  height:18%; border-radius:50%">
             </div>
           </div>
           <br>
@@ -699,12 +705,22 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="nombre"> Ingrese el Nombre</label>
-                <input type="text" required class="form-control" #Nombre="ngModel" [(ngModel)]="docente_register.nombre" name="nombre" id="nombre"
-                  pattern="[ A-Za-zñÑ]*">
+                <input style="text-transform:uppercase;" type="text" required class="form-control" #Nombre="ngModel" [(ngModel)]="docente_register.nombre"
+                  name="nombre" id="nombre" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="Nombre.valid || Nombre.pristine" class="alert alert-warning" id="ocu">
                   Ingrese solo letras
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="cedula">Ingrese la Cédula</label>
+                <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="docente_register.cedula" name="cedula" id="cedula"
+                  pattern=".{10,10}">
+                <div [hidden]="Cedula.valid || Cedula.pristine" class="alert alert-warning">
+                  Ingrese solo números y maximo 10 números
+                </div>
+              </div>
+
 
               <div class="form-group">
                 <label for="contrasena">Ingrese la contraseña</label>
@@ -721,24 +737,16 @@
                   Contraseña mínima de 6 caracteres
                 </div>
               </div>
-              <div class="form-group">
-                <label for="celular">Ingrese numero celular</label>
-                <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="docente_register.tel_celular" name="celular"
-                  id="celular" pattern=".{10,10}">
-                <div [hidden]="Celular.valid || Celular.pristine" class="alert alert-warning">
-                  Ingrese 10 digitos solo numericos
-                </div>
 
 
-              </div>
               <div class="card-columns">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellido">Ingrese el Apellido</label>
-                <input type="text" required class="form-control" #Apellido="ngModel" [(ngModel)]="docente_register.apellido" name="apellido"
-                  id="apellido" pattern="[ A-Za-zñÑ]*">
+                <input style="text-transform:uppercase;" type="text" required class="form-control" #Apellido="ngModel" [(ngModel)]="docente_register.apellido"
+                  name="apellido" id="apellido" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="Apellido.valid || Apellido.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
@@ -751,14 +759,16 @@
                   Ingrese un correo electrónico válido
                 </div>
               </div>
+
               <div class="form-group">
-                <label for="cedula">Ingrese la Cédula</label>
-                <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="docente_register.cedula" name="cedula" id="cedula"
-                  pattern=".{10,10}">
-                <div [hidden]="Cedula.valid || Cedula.pristine" class="alert alert-warning">
-                  Ingrese solo números y maximo 10 números
+                <label for="celular">Ingrese numero celular</label>
+                <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="docente_register.tel_celular" name="celular"
+                  id="celular" pattern=".{10,10}">
+                <div [hidden]="Celular.valid || Celular.pristine" class="alert alert-warning">
+                  Ingrese 10 digitos solo numericos
                 </div>
               </div>
+
 
 
             </div>
@@ -780,9 +790,9 @@
       <!-- ====================================================      Formulario de MODIFICAR DOCENTE ============================================-->
 
       <div class="container" *ngIf="ModificarDocente">
-          <br>
-          <h5  style="color: blue">Modificar docente</h5>
-        <form #ModificarUsuario="ngForm" >
+        <br>
+        <h5 style="color: blue">Modificar docente</h5>
+        <form #ModificarUsuario="ngForm">
           <div class="row">
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarDocente.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
@@ -888,13 +898,13 @@
 
       <!-- ====================================================      Formulario de INGRESAR ESTUDIANTE ============================================-->
 
-      <div class="container"  *ngIf="IngresarEstudiante">
-          <br>
-          <h5  style="color: blue">Ingresar nuevo estudiante</h5>
+      <div class="container" *ngIf="IngresarEstudiante">
+        <br>
+        <h5 style="color: blue">Ingresar nuevo estudiante</h5>
         <form #IngresarEstudiante="ngForm" (ngSubmit)="onRegisterEstudiante()">
           <div class="row">
             <div class="col-lg-12">
-              <img [src]="url2" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
+              <img [src]="url2" style="display: block; margin-left: 43%; width: 13%;  height:18%; border-radius:50%">
 
             </div>
           </div>
@@ -903,7 +913,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="nombreChofer"> Ingrese el Nombre</label>
-                <input type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="estudiante_register.nombre" name="nombreChofer"
+                <input style="text-transform:uppercase;" type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="estudiante_register.nombre" name="nombreChofer"
                   id="nombreChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="NombreChofer1.valid || NombreChofer1.pristine" class="alert alert-warning">
                   Ingrese solo letras
@@ -939,7 +949,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellidoChofer">Ingrese el Apellido</label>
-                <input type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="estudiante_register.apellido" name="apellidoChofer"
+                <input style="text-transform:uppercase;" type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="estudiante_register.apellido" name="apellidoChofer"
                   id="apellidoChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="ApellidoChofer.valid || ApellidoChofer.pristine" class="alert alert-warning">
                   Ingrese solo letras
@@ -993,9 +1003,9 @@
 
       <!-- ====================================================      Formulario de MODIFICAR ESTUDIANTE ============================================-->
       <div class="container" *ngIf="ModificarEstudiante">
-          <br>
-          <h5  style="color: blue">Modificar estudiantes</h5>
-        <form #ModificarEstudiante="ngForm" >
+        <br>
+        <h5 style="color: blue">Modificar estudiantes</h5>
+        <form #ModificarEstudiante="ngForm">
           <div class="row">
             <div class="col-lg-12">
               <img src="../../assets/imgs/IngresarEstudiante.png" style="display: block; margin-left: 40%; width: 15%;  height:18%; border-radius:50%">
@@ -1100,45 +1110,49 @@
       </div>
 
 
- <!-- ====================================================      Reportes Notas ============================================-->
+      <!-- ====================================================      Reportes Notas ============================================-->
 
 
- <div>
-  <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
-    <option [value]="" selected>Selecciona materia y curso</option>
-    <option *ngFor="let oneDoor of this.vectorListadoCursos" value="{{oneDoor._id}},{{oneDoor.curso}} ">{{oneDoor.curso}}: {{oneDoor.paralelo}}  {{oneDoor.curso.paralelo}}</option>
-  </select>
- </div>
+      <div *ngIf="banderReporteExcel">
+        <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
+          <option [value]="" selected>Selecciona materia y curso</option>
+          <option *ngFor="let oneDoor of this.vectorListadoCursos" value="{{oneDoor._id}},{{oneDoor.curso}} ">{{oneDoor.curso}}: {{oneDoor.paralelo}} {{oneDoor.curso.paralelo}}</option>
+        </select>
+      </div>
 
- <!-------------------------------------------------- tabla del reporte de notas finales-->
+      <!-------------------------------------------------- tabla del reporte de notas finales-->
 
- <table     class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table *ngIf="banderReporteExcel" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
-  <div class="  form-control ">
-    <h4>{{this.Titulo2}} </h4>
-  </div>
+        <div class="  form-control ">
+          <h4>{{this.Titulo2}} </h4>
+        </div>
 
-  <thead  >
+        <thead>
 
 
-    <tr  style="background-color: #343a40; align-content: center;">
-      <th style="color: white; padding-top: 2%" scope="col">#</th>
-      <th style="color: white;   align-content: center;   text-align: center" scope="col">Apellidos y Nombres</th>
-      <th  *ngFor=" let listado of  listadoMateriasCurso;" style="color: white" scope="col" class="verticalText2">{{listado.nombre}} </th>
-     
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index;">
-      <th scope="row">{{i}}</th>
-      <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
-      <td class="active"  *ngFor=" let listad of  this.nuevo2[i]">{{listad}}</td>
-     
+          <tr style="background-color: #343a40; align-content: center;">
+            <th style="color: white; padding-top: 2%" scope="col">#</th>
+            <th style="color: white;   align-content: center;   text-align: center" scope="col">Apellidos y Nombres</th>
+            <th *ngFor=" let listado of  listadoMateriasCurso;" style="color: white" scope="col" class="verticalText2">{{listado.nombre}} </th>
 
-    </tr>
-  </tbody>
-  <li><button (click)= "exportAsXLSX()"> <i class = "fa fa-file-excel-o" style = "font-size: 48px; color: blue"> </i> </button></li>
-</table>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index;">
+            <th scope="row">{{i}}</th>
+            <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
+            <td class="active" *ngFor=" let listad of  this.nuevo2[i]">{{listad}}</td>
+
+
+          </tr>
+        </tbody>
+        <li>
+          <button (click)="exportAsXLSX()">
+            <i class="fa fa-file-excel-o" style="font-size: 48px; color: blue"> </i>
+          </button>
+        </li>
+      </table>
 
     </div>
 
@@ -1185,11 +1199,14 @@
           <p class="modal-title" id="exampleModalLabel" style="margin-left: 22%">Seleccione el curso e ingrese el paralelo</p>
           <div style="width: 80%; border: 0; background-color: white;  margin-left: 10%" disabled class="modal-body  row">
             <select (change)="asignarCurso($event.target.value)" class=" custom-select col-lg-8" required>
-              <option disabled selected hidde value="" selected>Select one category </option>
+              <option disabled selected hidde value="" selected>Seleccione un curso</option>
+              <option value="OCTAVO AÑO DE EDUCACIÓN GENERAL BÁSICA">OCTAVO AÑO DE EDUCACIÓN GENERAL BÁSICA</option>
+              <option value="NOVENO AÑO DE EDUCACIÓN GENERAL BÁSICA">NOVENO AÑO DE EDUCACIÓN GENERAL BÁSICA</option>
+              <option value="DÉCIMO AÑO DE EDUCACIÓN GENERAL BÁSICA">DÉCIMO AÑO DE EDUCACIÓN GENERAL BÁSICA</option>
               <option value="BÁSICO SUPERIOR INTENSIVO">BÁSICO SUPERIOR INTENSIVO</option>
-              <option value="1ER AÑO DE BACHILLERATO">1ER AÑO DE BACHILLERATO</option>
-              <option value="2DO AÑO DE BACHILLERATO">2DO AÑO DE BACHILLERATO</option>
-              <option value="3ER AÑO DE BACHILLERATO">3ER AÑO DE BACHILLERATO</option>
+              <option value="PRIMER AÑO DE BACHILLERATO GENERAL UNIFICADO">PRIMER AÑO DE BACHILLERATO GENERAL UNIFICADO</option>
+              <option value="SEGUNDO AÑO DE BACHILLERATO GENERAL UNIFICADO">SEGUNDO AÑO DE BACHILLERATO GENERAL UNIFICADO</option>
+              <option value="TERCER AÑO DE BACHILLERATO GENERAL UNIFICADO">TERCER AÑO DE BACHILLERATO GENERAL UNIFICADO</option>
             </select>
 
             <input class="form-control col-lg-3 " style="margin-left: 3%" placeholder="Paralelo" type=" text" #Curso="ngModel" [(ngModel)]="curso_register.paralelo"

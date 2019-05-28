@@ -55,8 +55,8 @@ function saveDocente(req, res) {
                             });
                             count++;
                             docente.codigo = "CODD" + count;
-                            docente.nombre = params.nombre;
-                            docente.apellido = params.apellido;
+                            docente.nombre = params.nombre.toUpperCase();
+                            docente.apellido = params.apellido.toUpperCase();
                             docente.correo = params.correo;
                             docente.contrasena = params.contrasena;
                             docente.tel_celular = params.tel_celular;
