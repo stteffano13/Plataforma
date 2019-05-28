@@ -98,46 +98,45 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // vectores de materias
 
   public arrayOctavo = [
-    "Ciencias Sociales",
-    "Informática",
-    'Matemáticas',
-    'Lenguaje y Comunicación',
-    "Educación para la Ciudadanía"];
+    "CIENCIAS SOCIALES",
+    "INFORMATICA",
+    'MATEMATICAS',
+    'LENGUAJE Y COMUNICACIÓN',
+    "EDUCACIÓN PARA LA CIUDADANÍA"];
 
 
   public array1Bach = [
-    "Fisica",
-    "Quimica",
-    "Educacion para la ciudadanía",
-    "Ingles",
-    "Biologia",
-    "Lengua y Literatura",
-    "Historia",
-    "Emprendimiento y Gestion"
+    "FÍSICA",
+    "QUIMICA",
+    "EDUCACIÓN PARA LA CIUDADANÍA",
+    "INGLÉS",
+    "BIOLOGÍA",
+    "LENGUA Y LITERATURA",
+    "HISTORIA",
+    "EMPRENDIMIENTO Y GESTIÓN"
   ];
 
 
   public array2Bach = [
-    "Fisica",
-    "Quimica",
-    "Educacion para la ciudadanía",
-    "Ingles",
-    "Biologia",
-    "Lengua y Literatura",
-    "Historia",
-    "Emprendimiento y Gestion"
-
+    "FÍSICA",
+    "QUÍMICA",
+    "EDUCACIÓN PARA LA CIUDADANÍA",
+    "INGLÉS",
+    "BIOLOGÍA",
+    "LENGUA Y LITERATURA",
+    "HISTORIA",
+    "EMPRENDIMIENTO Y GESTIÓN"
   ];
 
   public array3Bach = [
-    "Fisica",
-    "Quimica",
-    "Educacion para la ciudadanía",
-    "Ingles",
-    "Biologia",
-    "Lengua y Literatura",
-    "Historia",
-    "Emprendimiento y Gestion"
+    "FÍSICA",
+    "QUÍMICA",
+    "EDUCACIÓN PARA LA CIUDADANÍA",
+    "INGLÉS",
+    "BIOLOGÍA",
+    "LENGUA Y LITERATURA",
+    "HISTORIA",
+    "EMPRENDIMIENTO Y GESTIÓN"
 
   ];
 

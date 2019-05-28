@@ -166,7 +166,7 @@
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 0%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
         <div class="  form-control ">
           <h4>{{this.Titulo2}} </h4>
@@ -441,12 +441,12 @@
         </tbody>
       </table>
       <div *ngIf="banderTabla1" class="col-md-7" style="text-align: right;">
-        <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Guardar el registro de notas</button>
+        <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Calcular el registro de notas</button>
         <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
           Cancelar</button>
 
         <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
-          Finalizar</button>
+          Guardar Registro</button>
       </div>
     </div>
 <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 1 ============================================-->
@@ -624,7 +624,7 @@
 
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
 
-    <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 2%; font-size: 80%; width: 90%; margin-left: 5%">
+    <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 1%; font-size: 80%; width: 90%; margin-left: 5%">
 
       <div class="  form-control form-inline">
         <h4>{{this.Titulo2}} </h4>
@@ -1150,12 +1150,12 @@
 
 
     <div *ngIf="banderTabla2" class="col-md-7" style="text-align: right;">
-      <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar2"> Guardar el registro de notas</button>
+      <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar2"> Calcular el registro de notas</button>
       <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="habilitarGRB()">
         Cancelar</button>
 
       <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="registroNotasB()">
-        Finalizar</button>
+        Guardar Registro</button>
     </div>
 
 
