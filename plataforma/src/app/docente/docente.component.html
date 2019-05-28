@@ -29,11 +29,7 @@
 
       <ul class="navbar-nav ml-auto">
           
-        <li>
-              <button (click)="generarPdf()">pdf</button>
-              </li>
 
-            
         <li>
           <p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
@@ -440,18 +436,21 @@
           </tr>
         </tbody>
       </table>
-      <div *ngIf="banderTabla1" class="col-md-7" style="text-align: right;">
+      <div *ngIf="banderTabla1" class="col-md-12" style="text-align: center;">
         <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Calcular el registro de notas</button>
-        <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
+       
+        <button class="btn btn-secondary" style=" padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
           Cancelar</button>
 
-        <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
+        <button class="btn btn-success" style=" padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
           Guardar Registro</button>
+
+          <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" class="btn btn-primary" (click)="generarPdf()">Eportar pdf</button>
       </div>
     </div>
 <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 1 ============================================-->
 
-<table  id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: -100%; font-size: 100% ; width: 90% ; margin-left: 5%">
+<table  id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 90% ; width: 90% ; margin-left: 5%">
 
     <div class="  form-control ">
       <h4>{{this.Titulo2}} </h4>
@@ -489,9 +488,9 @@
         <th style="color: white" >20%</th>
         <th style="color: white" >P2</th>
         <th style="color: white" >PT</th>
-        <th style="color: white" >ExSuple</th>
-        <th style="color: white" >ExRem</th>
-        <th style="color: white">ExGracia</th>
+        <th style="color: white" >ExS</th>
+        <th style="color: white" >ExR</th>
+        <th style="color: white">ExG</th>
       </tr>
     </thead>
     <tbody>
@@ -1149,19 +1148,21 @@
     </table>
 
 
-    <div *ngIf="banderTabla2" class="col-md-7" style="text-align: right;">
+    <div *ngIf="banderTabla2" class="col-md-12" style="text-align: center;">
       <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar2"> Calcular el registro de notas</button>
       <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="habilitarGRB()">
         Cancelar</button>
 
       <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="registroNotasB()">
         Guardar Registro</button>
+
+        <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar2" class="btn btn-primary" (click)="generarPdf()">Eportar pdf</button>
     </div>
 
 
     <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 2 ============================================-->
    
-    <table  id="results2"  *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: -100%; font-size: 80%; width: 90%; margin-left: 5%">
+    <table  id="results2"  *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 70%; width: 100%; margin-left: 0%">
 
         <div class="  form-control form-inline">
           <h4>{{this.Titulo2}} </h4>
@@ -1258,9 +1259,9 @@
               <th style="color: white ;  padding-left:0.3%;" >20%</th>
               <th style="color: white; padding-left:0.3%;" >P2</th>
               <th style="color: white; padding-left:0.3%;" >PT</th>
-              <th style="color: white; padding-left:0.3%;" >ExSup</th>
-              <th style="color: white; padding-left:0.3%;" >ExReme</th>
-              <th style="color: white; padding-left:0.3%;" >ExGrac</th>
+              <th style="color: white; padding-left:0.3%;" >ExS</th>
+              <th style="color: white; padding-left:0.3%;" >ExR</th>
+              <th style="color: white; padding-left:0.3%;" >ExG</th>
       
             </tr>
           </thead>

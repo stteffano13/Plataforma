@@ -1382,10 +1382,10 @@ public identity;
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
     doc.fromHTML("<h4>MATERIA: " + this.Titulo2+"</h4>", 250, 75);
     doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido+" "+this.identity.nombre+"</h4>",250,100);
-
+    var cont = this.listadoEstudianteNotas.length;
     if( this.banderTabla1){
    
-
+    
     html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
       var img = canvas.toDataURL("image/png");
       var context = canvas.getContext("2d");
@@ -1397,7 +1397,7 @@ public identity;
       context["msImageSmoothingEnabled"] = false
      
       // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 30, 150, 580, 150);
+      doc.addImage(img, 'JPEG', 30, 150, 580, 60 * cont);
       doc.save('testCanvas.pdf');
     });
 
@@ -1416,7 +1416,7 @@ public identity;
       context["msImageSmoothingEnabled"] = false
      
       // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 18, 130, 580, 120);
+      doc.addImage(img, 'JPEG', 18, 130, 580, 70 * cont);
       doc.save('testCanvas.pdf');
     });
 
