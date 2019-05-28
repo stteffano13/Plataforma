@@ -654,12 +654,12 @@
 
           </tr>
         </tbody>
-        <br>
-        <div  class="col-md-12" style="text-align: center;">
-          <button class="btn btn-primary" (click)="generarPdf()">Generar reporte en PDF de las calificaciones</button>
-    </div>
+        
       </table>
-
+      <br>
+      <div *ngIf="banderTabla1" class="col-md-12" style="text-align: center;">
+        <button class="btn btn-primary" (click)="generarPdf()">Generar reporte en PDF de las calificaciones</button>
+  </div>
     </div>
 
     <!--------------------------------- TTABLA DE EMERGENCIA UNO------------------------------------- -->
@@ -1114,18 +1114,18 @@
 
         </tr>
       </tbody>
-      <br>
-      
-      <div  class="col-md-12" style="text-align: center;">
-      <button class="btn btn-primary" (click)="generarPdf()">Generar reporte en PDF de las calificaciones</button>
-</div>
-    </table>
 
+    </table>
+    <br>
+      
+    <div    *ngIf="banderTabla2" class="col-md-12" style="text-align: center;">
+    <button class="btn btn-primary" (click)="generarPdf()">Generar reporte en PDF de las calificaciones</button>
+</div>
     
 <!--------------------------------- TTABLA DE EMERGENCIA dos------------------------------------- -->
   
 
-<table  id="results2" *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 20%; font-size: 80%; width: 100%; margin-left: 0%">
+<table  id="results2" *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: -100%; font-size: 80%; width: 100%; margin-left: 0%">
 
 
     <thead>
