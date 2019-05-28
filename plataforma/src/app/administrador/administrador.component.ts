@@ -220,8 +220,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // servicios excel
 
   data: any = [{
-    eid: 'e101',
-    ename: 'ravi',
+    eid: this.listadoEstudiantes,
+    ename: this.listadoMateriasCurso,
     esal: 1000
     },{
     eid: 'e102',
