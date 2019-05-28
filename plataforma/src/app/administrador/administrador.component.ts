@@ -1693,7 +1693,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         if (curso[1].indexOf("SEGUNDO") != -1) {
           this.vectorlistadoMaterias = this.array2Bach;
         } else {
-          if (curso[1].indexOf("TERCERO") != -1) {
+          if (curso[1].indexOf("TERCER") != -1) {
             this.vectorlistadoMaterias = this.array3Bach;
           }
         }
