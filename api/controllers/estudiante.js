@@ -124,7 +124,7 @@ function loginEstudiante(req, res) {
     //console.log(params.getHash);
 
 
-    Estudiante.findOne({ correo: correo }, (err, user) => {
+    Estudiante.findOne({ cedula: correo }, (err, user) => {
         if (err) {
             //console.log("aqui hay un error en la peticion");
             res.status(500).send({
