@@ -151,7 +151,7 @@ function buscarNotas(req, res) {
 
           vectorNotas.push(notas)
           if (cont2 == Object.keys(paramsi.buscar).length) {
-           
+           console.log("ver notas que regresa", vectorNotas)
             res.status(200).send({
               vectorNotas
             });

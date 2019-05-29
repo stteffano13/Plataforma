@@ -78,7 +78,7 @@ function saveEstudiante(req, res) {
                                         estudiante.save((err, userStored) => {
                                             if (err) {
                                                 res.status(500).send({
-                                                    message: 'Errro al guardadr estudiante'
+                                                    message: 'Error al guardadr estudiante'
                                                 });
                                             } else {
                                                 if (!userStored) {
@@ -208,7 +208,7 @@ function busquedaEstudiantes(req, res) {
             (err, estudiantes) => {
                 if (err) {
                     res.status(500).send({
-                        message: "Error al obtener Docentes"
+                        message: "Error al obtener Estudiantes"
                     });
 
                 } else {
@@ -394,13 +394,13 @@ function getEstudiantes(req, res) {
     var message = Estudiante.find().exec((err, listadoEstudiantes) => {
         if (err) {
             return res.status(500).send({
-                message: 'No se ha podido obtener las ultimas ofertas'
+                message: 'No se ha podido obtener Estudiantes'
             });
         }
 
         if (!listadoEstudiantes) {
             return res.status(200).send({
-                message: 'No tiene ofertas'
+                message: 'No tiene Estudiantes'
             });
         }
 

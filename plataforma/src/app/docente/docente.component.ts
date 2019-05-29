@@ -1085,6 +1085,7 @@ export class DocenteComponent implements OnInit, DoCheck {
             materia: busqueda[1],
             buscar: this.listadoEstudianteMatriculas
           }
+          console.log("objeto para buscar notas", objBuscarNotas);
           this.traerNotasB(objBuscarNotas);
           this.DescripcionInsumosB();
         }
@@ -1124,15 +1125,16 @@ export class DocenteComponent implements OnInit, DoCheck {
         this.loading = false;
         this.listadoEstudianteNotas = response.vectorNotas;
 
+        console.log("notas que traen",this.listadoEstudianteNotas);
         //  ordenar
         let i = 0;
         this.listadoEstudianteMatriculas.forEach(elementE => {
 
           this.listadoEstudianteNotas.forEach(element => {
 
-            console.log("elementoE", elementE.estudiante._id, "elemento", element[0])
-
-            if (elementE.estudiante._id == element[0].estudiante) {
+            //console.log("elementoE", elementE.estudiante._id, "elemento", element[0].estudiante)
+if(element[0] != null){
+            if (elementE.estudiante._id == element[0].estudiante   ) {
               this.object[i].insumo1 = element[0].insumo1;
               this.object[i].insumo2 = element[0].insumo2;
               this.object[i].insumo3 = element[0].insumo3;
@@ -1161,6 +1163,7 @@ export class DocenteComponent implements OnInit, DoCheck {
               i++;
 
             }
+          }
           });
         });
 
@@ -1439,5 +1442,8 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
 
 
+  recargar() {
+    location.reload();
+  }
 
 }

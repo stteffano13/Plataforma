@@ -1711,5 +1711,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(this.data, 'sample');
   }
+  recargar() {
+    location.reload();
+  }
 
 }

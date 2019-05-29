@@ -85,7 +85,7 @@ function saveInsumos2(params, res) {
 
 
 function updateInsumos(insumos, params, res) {
-    console.log("estos son losinsumos que viene", params);
+ 
     params._id = insumos._id;
 
     Insumo.findByIdAndUpdate(insumos._id, params, (err, insumoUpdate) => {
@@ -133,7 +133,7 @@ function getDiscInsumo(req, res) {
 
             if (!insumos) {
                 return res.status(200).send({
-                    message: 'No existe descripcion algna de insumos'
+                    message: 'No existe descripcion de insumos'
                 });
             }
 

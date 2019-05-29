@@ -117,7 +117,7 @@
     <div  class="container-fluid">
 
       <!-- Division Principal-->
-      <div class="rows1" style="width: 70%; height: 70vh; margin-left: 12%" *ngIf="imagen"> </div>
+    
 
 
 <h1  style="margin-top: 5%">{{identity.nombre}} {{identity.apellido}} </h1>
@@ -1445,27 +1445,7 @@
 
   <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
   <!-- ====================================================                     GUARDADO CORRECTAMENTE =================================-->
-  <button id="openModalCorrecto" [hidden]="true" data-toggle="modal" data-target="#ModalCorrecto">Correcto</button>
-  <div class="modal fade" id="ModalCorrecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Correcto</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div style="width: 100%; border: 0; background-color: white;" disabled class="modal-body">
-          <input style="width: 100%; border: 0; background-color: white;" disabled type="text" #MensajeCorrecto="ngModel" [(ngModel)]="this.mensajecorrectomodals"
-            name="mensajecorrecto">
-        </div>
-        <div class="modal-footer">
-          <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
-          <button class="btn btn-primary" type="button" data-dismiss="modal">Ok</button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 
   <!-- ====================================================                     ERROR =================================-->
   <!-- ====================================================                     ERROR =================================-->
