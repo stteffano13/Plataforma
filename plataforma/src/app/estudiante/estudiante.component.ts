@@ -65,6 +65,8 @@ export class EstudianteComponent implements OnInit, DoCheck {
     private _notaService: NotaService, private _estudianteServices: EstudianteService, private _insumoService: InsumoService) { }
 
   ngOnInit() {
+    
+    this.loading = true;
     this.getListadoMisMaterias();
     this.getPeriodoActual();
 
@@ -103,7 +105,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
           for (let i = 0; i <= Object.keys(this.vectorListadoMisMaterias).length; i++) {
 
-            this.object.push(this.obj = new Nota("", "", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
             console.log("estos son los seros del objeto", this.object);
           }
@@ -115,7 +117,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
           for (let i = 0; i < Object.keys(this.vectorListadoMisMaterias).length; i++) {
 
-            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -135,7 +137,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     this._notaService.buscarNotasEstudiante(periodo).subscribe(
       response => {
-        this.loading = false;
+       
         this.listadoNotas = response.notas;
 
 
