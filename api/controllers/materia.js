@@ -183,13 +183,13 @@ function busquedaMateria(req, res) {
         }).exec((err, materias) => {
             if (err) {
                 return res.status(500).send({
-                    message: 'No se han podido obtener sus Viajes'
+                    message: 'No se han podido obtener Materias'
                 });
             }
 
             if (!materias) {
                 return res.status(200).send({
-                    message: 'No tiene viajes'
+                    message: 'No tiene materias'
                 });
             }
 
@@ -214,17 +214,16 @@ function getListadoMioMaterias(req, res) {
         var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
             if (err) {
                 return res.status(500).send({
-                    message: 'No se han podido obtener sus Viajes'
+                    message: 'No se han podido obtener Materias'
                 });
             }
     
             if (!periodo) {
                 return res.status(200).send({
-                    message: 'No tiene viajes'
+                    message: 'No tiene Materias'
                 });
             }else{
 
-                console.log("todo ready entre a buscar",periodo[0].periodo);
                 var materia = Materia.find({
                     '$and': [{ docente: busqueda }, { estado: '0' },{periodo: periodo[0].periodo}]
                 }).populate({
@@ -232,13 +231,13 @@ function getListadoMioMaterias(req, res) {
                 }).exec((err, materias) => {
                     if (err) {
                         return res.status(500).send({
-                            message: 'No se han podido obtener sus Viajes'
+                            message: 'No se han podido obtener Materias'
                         });
                     }
         
                     if (!materias) {
                         return res.status(200).send({
-                            message: 'No tiene viajes'
+                            message: 'No tiene Materias'
                         });
                     } else {
                         
@@ -267,7 +266,6 @@ function updateMateria(req, res) {
     var update = req.body;
     var messageId = req.params.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
 
-    console.log("antes de eliminar matricula", messageId);
 
     var update = req.body;
 
@@ -305,13 +303,13 @@ function getListadoMateriasCurso(req, res)
         var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
             if (err) {
                 return res.status(500).send({
-                    message: 'No se han podido obtener sus Viajes'
+                    message: 'No se han podido obtener periodo'
                 });
             }
     
             if (!periodo) {
                 return res.status(200).send({
-                    message: 'No tiene viajes'
+                    message: 'No tiene periodos'
                 });
             }else{
 
@@ -323,13 +321,13 @@ function getListadoMateriasCurso(req, res)
                 }).exec((err, materias) => {
                     if (err) {
                         return res.status(500).send({
-                            message: 'No se han podido obtener sus Viajes'
+                            message: 'No se han podido obtener Materias'
                         });
                     }
         
                     if (!materias) {
                         return res.status(200).send({
-                            message: 'No tiene viajes'
+                            message: 'No tiene Materias'
                         });
                     } else {
                         

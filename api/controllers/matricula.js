@@ -99,7 +99,7 @@ function guardarSegundo(idE, idC, params, res) {
                 var array = Matricula.find((err, users) => {
                     if (err) {
                         res.status(500).send({
-                            message: "Error al guardar Usuario"
+                            message: "Error al  buscar matricula de estudainte"
                         });
                     } else {
                         if (users) {
@@ -107,7 +107,7 @@ function guardarSegundo(idE, idC, params, res) {
 
 
                             users.forEach(element => {
-                                console.log("numero de regsitros", count);
+                                
                                 count++
                             });
                             count++;
@@ -184,13 +184,13 @@ function busquedaMatriculas(req, res) {
         }).exec((err, matriculas) => {
             if (err) {
                 return res.status(500).send({
-                    message: 'No se han podido obtener sus Viajes'
+                    message: 'No se han podido obtener su matricula'
                 });
             }
 
             if (!matriculas) {
                 return res.status(200).send({
-                    message: 'No tiene viajes'
+                    message: 'No tiene matriculas'
                 });
             }
 
@@ -245,13 +245,13 @@ function getEstudiantesMatriculas(req, res) {
         var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
             if (err) {
                 return res.status(500).send({
-                    message: 'No se han podido obtener sus Viajes'
+                    message: 'No se han podido obtener periodo'
                 });
             }
 
             if (!periodo) {
                 return res.status(200).send({
-                    message: 'No tiene viajes'
+                    message: 'No tiene periodos'
                 });
             } else {
                 console.log(periodo);
@@ -266,13 +266,13 @@ function getEstudiantesMatriculas(req, res) {
                 }).sort({ $natural: -1 }).exec((err, matriculas) => {
                     if (err) {
                         return res.status(500).send({
-                            message: 'No se han podido obtener sus Viajes'
+                            message: 'No se han podido obtener sus Matriculas'
                         });
                     }
 
                     if (!matriculas) {
                         return res.status(200).send({
-                            message: 'No tiene viajes'
+                            message: 'No tiene matriculas'
                         });
                     }
 
@@ -315,7 +315,7 @@ function getlistadoMateriasE(req, res) {
 
             if (!periodo) {
                 return res.status(200).send({
-                    message: 'No tiene viajes'
+                    message: 'No tiene periodos'
                 });
             } else {
                 var matriculas = Matricula.find({
@@ -327,7 +327,7 @@ function getlistadoMateriasE(req, res) {
                 }).exec((err, matriculas) => {
                     if (err) {
                         return res.status(500).send({
-                            message: 'No se han podido obtener sus Viajes'
+                            message: 'No se han podido obtener su matricula'
                         });
                     }
         
@@ -370,7 +370,7 @@ function getListadoMioMateriasE(req, res, busquedaE) {
         var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
             if (err) {
                 return res.status(500).send({
-                    message: 'No se han podido obtener sus Viajes'
+                    message: 'No se han podido obtener sus periodos'
                 });
             }
 
@@ -388,13 +388,13 @@ function getListadoMioMateriasE(req, res, busquedaE) {
                 }).exec((err, materias) => {
                     if (err) {
                         return res.status(500).send({
-                            message: 'No se han podido obtener sus Viajes'
+                            message: 'No se han podido obtener sus Materias'
                         });
                     }
 
                     if (!materias) {
                         return res.status(200).send({
-                            message: 'No tiene viajes'
+                            message: 'No tiene materias'
                         });
                     } else {
 

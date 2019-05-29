@@ -30,7 +30,7 @@ function saveCurso(req, res) {
                 var array = Curso.find((err, users) => {
                     if (err) {
                         res.status(500).send({
-                            message: "Error al guardar Usuario"
+                            message: "Error al guardar Curso"
                         });
                     } else {
                         if (users) {
@@ -97,13 +97,13 @@ function getCursos(req, res) {
     var message = Curso.find({estado:"0"}).exec((err, listadoCursos) => {
         if (err) {
             return res.status(500).send({
-                message: 'No se ha podido obtener las ultimas ofertas'
+                message: 'No se ha podido obtener los cursos'
             });
         }
 
         if (!listadoCursos) {
             return res.status(200).send({
-                message: 'No tiene ofertas'
+                message: 'No tiene cursos'
             });
         }
 
@@ -120,12 +120,12 @@ function updateCurso(req, res) {
   
     var messageId = req.body.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
   
-  console.log("antes de eliminar el curso", req.body.id);
+
 
   var message = Curso.find({'$and':[{codigo: messageId},{estado: 0}]}).exec((err, curso) => {
     if (err) {
         return res.status(500).send({
-            message: 'No se ha podido obtener el curso'
+            message: 'No se ha podido actualizar el curso'
         });
     }
 
@@ -154,8 +154,7 @@ function updateCurso(req, res) {
                 
                     } else {
                       if (!matricula) {
-                          console.log("ya vamos a ver ", matricula);
-                       
+                          
                         Curso.findByIdAndUpdate(curso[0]._id, curso[0], (err, cursoUpdate) => {
   
                             if (err) {

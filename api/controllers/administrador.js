@@ -88,7 +88,7 @@ function loginAdministrador(req, res) {
         if (err) {
             //console.log("aqui hay un error en la peticion");
             res.status(500).send({
-                message: 'Error al Autenticar Usuario revisa la conexion.'
+                message: 'Error al Autenticar Usuario, revisa la conexion.'
             });
         } else {
             if (!user) {
@@ -174,14 +174,14 @@ function savePeriodoLectivoActual(req, res) {
                 periodo.save((err, periodosave) => {
                     if (err) {
                         return res.status(500).send({
-                            message: 'Error al asignar viaje'
+                            message: 'Error al guardar periodo'
                         });
 
                     }
 
                     if (!periodosave) {
                         return res.status(400).send({
-                            message: 'No se asignado correctamente el viaje'
+                            message: 'No se asignado correctamente el el periodo'
                         });
                     }
                     //console.log("message guardado" + messageStored);
@@ -200,13 +200,13 @@ function getPeridoLectivoActual(req, res) {
     var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
         if (err) {
             return res.status(500).send({
-                message: 'No se han podido obtener sus Viajes'
+                message: 'No se han podido obtener su periodo actual'
             });
         }
 
         if (!periodo) {
             return res.status(200).send({
-                message: 'No tiene viajes'
+                message: 'No se encuentra el periodo actual'
             });
         }
 

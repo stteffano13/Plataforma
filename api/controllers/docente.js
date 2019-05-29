@@ -50,7 +50,7 @@ function saveDocente(req, res) {
 
 
                             users.forEach(element => {
-                                console.log("numero de regsitros", count);
+                               
                                 count++
                             });
                             count++;
@@ -191,13 +191,13 @@ function updateDocente(req, res) {
 
                 if (err) {
                     res.status(500).send({
-                        message: "Error al actualizar Usuario"
+                        message: "Error al actualizar Docente"
                     });
 
                 } else {
                     if (!userUpdate) {
                         res.status(404).send({
-                            message: "El usuario no ha podido actualizarse."
+                            message: "El docente no ha podido actualizarse."
                         });
                     } else {
                         res.status(200).send({
@@ -400,13 +400,13 @@ function getDocentes(req, res) {
     var message = Docente.find().exec((err, listadoDocentes) => {
         if (err) {
             return res.status(500).send({
-                message: 'No se ha podido obtener las ultimas ofertas'
+                message: 'No se ha podido obtener Docentes'
             });
         }
 
         if (!listadoDocentes) {
             return res.status(200).send({
-                message: 'No tiene ofertas'
+                message: 'No tiene Docentes'
             });
         }
 

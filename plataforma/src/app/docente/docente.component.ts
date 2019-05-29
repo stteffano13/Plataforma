@@ -96,9 +96,9 @@ export class DocenteComponent implements OnInit, DoCheck {
   public listadoInsumos;
   public listadoInsumosB;
 
-public identity;
+  public identity;
 
-public counter=5;
+  public counter = 5;
   ngOnInit() {
 
     this.getListadoMisMaterias();
@@ -608,7 +608,7 @@ public counter=5;
     this.object[i].estudiante = value.estudiante._id;
     this.object[i].materia = this.guardarMateriaMatricula;
     this.object[i].periodo = this.periodoLectivoActual;
-    this.object[i].pt=this.objectCalculable[i].promedioPeriodo;
+    this.object[i].pt = this.objectCalculable[i].promedioPeriodo;
     this.calculos(i);
 
   }
@@ -619,7 +619,7 @@ public counter=5;
     this.objectB[i].estudiante = value.estudiante._id;
     this.objectB[i].materia = this.guardarMateriaMatricula;
     this.objectB[i].periodo = this.periodoLectivoActual;
-    this.objectB[i].pt=this.objectCalculableB[i].promedioPeriodo;
+    this.objectB[i].pt = this.objectCalculableB[i].promedioPeriodo;
     this.calculosB(i);
 
   }
@@ -1030,7 +1030,7 @@ public counter=5;
 
     var busqueda = value.split(",");
     this.loading = true;
-    this.Titulo1 = busqueda[2]+" "+busqueda[4];
+    this.Titulo1 = busqueda[2] + " " + busqueda[4];
     this.Titulo2 = busqueda[3];
     this.guardarMateriaMatricula = busqueda[1];
 
@@ -1048,7 +1048,7 @@ public counter=5;
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0","0"));
+            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -1075,7 +1075,7 @@ public counter=5;
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0","0"));
+            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -1300,7 +1300,7 @@ public counter=5;
     this.pruebaclick();
     if (this.banderAux == false) {
 
-      console.log("notas antes de registrarse",this.object);
+      console.log("notas antes de registrarse", this.object);
 
       this._notaService.registerNota(this.object).subscribe(
         response => {
@@ -1371,7 +1371,7 @@ public counter=5;
 
 
   generarPdf() {
-
+    this.loading = true;
     var logo = new Image();
     logo.src = '../../assets/imgs/logo.png';
 
@@ -1382,58 +1382,57 @@ public counter=5;
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 190, 28);
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
-    doc.fromHTML("<h4>MATERIA: " + this.Titulo2+"</h4>", 250, 75);
-    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido+" "+this.identity.nombre+"</h4>",250,100);
+    doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
+    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 250, 100);
     var cont = this.listadoEstudianteNotas.length;
-    if( this.banderTabla1){
-   
-    
-    html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
-      var img = canvas.toDataURL("image/png");
-      var context = canvas.getContext("2d");
-      context.scale(5, 5);
-      context["imageSmoothingEnabled"] = false;
-      context["mozImageSmoothingEnabled"] = false
-      context["oImageSmoothingEnabled"] = false
-      context["webkitImageSmoothingEnabled"] = false
-      context["msImageSmoothingEnabled"] = false
-     
-      // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 30, 150, 580, 60 * cont);
-      doc.save('Reporte_Notas_Docente.pdf');
-    });
-    let intervalId = setInterval(() => {
-      this.counter = this.counter - 1;
-     
-      console.log(this.counter)
-      if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
-  }, 1000)
-    
+    if (this.banderTabla1) {
 
-  }else
-  {
-    html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
-      var img = canvas.toDataURL("image/png");
-      var context = canvas.getContext("2d");
-      context.scale(5, 5);
-      context["imageSmoothingEnabled"] = false;
-      context["mozImageSmoothingEnabled"] = false
-      context["oImageSmoothingEnabled"] = false
-      context["webkitImageSmoothingEnabled"] = false
-      context["msImageSmoothingEnabled"] = false
-     
-      // var doc = new jsPDF('l', 'mm');
-      doc.addImage(img, 'JPEG', 18, 130, 580, 70 * cont);
-      doc.save('Reporte_Notas_Docente.pdf');
-    });
-   let intervalId = setInterval(() => {
+
+      html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
+        var img = canvas.toDataURL("image/png");
+        var context = canvas.getContext("2d");
+        context.scale(5, 5);
+        context["imageSmoothingEnabled"] = false;
+        context["mozImageSmoothingEnabled"] = false
+        context["oImageSmoothingEnabled"] = false
+        context["webkitImageSmoothingEnabled"] = false
+        context["msImageSmoothingEnabled"] = false
+
+        // var doc = new jsPDF('l', 'mm');
+        doc.addImage(img, 'JPEG', 30, 150, 580, 60 * cont);
+        doc.save('Reporte_Notas_Docente.pdf');
+      });
+      let intervalId = setInterval(() => {
         this.counter = this.counter - 1;
-       
+
         console.log(this.counter)
-        if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
-    }, 1000)
-  }
-    
+        if (this.counter === 0) { clearInterval(intervalId); this.loading = false; }
+      }, 1000)
+
+
+    } else {
+      html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
+        var img = canvas.toDataURL("image/png");
+        var context = canvas.getContext("2d");
+        context.scale(5, 5);
+        context["imageSmoothingEnabled"] = false;
+        context["mozImageSmoothingEnabled"] = false
+        context["oImageSmoothingEnabled"] = false
+        context["webkitImageSmoothingEnabled"] = false
+        context["msImageSmoothingEnabled"] = false
+
+        // var doc = new jsPDF('l', 'mm');
+        doc.addImage(img, 'JPEG', 18, 130, 580, 70 * cont);
+        doc.save('Reporte_Notas_Docente.pdf');
+      });
+      let intervalId = setInterval(() => {
+        this.counter = this.counter - 1;
+
+        console.log(this.counter)
+        if (this.counter === 0) { clearInterval(intervalId); this.loading = false; }
+      }, 1000)
+    }
+
 
 
 

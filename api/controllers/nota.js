@@ -76,17 +76,17 @@ function saveNotas2(params, res, cont, paramsi) {
   nota.save((err, notaStored) => {
     if (err && cont == Object.keys(paramsi).length) {
       res.status(500).send({
-        message: 'Errro al Generar asignacion'
+        message: 'Error al guardar notas'
       });
     } else {
       if (!notaStored && cont == Object.keys(paramsi).length) {
         res.status(404).send({
-          message: 'No se ha generado la asignacion'
+          message: 'No se han guardado sus notas'
         });
       } else {
         if (cont == Object.keys(paramsi).length) {
           res.status(200).send({
-            message: 'La asignacion se ha generado correctamente'
+            message: 'Las notas se han guardado correctamente'
           });
         }
       }
@@ -115,7 +115,7 @@ function updateNotasFin(notas, params, res, cont, paramsi) {
         console.log("seguro se actualizo", cont, "contra", paramsi);
         if (cont == Object.keys(paramsi).length) {
           res.status(200).send({
-            message: "las notas se registraron correctamente."
+            message: "las notas se actualizaron correctamente."
           });
         }
       }
@@ -141,7 +141,7 @@ function buscarNotas(req, res) {
         cont3++
         if (cont == Object.keys(paramsi).length) {
           res.status(500).send({
-            message: "Error al guardar Curso"
+            message: "Error al buscar Notas"
           });
         }
       } else {
@@ -151,7 +151,7 @@ function buscarNotas(req, res) {
 
           vectorNotas.push(notas)
           if (cont2 == Object.keys(paramsi.buscar).length) {
-            console.log("estes es el vector de nbotas que regresa", vectorNotas);
+           
             res.status(200).send({
               vectorNotas
             });
@@ -278,17 +278,17 @@ function saveNotasB2(params, res, cont, paramsi) {
   notaB.save((err, notaStored) => {
     if (err && cont == Object.keys(paramsi).length) {
       res.status(500).send({
-        message: 'Errro al Generar asignacion'
+        message: 'Error al guardar notas'
       });
     } else {
       if (!notaStored && cont == Object.keys(paramsi).length) {
         res.status(404).send({
-          message: 'No se ha generado la asignacion'
+          message: 'No se han guardado las notas'
         });
       } else {
         if (cont == Object.keys(paramsi).length) {
           res.status(200).send({
-            message: 'La asignacion se ha generado correctamente'
+            message: 'Las notas se han guardado correctamente'
           });
         }
       }
@@ -312,7 +312,7 @@ function updateNotasFinB(notas, params, res, cont, paramsi) {
     } else {
       if (!notaUpdate && cont == Object.keys(paramsi).length) {
         res.status(404).send({
-          message: "la nota no ha podido actualizarse."
+          message: "las notas no ha podido actualizarse."
         });
       } else {
         console.log("seguro se actualizo", cont, "contra", paramsi);
@@ -389,7 +389,6 @@ function buscarNotasEstudiante(req, res) {
   var vectorNotas = [];
 
 
-  console.log("notas del estudiante ull params estudiante id", estudianteE, periodoE);
   Nota.find({ '$and': [{ estudiante: estudianteE }, { periodo: periodoE }] }).sort({ $natural: -1 }).exec((err, notas) => {
 
     if (err) {
