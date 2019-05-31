@@ -614,7 +614,7 @@
 
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
 
-    <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 1%; font-size: 80%; width: 90%; margin-left: 5%">
+    <table *ngIf="banderTa" class="table table-hover table-bordered table-responsive " style="margin-top: 1%; font-size: 80%; width: 90%; margin-left: 5%">
 
       <div class="  form-control form-inline">
         <h4>{{this.Titulo2}} </h4>
@@ -1153,7 +1153,7 @@
 
     <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 2 ============================================-->
    
-    <table  id="results2"  *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: -100%; font-size: 70%; width: 100%; margin-left: 0%">
+    <table  id="results2"  *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 70%; width: 100%; margin-left: 0%">
 
         <div class="  form-control form-inline">
           <h4>{{this.Titulo2}} </h4>
@@ -1188,33 +1188,32 @@
                 <th style="color: white;"># </th>
           
               <!-- parcial 1 quimestre 1-->
-              <th style="color: white;  border-right: 0; ">
-                <p style="color:#343a40; ">aaaaaaaaaaaaaaaaaaaaaaaa</p>Apellidos y Nombres </th>
+              <th style="color: white;  border-right: 0; ">Apellidos y Nombres </th>
       
       
-              <th style="color: white; padding-left:0.3%; " >I1 </th>
-              <th style="color: white; padding-left:0.3%;" >I2 </th>
-              <th style="color: white; padding-left:0.3%;">I3 </th>
-              <th style="color: white; padding-left:0.3%;">I4 </th>
-              <th style="color: white; padding-left:0.3%;">I5 </th>
-              <th style="color: white; padding-left:0.3%;" >I6 </th>
+              <th style="color: white;  " >1 </th>
+              <th style="color: white; " >2 </th>
+              <th style="color: white; ">3 </th>
+              <th style="color: white; padding-left:0.3%;">4 </th>
+              <th style="color: white; padding-left:0.3%;">5 </th>
+              <th style="color: white; padding-left:0.3%;" >6 </th>
       
       
               <!-- parcial 2 quimestre 1-->
-              <th style="color: white; padding-left:0.3%;" >I1 </th>
-              <th style="color: white; padding-left:0.3%;">I2 </th>
-              <th style="color: white; padding-left:0.3%;" >I3 </th>
-              <th style="color: white; padding-left:0.3%;" >I4 </th>
-              <th style="color: white; padding-left:0.3%;" >I5 </th>
-              <th style="color: white; padding-left:0.3%;" >I6 </th>
+              <th style="color: white; padding-left:0.3%;" >1 </th>
+              <th style="color: white; padding-left:0.3%;">2 </th>
+              <th style="color: white; padding-left:0.3%;" >3 </th>
+              <th style="color: white; padding-left:0.3%;" >4 </th>
+              <th style="color: white; padding-left:0.3%;" >5 </th>
+              <th style="color: white; padding-left:0.3%;" >6 </th>
       
               <!-- parcial 3 quimestre 1-->
-              <th style="color: white; padding-left:0.3%;" >I1</th>
-              <th style="color: white; padding-left:0.3%;" >I</th>
-              <th style="color: white; padding-left:0.3%;" >I3</th>
-              <th style="color: white; padding-left:0.3%;" >I4</th>
-              <th style="color: white; padding-left:0.3%;">I5</th>
-              <th style="color: white; padding-left:0.3%;" >I6</th>
+              <th style="color: white; padding-left:0.3%;" >1</th>
+              <th style="color: white; padding-left:0.3%;" ></th>
+              <th style="color: white; padding-left:0.3%;" >3</th>
+              <th style="color: white; padding-left:0.3%;" >4</th>
+              <th style="color: white; padding-left:0.3%;">5</th>
+              <th style="color: white; padding-left:0.3%;" >6</th>
       
               <th style="color: white;padding-left:0.3%;">80%</th>
               <th style="color: white;padding-left:0.3%;" >Ex</th>
@@ -1222,28 +1221,28 @@
               <th style="color: white;padding-left:0.3%; ">P1</th>
       
               <!-- parcial 1 quimestre 2-->
-              <th style="color: white; padding-left:0.3%;">I1 </th>
-              <th style="color: white; padding-left:0.3%;">I2 </th>
-              <th style="color: white; padding-left:0.3%;" >I3 </th>
-              <th style="color: white; padding-left:0.3%;">I4 </th>
-              <th style="color: white; padding-left:0.3%;" >I5 </th>
-              <th style="color: white; padding-left:0.3%;">I6 </th>
+              <th style="color: white; padding-left:0.3%;">1 </th>
+              <th style="color: white; padding-left:0.3%;">2 </th>
+              <th style="color: white; padding-left:0.3%;" >3 </th>
+              <th style="color: white; padding-left:0.3%;">4 </th>
+              <th style="color: white; padding-left:0.3%;" >5 </th>
+              <th style="color: white; padding-left:0.3%;">6 </th>
       
               <!-- parcial 2 quimestre 2-->
-              <th style="color: white; padding-left:0.3%;" >I1 </th>
-              <th style="color: white; padding-left:0.3%;" >I2 </th>
-              <th style="color: white; padding-left:0.3%;" >I3 </th>
-              <th style="color: white; padding-left:0.3%;" >I4 </th>
-              <th style="color: white; padding-left:0.3%;" >I5 </th>
-              <th style="color: white; padding-left:0.3%;" >I6 </th>
+              <th style="color: white; padding-left:0.3%;" >1 </th>
+              <th style="color: white; padding-left:0.3%;" >2 </th>
+              <th style="color: white; padding-left:0.3%;" >3 </th>
+              <th style="color: white; padding-left:0.3%;" >4 </th>
+              <th style="color: white; padding-left:0.3%;" >5 </th>
+              <th style="color: white; padding-left:0.3%;" >6 </th>
       
               <!-- parcial 3 quimestre 2-->
-              <th style="color: white; padding-left:0.3%;">I1 </th>
-              <th style="color: white; padding-left:0.3%;" >I2 </th>
-              <th style="color: white; padding-left:0.3%;" >I3 </th>
-              <th style="color: white; padding-left:0.3%;" >I4 </th>
-              <th style="color: white; padding-left:0.3%;" >I5 </th>
-              <th style="color: white; padding-left:0.3%;">I6 </th>
+              <th style="color: white; padding-left:0.3%;">1 </th>
+              <th style="color: white; padding-left:0.3%;" >2 </th>
+              <th style="color: white; padding-left:0.3%;" >3 </th>
+              <th style="color: white; padding-left:0.3%;" >4 </th>
+              <th style="color: white; padding-left:0.3%;" >5 </th>
+              <th style="color: white; padding-left:0.3%;">6 </th>
       
               <th style="color: white; padding-left:0.3%; ">80% </th>
               <th style="color: white ;  padding-left:0.3%;" >Ex</th>
@@ -1259,7 +1258,7 @@
         <tbody>
           <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index; let listadoN of listadoEstudianteNotas">
             <th scope="row">{{i}}</th>
-            <td colspan="1" valign="middle" >{{listado.estudiante.apellido}} {{listado.estudiante.nombre}} </td>
+            <td colspan="1" >{{listado.estudiante.apellido}} {{listado.estudiante.nombre}} </td>
   
   
             <td id="tdfila">

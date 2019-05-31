@@ -1408,36 +1408,31 @@ export class DocenteComponent implements OnInit, DoCheck {
 
 
 
-
-
     } else {
-      html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
-        var img = canvas.toDataURL("image/png");
-        var context = canvas.getContext("2d");
-        context.scale(5, 5);
-        context["imageSmoothingEnabled"] = false;
-        context["mozImageSmoothingEnabled"] = false
-        context["oImageSmoothingEnabled"] = false
-        context["webkitImageSmoothingEnabled"] = false
-        context["msImageSmoothingEnabled"] = false
+     
 
-        // var doc = new jsPDF('l', 'mm');
-        doc.addImage(img, 'JPEG', 18, 130, 580, 70 * cont);
-        doc.save('Reporte_Notas_Docente.pdf');
-      });
-      let intervalId = setInterval(() => {
-        this.counter = this.counter - 1;
-
-        console.log(this.counter)
-        if (this.counter === 0) { clearInterval(intervalId); this.loading = false; }
-      }, 1000)
-    }
+      doc.autoTable({ html: '#results2', startY: 150, styles: {
+        overflow: 'linebreak',
+        fontSize: 4,
+        rowHeight: 1,
+       columnWidth: 'auto'
+      }
+      
+      } );
+      var pageHeight = doc.internal.pageSize.height;
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight-pageHeight/6);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight-pageHeight/6);
+      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight-pageHeight/8);
+      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight-pageHeight/8);
+      this.loading = false;
+      
+      doc.save('Reporte_Notas_Docente.pdf');
 
 
 
 
   }
-
+  }
 
   recargar() {
     location.reload();
