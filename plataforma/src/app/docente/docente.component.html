@@ -165,7 +165,7 @@
       <!-- ====================================================    Tabla para Notas 1 ============================================-->
 
 
-      <table *ngIf="" class="table table-hover table-bordered table-responsive" style="margin-top: 0%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 0%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
         <div class="form-control ">
           <h4>{{this.Titulo2}} </h4>
@@ -441,19 +441,20 @@
       </table>
       <div *ngIf="banderTabla1" class="col-md-12" style="text-align: center;">
         <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar"> Calcular el registro de notas</button>
-       
+       <br>
         <button class="btn btn-secondary" style=" padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
-          Cancelar</button>
-
+          Cancelar</button> &nbsp;&nbsp;&nbsp;
+          
         <button class="btn btn-success" style=" padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
-          Guardar Registro</button>
+          Guardar Registro</button>&nbsp;&nbsp;&nbsp;
 
           <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" class="btn btn-primary" (click)="generarPdf()">Eportar pdf</button>
-      </div>
+     <br><br><br>
+        </div>
     </div>
 <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 1 ============================================-->
 
-<table  id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: 10%; font-size: 60% ; width: 95% ; margin-left: 3%">
+<table  id="results" *ngIf="banderTabla1" class="table table-hover table-bordered table-responsive" style="margin-top: -1000%; font-size: 60% ; width: 95% ; margin-left: 3%">
 
     <div class="  form-control ">
       <h4>{{this.Titulo2}} </h4>
@@ -606,20 +607,7 @@
 
       
     </tbody>
-<br>
-<br>
-<br>
-<br>
-<br>
-    <h4 style="text-align: center">------------------------------ &nbsp;&nbsp;&nbsp;&nbsp;  ------------------------------</h4>
 
-   <p style="text-align:center">  DOCENTE   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
-      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     
-    
-     &nbsp;&nbsp;&nbsp; RECTOR </p>
   </table>
 
 
