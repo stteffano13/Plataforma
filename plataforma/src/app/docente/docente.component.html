@@ -614,7 +614,7 @@
 
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
 
-    <table *ngIf="banderTa" class="table table-hover table-bordered table-responsive " style="margin-top: 1%; font-size: 80%; width: 90%; margin-left: 5%">
+    <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 1%; font-size: 80%; width: 90%; margin-left: 5%">
 
       <div class="  form-control form-inline">
         <h4>{{this.Titulo2}} </h4>
@@ -1147,13 +1147,13 @@
       <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="registroNotasB()">
         Guardar Registro</button>
 
-        <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar2" class="btn btn-primary" (click)="generarPdf()">Eportar pdf</button>
+        <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar2" class="btn btn-primary" (click)="generarPdf()">Exportar pdf</button>
     </div>
 
 
     <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 2 ============================================-->
    
-    <table  id="results2"  *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 10%; font-size: 70%; width: 100%; margin-left: 0%">
+    <table  id="results2"  *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: -1000%; font-size: 70%; width: 100%; margin-left: 0%">
 
         <div class="  form-control form-inline">
           <h4>{{this.Titulo2}} </h4>

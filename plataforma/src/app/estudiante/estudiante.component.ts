@@ -32,7 +32,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
   public loading;
   public periodoLectivoActual;
   public vectorListadoMisMaterias;
-  public listadoNotas;
+  public listadoNotas: any;
   public Titulo;
   public identity;
 
@@ -63,24 +63,21 @@ export class EstudianteComponent implements OnInit, DoCheck {
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService, private _estudianteServices: EstudianteService, private _insumoService: InsumoService
-  
+
   ) { }
 
   ngOnInit() {
-    
+
     this.loading = true;
     this.getListadoMisMaterias();
     this.getPeriodoActual();
+   
 
     this.identity = this._estudianteServices.getIdentity();
   }
 
   ngDoCheck() {
-    //this.loading = true;
-    //this.getListadoMisMaterias();
-   // this.getPeriodoActual();
-
-   // this.identity = this._estudianteServices.getIdentity()
+    document.getElementById("btnTraerNotas").click();
   }
   getPeriodoActual() {
 
@@ -99,6 +96,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
   getListadoMisMaterias() {
 
+    this.loading = true;
     this.vectorListadoMisMaterias = [];
     this._matriculaServices.getListadoMioMateria().subscribe(response => {
 
@@ -115,7 +113,10 @@ export class EstudianteComponent implements OnInit, DoCheck {
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
             console.log("estos son los seros del objeto", this.object);
           }
-          this.traerNotas(this.periodoLectivoActual);
+        
+
+         // this.traerNotas();
+          //  this.traerNotas(this.periodoLectivoActual);
         } else {
           this.banderTabla1 = false;
           this.banderTabla2 = true;
@@ -138,15 +139,14 @@ export class EstudianteComponent implements OnInit, DoCheck {
   }
 
 
-  traerNotas(periodo) {
-
-
+  traerNotas() {
+    var periodo = this.periodoLectivoActual;
     this._notaService.buscarNotasEstudiante(periodo).subscribe(
       response => {
-       
+
         this.listadoNotas = response.notas;
 
-
+        
         console.log("listado notas", this.listadoNotas, "vector materias", this.vectorListadoMisMaterias);
         //  ordenar
         let i = 0;
@@ -189,9 +189,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
           });
         });
 
-
-
         this.loading = false;
+
+      
 
       },
       error => {
@@ -588,7 +588,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
     var cont = this.vectorListadoMisMaterias.length;
 
     if (this.banderTabla1) {
-     
+
 
       html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
         var img = canvas.toDataURL("image/png");
@@ -604,19 +604,19 @@ export class EstudianteComponent implements OnInit, DoCheck {
         doc.addImage(img, 'JPEG', 30, 150, 580, 30 * cont);
 
         doc.save('Reporte_Notas_Alumno.pdf');
-        
+
       }
       );
 
       let intervalId = setInterval(() => {
         this.counter = this.counter - 1;
-       
-        console.log(this.counter)
-        if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
-    }, 1000)
 
-        
-        console.log("contador");
+        console.log(this.counter)
+        if (this.counter === 0) { clearInterval(intervalId); this.loading = false; }
+      }, 1000)
+
+
+      console.log("contador");
 
     } else {
       html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {
@@ -635,10 +635,10 @@ export class EstudianteComponent implements OnInit, DoCheck {
       });
       let intervalId = setInterval(() => {
         this.counter = this.counter - 1;
-       
+
         console.log(this.counter)
-        if(this.counter === 0) {clearInterval(intervalId);  this.loading=false;}
-    }, 1000)
+        if (this.counter === 0) { clearInterval(intervalId); this.loading = false; }
+      }, 1000)
 
     }
 
@@ -683,8 +683,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
   }
-apagar()
-{
-  this.loading=false;
-}
+  apagar() {
+    this.loading = false;
+  }
 }

@@ -1124,8 +1124,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       response => {
         this.loading = false;
         this.listadoEstudianteNotas = response.vectorNotas;
-
-        console.log("notas que traen", this.listadoEstudianteNotas);
+        console.log("listadoEstudainteMatricula", this.listadoEstudianteMatriculas, "listadoEstudianteNotas", this.listadoEstudianteNotas);
         //  ordenar
         let i = 0;
         this.listadoEstudianteMatriculas.forEach(elementE => {
@@ -1160,11 +1159,12 @@ export class DocenteComponent implements OnInit, DoCheck {
                 this.object[i].examenGracia = element[0].examenGracia;
 
                 this.calculosInit(i);
-                i++;
+                
 
               }
             }
           });
+          i++;
         });
 
 
@@ -1206,6 +1206,7 @@ export class DocenteComponent implements OnInit, DoCheck {
         console.log(this.listadoEstudianteMatriculas);
         //  ordenar
         let i = 0;
+      
         this.listadoEstudianteMatriculas.forEach(elementE => {
 
           this.listadoEstudianteNotas.forEach(element => {
@@ -1264,11 +1265,12 @@ export class DocenteComponent implements OnInit, DoCheck {
                 this.objectB[i].examenGracia = element[0].examenGracia;
 
                 this.calculosBInit(i);
-                i++;
+                
 
               }
             }
           });
+          i++;
         });
 
 

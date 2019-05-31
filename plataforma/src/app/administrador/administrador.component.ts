@@ -313,8 +313,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.imagen = false;
       this.busquedaDocente();
       this.busquedaEstudiantes();
-      this.loading=true;
+     
     } else {
+      this.loading=false;
       this.mensajeerrormodals = "Ingresar parametros en la busqueda ";
       document.getElementById("openModalError").click();
     }
