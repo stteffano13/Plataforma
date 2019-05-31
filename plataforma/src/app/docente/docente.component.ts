@@ -689,13 +689,13 @@ export class DocenteComponent implements OnInit, DoCheck {
       var promedioPeriodo = (promedio1 + promedio2) / 2;
 
 
-      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
-      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(2);
-      this.objectCalculableB[i].promedio1 = promedio1.toFixed(2);
-      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
-      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(2);
-      this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
-      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
+      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(1);
+      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(1);
+      this.objectCalculableB[i].promedio1 = promedio1.toFixed(1);
+      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(1);
+      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(1);
+      this.objectCalculableB[i].promedio2 = promedio2.toFixed(1);
+      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(1);
 
       // calculos de examennes complementarios
       if (this.objectB[i].examenSupletorio >= 7) {
@@ -755,13 +755,13 @@ export class DocenteComponent implements OnInit, DoCheck {
       var promedioPeriodo = (promedio1 + promedio2) / 2;
 
 
-      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
-      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
-      this.objectCalculable[i].promedio1 = promedio1.toFixed(2);
-      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
-      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
-      this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
-      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(1);
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(1);
+      this.objectCalculable[i].promedio1 = promedio1.toFixed(1);
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(1);
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(1);
+      this.objectCalculable[i].promedio2 = promedio2.toFixed(1);
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(1);
 
       // calculo para examenes complementarios
 
@@ -1374,43 +1374,40 @@ export class DocenteComponent implements OnInit, DoCheck {
 
 
   generarPdf() {
+
+    interface jsPDFWithPlugin extends jsPDF {
+      autoTable: (options: UserOptions) => jsPDF;
+    }
     this.loading = true;
     var logo = new Image();
     logo.src = '../../assets/imgs/logo.png';
 
 
-    const doc = new jsPDF('l', 'px', 'a4');
+    const doc = new jsPDF('l', 'px', 'a4') as jsPDFWithPlugin;;
+
 
     doc.addImage(logo, 'PNG', 30, 15, 100, 80);
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
-    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 190, 28);
-    doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
-    doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
-    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 250, 100);
+    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 175, 28);
+    doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 200, 48);
+    doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 245, 75);
+    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 260, 100);
     var cont = this.listadoEstudianteNotas.length;
+
+
     if (this.banderTabla1) {
+      doc.autoTable({ html: '#results', startY: 150 });
+      var pageHeight = doc.internal.pageSize.height;
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight-pageHeight/6);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight-pageHeight/6);
+      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight-pageHeight/8);
+      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight-pageHeight/8);
+      this.loading = false;
+      
+      doc.save('Reporte_Notas_Docente.pdf');
 
 
-      html2canvas(document.getElementById('results'), { scale: 5 }).then(function (canvas) {
-        var img = canvas.toDataURL("image/png");
-        var context = canvas.getContext("2d");
-        context.scale(5, 5);
-        context["imageSmoothingEnabled"] = false;
-        context["mozImageSmoothingEnabled"] = false
-        context["oImageSmoothingEnabled"] = false
-        context["webkitImageSmoothingEnabled"] = false
-        context["msImageSmoothingEnabled"] = false
 
-        // var doc = new jsPDF('l', 'mm');
-        doc.addImage(img, 'JPEG', 30, 150, 580, 60 * cont);
-        doc.save('Reporte_Notas_Docente.pdf');
-      });
-      let intervalId = setInterval(() => {
-        this.counter = this.counter - 1;
-
-        console.log(this.counter)
-        if (this.counter === 0) { clearInterval(intervalId); this.loading = false; }
-      }, 1000)
 
 
     } else {

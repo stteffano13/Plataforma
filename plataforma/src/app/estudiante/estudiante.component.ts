@@ -62,7 +62,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
-    private _notaService: NotaService, private _estudianteServices: EstudianteService, private _insumoService: InsumoService) { }
+    private _notaService: NotaService, private _estudianteServices: EstudianteService, private _insumoService: InsumoService
+  
+  ) { }
 
   ngOnInit() {
     
@@ -70,11 +72,15 @@ export class EstudianteComponent implements OnInit, DoCheck {
     this.getListadoMisMaterias();
     this.getPeriodoActual();
 
-    this.identity = this._estudianteServices.getIdentity()
+    this.identity = this._estudianteServices.getIdentity();
   }
 
   ngDoCheck() {
-    this.listadoInsumos;
+    //this.loading = true;
+    //this.getListadoMisMaterias();
+   // this.getPeriodoActual();
+
+   // this.identity = this._estudianteServices.getIdentity()
   }
   getPeriodoActual() {
 
