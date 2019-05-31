@@ -1398,40 +1398,45 @@ export class DocenteComponent implements OnInit, DoCheck {
     if (this.banderTabla1) {
       doc.autoTable({ html: '#results', startY: 150 });
       var pageHeight = doc.internal.pageSize.height;
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight-pageHeight/6);
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight-pageHeight/6);
-      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight-pageHeight/8);
-      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight-pageHeight/8);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight - pageHeight / 6);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight - pageHeight / 6);
+      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight - pageHeight / 8);
+      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight - pageHeight / 8);
       this.loading = false;
-      
+
       doc.save('Reporte_Notas_Docente.pdf');
 
 
 
     } else {
-     
 
-      doc.autoTable({ html: '#results2', startY: 150, styles: {
-        overflow: 'linebreak',
-        fontSize: 4,
-        rowHeight: 1,
-       columnWidth: 'auto'
-      }
-      
-      } );
+
+      doc.autoTable({
+        html: '#results2', startY: 150, margin: {left: 30}, styles: {
+          overflow: 'linebreak',
+          fontSize: 7,
+          rowHeight: 0,
+          cellWidth: 'auto',
+          cellPadding: 2,
+     
+        calculateWidths: 300
+
+        }
+
+      });
       var pageHeight = doc.internal.pageSize.height;
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight-pageHeight/6);
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight-pageHeight/6);
-      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight-pageHeight/8);
-      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight-pageHeight/8);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight - pageHeight / 6);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight - pageHeight / 6);
+      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight - pageHeight / 8);
+      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight - pageHeight / 8);
       this.loading = false;
-      
+
       doc.save('Reporte_Notas_Docente.pdf');
 
 
 
 
-  }
+    }
   }
 
   recargar() {
