@@ -608,7 +608,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     } else {
       doc.autoTable({
-        html: '#results2', startY: 150, margin: {left: 30}, styles: {
+        html: '#results2', startY: 120, margin: {left: 30}, styles: {
           overflow: 'linebreak',
           fontSize: 7,
           rowHeight: 0,
