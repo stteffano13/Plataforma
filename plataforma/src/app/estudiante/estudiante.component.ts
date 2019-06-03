@@ -248,13 +248,13 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
       var promedioPeriodo = (promedio1 + promedio2) / 2;
 
-      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(1);
-      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(1);
-      this.objectCalculable[i].promedio1 = promedio1.toFixed(1);
-      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(1);
-      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(1);
-      this.objectCalculable[i].promedio2 = promedio2.toFixed(1);
-      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(1);
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculable[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
 
       if (this.object[i].examenSupletorio >= 7) {
@@ -448,13 +448,13 @@ export class EstudianteComponent implements OnInit, DoCheck {
       var promedioPeriodo = (promedio1 + promedio2) / 2;
 
 
-      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(1);
-      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(1);
-      this.objectCalculableB[i].promedio1 = promedio1.toFixed(1);
-      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(1);
-      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(1);
-      this.objectCalculableB[i].promedio2 = promedio2.toFixed(1);
-      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(1);
+      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculableB[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
       if (this.objectB[i].examenSupletorio >= 7) {
         this.objectCalculableB[i].promedioPeriodo = 7;
