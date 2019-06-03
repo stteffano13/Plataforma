@@ -1037,8 +1037,8 @@ export class DocenteComponent implements OnInit, DoCheck {
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
-
-        this.listadoEstudianteMatriculas = response.matriculas;
+        this.listadoEstudianteMatriculas = this.ordenar(response.matriculas);
+         
 
         console.log("para habilitar  tablas", busqueda[2]);
 
@@ -1116,7 +1116,31 @@ export class DocenteComponent implements OnInit, DoCheck {
 
   }
 
+  ordenar(vector1) {
+     var cont;
+    let vector = vector1;
 
+    console.log('<<<<<< MI VECTOR ANTES DE LA ORDENADA >>>>>>', vector);
+    cont = 0;
+    vector.forEach(() => {
+      cont += 1;
+    });
+    console.log(cont);
+    for (let k = 0; k < cont - 1; k++) {
+      //console.log('mi FOR', vector[k]);
+      for (let f = 0; f < (cont - 1) - k; f++) {
+        // console.log('mi FOR', vector[f]);
+        if (vector[f].estudiante.apellido.localeCompare(vector[f + 1].estudiante.apellido) > 0) {
+          let aux;
+          aux = vector[f];
+          vector[f] = vector[f + 1];
+          vector[f + 1] = aux;
+        }
+      }
+    }
+    console.log("<<<<<< MI VECTOR DESPUES DE LA ORDENADA >>>>>>", vector);
+   return vector;
+  }
   traerNotas(value) {
     console.log("value curso para nota", value);
 
