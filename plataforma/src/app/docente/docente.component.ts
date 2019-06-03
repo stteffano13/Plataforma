@@ -689,13 +689,13 @@ export class DocenteComponent implements OnInit, DoCheck {
       var promedioPeriodo = (promedio1 + promedio2) / 2;
 
 
-      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(1);
-      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(1);
-      this.objectCalculableB[i].promedio1 = promedio1.toFixed(1);
-      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(1);
-      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(1);
-      this.objectCalculableB[i].promedio2 = promedio2.toFixed(1);
-      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(1);
+      this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculableB[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
       // calculos de examennes complementarios
       if (this.objectB[i].examenSupletorio >= 7) {
@@ -755,13 +755,13 @@ export class DocenteComponent implements OnInit, DoCheck {
       var promedioPeriodo = (promedio1 + promedio2) / 2;
 
 
-      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(1);
-      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(1);
-      this.objectCalculable[i].promedio1 = promedio1.toFixed(1);
-      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(1);
-      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(1);
-      this.objectCalculable[i].promedio2 = promedio2.toFixed(1);
-      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(1);
+      this.objectCalculable[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+      this.objectCalculable[i].veinteporciento1 = veinteporciento1.toFixed(2);
+      this.objectCalculable[i].promedio1 = promedio1.toFixed(2);
+      this.objectCalculable[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      this.objectCalculable[i].veinteporciento2 = veinteporciento2.toFixed(2);
+      this.objectCalculable[i].promedio2 = promedio2.toFixed(2);
+      this.objectCalculable[i].promedioPeriodo = promedioPeriodo.toFixed(2);
 
       // calculo para examenes complementarios
 
@@ -1416,18 +1416,24 @@ export class DocenteComponent implements OnInit, DoCheck {
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 175, 28);
     doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 200, 48);
-    doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 245, 75);
-    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 260, 100);
+    doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
+    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 242, 100);
     var cont = this.listadoEstudianteNotas.length;
 
 
     if (this.banderTabla1) {
-      doc.autoTable({ html: '#results', startY: 150 });
+      doc.autoTable({ html: '#results', startY: 150 , styles: {
+        overflow: 'linebreak',
+        fontSize: 8,
+        rowHeight: 2,
+        cellWidth: 'auto',
+        cellPadding: 2}});
+
       var pageHeight = doc.internal.pageSize.height;
       doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight - pageHeight / 6);
       doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight - pageHeight / 6);
-      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight - pageHeight / 8);
-      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight - pageHeight / 8);
+      doc.fromHTML(" <p style='text-align: center'>DOCENTE</p>", 170, pageHeight - pageHeight / 8);
+      doc.fromHTML(" <p style='text-align: center'>RECTOR</p>", 425, pageHeight - pageHeight / 8);
       this.loading = false;
 
       doc.save('Reporte_Notas_Docente.pdf');
@@ -1445,7 +1451,7 @@ export class DocenteComponent implements OnInit, DoCheck {
           cellWidth: 'auto',
           cellPadding: 2,
      
-        calculateWidths: 300
+        //calculateWidths: 300
 
         }
 
