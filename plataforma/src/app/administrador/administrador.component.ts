@@ -1526,11 +1526,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             console.log("este necesito ahor amiji", this.nuevo);
           } else {
             if (i % 2 == 0) {
-
-              this.nuevo = this.diviciones[i].slice(0, -1).split(",");
+              var n=this.diviciones[i].slice(0, -1).split(",");
+              this.nuevo = n.filter(Boolean);
+             
             } else {
-              this.nuevo = this.diviciones[i].slice(1, -1).split(",");
-
+              var n2 = this.diviciones[i].slice(1, -1).split(",");
+              this.nuevo = n2.filter(Boolean);
             }
           }
           this.nuevo2.push(this.nuevo);
