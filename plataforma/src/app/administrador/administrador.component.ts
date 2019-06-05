@@ -18,7 +18,9 @@ import * as XLSX from 'xlsx';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { Local } from 'protractor/built/driverProviders';
 import { ExcelService } from '../sharedServices/excel.service';
-
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { UserOptions } from 'jspdf-autotable';
 
 
 
@@ -1392,7 +1394,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
-        this.listadoEstudianteMatriculas = response.matriculas;
+        this.listadoEstudianteMatriculas = this.ordenar(response.matriculas);
 
         this.getListadoMaterias(busqueda[0], busqueda[1]);
 
@@ -1425,6 +1427,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       response => {
 
         this.listadoMateriasCurso = response.materias;
+        
 
         console.log("materias que traigo ", this.listadoMateriasCurso);
 
@@ -1437,7 +1440,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             materias: this.listadoMateriasCurso,
             buscar: this.listadoEstudianteMatriculas
           }
-          this.traerNotasMatris(objBuscarNotas);
+          this.traerNotasMatris();
 
           //this.traerNotasB(objBuscarNotas);
 
@@ -1475,16 +1478,24 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  traerNotasMatris(value) {
+  traerNotasMatris() {
+    var objBuscarNotas = {
+
+      materias: this.listadoMateriasCurso,
+      buscar: this.listadoEstudianteMatriculas
+    }
+   var  value = objBuscarNotas;
     this.objNotasPT = [];
     this.diviciones;
     this.nuevo = [];
     this.nuevo2 = [];
+    console.log(" hoal entre a matris", value);
     this._notaService.buscarNotasMatris(value).subscribe(
       response => {
+        
         this.loading = false;
         this.listadoNotas = response.vectorNotas;
-
+          console.log("listado de notas antes de nada",  this.listadoNotas);
         //  ordenar
         let i = 0;
         this.listadoEstudianteMatriculas.forEach(elementE => {
@@ -1493,21 +1504,22 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
             this.listadoNotas.forEach(element => {
 
-              console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
+            //  console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
 
 
               if (elementE.estudiante._id == element.estudiante && element.materia == elementM._id) {
-
+        
                 this.objNotasPT.push(element.pt)
 
 
                 i++;
 
               }
-
+             
             });
+           
           });
-
+          
           this.objNotasPT.push(";");
         });
         this.objNotasPT.pop();
@@ -1520,18 +1532,18 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         console.log("divicione1", this.diviciones[1]);
         console.log("divicione2", this.diviciones[2]);
 
-        for (let i = 0; i < this.diviciones.length; i++) {
-          if (i == this.diviciones.length - 1) {
-            this.nuevo = this.diviciones[i].substring(1).split(",");
-            console.log("este necesito ahor amiji", this.nuevo);
+        for (let i = 0; i <this.diviciones.length; i++) {
+          if (i == this.diviciones.length-1) {
+           this.nuevo = this.diviciones[i].substring(1).split(",");
+           
           } else {
             if (i % 2 == 0) {
               var n=this.diviciones[i].slice(0, -1).split(",");
               this.nuevo = n.filter(Boolean);
              
             } else {
-              var n2 = this.diviciones[i].slice(1, -1).split(",");
-              this.nuevo = n2.filter(Boolean);
+               var n2 = this.diviciones[i].slice(1, -1).split(",");
+              this.nuevo= n2.filter(Boolean);
             }
           }
           this.nuevo2.push(this.nuevo);
@@ -1580,7 +1592,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.listadoEstudianteMatriculas.forEach(elementE => {
           this.listadoMateriasCurso.forEach(elementM => {
             this.listadoNotas.forEach(element => {
-              console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
+              //console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
               if (elementE.estudiante._id == element.estudiante && element.materia == elementM._id) {
                 this.objNotasPT.push(element.pt)
               }
@@ -1599,14 +1611,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
           if (i == this.diviciones.length - 1) {
             this.nuevo = this.diviciones[i].substring(1).split(",");
-
+           
           } else {
 
             if (i % 2 == 0) {
 
-              this.nuevo = this.diviciones[i].slice(0, -1).split(",");
+              var n = this.diviciones[i].slice(0, -1).split(",");
+              this.nuevo=n.filter(Boolean);
             } else {
-              this.nuevo = this.diviciones[i].slice(1, -1).split(",");
+              var n2 =this.diviciones[i].slice(1, -1).split(",");
+              this.nuevo = n2.ilter(Boolean);
 
             }
           }
@@ -1717,4 +1731,68 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     location.reload();
   }
 
+
+  ordenar(vector1) {
+    var cont;
+   let vector = vector1;
+
+   console.log('<<<<<< MI VECTOR ANTES DE LA ORDENADA >>>>>>', vector);
+   cont = 0;
+   vector.forEach(() => {
+     cont += 1;
+   });
+   console.log(cont);
+   for (let k = 0; k < cont - 1; k++) {
+     //console.log('mi FOR', vector[k]);
+     for (let f = 0; f < (cont - 1) - k; f++) {
+       // console.log('mi FOR', vector[f]);
+       if (vector[f].estudiante.apellido.localeCompare(vector[f + 1].estudiante.apellido) > 0) {
+         let aux;
+         aux = vector[f];
+         vector[f] = vector[f + 1];
+         vector[f + 1] = aux;
+       }
+     }
+   }
+   console.log("<<<<<< MI VECTOR DESPUES DE LA ORDENADA >>>>>>", vector);
+  return vector;
+ }
+
+ generarPdf() {
+
+  interface jsPDFWithPlugin extends jsPDF {
+    autoTable: (options: UserOptions) => jsPDF;
+  }
+  this.loading = true;
+  var logo = new Image();
+  logo.src = '../../assets/imgs/logo.png';
+
+
+  const doc = new jsPDF('l', 'px', 'a4') as jsPDFWithPlugin;;
+
+
+  doc.addImage(logo, 'PNG', 30, 15, 100, 80);
+  doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
+  doc.fromHTML("<h4>ACTA CONSOLIDADA DE NOTAS </h4>", 255, 28);
+  doc.fromHTML("<h4> PERIODO:" + "  " +   this.opcionPeriodoLectivo + "</h4>", 250, 48);
+ 
+
+
+
+    doc.autoTable({ html: '#consolidado', startY: 110 , styles: {
+      overflow: 'linebreak',
+      fontSize: 8,
+      rowHeight: 2,
+      cellWidth: 'auto',
+      halign: "center",
+      cellPadding: 2}});
+
+    this.loading = false;
+
+    doc.save('Reporte_Notas_Admin.pdf');
+
+
+
+  
+}
 }

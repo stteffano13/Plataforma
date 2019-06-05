@@ -496,7 +496,7 @@ console.log("esta es la multiplicacion de los vectores",multi);
           }
         } else {
           if (notas) {
-            console.log("materias una por una", notas);
+            console.log("materias una por una  mijo", notas);
             cont2++;
 
             vectorNotas.push(notas);

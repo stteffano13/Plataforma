@@ -539,12 +539,6 @@ export class EstudianteComponent implements OnInit, DoCheck {
         console.log("listado insumos de la basica", this.listadoInsumosB);
 
 
-
-
-
-
-
-
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
@@ -594,11 +588,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
       doc.autoTable({ html: '#results', startY: 120 , styles: { overflow: 'linebreak',  fontSize: 8} });
 
-      var pageHeight = doc.internal.pageSize.height;
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight - pageHeight / 6);
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight - pageHeight / 6);
-      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight - pageHeight / 8);
-      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight - pageHeight / 8);
+    
       this.loading = false;
 
       doc.save('Reporte_Notas_Alumno.pdf');
@@ -620,14 +610,10 @@ export class EstudianteComponent implements OnInit, DoCheck {
         }
 
       });
-      var pageHeight = doc.internal.pageSize.height;
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight - pageHeight / 6);
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight - pageHeight / 6);
-      doc.fromHTML(" <h4 style='text-align: center'>DOCENTE</h4>", 170, pageHeight - pageHeight / 8);
-      doc.fromHTML(" <h4 style='text-align: center'>RECTOR</h4>", 425, pageHeight - pageHeight / 8);
+     
       this.loading = false;
 
-      doc.save('Reporte_Notas_Docente.pdf');
+      doc.save('Reporte_Notas_Alumno.pdf');
     }
 
 /* html2canvas(document.getElementById('results2'), { scale: 5 }).then(function (canvas) {

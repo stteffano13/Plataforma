@@ -250,6 +250,7 @@
           </a>
         </li>
 
+        <!--<li><button (click)="traerNotasMatris()"> hola</button></li>-->
 
         <li class="nav-item">
 
@@ -913,8 +914,8 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="nombreChofer"> Ingrese el Nombre</label>
-                <input style="text-transform:uppercase;" type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="estudiante_register.nombre" name="nombreChofer"
-                  id="nombreChofer" pattern="[ A-Za-zñÑ]*">
+                <input style="text-transform:uppercase;" type="text" required class="form-control" #NombreChofer1="ngModel" [(ngModel)]="estudiante_register.nombre"
+                  name="nombreChofer" id="nombreChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="NombreChofer1.valid || NombreChofer1.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
@@ -949,8 +950,8 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="apellidoChofer">Ingrese el Apellido</label>
-                <input style="text-transform:uppercase;" type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="estudiante_register.apellido" name="apellidoChofer"
-                  id="apellidoChofer" pattern="[ A-Za-zñÑ]*">
+                <input style="text-transform:uppercase;" type="text" required class="form-control" #ApellidoChofer="ngModel" [(ngModel)]="estudiante_register.apellido"
+                  name="apellidoChofer" id="apellidoChofer" pattern="[ A-Za-zñÑ]*">
                 <div [hidden]="ApellidoChofer.valid || ApellidoChofer.pristine" class="alert alert-warning">
                   Ingrese solo letras
                 </div>
@@ -1113,7 +1114,9 @@
       <!-- ====================================================      Reportes Notas ============================================-->
 
 
-      <div *ngIf="banderReporteExcel">
+      <div *ngIf="banderReporteExcel" style="margin-top:3%" class="container-fluid">
+        <h5 style="color: blue">Reporte Consolidado de Notas</h5>
+        <br>
         <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
           <option [value]="" selected>Selecciona materia y curso</option>
           <option *ngFor="let oneDoor of this.vectorListadoCursos" value="{{oneDoor._id}},{{oneDoor.curso}} ">{{oneDoor.curso}}: {{oneDoor.paralelo}} {{oneDoor.curso.paralelo}}</option>
@@ -1122,11 +1125,9 @@
 
       <!-------------------------------------------------- tabla del reporte de notas finales-->
 
-      <table *ngIf="banderReporteExcel" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
+      <table id="consolidado" *ngIf="banderReporteExcel" class="table table-hover table-bordered table-responsive" style="margin-top: 2%; font-size: 80% ; width: 90% ; margin-left: 5%">
 
-        <div class="  form-control ">
-          <h4>{{this.Titulo2}} </h4>
-        </div>
+
 
         <thead>
 
@@ -1140,20 +1141,22 @@
         </thead>
         <tbody>
           <tr *ngFor=" let listado of  listadoEstudianteMatriculas; let i = index;">
-            <th scope="row">{{i}}</th>
+            <th scope="row">{{i+1}}</th>
             <td class="active">{{listado.estudiante.apellido}} {{listado.estudiante.nombre}}</td>
             <td class="active" *ngFor=" let listad of  this.nuevo2[i]">{{listad}}</td>
 
 
           </tr>
         </tbody>
-        <li>
-          <button (click)="exportAsXLSX()">
-            <i class="fa fa-file-excel-o" style="font-size: 48px; color: blue"> </i>
-          </button>
-        </li>
-      </table>
 
+
+
+      </table>
+      <div *ngIf="banderReporteExcel" class="col-lg-12" style="text-align: center;">
+        <button (click)="generarPdf()" class="btn btn-primary" style="align-content: center">
+          Generar en PDF
+        </button>
+      </div>
     </div>
 
 
