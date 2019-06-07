@@ -490,7 +490,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         codigoE = this.busquedaMatricula.split(".");
 
         if (this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
-          console.log("entraste a la busqueda MF1", element);
+          console.log("entraste a la busqueda MF1");
           this.listadoMatriculasNueva.push(element);
 
         } else {
