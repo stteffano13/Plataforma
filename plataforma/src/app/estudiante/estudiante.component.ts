@@ -92,7 +92,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
       }
-    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    }, (err) => { this.loading=false; console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
   }
@@ -136,7 +136,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
         }
 
       }
-    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    }, (err) => {  this.loading=false;  console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
   }
@@ -511,7 +511,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
         //this.recivir = this.listadoInsumos;
 
       }
-    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    }, (err) => {  this.loading= false; console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
 
@@ -540,7 +540,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
       }
-    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    }, (err) => { this.loading=false;  console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
 

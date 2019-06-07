@@ -175,7 +175,7 @@ function busquedaMatriculas(req, res) {
     } else {
 
 
-        var matriculas = Matricula.find({
+        var matriculas = Matricula.find({ 
             estado: '0'
         }).populate({
             path: 'estudiante'

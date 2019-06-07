@@ -401,7 +401,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadoMatriculasNueva = [];
     this.listadoMatriculas = "";
     this.loading = true;
-    this._matriculaServices.buscarMatriculas(this.buscar).subscribe(
+    this._matriculaServices.buscarMatriculas(this.busquedaMatricula).subscribe(
       response => {
         console.log("satisfactoriamente matriculas", response.matriculas);
 
@@ -490,7 +490,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         codigoE = this.busquedaMatricula.split(".");
 
         if (this.buscarMatriculaPeriodo == "no asignado" && element.estudiante.codigo == codigoE[0]) {
-          console.log("entraste a la busqueda MF1");
+          console.log("entraste a la busqueda MF1", element);
           this.listadoMatriculasNueva.push(element);
 
         } else {
