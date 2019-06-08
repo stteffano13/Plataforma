@@ -1328,6 +1328,31 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     this.pruebaclick();
     if (this.banderAux == false) {
+        let i = 0;
+      this.object.forEach(element => {
+        this.object[i].insumo1 =  this.object[i].insumo1.replace(',', '.');
+        this.object[i].insumo2 =  this.object[i].insumo2.replace(',', '.');
+        this.object[i].insumo3 =  this.object[i].insumo3.replace(',', '.');
+        this.object[i].insumo4 =  this.object[i].insumo4.replace(',', '.');
+        this.object[i].insumo5 =  this.object[i].insumo5.replace(',', '.');
+        this.object[i].insumo6 =  this.object[i].insumo6.replace(',', '.');
+        this.object[i].insumo7 =  this.object[i].insumo7.replace(',', '.');
+        this.object[i].insumo8 =  this.object[i].insumo8.replace(',', '.');
+        this.object[i].examen1 =  this.object[i].examen1.replace(',', '.');
+        this.object[i].insumo11 =  this.object[i].insumo11.replace(',', '.');
+        this.object[i].insumo22 =  this.object[i].insumo22.replace(',', '.');
+        this.object[i].insumo33=  this.object[i].insumo33.replace(',', '.');
+        this.object[i].insumo44 =  this.object[i].insumo44.replace(',', '.');
+        this.object[i].insumo55 =  this.object[i].insumo55.replace(',', '.');
+        this.object[i].insumo66 =  this.object[i].insumo66.replace(',', '.');
+        this.object[i].insumo77 =  this.object[i].insumo77.replace(',', '.');
+        this.object[i].insumo88 =  this.object[i].insumo88.replace(',', '.');
+        this.object[i].examen2 =  this.object[i].examen2.replace(',', '.');
+        this.object[i].examenGracia =  this.object[i].examenGracia.replace(',', '.');
+        this.object[i].examenRemedial =  this.object[i].examenRemedial.replace(',', '.');
+        this.object[i].examenSupletorio =  this.object[i].examenSupletorio.replace(',', '.');
+        i++;
+      });
 
       console.log("notas antes de registrarse", this.object);
 
