@@ -434,7 +434,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     this.descripcionInsumo.materia = this.guardarMateriaMatricula;
     this.descripcionInsumo.periodo = this.periodoLectivoActual;
-    this.descripcionInsumo.Descinsumo1 = "Insumo 1";
+    /*this.descripcionInsumo.Descinsumo1 = "Insumo 1";
     this.descripcionInsumo.Descinsumo2 = "Insumo 2";
     this.descripcionInsumo.Descinsumo3 = "Insumo 3";
     this.descripcionInsumo.Descinsumo4 = "Insumo 4";
@@ -449,7 +449,46 @@ export class DocenteComponent implements OnInit, DoCheck {
     this.descripcionInsumo.Descinsumo55 = "Insumo 5";
     this.descripcionInsumo.Descinsumo66 = "Insumo 6";
     this.descripcionInsumo.Descinsumo77 = "Insumo 7";
-    this.descripcionInsumo.Descinsumo88 = "Insumo 8";
+    this.descripcionInsumo.Descinsumo88 = "Insumo 8";*/
+    var objDescInsumos =
+    {
+      materia: this.guardarMateriaMatricula,
+      periodo: this.periodoLectivoActual
+    }
+    
+    this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
+
+      if (response.insumos != undefined) {
+        this.listadoInsumos = response.insumos;
+
+        console.log("listado de insumos", this.listadoInsumos);
+      
+
+        this.descripcionInsumo.Descinsumo1= this.listadoInsumos.Descinsumo1; 
+        this.descripcionInsumo.Descinsumo2= this.listadoInsumos.Descinsumo2; 
+        this.descripcionInsumo.Descinsumo3 =this.listadoInsumos.Descinsumo3; 
+        this.descripcionInsumo.Descinsumo4= this.listadoInsumos.Descinsumo4;
+        this.descripcionInsumo.Descinsumo5 = this.listadoInsumos.Descinsumo5; 
+        this.descripcionInsumo.Descinsumo6 = this.listadoInsumos.Descinsumo6; 
+        this.descripcionInsumo.Descinsumo7 = this.listadoInsumos.Descinsumo7; 
+        this.descripcionInsumo.Descinsumo8= this.listadoInsumos.Descinsumo8;
+
+        this.descripcionInsumo.Descinsumo11=this.listadoInsumos.Descinsumo11;
+        this.descripcionInsumo.Descinsumo22 = this.listadoInsumos.Descinsumo22; 
+        this.descripcionInsumo.Descinsumo33= this.listadoInsumos.Descinsumo33; 
+        this.descripcionInsumo.Descinsumo44= this.listadoInsumos.Descinsumo44; 
+        this.descripcionInsumo.Descinsumo55 = this.listadoInsumos.Descinsumo55;
+        this.descripcionInsumo.Descinsumo66 = this.listadoInsumos.Descinsumo66; 
+        this.descripcionInsumo.Descinsumo77= this.listadoInsumos.Descinsumo77;
+        this.descripcionInsumo.Descinsumo88= this.listadoInsumos.Descinsumo88; 
+
+        }
+
+      
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+    
 
 
   }
@@ -472,6 +511,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       if (response.insumos != undefined) {
         this.listadoInsumos = response.insumos;
 
+        console.log("listado de insumos", this.listadoInsumos);
         switch (insumo) {
 
           case 1: this.recivir = this.listadoInsumos.Descinsumo1; break;
