@@ -1440,9 +1440,9 @@ export class DocenteComponent implements OnInit, DoCheck {
     doc.addImage(logo, 'PNG', 30, 15, 100, 80);
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 175, 28);
-    doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 200, 48);
+    doc.fromHTML("<h4>" +this.Titulo1 + "</h4>", 200, 48);
     doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
-    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 242, 100);
+    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 260, 100);
     var cont = this.listadoEstudianteNotas.length;
 
 
@@ -1455,10 +1455,12 @@ export class DocenteComponent implements OnInit, DoCheck {
         cellPadding: 2}});
 
       var pageHeight = doc.internal.pageSize.height;
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 130, pageHeight - pageHeight / 6);
-      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 380, pageHeight - pageHeight / 6);
-      doc.fromHTML(" <p style='text-align: center'>DOCENTE</p>", 170, pageHeight - pageHeight / 8);
-      doc.fromHTML(" <p style='text-align: center'>RECTOR</p>", 425, pageHeight - pageHeight / 8);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 110, pageHeight - pageHeight / 6);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 260, pageHeight - pageHeight / 6);
+      doc.fromHTML(" <h4 style='text-align: center'>------------------------------------------</h4>", 400, pageHeight - pageHeight / 6);
+      doc.fromHTML(" <p style='text-align: center'>DOCENTE</p>", 150, pageHeight - pageHeight / 8);
+      doc.fromHTML(" <p style='text-align: center'>SECRETARIA</p>", 300, pageHeight - pageHeight / 8);
+      doc.fromHTML(" <p style='text-align: center'>RECTOR(A)</p>", 445, pageHeight - pageHeight / 8);
       this.loading = false;
 
       doc.save('Reporte_Notas_Docente.pdf');
