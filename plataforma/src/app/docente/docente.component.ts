@@ -1062,6 +1062,8 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
 
   asignarMateriaCurso(value) {
+    this.banderInsumo=false;
+    this.recivir="";
     this.object = [];
     this.objectCalculable = [];
     this.objectB = [];
