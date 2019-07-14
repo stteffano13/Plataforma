@@ -184,7 +184,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     this.caso = insumo;
     this.banderInsumoB = true;
-
+        
 
     var objDescInsumosB =
     {
@@ -498,7 +498,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     this.caso = insumo;
     this.banderInsumo = true;
-
+    this.recivir="";
 
     var objDescInsumos =
     {
