@@ -158,7 +158,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
           this.listadoNotas.forEach(element => {
 
             console.log("elementoE", elementE._id, "elemento", element.materia);
-            if (elementE != null && element != null) {
+            if (elementE != 0 && element != 0) {
               if (elementE._id == element.materia) {
                 this.object[i].insumo1 = element.insumo1;
                 this.object[i].insumo2 = element.insumo2;
@@ -188,6 +188,11 @@ export class EstudianteComponent implements OnInit, DoCheck {
                 i++;
 
               }
+            }else
+            {
+              
+           
+
             }
           });
         });

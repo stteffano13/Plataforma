@@ -135,7 +135,7 @@ function buscarNotas(req, res) {
   cont = 0;
   paramsi.buscar.forEach(params => {
 
-    Nota.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
+    Nota.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).exec((err, notas) => {
 
       if (err) {
         cont3++
@@ -147,9 +147,10 @@ function buscarNotas(req, res) {
       } else {
         if (notas) {
 
-          cont2++;
-
+         
+          
           vectorNotas.push(notas)
+          console.log("ver notas que regresa", vectorNotas)
           if (cont2 == Object.keys(paramsi.buscar).length) {
            console.log("ver notas que regresa", vectorNotas)
             res.status(200).send({
