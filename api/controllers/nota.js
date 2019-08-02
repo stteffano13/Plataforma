@@ -340,7 +340,7 @@ function buscarNotasB(req, res) {
   cont = 0;
   paramsi.buscar.forEach(params => {
     console.log("notas b params estudiante id", params.estudiante._id, params.periodo, paramsi.materia)
-    NotaB.find({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
+    NotaB.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
 
       if (err) {
         cont3++

@@ -591,7 +591,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     if (this.banderTabla1) {
 
-      doc.autoTable({ html: '#results', startY: 120 , styles: { overflow: 'linebreak',  fontSize: 8} });
+      doc.autoTable({ html: '#results', startY: 120 , styles: { overflow: 'linebreak',  fontSize: 6} });
 
     
       this.loading = false;
