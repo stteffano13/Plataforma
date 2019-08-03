@@ -1190,6 +1190,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       response => {
         this.loading = false;
         this.listadoEstudianteNotas = response.vectorNotas;
+
         console.log("listadoEstudainteMatricula", this.listadoEstudianteMatriculas, "listadoEstudianteNotas", this.listadoEstudianteNotas);
         //  ordenar
         let i = 0;
@@ -1256,8 +1257,9 @@ export class DocenteComponent implements OnInit, DoCheck {
         // this.loading =false;
       }
 
+        
     );
-
+   
   }
 
 
@@ -1268,6 +1270,8 @@ export class DocenteComponent implements OnInit, DoCheck {
     this._notaService.buscarNotasB(value).subscribe(
       response => {
         this.loading = false;
+
+        try{
         this.listadoEstudianteNotas = response.vectorNotas;
         console.log(this.listadoEstudianteNotas);
         //  ordenar
@@ -1339,7 +1343,9 @@ export class DocenteComponent implements OnInit, DoCheck {
           i++;
         });
 
-
+      }catch(error ){ console.log(error);
+        this.loading = false;
+      }
 
         this.loading = false;
 
