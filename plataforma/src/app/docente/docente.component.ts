@@ -53,12 +53,12 @@ export class DocenteComponent implements OnInit, DoCheck {
   public banderTabla2 = false;
 
 
-
+// botones
   public btnFinalizar = true;
   public banderAux = false;
   public btnFinalizar2 = true;
-
-
+  public banderaHabilitar=false;
+  public banderaHabilitarB=false;
   public mensajeerrormodal;
   public loading;
   public periodoLectivoActual;
@@ -635,6 +635,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
 
   pruebaclick() {
+  
     this.banderAux = false;
     for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
       document.getElementById("tdbuttonGuardar" + i).click();
@@ -1373,7 +1374,8 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
 
   registroNotas() {
-
+  
+    this.banderaHabilitar=true;
     this.pruebaclick();
     if (this.banderAux == false) {
         let i = 0;
@@ -1406,13 +1408,17 @@ export class DocenteComponent implements OnInit, DoCheck {
 
       this._notaService.registerNota(this.object).subscribe(
         response => {
+          this.btnFinalizar=true;
+          this.banderaHabilitar=false;
           this.mensajecorrectomodals = response.message;
           console.log("satisfactoriamente");
           this.loading = false;
           document.getElementById("openModalCorrecto").click();
-          this.btnFinalizar = true;
+    
         },
         error => {
+          this.btnFinalizar=true;
+          this.banderaHabilitar=false;
           var errorMessage = <any>error;
           if (errorMessage) {
             this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
@@ -1433,7 +1439,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
 
   registroNotasB() {
-
+    this.banderaHabilitarB=true;
     this.pruebaclick();
     if (this.banderAux == false) {
 
@@ -1445,8 +1451,11 @@ export class DocenteComponent implements OnInit, DoCheck {
           this.loading = false;
           document.getElementById("openModalCorrecto").click();
           this.btnFinalizar2 = true;
+          this.banderaHabilitarB=false;
         },
         error => {
+          this.btnFinalizar2 = true;
+          this.banderaHabilitarB=false;
           var errorMessage = <any>error;
           if (errorMessage) {
             this.mensajeerrormodals = JSON.parse(errorMessage._body).message;

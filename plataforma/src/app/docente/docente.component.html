@@ -445,7 +445,7 @@
         <button class="btn btn-secondary" style=" padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="habilitarGR()">
           Cancelar</button> &nbsp;&nbsp;&nbsp;
           
-        <button class="btn btn-success" style=" padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar" (click)="registroNotas()">
+        <button class="btn btn-success" style=" padding-right: 3%; padding-left: 3%" [disabled]="banderaHabilitar" [hidden]="btnFinalizar" (click)="registroNotas()">
           Guardar Registro</button>&nbsp;&nbsp;&nbsp;
 
           <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" class="btn btn-primary" (click)="generarPdf()">Exportar pdf</button>
@@ -1144,7 +1144,7 @@
       <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="habilitarGRB()">
         Cancelar</button> &nbsp;&nbsp;&nbsp;
 
-      <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="registroNotasB()">
+      <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%"  [disabled]="banderaHabilitarB" [hidden]="btnFinalizar2" (click)="registroNotasB()">
         Guardar Registro</button> &nbsp;&nbsp;&nbsp;
 
         <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar2" class="btn btn-primary" (click)="generarPdf()">Exportar pdf</button>

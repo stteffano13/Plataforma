@@ -606,7 +606,10 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     } else {
       doc.autoTable({
-        html: '#results2', startY: 120, margin: {left: 30}, styles: {
+        html: '#results2', startY: 120,columnStyles: {19: {fillColor: [249, 247, 95]},
+        21: {fillColor: [249, 247, 95]},
+        22: {fillColor: [207, 233, 176]}, 41: {fillColor: [249, 247, 95]},  43: {fillColor: [249, 247, 95]},
+        44: {fillColor: [207, 233, 176]}, 45: {fillColor: [191, 250, 119]} }, margin: {left: 30}, styles: {
           overflow: 'linebreak',
           fontSize: 7,
           rowHeight: 0,
