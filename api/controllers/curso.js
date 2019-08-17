@@ -140,14 +140,14 @@ function updateCurso(req, res) {
 
         console.log(curso[0]._id);
 
-        Materia.findOne({curso:curso[0]._id}, (err, materiaupdate) => {
+        Materia.findOne({'$and':[{curso:curso[0]._id},{estado:0}]}, (err, materiaupdate) => {
   
             if (err) {
               res.status(500).send({ message: "Error al eliminar el curso", err });
         
             } else {
               if (!materiaupdate) {
-                Matricula.findOne({curso: curso[0]._id}, (err, matricula) => {
+                Matricula.findOne({'$and':[ {curso: curso[0]._id},{estado:0}]}, (err, matricula) => {
   
                     if (err) {
                       res.status(500).send({ message: "Error al eliminar el curso", err });

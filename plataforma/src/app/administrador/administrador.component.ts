@@ -1255,10 +1255,12 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
             try {
               var body = JSON.parse(error._body);
               errorMessage = body.message;
+              this.mensajecorrectomodals = errorMessage;
+              console.log("este el error de elminar cursos",  this.mensajecorrectomodals);
             } catch {
               errorMessage = "No hay conexión intentelo más tarde";
               this.mensajecorrectomodals = errorMessage;
-
+              
               this.loading = false;
               document.getElementById("openModalError").click();
             }

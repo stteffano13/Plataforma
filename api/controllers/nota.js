@@ -139,6 +139,7 @@ function buscarNotas(req, res) {
 
       if (err) {
         cont3++
+        
         if (cont == Object.keys(paramsi).length) {
           res.status(500).send({
             message: "Error al buscar Notas"
@@ -148,10 +149,10 @@ function buscarNotas(req, res) {
         if (notas) {
 
          
-          
+          cont2++
           vectorNotas.push(notas)
           console.log("ver notas que regresa", vectorNotas)
-          if (cont2 == Object.keys(paramsi.buscar).length) {
+          if ((cont2+cont+cont3) == Object.keys(paramsi.buscar).length) {
            console.log("ver notas que regresa", vectorNotas)
             res.status(200).send({
               vectorNotas

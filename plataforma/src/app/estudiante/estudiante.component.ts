@@ -158,7 +158,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
           this.listadoNotas.forEach(element => {
 
             console.log("elementoE", elementE._id, "elemento", element.materia);
-            if (elementE != 0 && element != 0) {
+            if ((elementE != 0 && element != 0) && (elementE != null && element != null)) {
               if (elementE._id == element.materia) {
                 this.object[i].insumo1 = element.insumo1;
                 this.object[i].insumo2 = element.insumo2;
@@ -191,8 +191,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
             }else
             {
               
-           
-
+              i++;
             }
           });
         });
@@ -286,7 +285,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
 
   traerNotasB() {
- var periodo = this.getPeriodoActual;
+ var periodo = this.periodoLectivoActual;
 
     this._notaService.buscarNotasEstudianteB(periodo).subscribe(
       response => {
