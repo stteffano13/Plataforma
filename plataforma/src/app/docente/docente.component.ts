@@ -134,7 +134,7 @@ export class DocenteComponent implements OnInit, DoCheck {
     this.descripcionInsumoB.periodo = this.periodoLectivoActual;
 
 
-    this.descripcionInsumoB.DescQ1P1insumo1 = "Insumo 1";
+    /*this.descripcionInsumoB.DescQ1P1insumo1 = "Insumo 1";
     this.descripcionInsumoB.DescQ1P1insumo2 = "Insumo2";
     this.descripcionInsumoB.DescQ1P1insumo3 = "Insumo 3";
     this.descripcionInsumoB.DescQ1P1insumo4 = "Insumo 4";
@@ -174,8 +174,66 @@ export class DocenteComponent implements OnInit, DoCheck {
     this.descripcionInsumoB.DescQ2P3insumo3 = "Insumo 3";
     this.descripcionInsumoB.DescQ2P3insumo4 = "Insumo 4";
     this.descripcionInsumoB.DescQ2P3insumo5 = "Insumo 5";
-    this.descripcionInsumoB.DescQ2P3insumo6 = "Insumo 6";
+    this.descripcionInsumoB.DescQ2P3insumo6 = "Insumo 6";*/
 
+    var objDescInsumosB =
+    {
+      materia: this.guardarMateriaMatricula,
+      periodo: this.periodoLectivoActual
+    }
+
+    this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
+
+      if (response.insumosB != undefined) {
+        this.listadoInsumosB = response.insumosB;
+        console.log("listado insumos de la basica", this.listadoInsumosB);
+        
+        this.descripcionInsumoB.DescQ1P1insumo1 = this.listadoInsumosB.DescQ1P1insumo1;
+        this.descripcionInsumoB.DescQ1P1insumo2 = this.listadoInsumosB.DescQ1P1insumo2;
+        this.descripcionInsumoB.DescQ1P1insumo3 = this.listadoInsumosB.DescQ1P1insumo3;
+        this.descripcionInsumoB.DescQ1P1insumo4 = this.listadoInsumosB.DescQ1P1insumo4;
+        this.descripcionInsumoB.DescQ1P1insumo5 = this.listadoInsumosB.DescQ1P1insumo5;
+        this.descripcionInsumoB.DescQ1P1insumo6 = this.listadoInsumosB.DescQ1P1insumo6;
+    
+        this.descripcionInsumoB.DescQ1P2insumo1 = this.listadoInsumosB.DescQ1P2insumo1;
+        this.descripcionInsumoB.DescQ1P2insumo2 = this.listadoInsumosB.DescQ1P2insumo2;
+        this.descripcionInsumoB.DescQ1P2insumo3 = this.listadoInsumosB.DescQ1P2insumo3;
+        this.descripcionInsumoB.DescQ1P2insumo4 = this.listadoInsumosB.DescQ1P2insumo4;
+        this.descripcionInsumoB.DescQ1P2insumo5 = this.listadoInsumosB.DescQ1P2insumo5;
+        this.descripcionInsumoB.DescQ1P2insumo6 = this.listadoInsumosB.DescQ1P2insumo6;
+    
+        this.descripcionInsumoB.DescQ1P3insumo1 = this.listadoInsumosB.DescQ1P3insumo1;
+        this.descripcionInsumoB.DescQ1P3insumo2 = this.listadoInsumosB.DescQ1P3insumo2;
+        this.descripcionInsumoB.DescQ1P3insumo3 = this.listadoInsumosB.DescQ1P3insumo3; 
+        this.descripcionInsumoB.DescQ1P3insumo4 = this.listadoInsumosB.DescQ1P3insumo4; 
+        this.descripcionInsumoB.DescQ1P3insumo5 = this.listadoInsumosB.DescQ1P3insumo5; 
+        this.descripcionInsumoB.DescQ1P3insumo6 = this.listadoInsumosB.DescQ1P3insumo6; 
+    
+        this.descripcionInsumoB.DescQ2P1insumo1 = this.listadoInsumosB.DescQ2P1insumo1;
+        this.descripcionInsumoB.DescQ2P1insumo2 = this.listadoInsumosB.DescQ2P1insumo2;
+        this.descripcionInsumoB.DescQ2P1insumo3 = this.listadoInsumosB.DescQ2P1insumo3;
+        this.descripcionInsumoB.DescQ2P1insumo4 = this.listadoInsumosB.DescQ2P1insumo4;
+        this.descripcionInsumoB.DescQ2P1insumo5 = this.listadoInsumosB.DescQ2P1insumo5;
+        this.descripcionInsumoB.DescQ2P1insumo6 = this.listadoInsumosB.DescQ2P1insumo6;
+    
+        this.descripcionInsumoB.DescQ2P2insumo1 = this.listadoInsumosB.DescQ2P2insumo1;
+        this.descripcionInsumoB.DescQ2P2insumo2 = this.listadoInsumosB.DescQ2P2insumo2;
+        this.descripcionInsumoB.DescQ2P2insumo3 = this.listadoInsumosB.DescQ2P2insumo3;
+        this.descripcionInsumoB.DescQ2P2insumo4 = this.listadoInsumosB.DescQ2P2insumo4;
+        this.descripcionInsumoB.DescQ2P2insumo5 =this.listadoInsumosB.DescQ2P2insumo5;
+        this.descripcionInsumoB.DescQ2P2insumo6 = this.listadoInsumosB.DescQ2P2insumo6;
+    
+        this.descripcionInsumoB.DescQ2P3insumo1 = this.listadoInsumosB.DescQ2P3insumo1; 
+        this.descripcionInsumoB.DescQ2P3insumo2 = this.listadoInsumosB.DescQ2P3insumo2; 
+        this.descripcionInsumoB.DescQ2P3insumo3 = this.listadoInsumosB.DescQ2P3insumo3; 
+        this.descripcionInsumoB.DescQ2P3insumo4 = this.listadoInsumosB.DescQ2P3insumo4; 
+        this.descripcionInsumoB.DescQ2P3insumo5 = this.listadoInsumosB.DescQ2P3insumo5; 
+        this.descripcionInsumoB.DescQ2P3insumo6 = this.listadoInsumosB.DescQ2P3insumo6; 
+
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
 
   }
 
