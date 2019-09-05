@@ -957,9 +957,8 @@
           <td colspan="1" valign="middle" >{{listado.estudiante.apellido}} {{listado.estudiante.nombre}} </td>
 
 
-          <td id="tdfila">
-            <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo1" name="insumo1{{i}}">
-          </td>
+        <td id="tdfila">
+       <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo1" name="insumo1{{i}}">  </td>
           <td id="tdfila">
             <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo2" name="insumo2{{i}}">
           </td>
@@ -1261,7 +1260,7 @@
             <td id="tdfila" colspan="1" >{{listado.estudiante.apellido}} {{listado.estudiante.nombre}} </td>
   
   
-            <td id="tdfila">{{this.objectB[i].Q1P1insumo1}}
+          <td id="tdfila">{{this.objectB[i].Q1P1insumo1}}
               <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].Q1P1insumo1" name="Q1P1insumo1{{i}}">
             </td>
             <td id="tdfila">{{this.objectB[i].Q1P1insumo2}}
@@ -1428,7 +1427,7 @@
               <input id="tdboton" type="text" [(ngModel)]="this.objectB[i].examenGracia" name="examenGracia{{i}}">
             </td>
   
-  
+
   
             <td id="tdfila">
               <button id="tdbuttonGuardar{{i}}" type="button" (click)="pruebaB(listado,i)" style="border: none;" hidden></button>

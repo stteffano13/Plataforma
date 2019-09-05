@@ -13,7 +13,7 @@ var port = process.env.PORT || 3977;
 
 
 
-mongoose.connect('mongodb://myUserAdmin:abc123@165.22.204.167:43388/plataforma', (err, res) => {
+mongoose.connect('mongodb://localhost', (err, res) => {
     if (err) {
         throw err;
     } else {

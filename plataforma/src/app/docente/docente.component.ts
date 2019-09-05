@@ -1121,6 +1121,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
 
   asignarMateriaCurso(value) {
+    
     this.banderInsumo=false;
     this.recivir="";
     this.object = [];
@@ -1143,9 +1144,9 @@ export class DocenteComponent implements OnInit, DoCheck {
 
         console.log("para habilitar  tablas", busqueda[2]);
 
-        if (this.listadoEstudianteMatriculas != "" && busqueda[2] != "BÁSICO SUPERIOR INTENSIVO") {
+        if (busqueda[2] != "BÁSICO SUPERIOR INTENSIVO") {
           this.banderTabla1 = true;
-          this.banderTabla2 = false;
+         this.banderTabla2 = false;
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
@@ -1244,7 +1245,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
   traerNotas(value) {
     console.log("value curso para nota", value);
-
+   
     this._notaService.buscarNotas(value).subscribe(
       response => {
         this.loading = false;
@@ -1315,7 +1316,7 @@ export class DocenteComponent implements OnInit, DoCheck {
         }
         // this.loading =false;
       }
-
+     
         
     );
    
@@ -1332,7 +1333,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
         try{
         this.listadoEstudianteNotas = response.vectorNotas;
-        console.log(this.listadoEstudianteNotas);
+        console.log("listado estudiantes nota",this.listadoEstudianteNotas);
         //  ordenar
         let i = 0;
       
@@ -1341,7 +1342,7 @@ export class DocenteComponent implements OnInit, DoCheck {
           this.listadoEstudianteNotas.forEach(element => {
 
 
-            if (element != null) {
+            if (element != null ) {
               if (elementE.estudiante._id == element.estudiante) {
                 this.objectB[i].Q1P1insumo1 = element.Q1P1insumo1;
                 this.objectB[i].Q1P1insumo2 = element.Q1P1insumo2;
