@@ -19,6 +19,7 @@ import { DocenteComponent } from './docente/docente.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { ComboBoxModule } from '@progress/kendo-angular-dropdowns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NuuComponent } from './nuu/nuu.component';
 
 
 
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoguinComponent,
     AdministradorComponent,
     DocenteComponent,
-    EstudianteComponent
+    EstudianteComponent,
+    NuuComponent
   ],
   imports: [
     BrowserModule,

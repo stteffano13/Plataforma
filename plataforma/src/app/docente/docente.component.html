@@ -14,7 +14,7 @@
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 </div>
 
-<body>
+<body  style="height:100%;">
 
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -106,7 +106,7 @@
   </nav>
 
   <!-- scroll de navegacion -->
-  <div style="height: 100%; overflow: auto;">
+  <div style="width:100%; height:100%;">
 
 
     <h3 style="margin-top: 10%; text-align: center">{{this.Titulo1}} </h3>
@@ -614,7 +614,7 @@
 
     <!-- ================================================== tabla de notas basica tabla   2 =================================== -->
 
-    <table *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: 1%; font-size: 80%; width: 90%; margin-left: 5%">
+    <table  *ngIf="banderTabla2"  class="table table-hover table-bordered table-responsive " style="margin-top: 1%; font-size: 80%; width: 90%; margin-left: 5%">
 
       <div class="  form-control form-inline">
         <h4>{{this.Titulo2}} </h4>
@@ -1138,7 +1138,7 @@
     </table>
 
 
-    <div *ngIf="banderTabla2" class="col-md-12" style="text-align: center;">
+    <div   *ngIf="banderTabla2"  class="col-md-12" style="text-align: center;">
       <button class="btn btn-primary" (click)="pruebaclick()" [hidden]="!btnFinalizar2"> Calcular el registro de notas</button>
       <button class="btn btn-secondary" style="padding-right: 3%; padding-left: 3%" [hidden]="btnFinalizar2" (click)="habilitarGRB()">
         Cancelar</button> &nbsp;&nbsp;&nbsp;
@@ -1152,7 +1152,7 @@
 
     <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 2 ============================================-->
    
-    <table  id="results2"  *ngIf="banderTabla2" class="table table-hover table-bordered table-responsive " style="margin-top: -1000%; font-size: 70%; width: 100%; margin-left: 0%">
+    <table  id="results2"   *ngIf="banderTabla2"  class="table table-hover table-bordered table-responsive " style="margin-top: -500%; font-size: 70%; width: 100%; margin-left: 0%">
 
         <div class="  form-control form-inline">
           <h4>{{this.Titulo2}} </h4>

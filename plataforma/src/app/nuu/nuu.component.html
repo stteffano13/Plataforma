@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Montecarlo VIP</title>
+</head>
+
+<div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
+
+<body>
+
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" (click)="recargar()" style="color: #ffffff">EBENEZER</a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+      <ul class="navbar-nav ml-auto">
+
+
+        <li>
+          <p style="color: #ffffff">Periodo Actual {{this.periodoLectivoActual}}
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </p>
+        </li>
+        <li>
+          <select (change)="asignarMateriaCurso($event.target.value)" class=" custom-select " required>
+            <option [value]="" selected>Selecciona materia y curso</option>
+            <option *ngFor="let oneDoor of vectorListadoMisMaterias"
+              value="{{oneDoor.curso._id}},{{oneDoor._id}},{{oneDoor.curso.curso}},{{oneDoor.nombre}},{{oneDoor.curso.paralelo}} ">
+              {{oneDoor.nombre}}: {{oneDoor.curso.curso}} {{oneDoor.curso.paralelo}}</option>
+          </select>
+
+
+        </li>
+
+
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item" title="Salir del Sistema EBENEZER">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Salir</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+ 
+
+  <div style=" overflow: auto;">
+
+
+    <h3 style="margin-top: 10%; text-align: center">{{this.Titulo1}} </h3>
+
+
+    <div class="container-fluid">
+
+      <!-- Division Principal-->
+      <!--<div class="rows1" style="width: 70%; height: 70vh; margin-left: 12%" *ngIf="imagen"> </div>-->
+
+      <!--Listado -->
+
+
+      <!-- cuadro agregar comentario insumos de la Basica-->
+      <div id="formContent">
+        <p>
+          <b>DESCRIPCIÓN DEL INSUMO</b>
+        </p>
+
+
+
+        <textarea [(ngModel)]="recivir" id="comentarios" name="comentarios" rows="5" cols="45"></textarea>
+
+        <button (click)="saveDescripcionInsumosB()" class="btn btn-light">
+          <i class="fa fa-save fa-lg"></i>
+
+        </button> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button (click)="cerrarDescInsumosB()" class="btn btn-light">
+          <i class="fa fa-window-close fa-lg"></i>
+        </button>
+      </div>
+
+      
+
+          <!-- cuadro agregar comentario insumos-->
+          <div id="formContent">
+              <p>
+                <b>DESCRIPCIÓN DEL INSUMO</b>
+              </p>
+      
+      
+      
+              <textarea [(ngModel)]="recivir" id="comentarios" name="comentarios" rows="5" cols="45"></textarea>
+      
+              <button (click)="saveDescripcionInsumos()" class="btn btn-light">
+                <i class="fa fa-save fa-lg"></i>
+      
+              </button> &nbsp;&nbsp;&nbsp;&nbsp;
+              <button (click)="cerrarDescInsumos()" class="btn btn-light">
+                <i class="fa fa-window-close fa-lg"></i>
+              </button>
+            </div>
+      </div></div>
+
+
+
+</body>

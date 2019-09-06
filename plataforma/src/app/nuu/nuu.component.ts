@@ -18,12 +18,11 @@ import { isNumber } from 'util';
 
 
 @Component({
-  selector: 'app-docente',
-  templateUrl: './docente.component.html',
-  styleUrls: ['./docente.component.css']
+  selector: 'app-nuu',
+  templateUrl: './nuu.component.html',
+  styleUrls: ['./nuu.component.css']
 })
-export class DocenteComponent implements OnInit, DoCheck {
-
+export class NuuComponent implements OnInit {
 
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
@@ -49,8 +48,8 @@ export class DocenteComponent implements OnInit, DoCheck {
 
   // aparecer  tabla 
 
-  public banderTabla1 = false;
-  public banderTabla2 = false;
+  public banderTabla1 = true;
+  public banderTabla2 = true;
 
 
 // botones
@@ -1566,7 +1565,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       doc.autoTable({ html: '#results', startY: 150 , styles: {
         overflow: 'linebreak',
         fontSize: 8,
-       
+        rowHeight: 2,
         cellWidth: 'auto',
         cellPadding: 2}});
 
@@ -1590,7 +1589,7 @@ export class DocenteComponent implements OnInit, DoCheck {
         html: '#results2', startY: 150, margin: {left: 30}, styles: {
           overflow: 'linebreak',
           fontSize: 7,
-         
+          rowHeight: 0,
           cellWidth: 'auto',
           cellPadding: 2,
      
