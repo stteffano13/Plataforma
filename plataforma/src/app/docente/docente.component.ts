@@ -1555,10 +1555,10 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     doc.addImage(logo, 'PNG', 30, 15, 100, 80);
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
-    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 175, 28);
-    doc.fromHTML("<h4>" +this.Titulo1 + "</h4>", 200, 48);
+    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 165, 28);
+    doc.fromHTML("<h4>" +this.Titulo1 + "</h4>", 250, 48);
     doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
-    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 260, 100);
+    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 220, 100);
     var cont = this.listadoEstudianteNotas.length;
 
 
@@ -1566,7 +1566,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       doc.autoTable({ html: '#results', startY: 150 , styles: {
         overflow: 'linebreak',
         fontSize: 8,
-       
+        rowHeight: 5,
         cellWidth: 'auto',
         cellPadding: 2}});
 
@@ -1589,8 +1589,8 @@ export class DocenteComponent implements OnInit, DoCheck {
       doc.autoTable({
         html: '#results2', startY: 150, margin: {left: 30}, styles: {
           overflow: 'linebreak',
-          fontSize: 7,
-         
+          fontSize: 5,
+          rowHeight: 0,
           cellWidth: 'auto',
           cellPadding: 2,
      

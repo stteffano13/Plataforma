@@ -582,9 +582,9 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     doc.addImage(logo, 'PNG', 30, 15, 100, 80);
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
-    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 180, 28);
-    doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 200, 48);
-    doc.fromHTML("<h4>ESTUDIANTE: " + this.identity.apellido + "  " + this.identity.nombre + "</h4>", 250, 68);
+    doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 170, 28);
+    doc.fromHTML("<h4>" + this.vectorListadoMisMaterias[0].curso.curso + " " + this.vectorListadoMisMaterias[0].curso.paralelo + "</h4>", 250, 48);
+    doc.fromHTML("<h4>ESTUDIANTE: " + this.identity.apellido + "  " + this.identity.nombre + "</h4>", 200, 68);
 
     var cont = this.vectorListadoMisMaterias.length;
 
@@ -611,10 +611,10 @@ export class EstudianteComponent implements OnInit, DoCheck {
         22: {fillColor: [207, 233, 176]}, 41: {fillColor: [249, 247, 95]},  43: {fillColor: [249, 247, 95]},
         44: {fillColor: [207, 233, 176]}, 45: {fillColor: [191, 250, 119]} }, margin: {left: 30}, styles: {
           overflow: 'linebreak',
-          fontSize: 7,
+          fontSize: 5,
           rowHeight: 0,
           cellWidth: 'auto',
-          cellPadding: 2,
+          cellPadding: 3,
      
         calculateWidths: 300
 
