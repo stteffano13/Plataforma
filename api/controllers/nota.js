@@ -160,9 +160,9 @@ function buscarNotas(req, res) {
           }
         } else {
           cont++;
-          if (cont == Object.keys(paramsi).length) {
+          if ((cont2+cont+cont3)== Object.keys(paramsi).length) {
             res.status(200).send({
-              message: "no existen notas registradas"
+              vectorNotas
             });
           }
 
