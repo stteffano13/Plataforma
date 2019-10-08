@@ -135,41 +135,44 @@ function buscarNotas(req, res) {
   cont = 0;
   paramsi.buscar.forEach(params => {
 
-    Nota.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).exec((err, notas) => {
+    Nota.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
 
       if (err) {
         cont3++
-        
-        if (cont == Object.keys(paramsi).length) {
-          res.status(500).send({
-            message: "Error al buscar Notas"
+        if ((cont3+cont+cont2) == Object.keys(paramsi.buscar).length) {
+          res.status(200).send({
+            vectorNotas
           });
         }
       } else {
         if (notas) {
 
-         
-          cont2++
-          vectorNotas.push(notas)
-          console.log("ver notas que regresa", vectorNotas)
-          if ((cont2+cont+cont3) == Object.keys(paramsi.buscar).length) {
-           console.log("ver notas que regresa", vectorNotas)
+          cont2++;
+          vectorNotas.push(notas);
+          /*if ((cont2 + cont + cont3) == Object.keys(paramsi.buscar).length) {
+            console.log("notas que traigo", vectorNotas);
             res.status(200).send({
               vectorNotas
             });
-          }
+          }*/
         } else {
           cont++;
-          if ((cont2+cont+cont3)== Object.keys(paramsi).length) {
+          /*if ((cont + cont2 + cont3) == Object.keys(paramsi).length) {
             res.status(200).send({
               vectorNotas
             });
           }
-
+*/
 
         }
-      }
 
+        if ((cont2 + cont + cont3) == Object.keys(paramsi.buscar).length) {
+          console.log("notas que traigo", vectorNotas);
+          res.status(200).send({
+            vectorNotas
+          });
+      }
+    }
     });
 
   });
@@ -340,44 +343,55 @@ function buscarNotasB(req, res) {
   cont3 = 0;
   cont = 0;
   paramsi.buscar.forEach(params => {
+
     console.log("notas b params estudiante id", params.estudiante._id, params.periodo, paramsi.materia)
     NotaB.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
+      console.log("suma contadores=",(cont+cont2+cont3),"numero vector que vino",Object.keys(paramsi).length);
+      
 
       if (err) {
         cont3++
-        if (cont == Object.keys(paramsi).length) {
-          res.status(500).send({
-            message: "Error al guardar Curso"
+        if ((cont3 + cont + cont2) == Object.keys(paramsi).length) {
+          res.status(200).send({
+            vectorNotas
           });
         }
       } else {
+
         if (notas) {
 
           cont2++;
 
           vectorNotas.push(notas)
-          if (cont2 == Object.keys(paramsi.buscar).length) {
-            console.log("estes es el vector de nbotas que regresa", vectorNotas);
+          /*  if((cont2+cont3+cont) == Object.keys(paramsi.buscar).length) {
+              console.log("estes es el vector de nbotas que regresa", vectorNotas);
+              res.status(200).send({
+                vectorNotas
+              });
+            }*/
+        } else {
+          cont++;
+          /*if ((cont+cont2+cont3) == Object.keys(paramsi).length) {
             res.status(200).send({
               vectorNotas
             });
-          }
-        } else {
-          cont++;
-          if (cont == Object.keys(paramsi).length) {
-            res.status(200).send({
-              message: "no existen notas registradas"
-            });
-          }
+          }*/
 
 
+        
         }
+        if((cont+cont2+cont3)==Object.keys(paramsi.buscar).length){
+        
+          console.log("el vector mijin antes de regresar",vectorNotas);
+          res.status(200).send({
+          vectorNotas
+          });
+          }
       }
 
     });
 
   });
-
 
 }
 
@@ -478,40 +492,42 @@ function buscarNotasMatris(req, res) {
   cont3 = 0;
   cont = 0;
 
-var contM =Object.keys(paramsi.materias).length;
-var contE= Object.keys(paramsi.buscar).length;
-var multi = contM * contE;
+  var contM = Object.keys(paramsi.materias).length;
+  var contE = Object.keys(paramsi.buscar).length;
+  var multi = contM * contE;
 
-console.log("esta es la multiplicacion de los vectores",multi);
+  console.log("esta es la multiplicacion de los vectores", multi);
   paramsi.buscar.forEach(params => {
     paramsi.materias.forEach(paramsM => {
-      console.log("estudiante", params.estudiante._id,  "materia", paramsM._id);
+      // console.log("estudiante", params.estudiante._id,  "materia", paramsM._id);
 
-      Nota.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsM._id }] }).sort({ $natural: -1 }).exec((err, notas) => {
+      Nota.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsM._id }] }).exec((err, notas) => {
 
         if (err) {
           cont3++
-          if (cont == multi ) {
+          if (cont3 == multi) {
             res.status(500).send({
               message: "Error al guardar Curso"
             });
           }
         } else {
           if (notas) {
-            console.log("materias una por una  mijo", notas);
-            cont2++;
+            cont2++
+            console.log("este es el contador", cont2);
+
 
             vectorNotas.push(notas);
-            if (cont2 == multi ) {
-              console.log("estes es el vector de nbotas que regresa para l matris", vectorNotas);
+            if (cont2 == multi) {
+              //       console.log("estes es el vector de nbotas que regresa para l matris", vectorNotas);
               res.status(200).send({
                 vectorNotas
               });
             }
-         
+
           } else {
-            cont++;
-            if (cont ==  multi ) {
+            console.log("de este estudiante no hay notas de ingles", params.estudiante.nombre, "materia", paramsM.nombre)
+            cont2++;
+            if (cont2 == multi) {
               res.status(200).send({
                 message: "no existen notas registradas"
               });
@@ -540,20 +556,20 @@ function buscarNotasMatrisB(req, res) {
   cont3 = 0;
   cont = 0;
 
-var contM =Object.keys(paramsi.materias).length;
-var contE= Object.keys(paramsi.buscar).length;
-var multi = contM * contE;
+  var contM = Object.keys(paramsi.materias).length;
+  var contE = Object.keys(paramsi.buscar).length;
+  var multi = contM * contE;
 
-console.log("esta es la multiplicacion de los vectores",multi);
+  console.log("esta es la multiplicacion de los vectores", multi);
   paramsi.buscar.forEach(params => {
     paramsi.materias.forEach(paramsM => {
-      console.log("estudiante", params.estudiante._id,  "materia", paramsM._id);
+      console.log("estudiante", params.estudiante._id, "materia", paramsM._id);
 
       NotaB.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsM._id }] }).sort({ $natural: -1 }).exec((err, notas) => {
 
         if (err) {
           cont3++
-          if (cont == multi ) {
+          if (cont == multi) {
             res.status(500).send({
               message: "Error al optener promedios finales"
             });
@@ -564,16 +580,16 @@ console.log("esta es la multiplicacion de los vectores",multi);
             cont2++;
 
             vectorNotas.push(notas);
-            if (cont2 == multi ) {
+            if (cont2 == multi) {
               console.log("estes es el vector de nbotas que regresa para l matris", vectorNotas);
               res.status(200).send({
                 vectorNotas
               });
             }
-         
+
           } else {
             cont++;
-            if (cont ==  multi ) {
+            if (cont == multi) {
               res.status(200).send({
                 message: "no existen notas registradas"
               });
