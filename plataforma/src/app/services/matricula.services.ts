@@ -50,7 +50,7 @@ export class MatriculaService {
     }
 
     getListadoMioMateria() {
-   
+        console.log("ver si va el token", this.getToken());
         let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
         return this._http
           .get(this.url + "getListadoMioMateriasE",  { headers: headers })
