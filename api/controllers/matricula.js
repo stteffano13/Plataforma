@@ -294,7 +294,7 @@ function getEstudiantesMatriculas(req, res) {
 
 function getlistadoMateriasE(req, res) {
 
-    console.log("entre a materias estudiante");
+    console.log("entre a materias estudiante",req.user.sub);
     var busqueda = req.user.sub;
     console.log(busqueda);
     if (!busqueda) {
