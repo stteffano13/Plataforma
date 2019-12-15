@@ -267,6 +267,39 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   }
 
+  subirNotas(valor) {
+    console.log("valor para desactivar notas", valor)
+
+    let obj = {
+    estado:valor  
+    }
+    this._notaService.subirNotas(obj).subscribe(
+      response => {
+        this.mensajecorrectomodals = response.message;
+        console.log("satisfactoriamente");
+        this.loading = false;
+         document.getElementById("openModalCorrecto").click();
+        // this.limpiar(1);
+      },
+      error => {
+        var errorMessage = <any>error;
+        if (errorMessage) {
+          this.mensajeerrormodals = JSON.parse(errorMessage._body).message;
+          document.getElementById("openModalError").click();
+          try {
+            var body = JSON.parse(error._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+            this.loading = false;
+            document.getElementById("openModalError").click();
+          }
+          this.loading = false;
+        }
+      }
+    );
+  }
+
   ngAfterViewInit() {
 
   }
@@ -315,9 +348,9 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.imagen = false;
       this.busquedaDocente();
       this.busquedaEstudiantes();
-     
+
     } else {
-      this.loading=false;
+      this.loading = false;
       this.mensajeerrormodals = "Ingresar parametros en la busqueda ";
       document.getElementById("openModalError").click();
     }
@@ -1256,11 +1289,11 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
               var body = JSON.parse(error._body);
               errorMessage = body.message;
               this.mensajecorrectomodals = errorMessage;
-              console.log("este el error de elminar cursos",  this.mensajecorrectomodals);
+              console.log("este el error de elminar cursos", this.mensajecorrectomodals);
             } catch {
               errorMessage = "No hay conexión intentelo más tarde";
               this.mensajecorrectomodals = errorMessage;
-              
+
               this.loading = false;
               document.getElementById("openModalError").click();
             }
@@ -1429,7 +1462,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       response => {
 
         this.listadoMateriasCurso = response.materias;
-        
+
 
         console.log("materias que traigo ", this.listadoMateriasCurso);
 
@@ -1486,7 +1519,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       materias: this.listadoMateriasCurso,
       buscar: this.listadoEstudianteMatriculas
     }
-   var  value = objBuscarNotas;
+    var value = objBuscarNotas;
     this.objNotasPT = [];
     this.diviciones;
     this.nuevo = [];
@@ -1494,10 +1527,10 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     console.log(" hoal entre a matris", value);
     this._notaService.buscarNotasMatris(value).subscribe(
       response => {
-        
+
         this.loading = false;
         this.listadoNotas = response.vectorNotas;
-          console.log("listado de notas antes de nada",  this.listadoNotas);
+        console.log("listado de notas antes de nada", this.listadoNotas);
         //  ordenar
         let i = 0;
         this.listadoEstudianteMatriculas.forEach(elementE => {
@@ -1506,22 +1539,22 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
             this.listadoNotas.forEach(element => {
 
-            //  console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
+              //  console.log("elementoE", elementE.estudiante._id, "elemento", element.estudiante);
 
 
               if (elementE.estudiante._id == element.estudiante && element.materia == elementM._id) {
-        
+
                 this.objNotasPT.push(element.pt)
 
 
                 i++;
 
               }
-             
+
             });
-           
+
           });
-          
+
           this.objNotasPT.push(";");
         });
         this.objNotasPT.pop();
@@ -1534,18 +1567,18 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         console.log("divicione1", this.diviciones[1]);
         console.log("divicione2", this.diviciones[2]);
 
-        for (let i = 0; i <this.diviciones.length; i++) {
-          if (i == this.diviciones.length-1) {
-           this.nuevo = this.diviciones[i].substring(1).split(",");
-           
+        for (let i = 0; i < this.diviciones.length; i++) {
+          if (i == this.diviciones.length - 1) {
+            this.nuevo = this.diviciones[i].substring(1).split(",");
+
           } else {
             if (i % 2 == 0) {
-              var n=this.diviciones[i].slice(0, -1).split(",");
+              var n = this.diviciones[i].slice(0, -1).split(",");
               this.nuevo = n.filter(Boolean);
-             
+
             } else {
-               var n2 = this.diviciones[i].slice(1, -1).split(",");
-              this.nuevo= n2.filter(Boolean);
+              var n2 = this.diviciones[i].slice(1, -1).split(",");
+              this.nuevo = n2.filter(Boolean);
             }
           }
           this.nuevo2.push(this.nuevo);
@@ -1613,15 +1646,15 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
           if (i == this.diviciones.length - 1) {
             this.nuevo = this.diviciones[i].substring(1).split(",");
-           
+
           } else {
 
             if (i % 2 == 0) {
 
               var n = this.diviciones[i].slice(0, -1).split(",");
-              this.nuevo=n.filter(Boolean);
+              this.nuevo = n.filter(Boolean);
             } else {
-              var n2 =this.diviciones[i].slice(1, -1).split(",");
+              var n2 = this.diviciones[i].slice(1, -1).split(",");
               this.nuevo = n2.ilter(Boolean);
 
             }
@@ -1699,7 +1732,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     curso = value.split(" ");
     this.disabledMateriaImpartir = false;
     console.log("value[1]", curso[1]);
-    if (curso[2].indexOf("SUPERIOR") != -1  || curso[2].indexOf("OCTAVO") != -1 || curso[2].indexOf("NOVENO") != -1 || curso[2].indexOf("DECIMO") != -1) {
+    if (curso[2].indexOf("SUPERIOR") != -1 || curso[2].indexOf("OCTAVO") != -1 || curso[2].indexOf("NOVENO") != -1 || curso[2].indexOf("DECIMO") != -1) {
       this.vectorlistadoMaterias = this.arrayOctavo;
       console.log("entre basico");
     } else {
@@ -1736,58 +1769,61 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   ordenar(vector1) {
     var cont;
-   let vector = vector1;
+    let vector = vector1;
 
-   console.log('<<<<<< MI VECTOR ANTES DE LA ORDENADA >>>>>>', vector);
-   cont = 0;
-   vector.forEach(() => {
-     cont += 1;
-   });
-   console.log(cont);
-   for (let k = 0; k < cont - 1; k++) {
-     //console.log('mi FOR', vector[k]);
-     for (let f = 0; f < (cont - 1) - k; f++) {
-       // console.log('mi FOR', vector[f]);
-       if (vector[f].estudiante.apellido.localeCompare(vector[f + 1].estudiante.apellido) > 0) {
-         let aux;
-         aux = vector[f];
-         vector[f] = vector[f + 1];
-         vector[f + 1] = aux;
-       }
-     }
-   }
-   console.log("<<<<<< MI VECTOR DESPUES DE LA ORDENADA >>>>>>", vector);
-  return vector;
- }
-
- generarPdf() {
-
-  interface jsPDFWithPlugin extends jsPDF {
-    autoTable: (options: UserOptions) => jsPDF;
+    console.log('<<<<<< MI VECTOR ANTES DE LA ORDENADA >>>>>>', vector);
+    cont = 0;
+    vector.forEach(() => {
+      cont += 1;
+    });
+    console.log(cont);
+    for (let k = 0; k < cont - 1; k++) {
+      //console.log('mi FOR', vector[k]);
+      for (let f = 0; f < (cont - 1) - k; f++) {
+        // console.log('mi FOR', vector[f]);
+        if (vector[f].estudiante.apellido.localeCompare(vector[f + 1].estudiante.apellido) > 0) {
+          let aux;
+          aux = vector[f];
+          vector[f] = vector[f + 1];
+          vector[f + 1] = aux;
+        }
+      }
+    }
+    console.log("<<<<<< MI VECTOR DESPUES DE LA ORDENADA >>>>>>", vector);
+    return vector;
   }
-  this.loading = true;
-  var logo = new Image();
-  logo.src = '../../assets/imgs/logo.png';
+
+  generarPdf() {
+
+    interface jsPDFWithPlugin extends jsPDF {
+      autoTable: (options: UserOptions) => jsPDF;
+    }
+    this.loading = true;
+    var logo = new Image();
+    logo.src = '../../assets/imgs/logo.png';
 
 
-  const doc = new jsPDF('l', 'px', 'a4') as jsPDFWithPlugin;;
+    const doc = new jsPDF('l', 'px', 'a4') as jsPDFWithPlugin;;
 
 
-  doc.addImage(logo, 'PNG', 30, 15, 100, 80);
-  doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
-  doc.fromHTML("<h4>ACTA CONSOLIDADA DE NOTAS </h4>", 255, 28);
-  doc.fromHTML("<h4> PERIODO:" + "  " +   this.opcionPeriodoLectivo + "</h4>", 250, 48);
- 
+    doc.addImage(logo, 'PNG', 30, 15, 100, 80);
+    doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
+    doc.fromHTML("<h4>ACTA CONSOLIDADA DE NOTAS </h4>", 255, 28);
+    doc.fromHTML("<h4> PERIODO:" + "  " + this.opcionPeriodoLectivo + "</h4>", 250, 48);
 
 
 
-    doc.autoTable({ html: '#consolidado', startY: 110 , styles: {
-      overflow: 'linebreak',
-      fontSize: 8,
-      rowHeight: 2,
-      cellWidth: 'auto',
-      halign: "center",
-      cellPadding: 2}});
+
+    doc.autoTable({
+      html: '#consolidado', startY: 110, styles: {
+        overflow: 'linebreak',
+        fontSize: 8,
+        rowHeight: 2,
+        cellWidth: 'auto',
+        halign: "center",
+        cellPadding: 2
+      }
+    });
 
     this.loading = false;
 
@@ -1795,6 +1831,6 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
 
-  
-}
+
+  }
 }

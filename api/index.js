@@ -1,6 +1,5 @@
 'use strict'
 
-
 var bcrypt = require('bcrypt-nodejs');
 var moment = require('moment');
 
@@ -14,7 +13,7 @@ var port = process.env.PORT || 3977;
 
 
 
-mongoose.connect('mongodb://localhost:27017/plataforma ',{user: 'nutch@', pass: 'p@ssw0rd'}, (err, res) => {
+mongoose.connect('mongodb://134.209.209.244:27017/plataforma?authSource=plataforma',{user:'nutch@',pass:'p@ssw0rd'}, (err, res) => {
     if (err) {
         throw err;
     } else {

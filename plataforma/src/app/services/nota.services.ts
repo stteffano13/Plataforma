@@ -16,6 +16,17 @@ export class NotaService {
     }
 
 
+    subirNotas(estado) {
+        let json = JSON.stringify(estado);
+        let params = json;
+        console.log("estado subir nota", params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+        return this._http
+            .post(this.url +"subirNotas",params, { headers: headers })
+            .map(res => res.json());
+    }
+
+
     registerNota(nota_to_register) {
         let json = JSON.stringify(nota_to_register);
         let params = json;

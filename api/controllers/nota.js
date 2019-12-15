@@ -1,6 +1,81 @@
 
 var Nota = require('../models/nota');
 var NotaB = require('../models/notaB');
+var SubirNota = require('../models/subirNota');
+
+function subirNotas(req, res) {
+
+  var params = req.body;
+
+  console.log("veamos que viene como estado", params.estado);
+
+
+  SubirNota.findOne({ '$or': [{ estado: '0' }, { estado: '1' }] }, (err, subirnotas) => {
+    if (err) {
+      res.status(500).send({
+        message: "Error al afectar subida de notas"
+      });
+
+    } else {
+      if (subirnotas) {
+        console.log("actualizar notas", subirnotas._id);
+        params._id=subirnotas._id;
+        SubirNota.findOneAndUpdate(params._id, params, (err, subirnotaUpdate) => {
+
+          if (err) {
+            res.status(500).send({
+              message: err
+            });
+          } else {
+            if (!subirnotaUpdate) {
+              res.status(404).send({
+                message: "la afectacion a la subida de notas no ha podido realizarse."
+              });
+            } else {
+                res.status(200).send({
+                  message: "la afectacion a la subida de notas se ha realizado correctamente."
+                });
+              
+            }
+          }
+      
+        });
+
+
+      } else {
+        
+        console.log("antes de asignar el estado", params.estado);
+        var subirNota = new SubirNota();
+        subirNota.estado = params.estado;
+        subirNota.save((err, subirnotaStored) => {
+          if (err) {
+            res.status(500).send({
+              message: 'Error al afectar gurdado de subida de notas'
+            });
+          } else {
+            if (!subirnotaStored) {
+              res.status(404).send({
+                message: 'No se ha afectado correctamente la subida de notas'
+              });
+            } else {
+             
+                res.status(200).send({
+                  message: 'La afectacion a la subida de notas se ha realizado correctamente'
+                });
+              
+            }
+          }
+      
+        });
+      }
+    }
+
+  });
+
+
+
+}
+
 
 function saveNotas(req, res) {
 
@@ -139,7 +214,7 @@ function buscarNotas(req, res) {
 
       if (err) {
         cont3++
-        if ((cont3+cont+cont2) == Object.keys(paramsi.buscar).length) {
+        if ((cont3 + cont + cont2) == Object.keys(paramsi.buscar).length) {
           res.status(200).send({
             vectorNotas
           });
@@ -171,8 +246,8 @@ function buscarNotas(req, res) {
           res.status(200).send({
             vectorNotas
           });
+        }
       }
-    }
     });
 
   });
@@ -346,8 +421,8 @@ function buscarNotasB(req, res) {
 
     console.log("notas b params estudiante id", params.estudiante._id, params.periodo, paramsi.materia)
     NotaB.findOne({ '$and': [{ estudiante: params.estudiante._id }, { periodo: params.periodo }, { materia: paramsi.materia }] }).sort({ $natural: -1 }).exec((err, notas) => {
-      console.log("suma contadores=",(cont+cont2+cont3),"numero vector que vino",Object.keys(paramsi).length);
-      
+      console.log("suma contadores=", (cont + cont2 + cont3), "numero vector que vino", Object.keys(paramsi).length);
+
 
       if (err) {
         cont3++
@@ -378,15 +453,15 @@ function buscarNotasB(req, res) {
           }*/
 
 
-        
+
         }
-        if((cont+cont2+cont3)==Object.keys(paramsi.buscar).length){
-        
-          console.log("el vector mijin antes de regresar",vectorNotas);
+        if ((cont + cont2 + cont3) == Object.keys(paramsi.buscar).length) {
+
+          console.log("el vector mijin antes de regresar", vectorNotas);
           res.status(200).send({
-          vectorNotas
+            vectorNotas
           });
-          }
+        }
       }
 
     });
@@ -609,7 +684,7 @@ function buscarNotasMatrisB(req, res) {
 }
 
 module.exports = {          // para exportar todas las funciones de este modulo
-
+  subirNotas,
   saveNotas,
   buscarNotas,
   updateNotasFin,

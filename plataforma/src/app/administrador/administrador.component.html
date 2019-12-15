@@ -94,6 +94,21 @@
           </ul>
         </li>
 
+        <li class="nav-item" data-toggle="tooltip" data-placement="right">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#listarSubirNota" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-address-book"></i>
+            <span class="nav-link-text"> Subir notas</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="listarSubirNota">
+            <li>
+              <a href="#" (click)="subirNotas('1')">Desactivar</a>
+            </li>
+            <li>
+              <a href="#" (click)="subirNotas('0')">Activar </a>
+            </li>
+          </ul>
+        </li>
+
       </ul>
 
       <ul class="navbar-nav sidenav-toggler">

@@ -41,7 +41,13 @@ public cont =0;
         .map(res => res.json());
 }
 
+getSubirNotas() {
 
+  let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+  return this._http
+      .get(this.url + "getSubirNotas", { headers: headers })
+      .map(res => res.json());
+}
 
 
 getPeriodoActual() {

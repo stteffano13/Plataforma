@@ -99,20 +99,22 @@ export class DocenteComponent implements OnInit, DoCheck {
   public identity;
 
   public counter = 5;
+
+  public banderSubirNotas=true;
   ngOnInit() {
 
     this.getListadoMisMaterias();
     this.getPeriodoActual();
     this.identity = this._docenteService.getIdentity()
-
-
+  
+    this.getSubirNotas();
 
   }
 
   ngDoCheck() {
 
     this.recivir;
-
+    
   }
 
   cerrarDescInsumos() {
@@ -1106,6 +1108,26 @@ export class DocenteComponent implements OnInit, DoCheck {
 
   }
 
+
+  getSubirNotas() {
+
+
+    this._administradorService.getSubirNotas().subscribe(response => {
+      console.log("este es el estado de nota", response)
+      if (response.subirnota.estado != undefined) {
+        if(response.subirnota.estado=='1')
+        {
+          this.mensajeerrormodal = "Tu periodo de asignacion de notas ha finalizado espera hasta la siguiente activacion";
+          document.getElementById("openModalError").click();
+          this.banderSubirNotas=false;
+        }else{this.banderSubirNotas=true}
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
+
   getPeriodoActual() {
 
 
@@ -1433,7 +1455,8 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
 
   registroNotas() {
-  
+  console.log("bandera de subir notas", this.banderSubirNotas);
+    if(this.banderSubirNotas==true){
     this.banderaHabilitar=true;
     this.pruebaclick();
     if (this.banderAux == false) {
@@ -1495,9 +1518,16 @@ export class DocenteComponent implements OnInit, DoCheck {
         }
       );
     }
+  }else
+  {
+    this.mensajeerrormodal = "Tu periodo de asignacion de notas ha finalizado espera hasta la siguiente activacion";
+          document.getElementById("openModalError").click();
+  }
   }
 
   registroNotasB() {
+    console.log("bandera de subir notas", this.banderSubirNotas);
+    if(this.banderSubirNotas==true){
     this.banderaHabilitarB=true;
     this.pruebaclick();
     if (this.banderAux == false) {
@@ -1532,6 +1562,11 @@ export class DocenteComponent implements OnInit, DoCheck {
         }
       );
     }
+  }else
+  {
+    this.mensajeerrormodal = "Tu periodo de asignacion de notas ha finalizado espera hasta la siguiente activacion";
+    document.getElementById("openModalError").click();
+  }
   }
 
   logout() {

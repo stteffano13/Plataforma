@@ -242,7 +242,7 @@ function getEstudiantesMatriculas(req, res) {
     } else {
 
 
-        var periodo = Periodo.find().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
+        var periodo = Periodo.find().sort({ $: -1 }).limit(1).exec((err, periodo) => {
             if (err) {
                 return res.status(500).send({
                     message: 'No se han podido obtener periodo'
@@ -294,7 +294,7 @@ function getEstudiantesMatriculas(req, res) {
 
 function getlistadoMateriasE(req, res) {
 
-    console.log("entre a materias estudiante",req.user.sub);
+    console.log("entre a materias estudiante");
     var busqueda = req.user.sub;
     console.log(busqueda);
     if (!busqueda) {

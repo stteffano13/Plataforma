@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var Administrador = require('../models/administrador');
 var Periodo = require('../models/periodo');//importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
-
+var SubirNota = require('../models/subirNota');
 
 
 function saveAdministrador(req, res) {
@@ -239,14 +239,37 @@ function getPeridos(req, res) {
     });
 }
 
+function getSubirNotas(req, res) {
+
+    var periodo = SubirNota.findOne().exec((err, subirnota) => {
+        if (err) {
+            return res.status(500).send({
+                message: 'No se han podido obtener sus periodos'
+            });
+        }
+
+        if (!subirnota) {
+            return res.status(200).send({
+                message: 'No tiene periodos'
+            });
+        } else {
+            console.log(subirnota);
+            return res.status(200).send({
+              
+                subirnota
+            });
+        }
+    });
+}
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveAdministrador,
     loginAdministrador,
     savePeriodoLectivoActual,
     getPeridoLectivoActual,
-    getPeridos
-
+    getPeridos,
+    getSubirNotas
 
 
 
