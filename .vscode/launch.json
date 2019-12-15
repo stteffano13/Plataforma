@@ -6,12 +6,18 @@
     "configurations": [
         {
             "type": "node",
+            "request": "launch", 
+            "name":  "Debug   node",      
+            "program": "${workspaceFolder}../../../api/appi.js"
+        },
+        
+        {
+            "type": "chrome",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/api\\controllers\\materia.js",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "name":  "Launch  Chrome against localhost",
+             "url": "http://localhost:4200",
+             "webRoot": "${workspaceFolder}/public"
         }
+      
     ]
 }

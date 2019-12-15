@@ -610,13 +610,14 @@ export class EstudianteComponent implements OnInit, DoCheck {
         21: {fillColor: [249, 247, 95]},
         22: {fillColor: [207, 233, 176]}, 41: {fillColor: [249, 247, 95]},  43: {fillColor: [249, 247, 95]},
         44: {fillColor: [207, 233, 176]}, 45: {fillColor: [191, 250, 119]} }, margin: {left: 30}, styles: {
+         
           overflow: 'linebreak',
           fontSize: 5,
-          rowHeight: 0,
+          //rowHeight: 0,
           cellWidth: 'auto',
           cellPadding: 3,
      
-        calculateWidths: 300
+       // calculateWidths: 300
 
         }
 
