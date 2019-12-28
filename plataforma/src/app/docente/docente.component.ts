@@ -1587,18 +1587,22 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     const doc = new jsPDF('l', 'px', 'a4') as jsPDFWithPlugin;;
 
-
+    var pageWidth = doc.internal.pageSize.width
     doc.addImage(logo, 'PNG', 30, 15, 100, 80);
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 165, 28);
-    doc.fromHTML("<h4>" +this.Titulo1 + "</h4>", 250, 48);
-    doc.fromHTML("<h4>MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
-    doc.fromHTML("<h4>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 220, 100);
+    
+    doc.fromHTML("<h4  style='text-align: center' >MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
+    doc.fromHTML("<h4  style='text-align: center'>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 220, 100);
     var cont = this.listadoEstudianteNotas.length;
 
 
     if (this.banderTabla1) {
-      doc.autoTable({ html: '#results', startY: 150 , styles: {
+      doc.fromHTML("<h4  style='text-align: center' >" +this.Titulo1 + "</h4>",200,48);
+      doc.autoTable({ html: '#results', startY: 150,columnStyles: {10: {fillColor: [249, 247, 95]},
+      12: {fillColor: [249, 247, 95]},
+      13: {fillColor: [207, 233, 176]}, 22: {fillColor: [249, 247, 95]},  24: {fillColor: [249, 247, 95]},
+      25: {fillColor: [207, 233, 176]}, 26: {fillColor: [191, 250, 119]} } , styles: {
         overflow: 'linebreak',
         fontSize: 8,
         rowHeight: 5,
@@ -1620,9 +1624,14 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     } else {
 
-
+      doc.fromHTML("<h4  style='text-align: center' >" +this.Titulo1 + "</h4>",240,48);
+      
       doc.autoTable({
-        html: '#results2', startY: 150, margin: {left: 30}, styles: {
+        
+        html: '#results2', startY: 150, margin: {left: 30}, columnStyles: {20: {fillColor: [249, 247, 95]},
+        22: {fillColor: [249, 247, 95]},
+        23: {fillColor: [207, 233, 176]}, 42: {fillColor: [249, 247, 95]},  44: {fillColor: [249, 247, 95]},
+        45: {fillColor: [207, 233, 176]}, 46: {fillColor: [191, 250, 119]} },styles: {
           overflow: 'linebreak',
           fontSize: 5,
           rowHeight: 0,
