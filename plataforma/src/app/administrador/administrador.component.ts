@@ -346,6 +346,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.IngresarMatricula = false;
       this.IngresarAsignacion = false;
       this.imagen = false;
+      this.banderReporteExcel=false;
       this.busquedaDocente();
       this.busquedaEstudiantes();
 
