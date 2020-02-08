@@ -1655,7 +1655,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
               this.nuevo = n.filter(Boolean);
             } else {
               var n2 = this.diviciones[i].slice(1, -1).split(",");
-              this.nuevo = n2.ilter(Boolean);
+              this.nuevo = n2.filter(Boolean);
 
             }
           }
@@ -1818,7 +1818,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       html: '#consolidado', startY: 110, styles: {
         overflow: 'linebreak',
         fontSize: 8,
-        rowHeight: 2,
+       
         cellWidth: 'auto',
         halign: "center",
         cellPadding: 2
