@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdministradorService } from "../app/services/administrador.services";
 import { DocenteService } from "../app/services/docente.services";
 import { EstudianteService } from "../app/services/estudiante.services";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

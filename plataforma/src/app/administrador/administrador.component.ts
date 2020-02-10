@@ -17,10 +17,12 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { Local } from 'protractor/built/driverProviders';
-import { ExcelService } from '../sharedServices/excel.service';
+//import { ExcelService } from '../sharedServices/excel.service';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { UserOptions } from 'jspdf-autotable';
+import { ExcelService } from '../services/excel.service';
+
 
 
 
@@ -271,14 +273,14 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     console.log("valor para desactivar notas", valor)
 
     let obj = {
-    estado:valor  
+      estado: valor
     }
     this._notaService.subirNotas(obj).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
         console.log("satisfactoriamente");
         this.loading = false;
-         document.getElementById("openModalCorrecto").click();
+        document.getElementById("openModalCorrecto").click();
         // this.limpiar(1);
       },
       error => {
@@ -346,7 +348,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.IngresarMatricula = false;
       this.IngresarAsignacion = false;
       this.imagen = false;
-      this.banderReporteExcel=false;
+      this.banderReporteExcel = false;
       this.busquedaDocente();
       this.busquedaEstudiantes();
 
@@ -1760,9 +1762,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
 
-  exportAsXLSX(): void {
-    this.excelService.exportAsExcelFile(this.data, 'sample');
-  }
+
   recargar() {
     location.reload();
   }
@@ -1819,7 +1819,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       html: '#consolidado', startY: 110, styles: {
         overflow: 'linebreak',
         fontSize: 8,
-       
+
         cellWidth: 'auto',
         halign: "center",
         cellPadding: 2
@@ -1831,7 +1831,26 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     doc.save('Reporte_Notas_Admin.pdf');
 
 
-
-
   }
+  private VreporteExcel;
+  
+  generarExel() {
+    this.VreporteExcel = this.nuevo2;
+    var materias = [];
+    materias.push("NOMBRES Y APELLIDOS");
+    for (var i in this.listadoMateriasCurso) {
+      materias.push(this.listadoMateriasCurso[i].nombre);
+    }
+    for (var i in this.listadoEstudianteMatriculas) {
+      this.VreporteExcel[i].unshift(this.listadoEstudianteMatriculas[i].estudiante.apellido + " " + this.listadoEstudianteMatriculas[i].estudiante.nombre);
+    }
+    this.VreporteExcel.unshift(materias);
+    console.log("esto es antes de generar excel", this.VreporteExcel);
+    this.excelService.exportAsExcelFile(this.VreporteExcel, 'Consolidado_Final', this.listadoMateriasCurso);
+    this.nuevo2.shift();
+    for (var i in this.listadoEstudianteMatriculas) {
+      this.nuevo2[i].shift();
+    }
+  }
+
 }
