@@ -15,7 +15,7 @@ import 'jspdf-autotable';
 import { UserOptions } from 'jspdf-autotable';
 import * as html2canvas from 'html2canvas';
 import { isNumber } from 'util';
-
+import { ExcelService } from '../services/excel.service';
 
 @Component({
   selector: 'app-docente',
@@ -26,6 +26,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
 
   constructor(private _materiaService: MateriaService,
+    private excelService: ExcelService,
     private _administradorService: AdministradorService,
     private _matriculaServices: MatriculaService,
     private _notaService: NotaService, private _docenteService: DocenteService,
@@ -1592,7 +1593,7 @@ export class DocenteComponent implements OnInit, DoCheck {
     doc.fromHTML("<h2>COLEGIO DE BACHILLERATO PCEI EBENEZER</h2>", 170, 2);
     doc.fromHTML("<h4>ACTA DE CALIFICACIÓN POR PERIODO" + "  " + this.periodoLectivoActual + "</h4>", 165, 28);
     
-    doc.fromHTML("<h4  style='text-align: center' >MATERIA: " + this.Titulo2 + "</h4>", 250, 75);
+    doc.fromHTML("<h4  style='text-align: center' >MATERIA: " + this.Titulo2 + "</h4>", 230, 75);
     doc.fromHTML("<h4  style='text-align: center'>DOCENTE: " + this.identity.apellido + " " + this.identity.nombre + "</h4>", 220, 100);
     var cont = this.listadoEstudianteNotas.length;
 
@@ -1657,7 +1658,34 @@ export class DocenteComponent implements OnInit, DoCheck {
 
     }
   }
+  public VreporteExcel;
+  
+  generarExel() {
+    
+    this.VreporteExcel=this.object;
+     for (var i in this.VreporteExcel) {
+    this.VreporteExcel[i].estudiante=this.listadoEstudianteMatriculas[i].estudiante.apellido+" "+this.listadoEstudianteMatriculas[i].estudiante.apellido;
+      delete this.VreporteExcel[i]._id;
+      delete this.VreporteExcel[i].materia;
+      delete this.VreporteExcel[i].periodo;
+     }
+    // var materias = [];
+    // materias.push("NOMBRES Y APELLIDOS");
+    // for (var i in this.listadoMateriasCurso) {
+    //   materias.push(this.listadoMateriasCurso[i].nombre);
+    // }
+    // for (var i in this.listadoEstudianteMatriculas) {
+    //   this.VreporteExcel[i].unshift(this.listadoEstudianteMatriculas[i].estudiante.apellido + " " + this.listadoEstudianteMatriculas[i].estudiante.nombre);
+    // }
+    // this.VreporteExcel.unshift(materias);
+    console.log("esto es antes de generar excel", this.VreporteExcel);
 
+    this.excelService.exportAsExcelFileD(this.VreporteExcel, 'Consolidado_Final', this.listadoInsumos);
+    // this.nuevo2.shift();
+    // for (var i in this.listadoEstudianteMatriculas) {
+    //   this.nuevo2[i].shift();
+    // }
+  }
   recargar() {
     location.reload();
   }

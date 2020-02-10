@@ -448,8 +448,12 @@
         <button class="btn btn-success" style=" padding-right: 3%; padding-left: 3%" [disabled]="banderaHabilitar" [hidden]="btnFinalizar" (click)="registroNotas()">
           Guardar Registros</button>&nbsp;&nbsp;&nbsp;
 
-          <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" class="btn btn-primary" (click)="generarPdf()">Exportar pdf</button>
-     <br><br><br>
+          <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" class="btn btn-danger" (click)="generarPdf()">Exportar pdf</button>
+          &nbsp;&nbsp;&nbsp;
+          <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" (click)="generarExel()" class="btn btn-success" style="align-content: center">
+            Exportar en Excel
+          </button>
+          <br><br><br>
         </div>
     </div>
 <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 1 ============================================-->
