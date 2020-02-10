@@ -24,8 +24,11 @@ export class ExcelService {
   }
 
   public exportAsExcelFileD(json: any[], excelFileName: string, vectorC: []): void {
-  
+    var tc=[];
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+    tc.push({wpx : 250});
+    
+    worksheet["!cols"] =tc ;
     
     const workbook: XLSX.WorkBook = { Sheets: { 'consolidado': worksheet }, SheetNames: ['consolidado'] };
 
