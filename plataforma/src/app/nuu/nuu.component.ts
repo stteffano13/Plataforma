@@ -1149,7 +1149,7 @@ export class NuuComponent implements OnInit {
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.object.push(this.obj = new Nota("", "", "", "","0","0","0","0","0","0","0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }

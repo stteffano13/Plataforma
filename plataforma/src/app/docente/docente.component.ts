@@ -792,6 +792,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
 
       this.objectCalculableB[i].ochentaporciento1 = ochentaporciento1.toFixed(2);
+    
       this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(2);
       this.objectCalculableB[i].promedio1 = promedio1.toFixed(2);
       this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
@@ -1173,7 +1174,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.object.push(this.obj = new Nota("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.object.push(this.obj = new Nota("", "", "", "","0","0","0","0","0","0","0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculable.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -1668,6 +1669,13 @@ export class DocenteComponent implements OnInit, DoCheck {
       delete this.VreporteExcel[i]._id;
       delete this.VreporteExcel[i].materia;
       delete this.VreporteExcel[i].periodo;
+      this.object[i].ochenta_p1= this.objectCalculable[i].ochentaporciento1;
+      this.object[i].veinte_p1=this.objectCalculable[i].veinteporciento1;
+      this.object[i].promedio1=this.objectCalculable[i].promedio1;
+      this.object[i].ochenta_p2=this.objectCalculable[i].ochentaporciento2;
+      this.object[i].veinte_p2=this.objectCalculable[i].veinteporciento2;
+      this.object[i].promedio2=this.objectCalculable[i].promedio2;
+     
      }
     // var materias = [];
     // materias.push("NOMBRES Y APELLIDOS");
