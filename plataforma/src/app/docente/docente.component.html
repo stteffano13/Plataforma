@@ -450,7 +450,7 @@
 
           <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" class="btn btn-danger" (click)="generarPdf()">Exportar pdf</button>
           &nbsp;&nbsp;&nbsp;
-          <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" (click)="generarExel()" class="btn btn-success" style="align-content: center">
+          <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar" (click)="generarExel(1)" class="btn btn-success" style="align-content: center">
             Exportar en Excel
           </button>
           <br><br><br>
@@ -1150,8 +1150,14 @@
       <button class="btn btn-success" style="padding-right: 3%; padding-left: 3%"  [disabled]="banderaHabilitarB" [hidden]="btnFinalizar2" (click)="registroNotasB()">
         Guardar Registros</button> &nbsp;&nbsp;&nbsp;
 
-        <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar2" class="btn btn-primary" (click)="generarPdf()">Exportar pdf</button>
-    </div>
+        <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar2" class="btn btn-danger" (click)="generarPdf()">Exportar pdf</button>
+        &nbsp;&nbsp;&nbsp;
+    
+        <button  style=" padding-right: 3%; padding-left: 3%"  [hidden]="btnFinalizar2" (click)="generarExel(2)" class="btn btn-success" style="align-content: center">
+          Exportar en Excel
+        </button>  </div>
+        <br>
+        <br>
 
 
     <!-- ====================================================   Tabla  Auxiliar para reporte para Notas 2 ============================================-->

@@ -777,7 +777,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
       var ochentaporciento2 = ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
         + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
-        + parseFloat(this.objectB[i].Q1P1insumo6) +
+        + parseFloat(this.objectB[i].Q2P1insumo6) +
 
         parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3)
         + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
@@ -796,6 +796,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       this.objectCalculableB[i].veinteporciento1 = veinteporciento1.toFixed(2);
       this.objectCalculableB[i].promedio1 = promedio1.toFixed(2);
       this.objectCalculableB[i].ochentaporciento2 = ochentaporciento2.toFixed(2);
+      console.log("miraaaaaaaaaaaaaaaaa", ochentaporciento2,"objeto ",this.objectB[i] );
       this.objectCalculableB[i].veinteporciento2 = veinteporciento2.toFixed(2);
       this.objectCalculableB[i].promedio2 = promedio2.toFixed(2);
       this.objectCalculableB[i].promedioPeriodo = promedioPeriodo.toFixed(2);
@@ -939,7 +940,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
       var ochentaporciento2 = ((parseFloat(this.objectB[i].Q2P1insumo1) + parseFloat(this.objectB[i].Q2P1insumo2)
         + parseFloat(this.objectB[i].Q2P1insumo3) + parseFloat(this.objectB[i].Q2P1insumo4) + parseFloat(this.objectB[i].Q2P1insumo5)
-        + parseFloat(this.objectB[i].Q1P1insumo6) +
+        + parseFloat(this.objectB[i].Q2P1insumo6) +
 
         parseFloat(this.objectB[i].Q2P2insumo1) + parseFloat(this.objectB[i].Q2P2insumo2) + parseFloat(this.objectB[i].Q2P2insumo3)
         + parseFloat(this.objectB[i].Q2P2insumo4) + parseFloat(this.objectB[i].Q2P2insumo5) + parseFloat(this.objectB[i].Q2P2insumo6) +
@@ -1201,7 +1202,7 @@ export class DocenteComponent implements OnInit, DoCheck {
 
           for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
 
-            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
+            this.objectB.push(this.objB = new NotaBasica("", "", "", "", "0","0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"));
             this.objectCalculableB.push(this.objC = new Calculable("0", "0", "0", "0", "0", "0", "0"));
 
           }
@@ -1661,8 +1662,9 @@ export class DocenteComponent implements OnInit, DoCheck {
   }
   public VreporteExcel;
   
-  generarExel() {
+  generarExel(variable) {
     
+    if(variable==1){
     this.VreporteExcel=this.object;
      for (var i in this.VreporteExcel) {
     this.VreporteExcel[i].estudiante=this.listadoEstudianteMatriculas[i].estudiante.apellido+" "+this.listadoEstudianteMatriculas[i].estudiante.apellido;
@@ -1677,6 +1679,22 @@ export class DocenteComponent implements OnInit, DoCheck {
       this.object[i].promedio2=this.objectCalculable[i].promedio2;
      
      }
+    }else
+    {
+      this.VreporteExcel=this.objectB;
+     for (var i in this.VreporteExcel) {
+    this.VreporteExcel[i].estudiante=this.listadoEstudianteMatriculas[i].estudiante.apellido+" "+this.listadoEstudianteMatriculas[i].estudiante.apellido;
+      delete this.VreporteExcel[i]._id;
+      delete this.VreporteExcel[i].materia;
+      delete this.VreporteExcel[i].periodo;
+     this.objectB[i].Ochenta_P1= this.objectCalculableB[i].ochentaporciento1;
+      this.objectB[i].Veinte_P1=this.objectCalculableB[i].veinteporciento1;
+      this.objectB[i].Promedio1=this.objectCalculableB[i].promedio1;
+      this.objectB[i].Ochenta_P2=this.objectCalculableB[i].ochentaporciento2;
+      this.objectB[i].Veinte_P2=this.objectCalculableB[i].veinteporciento2;
+      this.objectB[i].Promedio2=this.objectCalculableB[i].promedio2;
+    }
+  }
     // var materias = [];
     // materias.push("NOMBRES Y APELLIDOS");
     // for (var i in this.listadoMateriasCurso) {

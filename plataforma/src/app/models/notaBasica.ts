@@ -22,8 +22,10 @@ export class NotaBasica {
         public Q1P3insumo4:String,
         public Q1P3insumo5:String,
         public Q1P3insumo6:String,
+        public Ochenta_P1:String,
         public examen1:String,
-
+        public Veinte_P1:String,
+        public Promedio1:String,
         public Q2P1insumo1:String,
         public Q2P1insumo2:String,
         public Q2P1insumo3:String,
@@ -42,8 +44,10 @@ export class NotaBasica {
         public Q2P3insumo4:String,
         public Q2P3insumo5:String,
         public Q2P3insumo6:String,
-
+        public Ochenta_P2:String,
         public examen2:String,
+        public Veinte_P2:String,
+        public Promedio2:String,
         public examenSupletorio:String,
         public examenRemedial:String,
         public examenGracia:String,
