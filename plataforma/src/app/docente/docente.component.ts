@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 import { MateriaService } from '../services/materia.services';
 import { MatriculaService } from '../services/matricula.services';
 import { AdministradorService } from '../services/administrador.services';
@@ -22,7 +22,7 @@ import { ExcelService } from '../services/excel.service';
   templateUrl: './docente.component.html',
   styleUrls: ['./docente.component.css']
 })
-export class DocenteComponent implements OnInit, DoCheck {
+export class DocenteComponent implements OnInit, DoCheck, OnDestroy {
 
 
   constructor(private _materiaService: MateriaService,
@@ -100,21 +100,63 @@ export class DocenteComponent implements OnInit, DoCheck {
   public identity;
 
   public counter = 5;
-
   public banderSubirNotas=true;
+  public btnHabilitarExportacion= true;
+
+  // subscribes variables
+  public subscribe1;
+  public subscribe2;
+  public subscribe3;
+  public subscribe4;
+  public subscribe5;
+  public subscribe6;
+  public subscribe7;
+  public subscribe8;
+  public subscribe9;
+  public subscribe10;
+  public subscribe11;
+  public subscribe12;
+  public subscribe13;
+
+
   ngOnInit() {
 
     this.getListadoMisMaterias();
     this.getPeriodoActual();
     this.identity = this._docenteService.getIdentity()
-  
     this.getSubirNotas();
-
   }
 
   ngDoCheck() {
 
     this.recivir;
+  }
+  ngOnDestroy()
+  {
+    console.log("chao");
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
+    this.subscribe3.unsubscribe();
+    this.subscribe4.unsubscribe();
+    this.subscribe5.unsubscribe();
+    this.subscribe6.unsubscribe();
+    this.subscribe7.unsubscribe();
+    this.subscribe8.unsubscribe();
+    this.subscribe9.unsubscribe();
+    this.subscribe10.unsubscribe();
+    this.subscribe11.unsubscribe();
+    this.subscribe12.unsubscribe();
+    this.subscribe13.unsubscribe();
+    delete this.descripcionInsumoB;
+    delete this.descripcionInsumo;
+    delete this.object;
+    delete this.obj;
+    delete this.objectCalculable;
+    delete this.objC;
+    delete this.objectB; 
+    delete this.objB;
+    delete this.objectCalculableB;
+   
     
   }
 
@@ -137,55 +179,13 @@ export class DocenteComponent implements OnInit, DoCheck {
     this.descripcionInsumoB.periodo = this.periodoLectivoActual;
 
 
-    /*this.descripcionInsumoB.DescQ1P1insumo1 = "Insumo 1";
-    this.descripcionInsumoB.DescQ1P1insumo2 = "Insumo2";
-    this.descripcionInsumoB.DescQ1P1insumo3 = "Insumo 3";
-    this.descripcionInsumoB.DescQ1P1insumo4 = "Insumo 4";
-    this.descripcionInsumoB.DescQ1P1insumo5 = "Insumo 5";
-    this.descripcionInsumoB.DescQ1P1insumo6 = "Insumo 6";
-
-    this.descripcionInsumoB.DescQ1P2insumo1 = "Insumo 1";
-    this.descripcionInsumoB.DescQ1P2insumo2 = "Insumo 2";
-    this.descripcionInsumoB.DescQ1P2insumo3 = "Insumo 3";
-    this.descripcionInsumoB.DescQ1P2insumo4 = "Insumo 4";
-    this.descripcionInsumoB.DescQ1P2insumo5 = "Insumo 5";
-    this.descripcionInsumoB.DescQ1P2insumo6 = "Insumo 6";
-
-    this.descripcionInsumoB.DescQ1P3insumo1 = "Insumo 1";
-    this.descripcionInsumoB.DescQ1P3insumo2 = "Insumo 2";
-    this.descripcionInsumoB.DescQ1P3insumo3 = "Insumo 3";
-    this.descripcionInsumoB.DescQ1P3insumo4 = "Insumo 4";
-    this.descripcionInsumoB.DescQ1P3insumo5 = "Insumo 5";
-    this.descripcionInsumoB.DescQ1P3insumo6 = "Insumo 6";
-
-    this.descripcionInsumoB.DescQ2P1insumo1 = "Insumo 1";
-    this.descripcionInsumoB.DescQ2P1insumo2 = "Insumo 2";
-    this.descripcionInsumoB.DescQ2P1insumo3 = "Insumo 3";
-    this.descripcionInsumoB.DescQ2P1insumo4 = "Insumo 4";
-    this.descripcionInsumoB.DescQ2P1insumo5 = "Insumo 5";
-    this.descripcionInsumoB.DescQ2P1insumo6 = "Insumo 6";
-
-    this.descripcionInsumoB.DescQ2P2insumo1 = "Insumo 1";
-    this.descripcionInsumoB.DescQ2P2insumo2 = "Insumo 2";
-    this.descripcionInsumoB.DescQ2P2insumo3 = "Insumo 3";
-    this.descripcionInsumoB.DescQ2P2insumo4 = "Insumo 4";
-    this.descripcionInsumoB.DescQ2P2insumo5 = "Insumo 5";
-    this.descripcionInsumoB.DescQ2P2insumo6 = "Insumo 6";
-
-    this.descripcionInsumoB.DescQ2P3insumo1 = "Insumo 1";
-    this.descripcionInsumoB.DescQ2P3insumo2 = "Insumo 2";
-    this.descripcionInsumoB.DescQ2P3insumo3 = "Insumo 3";
-    this.descripcionInsumoB.DescQ2P3insumo4 = "Insumo 4";
-    this.descripcionInsumoB.DescQ2P3insumo5 = "Insumo 5";
-    this.descripcionInsumoB.DescQ2P3insumo6 = "Insumo 6";*/
-
     var objDescInsumosB =
     {
       materia: this.guardarMateriaMatricula,
       periodo: this.periodoLectivoActual
     }
 
-    this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
+      this.subscribe1= this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
 
       if (response.insumosB != undefined) {
         this.listadoInsumosB = response.insumosB;
@@ -253,7 +253,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       periodo: this.periodoLectivoActual
     }
 
-    this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
+    this.subscribe2=this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
 
       if (response.insumosB != undefined) {
         this.listadoInsumosB = response.insumosB;
@@ -461,7 +461,7 @@ export class DocenteComponent implements OnInit, DoCheck {
         break;
     }
 
-    this._insumoService.registerInsumoB(this.descripcionInsumoB).subscribe(
+    this.subscribe3=this._insumoService.registerInsumoB(this.descripcionInsumoB).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
         console.log("satisfactoriamente");
@@ -517,7 +517,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       periodo: this.periodoLectivoActual
     }
     
-    this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
+    this.subscribe4=this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
 
       if (response.insumos != undefined) {
         this.listadoInsumos = response.insumos;
@@ -567,7 +567,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       periodo: this.periodoLectivoActual
     }
 
-    this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
+    this.subscribe5=this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
 
       if (response.insumos != undefined) {
         this.listadoInsumos = response.insumos;
@@ -661,7 +661,7 @@ export class DocenteComponent implements OnInit, DoCheck {
         break;
     }
 
-    this._insumoService.registerInsumo(this.descripcionInsumo).subscribe(
+    this.subscribe5=this._insumoService.registerInsumo(this.descripcionInsumo).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
         console.log("satisfactoriamente");
@@ -697,6 +697,8 @@ export class DocenteComponent implements OnInit, DoCheck {
 
   pruebaclick() {
   
+    this.banderaHabilitar=false;
+    this.banderaHabilitarB=false;
     this.banderAux = false;
     for (let i = 0; i < Object.keys(this.listadoEstudianteMatriculas).length; i++) {
       document.getElementById("tdbuttonGuardar" + i).click();
@@ -1100,7 +1102,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   getListadoMisMaterias() {
 
     this.vectorListadoMisMaterias = [];
-    this._materiaService.getListadoMioMateria().subscribe(response => {
+   this.subscribe6= this._materiaService.getListadoMioMateria().subscribe(response => {
 
       if (response.materias[0] != undefined) {
         this.vectorListadoMisMaterias = response.materias;
@@ -1115,7 +1117,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   getSubirNotas() {
 
 
-    this._administradorService.getSubirNotas().subscribe(response => {
+    this.subscribe7=this._administradorService.getSubirNotas().subscribe(response => {
       console.log("este es el estado de nota", response)
       if (response.subirnota.estado != undefined) {
         if(response.subirnota.estado=='1')
@@ -1134,7 +1136,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   getPeriodoActual() {
 
 
-    this._administradorService.getPeriodoActual().subscribe(response => {
+    this.subscribe8=this._administradorService.getPeriodoActual().subscribe(response => {
       console.log("este es el periodo que vino", response.periodo)
       if (response.periodo != undefined) {
         this.periodoLectivoActual = response.periodo[0].periodo;
@@ -1161,7 +1163,7 @@ export class DocenteComponent implements OnInit, DoCheck {
     this.Titulo2 = busqueda[3];
     this.guardarMateriaMatricula = busqueda[1];
 
-    this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
+   this.subscribe9= this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
         this.listadoEstudianteMatriculas = this.ordenar(response.matriculas);
@@ -1271,7 +1273,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   traerNotas(value) {
     console.log("value curso para nota", value);
    
-    this._notaService.buscarNotas(value).subscribe(
+   this.subscribe10= this._notaService.buscarNotas(value).subscribe(
       response => {
         this.loading = false;
         this.listadoEstudianteNotas = response.vectorNotas;
@@ -1352,7 +1354,7 @@ export class DocenteComponent implements OnInit, DoCheck {
   traerNotasB(value) {
     console.log("value curso para nota", value);
 
-    this._notaService.buscarNotasB(value).subscribe(
+    this.subscribe11= this._notaService.buscarNotasB(value).subscribe(
       response => {
         this.loading = false;
 
@@ -1491,14 +1493,15 @@ export class DocenteComponent implements OnInit, DoCheck {
 
       console.log("notas antes de registrarse", this.object);
 
-      this._notaService.registerNota(this.object).subscribe(
+      this.subscribe12= this._notaService.registerNota(this.object).subscribe(
         response => {
-          this.btnFinalizar=true;
-          this.banderaHabilitar=false;
+         // this.btnFinalizar=true;
+          this.banderaHabilitar=true;
           this.mensajecorrectomodals = response.message;
           console.log("satisfactoriamente");
           this.loading = false;
           document.getElementById("openModalCorrecto").click();
+          this.btnHabilitarExportacion=false;
     
         },
         error => {
@@ -1536,14 +1539,15 @@ export class DocenteComponent implements OnInit, DoCheck {
     if (this.banderAux == false) {
 
 
-      this._notaService.registerNotaB(this.objectB).subscribe(
+      this.subscribe13=this._notaService.registerNotaB(this.objectB).subscribe(
         response => {
           this.mensajecorrectomodals = response.message;
           console.log("satisfactoriamente");
-          this.loading = false;
+          //this.loading = false;
           document.getElementById("openModalCorrecto").click();
-          this.btnFinalizar2 = true;
-          this.banderaHabilitarB=false;
+          //this.btnFinalizar2 = true;
+          this.banderaHabilitarB=true;
+          this.btnHabilitarExportacion=false;
         },
         error => {
           this.btnFinalizar2 = true;
@@ -1622,7 +1626,7 @@ export class DocenteComponent implements OnInit, DoCheck {
       this.loading = false;
 
       doc.save('Reporte_Notas_Docente.pdf');
-
+        
 
 
     } else {
@@ -1655,10 +1659,8 @@ export class DocenteComponent implements OnInit, DoCheck {
 
       doc.save('Reporte_Notas_Docente.pdf');
 
-
-
-
     }
+    
   }
   public VreporteExcel;
   

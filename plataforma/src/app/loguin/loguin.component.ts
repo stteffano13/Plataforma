@@ -20,8 +20,24 @@ export class LoguinComponent {
   public token;
   public loading = false;
   public error = "";
-
   public mensajeerrormodals;
+
+   // subscribes variables
+   public subscribe1;
+   public subscribe2;
+   public subscribe3;
+   public subscribe4;
+   public subscribe5;
+   public subscribe6;
+  ngOnDestroy()
+  {
+    console.log("chao");
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
+    
+   
+    
+  }
 
   selectAdminsitrador() {
     this.banderLoguin = "administrador"
@@ -42,7 +58,7 @@ export class LoguinComponent {
         case "administrador":
           this.loading = true;
           if (this.obj.email != null && this.obj.password != null) {
-            this._adminServices.singupAdministrador(this.obj, "").subscribe(
+           this.subscribe1= this._adminServices.singupAdministrador(this.obj, "").subscribe(
               response => {
                 this.loading = false;
                 let identity = response.user;
@@ -55,7 +71,7 @@ export class LoguinComponent {
                 } else {
                   // crear local storage
                   localStorage.setItem("identityAdmin", JSON.stringify(identity));
-                  this._adminServices.singupAdministrador(this.obj, "true").subscribe(
+                  this.subscribe2=  this._adminServices.singupAdministrador(this.obj, "true").subscribe(
                     response => {
                       let token = response.token;
                       this.token = token;
@@ -125,7 +141,7 @@ export class LoguinComponent {
         case "docente":
           this.loading = true;
           if (this.obj.email != null && this.obj.password != null) {
-            this._docenteServices.singupDocente(this.obj, "").subscribe(
+            this.subscribe3= this._docenteServices.singupDocente(this.obj, "").subscribe(
               response => {
                 this.loading = false;
                 let identity = response.user;
@@ -138,7 +154,7 @@ export class LoguinComponent {
                   // crear local storage
                   localStorage.setItem("identityDocente", JSON.stringify(identity));
 
-                  this._docenteServices.singupDocente(this.obj, "true").subscribe(
+                  this.subscribe4=this._docenteServices.singupDocente(this.obj, "true").subscribe(
                     response => {
                       let token = response.token;
                       this.token = token;
@@ -204,7 +220,7 @@ export class LoguinComponent {
         case "estudiante":
         this.loading = true;
         if (this.obj.email != null && this.obj.password != null) {
-          this._estudianteServices.singupEstudiante(this.obj, "").subscribe(
+          this.subscribe5=this._estudianteServices.singupEstudiante(this.obj, "").subscribe(
             response => {
               this.loading = false;
               let identity = response.user;
@@ -217,7 +233,7 @@ export class LoguinComponent {
                 // crear local storage
                 localStorage.setItem("identityEstudiante", JSON.stringify(identity));
 
-                this._estudianteServices.singupEstudiante(this.obj, "true").subscribe(
+                this.subscribe6=this._estudianteServices.singupEstudiante(this.obj, "true").subscribe(
                   response => {
                     let token = response.token;
                     this.token = token;

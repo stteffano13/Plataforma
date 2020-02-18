@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var PeriodoSchema= Schema({
+   
     periodo: String
 });
 

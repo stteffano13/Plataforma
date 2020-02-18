@@ -29,9 +29,9 @@ public cont =0;
 
   getListadoCursos() {
    
-    let headers = new Headers({ "Content-type": "application/json", "Authorization": this.getToken() });
+    let headers = new Headers({ "Content-type": "application/json", "Authorization":this.getToken() });
     return this._http
-      .get(this.url + "getListadoCursos",  { headers: headers })
+      .get(this.url + "getListadoCursos",{ headers: headers })
       .map(res => res.json());
   }
 

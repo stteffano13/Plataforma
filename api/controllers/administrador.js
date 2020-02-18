@@ -140,7 +140,37 @@ function savePeriodoLectivoActual(req, res) {
     var params = req.body;
     var periodo = new Periodo();
 
-    Periodo.findOne({
+    Periodo.findOne((err, periodo) => {
+        if (err) {
+            res.status(500).send({
+                message: "Error al guardar Periodo"
+            });
+        } else {
+            if (periodo) {
+                console.log(" esto es lo que voy a buscar de periodo",periodo._id,"..", params);
+
+                Periodo.findByIdAndUpdate(periodo._id, params, (err, periodoUpdate) => {
+
+                    if (err) {
+                        console.log("error", err);
+                        res.status(500).send({ message: "Error al guardar nuevo periodo", err });
+
+                    } else {
+                        if (!periodoUpdate) {
+                            console.log("no se actualizo");
+                            res.status(404).send({ message: "El periodo no se ha actualizado" });
+                        } else {
+                            console.log("se guardo",periodoUpdate);
+                            res.status(200).send({ message: "El periodo se ha actualizado correctamente" });
+                        }
+                    }
+
+                });
+
+            }
+        }
+    });
+  /*  Periodo.findOne({
         '$and': [{ periodo: params.periodo }]
     }, (err, users) => {
         if (err) {
@@ -191,7 +221,7 @@ function savePeriodoLectivoActual(req, res) {
                 });
             }
         }
-    });
+    });*/
 }
 
 

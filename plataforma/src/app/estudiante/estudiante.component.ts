@@ -58,6 +58,14 @@ export class EstudianteComponent implements OnInit, DoCheck {
   public recivir;
   public counter = 5;
 
+  // subscribes variables
+  public subscribe1;
+  public subscribe2;
+  public subscribe3;
+  public subscribe4;
+  public subscribe5;
+  public subscribe6;
+ 
 
   constructor(private _materiaService: MateriaService,
     private _administradorService: AdministradorService,
@@ -82,10 +90,29 @@ export class EstudianteComponent implements OnInit, DoCheck {
     if(this.banderTabla2)
     document.getElementById("btnTraerNotasB").click();
   }
+
+  ngOnDestroy()
+  {
+    console.log("chao");
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
+    this.subscribe3.unsubscribe();
+    this.subscribe4.unsubscribe();
+    this.subscribe5.unsubscribe();
+    this.subscribe6.unsubscribe();
+    delete this.object;
+    delete this.obj;
+    delete this.objectCalculable;
+    delete this.objC;
+    delete this.objectB; 
+    delete this.objB;
+    delete this.objectCalculableB;
+   
+    
+  }
   getPeriodoActual() {
 
-
-    this._administradorService.getPeriodoActual().subscribe(response => {
+    this.subscribe1=this._administradorService.getPeriodoActual().subscribe(response => {
       console.log("este es el periodo que vino", response.periodo)
       if (response.periodo != undefined) {
         this.periodoLectivoActual = response.periodo[0].periodo;
@@ -101,7 +128,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
     this.loading = true;
     this.vectorListadoMisMaterias = [];
-    this._matriculaServices.getListadoMioMateria().subscribe(response => {
+    this.subscribe2= this._matriculaServices.getListadoMioMateria().subscribe(response => {
 
       if (response.materias[0] != undefined) {
         this.vectorListadoMisMaterias = response.materias;
@@ -144,7 +171,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
 
   traerNotas() {
     var periodo = this.periodoLectivoActual;
-    this._notaService.buscarNotasEstudiante(periodo).subscribe(
+    this.subscribe3=this._notaService.buscarNotasEstudiante(periodo).subscribe(
       response => {
 
         this.listadoNotas = response.notas;
@@ -287,7 +314,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
   traerNotasB() {
  var periodo = this.periodoLectivoActual;
 
-    this._notaService.buscarNotasEstudianteB(periodo).subscribe(
+ this.subscribe4=this._notaService.buscarNotasEstudianteB(periodo).subscribe(
       response => {
         this.loading = false;
         this.listadoNotas = response.notas;
@@ -508,7 +535,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
       periodo: this.periodoLectivoActual
     }
     console.log("esto e sloq ue hay que buscar como estudainte", objDescInsumos);
-    this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
+    this.subscribe5= this._insumoService.getDescInsumos(objDescInsumos).subscribe(response => {
 
       if (response.insumos != undefined) {
         this.listadoInsumos = response.insumos;
@@ -536,7 +563,7 @@ export class EstudianteComponent implements OnInit, DoCheck {
       periodo: this.periodoLectivoActual
     }
 
-    this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
+    this.subscribe6=this._insumoService.getDescInsumosB(objDescInsumosB).subscribe(response => {
 
       if (response.insumosB != undefined) {
         this.listadoInsumosB = response.insumosB;

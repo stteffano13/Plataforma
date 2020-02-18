@@ -236,6 +236,32 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     esal: 3000
   }];
 
+    // subscribes variables
+    public subscribe1;
+    public subscribe2;
+    public subscribe3;
+    public subscribe4;
+    public subscribe5;
+    public subscribe6;
+    public subscribe7;
+    public subscribe8;
+    public subscribe9;
+    public subscribe10;
+    public subscribe11;
+    public subscribe12;
+    public subscribe13;
+    public subscribe14;
+    public subscribe15;
+    public subscribe16;
+    public subscribe17;
+    public subscribe18;
+    public subscribe19;
+    public subscribe20;
+    public subscribe21;
+    public subscribe22;
+    public subscribe23;
+    public subscribe24;
+
   constructor(private _docenteServices: DocenteService,
     private _cursoServices: CursoService,
     private _estudianteService: EstudianteService,
@@ -247,7 +273,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
     this.docente_register = new Docente("", "", "", "", "", "", "", "");
     this.estudiante_register = new Estudiante("", "", "", "", "", "", "", "");
-    this.curso_register = new Curso("", "", "", "");
+    this.curso_register = new Curso("", "", "", "","");
     this.matricula_register = new Matricula("", "", "", "", "");
     this.materia_register = new Materia("", "", "", "", "", "", "");
 
@@ -266,7 +292,39 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.txtHide = false;
 
 
-
+  }
+  ngOnDestroy()
+  {
+    console.log("chao");
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
+    this.subscribe3.unsubscribe();
+    this.subscribe4.unsubscribe();
+    this.subscribe5.unsubscribe();
+    this.subscribe6.unsubscribe();
+    this.subscribe7.unsubscribe();
+    this.subscribe8.unsubscribe();
+    this.subscribe9.unsubscribe();
+    this.subscribe10.unsubscribe();
+    this.subscribe11.unsubscribe();
+    this.subscribe12.unsubscribe();
+    this.subscribe13.unsubscribe();
+    this.subscribe14.unsubscribe();
+    this.subscribe15.unsubscribe();
+    this.subscribe16.unsubscribe();
+    this.subscribe17.unsubscribe();
+    this.subscribe18.unsubscribe();
+    this.subscribe19.unsubscribe();
+    this.subscribe20.unsubscribe();
+    this.subscribe21.unsubscribe();
+    this.subscribe22.unsubscribe();
+    this.subscribe23.unsubscribe();
+    this.subscribe24.unsubscribe();
+    delete this.docente_register;
+   delete  this.estudiante_register;
+    delete this.curso_register;
+    delete this.matricula_register;
+    delete this.materia_register;
   }
 
   subirNotas(valor) {
@@ -275,7 +333,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     let obj = {
       estado: valor
     }
-    this._notaService.subirNotas(obj).subscribe(
+    this.subscribe1= this._notaService.subirNotas(obj).subscribe(
       response => {
         this.mensajecorrectomodals = response.message;
         console.log("satisfactoriamente");
@@ -362,7 +420,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   busquedaDocente() {
     this.loading = true;
-    this._docenteServices.buscarDocentes(this.buscar).subscribe(
+   this.subscribe2= this._docenteServices.buscarDocentes(this.buscar).subscribe(
       response => {
         console.log("satisfactoriamente", response.docentes);
 
@@ -437,7 +495,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadoMatriculasNueva = [];
     this.listadoMatriculas = "";
     this.loading = true;
-    this._matriculaServices.buscarMatriculas(this.busquedaMatricula).subscribe(
+    this.subscribe3= this._matriculaServices.buscarMatriculas(this.busquedaMatricula).subscribe(
       response => {
         console.log("satisfactoriamente matriculas", response.matriculas);
 
@@ -480,7 +538,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadoAsignacionNueva = [];
     this.listadoMaterias = "";
     this.loading = true;
-    this._materiaServices.buscarMaterias(this.buscar).subscribe(
+    this.subscribe4=  this._materiaServices.buscarMaterias(this.buscar).subscribe(
       response => {
         console.log("satisfactoriamente materias", response.materias);
 
@@ -824,7 +882,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       periodo: this.opcionMesInicio + "/" + this.opcionAnoInicio + "-" + this.opcionMesFinal + "/" + this.opcionAnoFinal
     }
 
-    this._administradorService.registerPeriodoLectivoActual(objPeriodoLectivo).subscribe(
+    this.subscribe5= this._administradorService.registerPeriodoLectivoActual(objPeriodoLectivo).subscribe(
       response => {
         this.mensajecorrectomodals = "El periodo lectivo se asignado correctamente";
         console.log("satisfactoriamente");
@@ -855,16 +913,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   asignarCurso(curso) {
     this.curso_register.curso = curso;
+    
   }
 
   onRegisterCurso() {
     this.loading = true;
     this.curso_register.estado = '0';
+    this.curso_register.periodo=this.opcionPeriodoLectivo;
 
-
-
-    console.log("Esta es el el curso que esta cogiendo", this.curso_register.curso);
-    this._cursoServices.registerCurso(this.curso_register).subscribe(
+    console.log("Esta es el el curso que esta cogiendo", this.curso_register);
+    this.subscribe6= this._cursoServices.registerCurso(this.curso_register).subscribe(
       response => {
         this.mensajecorrectomodals = "Los datos del Curso se han registrado satisfactoriamente.";
         console.log("satisfactoriamente");
@@ -895,7 +953,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   onRegisterDocente() {
     this.loading = true;
     this.docente_register.estado = '0';
-    this._docenteServices.registerDocente(this.docente_register).subscribe(
+    this.subscribe7= this._docenteServices.registerDocente(this.docente_register).subscribe(
       response => {
         this.mensajecorrectomodals = "Los datos del Docente se han registrado satisfactoriamente.";
         console.log("satisfactoriamente");
@@ -926,7 +984,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   onRegisterEstudiante() {
     this.loading = true;
     this.estudiante_register.estado = '0';
-    this._estudianteService.registerEstudiante(this.estudiante_register).subscribe(
+    this.subscribe8= this._estudianteService.registerEstudiante(this.estudiante_register).subscribe(
       response => {
         this.mensajecorrectomodals = "Los datos del Estudiante se han registrado satisfactoriamente.";
         console.log("satisfactoriamente");
@@ -978,7 +1036,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
 
       console.log("Esta es el el curso que esta cogiendo", this.curso_register.curso);
-      this._matriculaServices.registerMatricula(this.matricula_register).subscribe(
+      this.subscribe9= this._matriculaServices.registerMatricula(this.matricula_register).subscribe(
         response => {
           this.mensajecorrectomodals = "Loa matrícula se ha generado exitosamente.";
           console.log("satisfactoriamente");
@@ -1031,7 +1089,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
         this.materia_register.nombre = this.selectedMateriaAsignacion;
         this.materia_register.periodo = this.opcionPeriodoLectivo;
 
-        this._materiaServices.registerMateria(this.materia_register).subscribe(
+        this.subscribe10=  this._materiaServices.registerMateria(this.materia_register).subscribe(
           response => {
             this.mensajecorrectomodals = "La materia se ha asignado exitosamente.";
             console.log("satisfactoriamente");
@@ -1136,7 +1194,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.datosDocentes.contrasena = this.contrasenaUpdateDocente;
     }
 
-    this._docenteServices.update_docente(this.datosDocentes, this.estadoClaveDocente).subscribe(
+    this.subscribe11=this._docenteServices.update_docente(this.datosDocentes, this.estadoClaveDocente).subscribe(
       response => {
         this.contrasenaUpdateDocente = '';
         this.mensajecorrectomodals = response.message; // esto puso el tefo chumadod
@@ -1191,7 +1249,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.datosEstudiantes.contrasena = this.contrasenaUpdateEstudiante;
     }
 
-    this._estudianteService.update_estudiante(this.datosEstudiantes, this.estadoClaveEstudiante).subscribe(
+    this.subscribe12= this._estudianteService.update_estudiante(this.datosEstudiantes, this.estadoClaveEstudiante).subscribe(
       response => {
         this.loading = false;
         this.contrasenaUpdateEstudiante = '';
@@ -1229,7 +1287,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadoMatriculas = "";
 
     matricula.estado = "1";
-    this._matriculaServices.update_matricula(matricula).subscribe(
+    this.subscribe13=this._matriculaServices.update_matricula(matricula).subscribe(
       response => {
         this.mensajecorrectomodals = "La matricula se ha eliminado correctamente"; // esto puso el tefo chumadod
         console.log("satisfactoriamenteUpdate");
@@ -1275,7 +1333,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
       this.objCurso.id = codigoC[0];
 
 
-      this._cursoServices.update_curso(this.objCurso).subscribe(
+      this.subscribe14= this._cursoServices.update_curso(this.objCurso).subscribe(
         response => {
           this.mensajecorrectomodals = response.message; // esto puso el tefo chumadod
           this.selectedCursoEliminar = "";
@@ -1318,7 +1376,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.listadoMaterias = "";
 
     materia.estado = "1";
-    this._materiaServices.update_materia(materia).subscribe(
+    this.subscribe15=  this._materiaServices.update_materia(materia).subscribe(
       response => {
         this.mensajecorrectomodals = "La matricula se ha eliminado correctamente"; // esto puso el tefo chumadod
         console.log("satisfactoriamenteUpdate");
@@ -1352,7 +1410,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   getPeriodoActual() {
 
 
-    this._administradorService.getPeriodoActual().subscribe(response => {
+    this.subscribe16= this._administradorService.getPeriodoActual().subscribe(response => {
 
       if (response.periodo[0] != undefined) {
         this.opcionPeriodoLectivo = response.periodo[0].periodo;
@@ -1382,7 +1440,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   getPeriodos() {
 
 
-    this._administradorService.getPeriodos().subscribe(response => {
+    this.subscribe17=this._administradorService.getPeriodos().subscribe(response => {
 
       if (response.periodo != undefined) {
         this.vectorListadoPeriodos = response.periodo;
@@ -1398,7 +1456,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   // obtener lsitados a vectores
   getListadoEstudiantes() {
 
-    this._estudianteService.getListadoEstudiantes().subscribe(response => {
+    this.subscribe18=this._estudianteService.getListadoEstudiantes().subscribe(response => {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.listadoEstudiantes[0] != undefined) {
@@ -1412,7 +1470,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   getListadoCursos() {
 
     this.vectorListadoCursos = [];
-    this._cursoServices.getListadoCursos().subscribe(response => {
+    this.subscribe19= this._cursoServices.getListadoCursos().subscribe(response => {
 
       console.log("esto iene de la peticion Cursos" + JSON.stringify(response));
       if (response.listadoCursos[0] != undefined) {
@@ -1429,7 +1487,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     var busqueda = value.split(",");
     this.loading = true;
 
-    this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
+    this.subscribe20=this._matriculaServices.buscarEstudianteMatricula(busqueda[0]).subscribe(
       response => {
 
         this.listadoEstudianteMatriculas = this.ordenar(response.matriculas);
@@ -1461,7 +1519,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   }
 
   getListadoMaterias(value, valu1) {
-    this._materiaServices.getListadoMateriaCurso(value).subscribe(
+    this.subscribe21=this._materiaServices.getListadoMateriaCurso(value).subscribe(
       response => {
 
         this.listadoMateriasCurso = response.materias;
@@ -1528,7 +1586,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.nuevo = [];
     this.nuevo2 = [];
     console.log(" hoal entre a matris", value);
-    this._notaService.buscarNotasMatris(value).subscribe(
+    this.subscribe22= this._notaService.buscarNotasMatris(value).subscribe(
       response => {
 
         this.loading = false;
@@ -1620,7 +1678,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.diviciones;
     this.nuevo = [];
     this.nuevo2 = [];
-    this._notaService.buscarNotasMatrisB(value).subscribe(
+    this.subscribe23=this._notaService.buscarNotasMatrisB(value).subscribe(
       response => {
         this.loading = false;
         this.listadoNotas = response.vectorNotas;
@@ -1694,7 +1752,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
 
   getListadoDocentes() {
 
-    this._docenteServices.getListadoDocentes().subscribe(response => {
+    this.subscribe24=this._docenteServices.getListadoDocentes().subscribe(response => {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.listadoDocentes[0] != undefined) {

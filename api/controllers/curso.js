@@ -6,7 +6,7 @@ var Curso = require('../models/curso'); //importar el modelo del usuario  o lo q
 var Materia = require('../models/materia'); //importar el modelo del usuario  o lo que son las clases comunes
 var Matricula = require('../models/matricula'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
-
+var Periodo = require('../models/periodo');
 
 
 function saveCurso(req, res) {
@@ -41,12 +41,12 @@ function saveCurso(req, res) {
                                 console.log("numero de regsitros", count);
                                 count++
                             });
-                            count=count+1;
+                            count = count + 1;
                             //
-                            curso.codigo="CODC"+count;
+                            curso.codigo = "CODC" + count;
                             curso.curso = params.curso;
-                            curso.paralelo = '"'+params.paralelo+'"';
-                            curso.estado="0";
+                            curso.paralelo = '"' + params.paralelo + '"';
+                            curso.estado = "0";
 
                             if (params.curso && params.paralelo) {
 
@@ -91,109 +91,123 @@ function saveCurso(req, res) {
 
 function getCursos(req, res) {
 
-
-
-
-    var message = Curso.find({estado:"0"}).exec((err, listadoCursos) => {
+    var periodo = Periodo.findOne().sort({ $natural: -1 }).limit(1).exec((err, periodo) => {
         if (err) {
             return res.status(500).send({
-                message: 'No se ha podido obtener los cursos'
+                message: 'No se han podido obtener periodo'
             });
         }
 
-        if (!listadoCursos) {
+        if (!periodo) {
             return res.status(200).send({
-                message: 'No tiene cursos'
+                message: 'No tiene periodos'
             });
-        }
+        } else {
+            console.log("esto busca", periodo.periodo);
+            var message = Curso.find({ '$and': [{ periodo: periodo.periodo }, { estado: 0 }] }).exec((err, listadoCursos) => {
+                if (err) {
+                    return res.status(500).send({
+                        message: 'No se ha podido obtener los cursos'
+                    });
+                }
 
-        return res.status(200).send({
-            listadoCursos
-        });
+                if (!listadoCursos) {
+                    return res.status(200).send({
+                        message: 'No tiene cursos'
+                    });
+                }
+
+                return res.status(200).send({
+                    listadoCursos
+                });
+            });
+
+        }
     });
+
 
 }
 
 
 
 function updateCurso(req, res) {
-  
+
     var messageId = req.body.id;  // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
-  
 
 
-  var message = Curso.find({'$and':[{codigo: messageId},{estado: 0}]}).exec((err, curso) => {
-    if (err) {
-        return res.status(500).send({
-            message: 'No se ha podido actualizar el curso'
-        });
-    }
 
-    if (!curso) {
-        return res.status(200).send({
-            message: 'No tiene registrado este curso'
-        });
-    }else{
+    var message = Curso.find({ '$and': [{ codigo: messageId }, { estado: 0 }] }).exec((err, curso) => {
+        if (err) {
+            return res.status(500).send({
+                message: 'No se ha podido actualizar el curso'
+            });
+        }
+
+        if (!curso) {
+            return res.status(200).send({
+                message: 'No tiene registrado este curso'
+            });
+        } else {
 
 
-        curso[0].estado="1";
+            curso[0].estado = "1";
 
-        console.log(curso[0]._id);
+            console.log(curso[0]._id);
 
-        Materia.findOne({'$and':[{curso:curso[0]._id},{estado:0}]}, (err, materiaupdate) => {
-  
-            if (err) {
-              res.status(500).send({ message: "Error al eliminar el curso", err });
-        
-            } else {
-              if (!materiaupdate) {
-                Matricula.findOne({'$and':[{curso: curso[0]._id},{estado:0}]}, (err, matricula) => {
-  
-                    if (err) {
-                      res.status(500).send({ message: "Error al eliminar el curso", err });
-                
-                    } else {
-                      if (!matricula) {
-                          
-                        Curso.findByIdAndUpdate(curso[0]._id, curso[0], (err, cursoUpdate) => {
-  
+            Materia.findOne({ '$and': [{ curso: curso[0]._id }, { estado: 0 }] }, (err, materiaupdate) => {
+
+                if (err) {
+                    res.status(500).send({ message: "Error al eliminar el curso", err });
+
+                } else {
+                    if (!materiaupdate) {
+                        Matricula.findOne({ '$and': [{ curso: curso[0]._id }, { estado: 0 }] }, (err, matricula) => {
+
                             if (err) {
-                              res.status(500).send({ message: "Error al eliminar el curso", err });
-                        
+                                res.status(500).send({ message: "Error al eliminar el curso", err });
+
                             } else {
-                              if (!cursoUpdate) {
-                                res.status(404).send({ message: "El  curso no  se ha actualizado" });
-                              } else {
-                                res.status(200).send({  message: "El curso se ha actualizado correctamente"  });
-                              }
+                                if (!matricula) {
+
+                                    Curso.findByIdAndUpdate(curso[0]._id, curso[0], (err, cursoUpdate) => {
+
+                                        if (err) {
+                                            res.status(500).send({ message: "Error al eliminar el curso", err });
+
+                                        } else {
+                                            if (!cursoUpdate) {
+                                                res.status(404).send({ message: "El  curso no  se ha actualizado" });
+                                            } else {
+                                                res.status(200).send({ message: "El curso se ha actualizado correctamente" });
+                                            }
+                                        }
+
+                                    });
+
+                                } else {
+                                    res.status(200).send({ message: "No eliminar, el curso esta asignado a Matriculas" });
+                                }
                             }
-                        
-                          });
 
-                      } else {
-                        res.status(200).send({  message: "No eliminar, el curso esta asignado a Matriculas"  });
-                      }
+                        });
+
+                    } else {
+                        res.status(200).send({ message: "No eliminar, el curso esta asignado a Materias" });
                     }
-                
-                  });
-               
-              } else {
-                res.status(200).send({  message: "No eliminar, el curso esta asignado a Materias"  });
-              }
-            }
-        
-          });
+                }
 
-        
+            });
+
+
 
 
         }
-});
+    });
 
-  
-   
-  }
-  
+
+
+}
+
 module.exports = {          // para exportar todas las funciones de este modulo
 
     saveCurso,

@@ -12,7 +12,8 @@ var CursoSchema = Schema({
     codigo:String,
     curso: String,
     paralelo: String,
-    estado:String
+    estado:String,
+    periodo:String
    
 });
 
