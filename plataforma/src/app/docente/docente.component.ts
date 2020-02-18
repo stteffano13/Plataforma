@@ -1094,9 +1094,11 @@ export class DocenteComponent implements OnInit, DoCheck, OnDestroy {
 
   habilitarGR() {
     this.btnFinalizar = true;
+    this.btnHabilitarExportacion=true;
   }
   habilitarGRB() {
     this.btnFinalizar2 = true;
+    this.btnHabilitarExportacion=true;
   }
 
   getListadoMisMaterias() {
