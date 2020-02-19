@@ -12,8 +12,7 @@ var app = require('./appi');
 var port = process.env.PORT || 3977;
 
 
-
-mongoose.connect('mongodb://134.209.209.244:27017/plataforma?authSource=plataforma',{user:'nutch@',pass:'p@ssw0rd'}, (err, res) => {
+mongoose.connect('mongodb://138.197.102.175:27017/plataforma?authSource=plataforma',{user:'nutch@',pass:'p@ssw0rd'}, (err, res) => {
     if (err) {
         throw err;
     } else {
