@@ -644,7 +644,7 @@ function buscarNotasMatrisB(req, res) {
 
         if (err) {
           cont3++
-          if (cont == multi) {
+          if (cont3+cont2+cont == multi) {
             res.status(500).send({
               message: "Error al optener promedios finales"
             });
@@ -655,7 +655,7 @@ function buscarNotasMatrisB(req, res) {
             cont2++;
 
             vectorNotas.push(notas);
-            if (cont2 == multi) {
+            if (cont3+cont2+cont == multi) {
               console.log("estes es el vector de nbotas que regresa para l matris", vectorNotas);
               res.status(200).send({
                 vectorNotas
@@ -664,7 +664,7 @@ function buscarNotasMatrisB(req, res) {
 
           } else {
             cont++;
-            if (cont == multi) {
+            if (cont3+cont2+cont == multi) {
               res.status(200).send({
                 message: "no existen notas registradas"
               });
@@ -679,7 +679,7 @@ function buscarNotasMatrisB(req, res) {
     });
 
   });
-
+  
 
 }
 

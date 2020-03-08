@@ -318,7 +318,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.subscribe20.unsubscribe();
     this.subscribe21.unsubscribe();
     this.subscribe22.unsubscribe();
-    this.subscribe23.unsubscribe();
+   // this.subscribe23.unsubscribe();
     this.subscribe24.unsubscribe();
     delete this.docente_register;
    delete  this.estudiante_register;
@@ -1678,7 +1678,7 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.diviciones;
     this.nuevo = [];
     this.nuevo2 = [];
-    this.subscribe23=this._notaService.buscarNotasMatrisB(value).subscribe(
+   this._notaService.buscarNotasMatrisB(value).subscribe(
       response => {
         this.loading = false;
         this.listadoNotas = response.vectorNotas;
