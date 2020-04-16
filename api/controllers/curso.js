@@ -47,6 +47,7 @@ function saveCurso(req, res) {
                             curso.curso = params.curso;
                             curso.paralelo = '"' + params.paralelo + '"';
                             curso.estado = "0";
+                            curso.periodo=params.periodo;
 
                             if (params.curso && params.paralelo) {
 
